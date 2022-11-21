@@ -13,11 +13,12 @@
         android:theme="@style/Theme.ProgettoProgrammazione"
         tools:targetApi="31">
 
-        <activity android:name=".Activity.LoginActivity"></activity>
-        <activity android:name=".Activity.RegisterActivity"></activity>
+        <activity android:name=".activity.LoginActivity"></activity>
+        <activity android:name=".activity.RegisterActivity"></activity>
+        <activity android:name=".activity.MainActivity"></activity>
 
         <activity
-            android:name=".Activity.IntroActivity"
+            android:name=".activity.IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
