@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:adjustViewBounds="true"
         android:contentDescription="@string/copertina_desc"
-        android:src="@drawable/defaultuserimg"/>
+        android:src="@drawable/pencil"/>
 
     <TextView
         android:id="@+id/nome_ristorante"
