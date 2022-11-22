@@ -18,10 +18,16 @@
         >
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleView"
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:id="@+id/fragment_container"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/navbar"
+        >
+
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
