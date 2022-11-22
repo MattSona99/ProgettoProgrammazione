@@ -12,7 +12,7 @@ import com.example.progettoprogrammazione.fragment.FragmentProfilo
 import com.example.progettoprogrammazione.fragment.FragmentRistoranti
 import com.google.firebase.auth.FirebaseAuth
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() ,ResturantClickListener{
 
     private val fragmentProfilo = FragmentProfilo();
     private val fragmentRistoranti = FragmentRistoranti();
@@ -48,8 +48,8 @@ class MainActivity : AppCompatActivity() {
         //FUNZIONE CHE SHOWA I RISTORANTI
         val mainActivity = this
         binding.recycleView.apply {
-            layoutManager = GridLayoutManager(applicationContext, 2)
-            adapter = ResturantAdapter(resturantList)
+            layoutManager = GridLayoutManager(applicationContext, 1)
+            adapter = ResturantAdapter(resturantList,mainActivity)
         }
  */
 
@@ -58,23 +58,17 @@ class MainActivity : AppCompatActivity() {
     private fun getResturantData() {
         val r1 = Resturant(R.drawable.pencil, "pino little italy", "descrizione pino")
         resturantList.add(r1)
-
         val r2 = Resturant(R.drawable.pencil, "poldo pizza", "descrizione poldo")
         resturantList.add(r2)
-
         val r3 = Resturant(R.drawable.pencil, "la vecchia osteria", "descrizione pino")
         resturantList.add(r3)
 
-        val r4 = Resturant(R.drawable.pencil, "pino little italy", "descrizione pino")
-        resturantList.add(r4)
+    }
 
-        val r5 = Resturant(R.drawable.pencil, "poldo pizza", "descrizione poldo")
-        resturantList.add(r5)
-
-        val r6 = Resturant(R.drawable.pencil, "la vecchia osteria", "descrizione pino")
-        resturantList.add(r6)
-
-
+    override fun onClick(resturant: Resturant) {
+        val intent= Intent(applicationContext,ResturantDetail::class.java)
+        intent.putExtra(RESTURANT_EXTRA,resturant.id)
+        startActivity(intent)
 
     }
     private fun replaceFragment(fragment : Fragment){
