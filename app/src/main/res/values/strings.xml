@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">ProgettoProgrammazione</string>
+    <string name="copertina_desc">descrizione copertina</string>
+    <string name="titolo_plache_holder">nome ristorante</string>
 
 
 </resources>
