@@ -2,6 +2,7 @@ package com.example.progettoprogrammazione.ristorante
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.databinding.RestaurantCardBinding
+import com.example.progettoprogrammazione.models.Restaurant
 
 class RestaurantViewHolder(
     private val restaurantBinding: RestaurantCardBinding,

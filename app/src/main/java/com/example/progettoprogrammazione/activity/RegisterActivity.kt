@@ -6,6 +6,7 @@ import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.progettoprogrammazione.databinding.ActivityRegistratiBinding
+import com.example.progettoprogrammazione.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -56,18 +57,18 @@ class RegisterActivity : AppCompatActivity() {
                 firebaseAuth.createUserWithEmailAndPassword(Email, Password)
                     .addOnCompleteListener(this) {
                         if (it.isSuccessful) {
-                            val User = mutableMapOf<String, String>()
-                            User.put("Nome", Nome)
-                            User.put("Cognome", Cognome)
-                            User.put("Email", Email)
-                            User.put("Password", Password)
-                            User.put("Telefono", Telefono)
-                            User.put("Uri", "Users-images/defaultuserimg")
-                            User.put("Livello", "1")
-
+                            val save = User(Nome,Cognome,Email,Password,Telefono, "Users-images/defaultuserimg","1")
+                            val user = mutableMapOf<String,String>()
+                            user.put("Nome",save.Nome)
+                            user.put("Cognome",save.Cognome)
+                            user.put("Email", save.Email)
+                            user.put("Password",save.Password)
+                            user.put("Telefono", save.Telefono)
+                            user.put("Uri", save.Uri)
+                            user.put("Livello", save.Livello)
 
                             firebaseDatabase.getReference("Utenti")
-                                .child(firebaseAuth.currentUser!!.uid).setValue(User)
+                                .child(firebaseAuth.currentUser!!.uid).setValue(user)
                                 .addOnCompleteListener {task ->
                                     if (task.isSuccessful) {
                                         Toast.makeText(

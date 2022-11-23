@@ -3,6 +3,9 @@ package com.example.progettoprogrammazione.ristorante
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.progettoprogrammazione.databinding.ActivityRestaurantDetailBinding
+import com.example.progettoprogrammazione.models.RESTAURANT_EXTRA
+import com.example.progettoprogrammazione.models.Restaurant
+import com.example.progettoprogrammazione.models.restaurantList
 
 class RestaurantDetail : AppCompatActivity() {
 
