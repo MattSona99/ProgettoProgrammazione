@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityMainBinding
+import com.example.progettoprogrammazione.databinding.FragmentRistorantiBinding
 import com.example.progettoprogrammazione.fragment.FragmentProfilo
 import com.example.progettoprogrammazione.fragment.FragmentRistoranti
 import com.google.firebase.auth.FirebaseAuth
@@ -18,6 +19,8 @@ class MainActivity : AppCompatActivity() ,ResturantClickListener{
     private val fragmentRistoranti = FragmentRistoranti();
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var bindingRist: FragmentRistorantiBinding
+
     private lateinit var user: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +28,11 @@ class MainActivity : AppCompatActivity() ,ResturantClickListener{
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        bindingRist = FragmentRistorantiBinding.inflate(layoutInflater)
+
+        getResturantData()
+        user = FirebaseAuth.getInstance()
 
         replaceFragment(fragmentRistoranti)
 
@@ -42,16 +50,12 @@ class MainActivity : AppCompatActivity() ,ResturantClickListener{
             true
         }
 
-        getResturantData()
-        user = FirebaseAuth.getInstance()
-/*
         //FUNZIONE CHE SHOWA I RISTORANTI
         val mainActivity = this
-        binding.recycleView.apply {
+        bindingRist.recycleView.apply {
             layoutManager = GridLayoutManager(applicationContext, 1)
             adapter = ResturantAdapter(resturantList,mainActivity)
         }
- */
 
     }
 
