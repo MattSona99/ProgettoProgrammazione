@@ -43,7 +43,7 @@ class RegisterActivity : AppCompatActivity() {
             if (Email.length > 40) {
                 binding.email.setError("L'email non può essere lunga più di 40 caratteri.")
             }
-            if(TextUtils.isEmpty(Email)){
+            if (TextUtils.isEmpty(Email)) {
                 binding.email.setError("Inserisci un'email valida.")
             }
             if (Password.length < 6) {
@@ -57,19 +57,27 @@ class RegisterActivity : AppCompatActivity() {
                 firebaseAuth.createUserWithEmailAndPassword(Email, Password)
                     .addOnCompleteListener(this) {
                         if (it.isSuccessful) {
-                            val save = User(Nome,Cognome,Email,Password,Telefono, "Users-images/defaultuserimg","1")
-                            val user = mutableMapOf<String,String>()
-                            user.put("Nome",save.Nome)
-                            user.put("Cognome",save.Cognome)
+                            val save = User(
+                                Nome,
+                                Cognome,
+                                Email,
+                                Password,
+                                Telefono,
+                                "Users-images/defaultuserimg",
+                                "1"
+                            )
+                            val user = mutableMapOf<String, String>()
+                            user.put("Nome", save.Nome)
+                            user.put("Cognome", save.Cognome)
                             user.put("Email", save.Email)
-                            user.put("Password",save.Password)
+                            user.put("Password", save.Password)
                             user.put("Telefono", save.Telefono)
                             user.put("Uri", save.Uri)
                             user.put("Livello", save.Livello)
 
                             firebaseDatabase.getReference("Utenti")
                                 .child(firebaseAuth.currentUser!!.uid).setValue(user)
-                                .addOnCompleteListener {task ->
+                                .addOnCompleteListener { task ->
                                     if (task.isSuccessful) {
                                         Toast.makeText(
                                             this,
@@ -98,11 +106,10 @@ class RegisterActivity : AppCompatActivity() {
                     }
 
             }
-
-            binding.already.setOnClickListener() {
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-            }
+        }
+        binding.already.setOnClickListener() {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 }
