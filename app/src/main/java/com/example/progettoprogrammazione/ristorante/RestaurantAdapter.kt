@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.databinding.RestaurantCardBinding
+import com.example.progettoprogrammazione.models.Restaurant
 
 class RestaurantAdapter (
     private val restaurant: List<Restaurant>,
@@ -21,7 +22,7 @@ class RestaurantAdapter (
         holder.bindRestaurants(restaurant[position])
     }
 
-    override fun getItemCount(): Int=restaurant.size;
+    override fun getItemCount(): Int=restaurant.size
 
 
 }

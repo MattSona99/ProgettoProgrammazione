@@ -11,10 +11,13 @@ import com.example.progettoprogrammazione.databinding.ActivityMainBinding
 import com.example.progettoprogrammazione.databinding.FragmentRistorantiBinding
 import com.example.progettoprogrammazione.fragment.FragmentProfilo
 import com.example.progettoprogrammazione.fragment.FragmentRistoranti
+import com.example.progettoprogrammazione.models.RESTAURANT_EXTRA
+import com.example.progettoprogrammazione.models.Restaurant
+import com.example.progettoprogrammazione.models.restaurantList
 import com.example.progettoprogrammazione.ristorante.*
 import com.google.firebase.auth.FirebaseAuth
 
-class MainActivity : AppCompatActivity() , RestaurantClickListener {
+class MainActivity : AppCompatActivity(), RestaurantClickListener {
 
     private val fragmentProfilo = FragmentProfilo();
     private val fragmentRistoranti = FragmentRistoranti();
@@ -38,13 +41,13 @@ class MainActivity : AppCompatActivity() , RestaurantClickListener {
         replaceFragment(fragmentRistoranti)
 
         binding.navbar.setOnNavigationItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.ic_dashboard -> replaceFragment(fragmentRistoranti)
                 R.id.ic_profile -> replaceFragment(fragmentProfilo)
                 R.id.ic_logout -> {
                     user.signOut()
                     Toast.makeText(this, "Logout effettuato con successo", Toast.LENGTH_LONG).show()
-                    val intent = Intent(this,IntroActivity :: class.java)
+                    val intent = Intent(this, IntroActivity::class.java)
                     startActivity(intent)
                 }
             }
@@ -55,7 +58,7 @@ class MainActivity : AppCompatActivity() , RestaurantClickListener {
         val mainActivity = this
         bindingRist.recycleView.apply {
             layoutManager = GridLayoutManager(applicationContext, 1)
-            adapter = RestaurantAdapter(restaurantList,mainActivity)
+            adapter = RestaurantAdapter(restaurantList, mainActivity)
         }
 
     }
@@ -71,12 +74,13 @@ class MainActivity : AppCompatActivity() , RestaurantClickListener {
     }
 
     override fun onClick(restaurant: Restaurant) {
-        val intent= Intent(applicationContext, RestaurantDetail::class.java)
-        intent.putExtra(RESTAURANT_EXTRA,restaurant.id)
+        val intent = Intent(applicationContext, RestaurantDetail::class.java)
+        intent.putExtra(RESTAURANT_EXTRA, restaurant.id)
         startActivity(intent)
 
     }
-    private fun replaceFragment(fragment : Fragment){
+
+    private fun replaceFragment(fragment: Fragment) {
         if (fragment != null) {
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.fragment_container, fragment)

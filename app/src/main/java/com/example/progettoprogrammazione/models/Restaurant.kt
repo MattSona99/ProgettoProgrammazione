@@ -1,4 +1,4 @@
-package com.example.progettoprogrammazione.ristorante
+package com.example.progettoprogrammazione.models
 
 var restaurantList = mutableListOf<Restaurant>()
 
