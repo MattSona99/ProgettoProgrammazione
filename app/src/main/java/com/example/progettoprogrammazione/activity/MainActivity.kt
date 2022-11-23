@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity()
     private val fragmentRistoranti = FragmentRistoranti();
 
     private lateinit var binding: ActivityMainBinding
-//  private lateinit var bindingRist: FragmentRistorantiBinding
+
 
     private lateinit var user: FirebaseAuth
 
@@ -35,8 +35,7 @@ class MainActivity : AppCompatActivity()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//      bindingRist = FragmentRistorantiBinding.inflate(layoutInflater)
-//      getRestaurantData()
+
         user = FirebaseAuth.getInstance()
 
         replaceFragment(fragmentRistoranti)
@@ -54,26 +53,7 @@ class MainActivity : AppCompatActivity()
             }
             true
         }
-/*
-        //FUNZIONE CHE SHOWA I RISTORANTI
-        val mainActivity = this
-        bindingRist.recycleView.apply {
-            layoutManager = GridLayoutManager(applicationContext, 1)
-            adapter = RestaurantAdapter(restaurantList,mainActivity)
-        }
 
-    }
-
-    private fun getRestaurantData() {
-        val r1 = Restaurant(R.drawable.pencil, "pino little italy", "descrizione pino")
-        restaurantList.add(r1)
-        val r2 = Restaurant(R.drawable.pencil, "poldo pizza", "descrizione poldo")
-        restaurantList.add(r2)
-        val r3 = Restaurant(R.drawable.pencil, "la vecchia osteria", "descrizione pino")
-        restaurantList.add(r3)
-
-    }
-*/
     fun onClick(restaurant: Restaurant) {
 /*        val intent = Intent(applicationContext, RestaurantDetail::class.java)
         intent.putExtra(RESTAURANT_EXTRA, restaurant.id)

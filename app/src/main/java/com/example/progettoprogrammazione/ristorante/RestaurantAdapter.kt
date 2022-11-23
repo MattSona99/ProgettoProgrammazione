@@ -35,24 +35,9 @@ class RestaurantAdapter (
         return restaurant.size
     }
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val image_r : AppCompatImageView = itemView.findViewById(R.id.copertina)
-        val nome_r : TextView = itemView.findViewById(R.id.nome_ristorante)
-        val descrizioneR : TextView = itemView.findViewById(R.id.descrizione)
-
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val image_r: AppCompatImageView = itemView.findViewById(R.id.copertina)
+        val nome_r: TextView = itemView.findViewById(R.id.nome_ristorante)
+        val descrizioneR: TextView = itemView.findViewById(R.id.descrizione)
     }
-/*
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {
-        val from=LayoutInflater.from(parent.context)
-        val binding=RestaurantCardBinding.inflate(from, parent,false)
-        return RestaurantViewHolder(binding,clickListener)
-    }
-
-    override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
-        holder.bindRestaurants(restaurant[position])
-    }
-
-    override fun getItemCount(): Int=restaurant.size
-
-*/
 }
