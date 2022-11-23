@@ -11,9 +11,7 @@ import com.example.progettoprogrammazione.databinding.ActivityMainBinding
 import com.example.progettoprogrammazione.databinding.FragmentRistorantiBinding
 import com.example.progettoprogrammazione.fragment.FragmentProfilo
 import com.example.progettoprogrammazione.fragment.FragmentRistoranti
-import com.example.progettoprogrammazione.ristorante.RestaurantAdapter
-import com.example.progettoprogrammazione.ristorante.RestaurantClickListener
-import com.example.progettoprogrammazione.ristorante.ResturantDetail
+import com.example.progettoprogrammazione.ristorante.*
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() , RestaurantClickListener {
@@ -34,7 +32,7 @@ class MainActivity : AppCompatActivity() , RestaurantClickListener {
 
         bindingRist = FragmentRistorantiBinding.inflate(layoutInflater)
 
-        getResturantData()
+        getRestaurantData()
         user = FirebaseAuth.getInstance()
 
         replaceFragment(fragmentRistoranti)
@@ -57,24 +55,24 @@ class MainActivity : AppCompatActivity() , RestaurantClickListener {
         val mainActivity = this
         bindingRist.recycleView.apply {
             layoutManager = GridLayoutManager(applicationContext, 1)
-            adapter = RestaurantAdapter(resturantList,mainActivity)
+            adapter = RestaurantAdapter(restaurantList,mainActivity)
         }
 
     }
 
-    private fun getResturantData() {
-        val r1 = Resturant(R.drawable.pencil, "pino little italy", "descrizione pino")
-        resturantList.add(r1)
-        val r2 = Resturant(R.drawable.pencil, "poldo pizza", "descrizione poldo")
-        resturantList.add(r2)
-        val r3 = Resturant(R.drawable.pencil, "la vecchia osteria", "descrizione pino")
-        resturantList.add(r3)
+    private fun getRestaurantData() {
+        val r1 = Restaurant(R.drawable.pencil, "pino little italy", "descrizione pino")
+        restaurantList.add(r1)
+        val r2 = Restaurant(R.drawable.pencil, "poldo pizza", "descrizione poldo")
+        restaurantList.add(r2)
+        val r3 = Restaurant(R.drawable.pencil, "la vecchia osteria", "descrizione pino")
+        restaurantList.add(r3)
 
     }
 
-    override fun onClick(resturant: Resturant) {
-        val intent= Intent(applicationContext, ResturantDetail::class.java)
-        intent.putExtra(RESTURANT_EXTRA,resturant.id)
+    override fun onClick(restaurant: Restaurant) {
+        val intent= Intent(applicationContext, RestaurantDetail::class.java)
+        intent.putExtra(RESTAURANT_EXTRA,restaurant.id)
         startActivity(intent)
 
     }
