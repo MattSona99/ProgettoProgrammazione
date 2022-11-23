@@ -12,8 +12,7 @@ class RestaurantViewHolder(
     fun bindRestaurants(restaurant: Restaurant){
         restaurantBinding.copertina.setImageResource(restaurant.image_r)
         restaurantBinding.nomeRistorante.text= restaurant.nome_r;
-        restaurantBinding.descrizione.text= restaurant.descrizione_r;
-
+        restaurantBinding.descrizione.text= restaurant.descrizioneR;
         restaurantBinding.cardView.setOnClickListener { clickListener.onClick(restaurant) }
     }
 }

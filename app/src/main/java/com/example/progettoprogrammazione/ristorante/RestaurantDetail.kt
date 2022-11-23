@@ -23,7 +23,7 @@ class RestaurantDetail : AppCompatActivity() {
         {
             binding.copertina.setImageResource(restaurant.image_r)
             binding.nomeRistorante.text = restaurant.nome_r
-            binding.descrizione.text = restaurant.descrizione_r
+            binding.descrizione.text = restaurant.descrizioneR
 
         }
     }
