@@ -11,9 +11,12 @@ import com.example.progettoprogrammazione.databinding.ActivityMainBinding
 import com.example.progettoprogrammazione.databinding.FragmentRistorantiBinding
 import com.example.progettoprogrammazione.fragment.FragmentProfilo
 import com.example.progettoprogrammazione.fragment.FragmentRistoranti
+import com.example.progettoprogrammazione.ristorante.RestaurantAdapter
+import com.example.progettoprogrammazione.ristorante.RestaurantClickListener
+import com.example.progettoprogrammazione.ristorante.ResturantDetail
 import com.google.firebase.auth.FirebaseAuth
 
-class MainActivity : AppCompatActivity() ,ResturantClickListener{
+class MainActivity : AppCompatActivity() , RestaurantClickListener {
 
     private val fragmentProfilo = FragmentProfilo();
     private val fragmentRistoranti = FragmentRistoranti();
@@ -54,7 +57,7 @@ class MainActivity : AppCompatActivity() ,ResturantClickListener{
         val mainActivity = this
         bindingRist.recycleView.apply {
             layoutManager = GridLayoutManager(applicationContext, 1)
-            adapter = ResturantAdapter(resturantList,mainActivity)
+            adapter = RestaurantAdapter(resturantList,mainActivity)
         }
 
     }
@@ -70,7 +73,7 @@ class MainActivity : AppCompatActivity() ,ResturantClickListener{
     }
 
     override fun onClick(resturant: Resturant) {
-        val intent= Intent(applicationContext,ResturantDetail::class.java)
+        val intent= Intent(applicationContext, ResturantDetail::class.java)
         intent.putExtra(RESTURANT_EXTRA,resturant.id)
         startActivity(intent)
 
