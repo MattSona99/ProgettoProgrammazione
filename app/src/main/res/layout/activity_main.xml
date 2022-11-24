@@ -25,6 +25,7 @@
         android:id="@+id/fragment_container"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/navbar"
+        android:background="@drawable/background_splash"
         >
 
     </FrameLayout>

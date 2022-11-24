@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ProgettoProgrammazione</string>
     <string name="copertina_desc">Descrizione copertina</string>
-    <string name="titolo_plache_holder">Nome ristorante</string>
+    <string name="titolo_place_holder">Nome ristorante</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

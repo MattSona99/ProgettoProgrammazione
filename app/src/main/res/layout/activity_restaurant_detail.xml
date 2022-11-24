@@ -23,7 +23,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:lines="2"
-        android:text="@string/titolo_plache_holder"
+        android:text="@string/titolo_place_holder"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"/>
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="@string/titolo_plache_holder"
+        android:text="@string/titolo_place_holder"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold"/>
