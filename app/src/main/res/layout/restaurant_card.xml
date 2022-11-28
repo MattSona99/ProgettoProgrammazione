@@ -4,32 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="200dp"
     android:orientation="horizontal"
     app:layout_constraintVertical_bias="0.20"
     >
-    <!--
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
-        android:layout_width="match_parent"
-        android:layout_height="193dp"
-        android:layout_margin="10dp"
-        android:clickable="true"
-        app:cardCornerRadius="200dp"
-        app:cardElevation="7dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="182dp"
-            android:orientation="vertical">
--->
-
 
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
         android:background="#00000000"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,16 +27,16 @@
     <ImageView
         android:id="@+id/copertina"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_height="85dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/copertina_desc"
         android:src="@drawable/pencil"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/nome_ristorante"
+        app:layout_constraintVertical_bias="0.288" />
 
     <TextView
         android:id="@+id/nome_ristorante"
@@ -60,25 +46,25 @@
         android:lines="2"
         android:text="@string/titolo_place_holder"
         android:textColor="@color/black"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/copertina"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/descrizione"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:gravity="center"
         android:text="Descrizione ristorante"
         android:textColor="@color/red"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/copertina"
-        app:layout_constraintTop_toBottomOf="@+id/nome_ristorante" />
+        app:layout_constraintEnd_toEndOf="@+id/imageButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/copertina" />
 
     <!--
         </LinearLayout>

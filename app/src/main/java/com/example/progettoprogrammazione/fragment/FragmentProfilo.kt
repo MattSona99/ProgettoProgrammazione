@@ -1,5 +1,6 @@
 package com.example.progettoprogrammazione.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,8 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.example.progettoprogrammazione.R
+import com.example.progettoprogrammazione.activity.RegisterActivity
+import com.example.progettoprogrammazione.databinding.ActivityLoginBinding
 import com.example.progettoprogrammazione.databinding.FragmentProfiloBinding
 import com.example.progettoprogrammazione.models.User
 import com.google.firebase.auth.FirebaseAuth
@@ -22,10 +25,12 @@ class FragmentProfilo : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firebaseDatabase: FirebaseDatabase
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
 
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profilo, container, false)
@@ -85,4 +90,3 @@ class FragmentProfilo : Fragment() {
 
 
 }
-
