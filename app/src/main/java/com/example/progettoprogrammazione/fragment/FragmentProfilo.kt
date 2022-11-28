@@ -5,12 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.R
+import com.example.progettoprogrammazione.databinding.FragmentProfiloBinding
 import com.example.progettoprogrammazione.models.User
-import com.example.progettoprogrammazione.utente.UserAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -22,41 +22,46 @@ class FragmentProfilo : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firebaseDatabase: FirebaseDatabase
 
-    private lateinit var adapter: UserAdapter
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var userArrayList: ArrayList<User>
-
-    lateinit var nomeU: Array<String>
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
-
-        return inflater.inflate(R.layout.fragment_profilo, container, false)
+        val view = inflater.inflate(R.layout.fragment_profilo, container, false)
+        val benvenutou = view.findViewById<TextView>(R.id.benvenutoprofilo)
+        val nomeu = view.findViewById<EditText>(R.id.nomeprofilo)
+        val cognomeu = view.findViewById<EditText>(R.id.cognomeprofilo)
+        val passwordu = view.findViewById<EditText>(R.id.passwordprofilo)
+        getUserData(object: FireBaseCallback{
+            override fun onResponse(response: Response) {
+                benvenutou.text = "Benvenuto, " + response.user!!.Nome + ".\nQui potrai modificare i tuoi dati personali!"
+                nomeu.hint = "Nome: " + response.user!!.Nome
+                cognomeu.hint = "Cognome: " + response.user!!.Cognome
+                passwordu.hint = "Password: " + response.user!!.Password
+            }
+        })
+        return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        getUserData()
-        val layoutManager = LinearLayoutManager(context)
-        recyclerView = view.findViewById(R.id.recycle_utente)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.setHasFixedSize(true)
-        adapter = UserAdapter(userArrayList)
-        recyclerView.adapter = adapter
+    private interface FireBaseCallback {
+        fun onResponse(response: Response)
     }
 
-    private fun getUserData() {
+    data class Response(
+        var user: User? = null
+    )
+
+
+    private fun getUserData(callBack: FireBaseCallback) {
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseDatabase = FirebaseDatabase.getInstance()
-        userArrayList = arrayListOf<User>()
 
         firebaseDatabase.getReference("Utenti").child(firebaseAuth.currentUser!!.uid)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val user = User(
+                    val response = Response()
+                    response.user = User(
                         snapshot.child("Nome").value.toString(),
                         snapshot.child("Cognome").value.toString(),
                         snapshot.child("Email").value.toString(),
@@ -65,11 +70,7 @@ class FragmentProfilo : Fragment() {
                         snapshot.child("Uri").value.toString(),
                         snapshot.child("Livello").value.toString()
                     )
-                    nomeU = arrayOf(user.Nome)
-
-                    for (nome in nomeU.indices) {
-                        userArrayList.add(user)
-                    }
+                    callBack.onResponse(response)
                 }
 
                 override fun onCancelled(error: DatabaseError) {

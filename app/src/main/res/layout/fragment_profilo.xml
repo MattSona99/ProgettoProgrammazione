@@ -12,41 +12,141 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/splashscreen"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/background_splash" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/formprofilo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="@+id/splashscreen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/splashscreen"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/splashscreen"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:scaleType="fitXY"
+            android:id="@+id/imgprofilo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/defaultuserimg"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/background_splash" />
+            app:layout_constraintVertical_bias="0.07" />
+
+        <TextView
+            android:id="@+id/benvenutoprofilo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Benvenuto, nome utente. Qui potrai modificare i tuoi dati personali!"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="23dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgprofilo"
+            app:layout_constraintVertical_bias="0.07" />
+
+        <EditText
+            android:id="@+id/nomeprofilo"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Nome"
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            android:textColorHighlight="#E91E63"
+            android:textColorHint="@color/pink"
+            android:textColorLink="#E91E63"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/benvenutoprofilo"
+            app:layout_constraintVertical_bias="0.07" />
+
+        <EditText
+            android:id="@+id/cognomeprofilo"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Cognome"
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            android:textColorHighlight="#E91E63"
+            android:textColorHint="@color/pink"
+            android:textColorLink="#E91E63"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nomeprofilo"
+            app:layout_constraintVertical_bias="0.07" />
+
+        <EditText
+            android:id="@+id/passwordprofilo"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textColorHighlight="#E91E63"
+            android:textColorHint="@color/pink"
+            android:textColorLink="#E91E63"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cognomeprofilo"
+            app:layout_constraintVertical_bias="0.1" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/formprofilo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="@+id/splashscreen"
+            android:id="@+id/constraintsalva"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/red_button"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/splashscreen"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordprofilo"
+            app:layout_constraintVertical_bias="0.2">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycle_utente"
+            <TextView
+                android:id="@+id/salva"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Salva"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/fragment_profilo_card"/>
-
-
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
