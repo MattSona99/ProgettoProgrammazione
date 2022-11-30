@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_name.xml"
+    app:startDestination="@id/fragmentRistoranti">
+
+    <fragment
+        android:id="@+id/fragmentRistoranti"
+        android:name="com.example.progettoprogrammazione.fragment.FragmentRistoranti"
+        android:label="fragment_ristoranti"
+        tools:layout="@layout/fragment_ristoranti" />
+</navigation>
