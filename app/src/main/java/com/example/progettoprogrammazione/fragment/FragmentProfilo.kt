@@ -1,6 +1,5 @@
 package com.example.progettoprogrammazione.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,9 +9,6 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.activity.RegisterActivity
-import com.example.progettoprogrammazione.databinding.ActivityLoginBinding
-import com.example.progettoprogrammazione.databinding.FragmentProfiloBinding
 import com.example.progettoprogrammazione.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -25,15 +21,18 @@ class FragmentProfilo : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firebaseDatabase: FirebaseDatabase
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_profilo, container, false)
+
+        return inflater.inflate(R.layout.fragment_profilo, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val benvenutou = view.findViewById<TextView>(R.id.benvenutoprofilo)
         val nomeu = view.findViewById<EditText>(R.id.nomeprofilo)
         val cognomeu = view.findViewById<EditText>(R.id.cognomeprofilo)
@@ -46,7 +45,6 @@ class FragmentProfilo : Fragment() {
                 passwordu.hint = "Password: " + response.user!!.Password
             }
         })
-        return view
     }
 
     private interface FireBaseCallback {
@@ -90,3 +88,4 @@ class FragmentProfilo : Fragment() {
 
 
 }
+

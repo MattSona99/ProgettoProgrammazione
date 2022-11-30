@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:background="@drawable/background_splash">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/nome_ristorante_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="nomeristorante"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.080"
+                android:textSize="33dp"
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:id="@+id/img_ristorante_detail"
+                android:layout_width="256dp"
+                android:layout_height="254dp"
+                android:layout_marginTop="60dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/nome_ristorante_detail"
+                app:layout_constraintHorizontal_bias="0.506"
+                app:layout_constraintStart_toStartOf="@+id/nome_ristorante_detail"
+                app:layout_constraintTop_toBottomOf="@+id/nome_ristorante_detail"
+                app:layout_constraintVertical_bias="0.0"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/descrizione_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="descrizione ristorante"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/img_ristorante_detail"
+                app:layout_constraintHorizontal_bias="0.07"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_ristorante_detail"
+                app:layout_constraintVertical_bias="0.17"
+                android:textSize="23dp"
+                android:textColor="@color/white"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="409dp"
+                android:layout_height="236dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descrizione_detail"
+                app:layout_constraintVertical_bias="1.0">
+
+                <TextView
+                    android:id="@+id/info_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Località e contatti"
+                    android:textColor="@color/white"
+                    android:textSize="30dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.045"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.073" />
+
+                <com.google.android.gms.maps.MapView
+                    android:id="@+id/mapView"
+                    android:layout_width="295dp"
+                    android:layout_height="134dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/info_detail"
+                    app:layout_constraintVertical_bias="0.425"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</FrameLayout>
