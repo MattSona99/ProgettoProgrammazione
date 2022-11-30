@@ -57,16 +57,29 @@ class FragmentRistoranti : Fragment() {
         imageR= arrayOf(
             R.drawable.pencil,
             R.drawable.pencil,
+            R.drawable.pencil,
+            R.drawable.pencil,
+            R.drawable.pencil,
+            R.drawable.pencil,
             R.drawable.pencil
         )
 
         nomeR = arrayOf(
             "pino little italy",
             "poldo pizza",
-            "la vecchia osteria"
+            "la vecchia osteria",
+            "pino little italy",
+            "poldo pizza",
+            "la vecchia osteria",
+            "pino little italy"
+
         )
 
         desc = arrayOf(
+            "desc1",
+            "desc1",
+            "desc1",
+            "desc1",
             "desc1",
             "desc1",
             "desc1"
