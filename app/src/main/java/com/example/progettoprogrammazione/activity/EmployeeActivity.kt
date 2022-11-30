@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityEmployeeBinding
-import com.example.progettoprogrammazione.databinding.ActivityMainBinding
+import com.example.progettoprogrammazione.databinding.ActivityBasicuserBinding
 import com.example.progettoprogrammazione.fragment.FragmentProfilo
 import com.example.progettoprogrammazione.fragment.FragmentRistoranti
 import com.google.firebase.auth.FirebaseAuth
@@ -29,7 +29,7 @@ class EmployeeActivity: AppCompatActivity() {
 
         user = FirebaseAuth.getInstance()
 
-        replaceFragment(fragmentRistoranti)
+        //replaceFragment(fragmentRistoranti)
 
         //NUOVA NAVBAR?
         binding.navbarEmployee.setOnNavigationItemSelectedListener {

@@ -2,18 +2,18 @@ package com.example.progettoprogrammazione.ristorante
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.progettoprogrammazione.databinding.ActivityRestaurantDetailBinding
+import com.example.progettoprogrammazione.databinding.FragmentRestaurantDetailBinding
 import com.example.progettoprogrammazione.models.RESTAURANT_EXTRA
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.restaurantList
 
 class RestaurantDetail : AppCompatActivity() {
 
-    private lateinit var binding: ActivityRestaurantDetailBinding
+    private lateinit var binding: FragmentRestaurantDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRestaurantDetailBinding.inflate(layoutInflater)
+        binding = FragmentRestaurantDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val restaurantID=intent.getIntExtra(RESTAURANT_EXTRA,-1)
@@ -21,9 +21,9 @@ class RestaurantDetail : AppCompatActivity() {
 
         if(restaurant != null)
         {
-            binding.copertina.setImageResource(restaurant.image_r)
-            binding.nomeRistorante.text = restaurant.nome_r
-            binding.descrizione.text = restaurant.descrizioneR
+            binding.imgRistoranteDetail.setImageResource(restaurant.image_r)
+            binding.nomeRistoranteDetail.text = restaurant.nome_r
+            binding.descrizioneDetail.text = restaurant.descrizioneR
 
         }
     }

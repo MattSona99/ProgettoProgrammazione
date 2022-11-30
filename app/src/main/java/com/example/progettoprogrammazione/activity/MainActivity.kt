@@ -12,30 +12,31 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.databinding.ActivityMainBinding
+import com.example.progettoprogrammazione.databinding.ActivityBasicuserBinding
 import com.example.progettoprogrammazione.fragment.FragmentProfilo
 import com.example.progettoprogrammazione.fragment.FragmentRistoranti
+import com.example.progettoprogrammazione.models.RESTAURANT_EXTRA
 //import com.example.progettoprogrammazione.models.RESTAURANT_EXTRA
 import com.example.progettoprogrammazione.models.Restaurant
+import com.example.progettoprogrammazione.ristorante.RestaurantClickListener
+import com.example.progettoprogrammazione.ristorante.RestaurantDetail
 //import com.example.progettoprogrammazione.models.restaurantList
 import com.google.firebase.auth.FirebaseAuth
 
 @Suppress("DEPRECATION")
-class MainActivity : AppCompatActivity()
-//    , RestaurantClickListener
-{
+class MainActivity : AppCompatActivity() {
 
     private val fragmentProfilo = FragmentProfilo()
     private val fragmentRistoranti = FragmentRistoranti()
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityBasicuserBinding
 
     private lateinit var user: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityBasicuserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         user = FirebaseAuth.getInstance()
@@ -60,13 +61,6 @@ class MainActivity : AppCompatActivity()
                 }
             }
             true
-        }
-
-        fun onClick(restaurant: Restaurant) {
-/*        val intent = Intent(applicationContext, RestaurantDetail::class.java)
-        intent.putExtra(RESTAURANT_EXTRA, restaurant.id)
-        startActivity(intent)
-*/
         }
 
     }
@@ -97,5 +91,13 @@ class MainActivity : AppCompatActivity()
             transaction.commit()
         }
     }
+/*
+    override fun onClickResturant(restaurant: Restaurant) {
 
+        val intent = Intent(applicationContext, RestaurantDetail::class.java)
+        intent.putExtra(RESTAURANT_EXTRA, restaurant.id)
+        startActivity(intent)
+    }
+
+ */
 }

@@ -27,9 +27,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/navbar"
         android:background="@drawable/background_splash"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/frag"
-        >
+        app:defaultNavHost="true">
+        <!-- app:navGraph="@navigation/frag"-->
+
 
     </androidx.fragment.app.FragmentContainerView>
 

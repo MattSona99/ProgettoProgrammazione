@@ -78,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
     }
-/*
+
     override fun onStart() {
         super.onStart()
 
@@ -87,7 +87,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-*/
+
     //PRENDIAMO I DATI DEGLI USER
     private interface FireBaseCallback {
         fun onResponse(response: Response)

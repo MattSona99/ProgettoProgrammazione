@@ -9,10 +9,12 @@ class RestaurantViewHolder(
     private val clickListener: RestaurantClickListener
     )
     :RecyclerView.ViewHolder(restaurantBinding.root) {
+
     fun bindRestaurants(restaurant: Restaurant){
         restaurantBinding.copertina.setImageResource(restaurant.image_r)
         restaurantBinding.nomeRistorante.text= restaurant.nome_r;
         restaurantBinding.descrizione.text= restaurant.descrizioneR;
-        restaurantBinding.copertina.setOnClickListener { clickListener.onClick(restaurant) }
+
+        restaurantBinding.copertina.setOnClickListener { clickListener.onClickResturant(restaurant) }
     }
 }
