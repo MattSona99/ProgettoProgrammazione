@@ -23,6 +23,8 @@
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.RestaurateurActivity" />
+        <activity android:name=".activity.EmployeeActivity" />
         <activity
             android:name=".activity.IntroActivity"
             android:exported="true">
