@@ -1,10 +1,18 @@
-package com.example.progettoprogrammazione.activity
+package com.example.progettoprogrammazione.intro
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.example.progettoprogrammazione.databinding.ActivityLoginBinding
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import com.example.progettoprogrammazione.R
+import com.example.progettoprogrammazione.activity.EmployeeActivity
+import com.example.progettoprogrammazione.activity.UserActivity
+import com.example.progettoprogrammazione.activity.RestaurateurActivity
+import com.example.progettoprogrammazione.databinding.FragmentLoginBinding
 import com.example.progettoprogrammazione.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -12,18 +20,23 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class LoginActivity : AppCompatActivity() {
+class FragmentLogin : Fragment() {
 
-    private lateinit var binding: ActivityLoginBinding
+    private lateinit var binding: FragmentLoginBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firebaseDatabase: FirebaseDatabase
     private lateinit var userlvl: String
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentLoginBinding.inflate(layoutInflater)
+        return binding.root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -42,23 +55,23 @@ class LoginActivity : AppCompatActivity() {
                                 userlvl = response.user!!.Livello
 
                                 Toast.makeText(
-                                    this@LoginActivity,
+                                    context,
                                     "Login effettuato con successo!",
                                     Toast.LENGTH_LONG
                                 )
                                     .show()
                                 if (userlvl.equals("1")) {
-                                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                    val intent = Intent(context, UserActivity::class.java)
                                     startActivity(intent)
                                 } else if (userlvl.equals("2")) {
-                                    val intent = Intent(this@LoginActivity, EmployeeActivity::class.java)
+                                    val intent = Intent(context, EmployeeActivity::class.java)
                                     startActivity(intent)
                                 } else if (userlvl .equals("3") ) {
-                                    val intent = Intent(this@LoginActivity, RestaurateurActivity::class.java)
+                                    val intent = Intent(context, RestaurateurActivity::class.java)
                                     startActivity(intent)
                                 } else {
                                     Toast.makeText(
-                                        this@LoginActivity,
+                                        context,
                                         "Email e password non corrispondono!",
                                         Toast.LENGTH_LONG
                                     ).show()
@@ -68,13 +81,12 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             } else {
-                Toast.makeText(this, "Nessun campo può essere vuoto!", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Nessun campo può essere vuoto!", Toast.LENGTH_LONG).show()
             }
         }
 
         binding.noaccount.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+            view.findNavController().navigate(R.id.action_fragmentLogin_to_fragmentRegister)
         }
 
     }
@@ -83,7 +95,7 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
 
         if (firebaseAuth.currentUser != null) {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(context, UserActivity::class.java)
             startActivity(intent)
         }
     }
@@ -119,7 +131,7 @@ class LoginActivity : AppCompatActivity() {
 
                 override fun onCancelled(error: DatabaseError) {
                     Toast.makeText(
-                        this@LoginActivity,
+                        context,
                         "Errore durante il caricamento dei dati",
                         Toast.LENGTH_LONG
                     ).show()

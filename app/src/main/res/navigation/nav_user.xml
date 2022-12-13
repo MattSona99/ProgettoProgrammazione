@@ -2,9 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph_name.xml"
-    app:startDestination="@id/fragmentRistoranti">
+    android:id="@+id/nav_user"
+    app:startDestination="@id/fragmentProfilo">
 
+    <fragment
+        android:id="@+id/fragmentProfilo"
+        android:name="com.example.progettoprogrammazione.fragment.FragmentProfilo"
+        android:label="fragment_profilo"
+        tools:layout="@layout/fragment_profilo" />
     <fragment
         android:id="@+id/fragmentRistoranti"
         android:name="com.example.progettoprogrammazione.fragment.FragmentRistoranti"

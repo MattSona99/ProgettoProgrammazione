@@ -1,27 +1,39 @@
-package com.example.progettoprogrammazione.activity
+package com.example.progettoprogrammazione.intro
 
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.example.progettoprogrammazione.databinding.ActivityRegistratiBinding
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import com.example.progettoprogrammazione.R
+import com.example.progettoprogrammazione.activity.UserActivity
+import com.example.progettoprogrammazione.databinding.FragmentRegistratiBinding
 import com.example.progettoprogrammazione.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 
-class RegisterActivity : AppCompatActivity() {
+class FragmentRegister : Fragment() {
 
-    private lateinit var binding: ActivityRegistratiBinding
+    private lateinit var binding: FragmentRegistratiBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firebaseDatabase: FirebaseDatabase
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentRegistratiBinding.inflate(layoutInflater)
+        return binding.root
+    }
 
-        binding = ActivityRegistratiBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseDatabase = FirebaseDatabase.getInstance()
@@ -55,7 +67,7 @@ class RegisterActivity : AppCompatActivity() {
 
             if (Nome.isNotEmpty() && Cognome.isNotEmpty() && Email.isNotEmpty() && Password.isNotEmpty() && Telefono.isNotEmpty()) {
                 firebaseAuth.createUserWithEmailAndPassword(Email, Password)
-                    .addOnCompleteListener(this) {
+                    .addOnCompleteListener{
                         if (it.isSuccessful) {
                             val save = User(
                                 Nome,
@@ -80,16 +92,16 @@ class RegisterActivity : AppCompatActivity() {
                                 .addOnCompleteListener { task ->
                                     if (task.isSuccessful) {
                                         Toast.makeText(
-                                            this,
+                                            context,
                                             "Utente creato con successo.",
                                             Toast.LENGTH_SHORT
                                         ).show()
-                                        val intent = Intent(this, MainActivity::class.java)
+                                        val intent = Intent(context, UserActivity::class.java)
                                         startActivity(intent)
-                                        finish()
+                                        //finish()
                                     } else {
                                         Toast.makeText(
-                                            this,
+                                            context,
                                             "Errore durante la registrazione. Riprova!",
                                             Toast.LENGTH_SHORT
                                         ).show()
@@ -98,7 +110,7 @@ class RegisterActivity : AppCompatActivity() {
 
                         } else {
                             Toast.makeText(
-                                this,
+                                context,
                                 "Errore durante la registrazione.",
                                 Toast.LENGTH_SHORT
                             ).show()
@@ -108,8 +120,7 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
         binding.already.setOnClickListener() {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            view.findNavController().navigate(R.id.action_fragmentRegister_to_fragmentLogin)
         }
     }
 }
