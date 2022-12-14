@@ -30,10 +30,10 @@ class RestaurantDetail : Fragment(){
 
         //PRENDO DATI RISTORANTE DAL BUNDLE
         val args = this.arguments
-        val restaurantID = args?.getInt("restID")
+        val restaurantID = args?.get("restID")
         restaurantList = args?.getParcelableArrayList<Restaurant>("restArrayList")
 
-        val restaurant=restaurantFromId(restaurantID)
+        val restaurant=restaurantFromId(restaurantID.toString().toInt())
 
         if(restaurant != null)
         {
@@ -42,7 +42,7 @@ class RestaurantDetail : Fragment(){
             binding.descrizioneDetail.text = restaurant.descrizioneR
 
         }
-        return inflater.inflate(R.layout.fragment_restaurant_detail, container, false)
+        return binding.root
     }
 
     private fun restaurantFromId(restaurantID: Int?): Restaurant? {
