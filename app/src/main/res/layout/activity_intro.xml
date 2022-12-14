@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.IntroActivity">
+    android:layout_height="match_parent">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host"
@@ -16,7 +15,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/nav_intro"
-        tools:layout="@layout/fragment_intro" />
+        app:navGraph="@navigation/nav_intro" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

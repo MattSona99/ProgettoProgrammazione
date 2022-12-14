@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
+import com.example.progettoprogrammazione.databinding.FragmentProfiloBinding
 import com.example.progettoprogrammazione.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -18,6 +20,7 @@ import com.google.firebase.database.ValueEventListener
 
 class FragmentProfilo : Fragment() {
 
+    private lateinit var binding: FragmentProfiloBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firebaseDatabase: FirebaseDatabase
 
@@ -27,19 +30,25 @@ class FragmentProfilo : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
-
-        return inflater.inflate(R.layout.fragment_profilo, container, false)
+        binding = FragmentProfiloBinding.inflate(layoutInflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        binding.creaRistorante.setOnClickListener() {
+            view.findNavController().navigate(R.id.ProfiloToUpgrade)
+        }
+
         super.onViewCreated(view, savedInstanceState)
         val benvenutou = view.findViewById<TextView>(R.id.benvenutoprofilo)
         val nomeu = view.findViewById<EditText>(R.id.nomeprofilo)
         val cognomeu = view.findViewById<EditText>(R.id.cognomeprofilo)
         val passwordu = view.findViewById<EditText>(R.id.passwordprofilo)
-        getUserData(object: FireBaseCallback{
+        getUserData(object : FireBaseCallback {
             override fun onResponse(response: Response) {
-                benvenutou.text = "Benvenuto, " + response.user!!.Nome + ".\nQui potrai modificare i tuoi dati personali!"
+                benvenutou.text =
+                    "Benvenuto, " + response.user!!.Nome + ".\nQui potrai modificare i tuoi dati personali!"
                 nomeu.hint = "Nome: " + response.user!!.Nome
                 cognomeu.hint = "Cognome: " + response.user!!.Cognome
                 passwordu.hint = "Password: " + response.user!!.Password

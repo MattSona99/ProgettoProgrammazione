@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityEmployeeBinding
-import com.example.progettoprogrammazione.databinding.ActivityBasicuserBinding
 import com.example.progettoprogrammazione.fragment.FragmentProfilo
 import com.example.progettoprogrammazione.fragment.FragmentRistoranti
 import com.google.firebase.auth.FirebaseAuth

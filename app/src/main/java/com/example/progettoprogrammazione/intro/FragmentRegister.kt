@@ -120,7 +120,7 @@ class FragmentRegister : Fragment() {
             }
         }
         binding.already.setOnClickListener() {
-            view.findNavController().navigate(R.id.action_fragmentRegister_to_fragmentLogin)
+            view.findNavController().navigate(R.id.RegisterToLogin)
         }
     }
 }

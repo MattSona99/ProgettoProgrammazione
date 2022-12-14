@@ -86,7 +86,7 @@ class FragmentLogin : Fragment() {
         }
 
         binding.noaccount.setOnClickListener {
-            view.findNavController().navigate(R.id.action_fragmentLogin_to_fragmentRegister)
+            view.findNavController().navigate(R.id.LoginToRegister)
         }
 
     }

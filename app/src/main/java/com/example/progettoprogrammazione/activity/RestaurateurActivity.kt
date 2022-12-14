@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.databinding.ActivityBasicuserBinding
 import com.example.progettoprogrammazione.databinding.ActivityRestaurateurBinding
 import com.example.progettoprogrammazione.fragment.FragmentProfilo
 import com.example.progettoprogrammazione.fragment.FragmentRistoranti

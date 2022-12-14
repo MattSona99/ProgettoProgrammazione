@@ -2,34 +2,37 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph_name.xml"
+    android:id="@+id/nav_intro"
     app:startDestination="@id/fragmentIntro">
 
     <fragment
         android:id="@+id/fragmentIntro"
         android:name="com.example.progettoprogrammazione.intro.FragmentIntro"
-        android:label="FragmentIntro" >
+        android:label="FragmentIntro"
+        tools:layout="@layout/fragment_intro" >
         <action
-            android:id="@+id/action_fragmentIntro_to_fragmentLogin"
+            android:id="@+id/IntroToLogin"
             app:destination="@id/fragmentLogin" />
         <action
-            android:id="@+id/action_fragmentIntro_to_fragmentRegister"
+            android:id="@+id/IntroToRegister"
             app:destination="@id/fragmentRegister" />
     </fragment>
     <fragment
         android:id="@+id/fragmentLogin"
         android:name="com.example.progettoprogrammazione.intro.FragmentLogin"
-        android:label="FragmentLogin" >
+        android:label="FragmentLogin"
+        tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_fragmentLogin_to_fragmentRegister"
+            android:id="@+id/LoginToRegister"
             app:destination="@id/fragmentRegister" />
     </fragment>
     <fragment
         android:id="@+id/fragmentRegister"
         android:name="com.example.progettoprogrammazione.intro.FragmentRegister"
-        android:label="FragmentRegister" >
+        android:label="FragmentRegister"
+        tools:layout="@layout/fragment_registrati" >
         <action
-            android:id="@+id/action_fragmentRegister_to_fragmentLogin"
+            android:id="@+id/RegisterToLogin"
             app:destination="@id/fragmentLogin" />
     </fragment>
 </navigation>

@@ -28,12 +28,12 @@ class FragmentIntro : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.ConstraintLogin.setOnClickListener() {
-            view.findNavController().navigate(R.id.action_fragmentIntro_to_fragmentLogin)
+            view.findNavController().navigate(R.id.IntroToLogin)
         }
 
 
         binding.registrati.setOnClickListener() {
-            view.findNavController().navigate(R.id.action_fragmentIntro_to_fragmentRegister)
+            view.findNavController().navigate(R.id.IntroToRegister)
         }
     }
 }

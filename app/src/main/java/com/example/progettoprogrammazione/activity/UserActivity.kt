@@ -19,7 +19,6 @@ import com.example.progettoprogrammazione.fragment.FragmentRistoranti
 //import com.example.progettoprogrammazione.models.restaurantList
 import com.google.firebase.auth.FirebaseAuth
 
-@Suppress("DEPRECATION")
 class UserActivity : AppCompatActivity() {
 
     private val fragmentProfilo = FragmentProfilo()

@@ -9,10 +9,19 @@
         android:id="@+id/fragmentProfilo"
         android:name="com.example.progettoprogrammazione.fragment.FragmentProfilo"
         android:label="fragment_profilo"
-        tools:layout="@layout/fragment_profilo" />
+        tools:layout="@layout/fragment_profilo">
+        <action
+            android:id="@+id/ProfiloToUpgrade"
+            app:destination="@id/fragmentUpgrade" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentRistoranti"
         android:name="com.example.progettoprogrammazione.fragment.FragmentRistoranti"
         android:label="fragment_ristoranti"
         tools:layout="@layout/fragment_ristoranti" />
+    <fragment
+        android:id="@+id/fragmentUpgrade"
+        android:name="com.example.progettoprogrammazione.utente.FragmentUpgrade"
+        android:label="FragmentUpgrade"
+        tools:layout="@layout/fragment_upgrade" />
 </navigation>
