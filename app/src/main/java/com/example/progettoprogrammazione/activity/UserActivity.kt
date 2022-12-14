@@ -41,11 +41,11 @@ class UserActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.ic_dashboard -> {
                     val navController = this.findNavController(R.id.user_nav)
-                    navController.navigate(R.id.ProfiloToRistorante)
+                    navController.navigate(R.id.Ristoranti)
                 }
                 R.id.ic_profile -> {
                     val navController = this.findNavController(R.id.user_nav)
-                    navController.navigate(R.id.RistoranteToProfilo)
+                    navController.navigate(R.id.Profilo)
                 }
                 R.id.ic_logout -> {
                     user.signOut()

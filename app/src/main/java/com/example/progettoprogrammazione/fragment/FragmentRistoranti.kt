@@ -1,15 +1,16 @@
 package com.example.progettoprogrammazione.fragment
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.models.RESTAURANT_EXTRA
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.ristorante.RestaurantAdapter
 import com.example.progettoprogrammazione.ristorante.RestaurantClickListener
@@ -21,6 +22,8 @@ class FragmentRistoranti : Fragment() ,RestaurantClickListener{
     private lateinit var adapter: RestaurantAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var restArrayList: ArrayList<Restaurant>
+    private lateinit var navController: NavController
+
 
     lateinit var imageR: Array<Int>
     lateinit var nomeR: Array<String>
@@ -31,18 +34,24 @@ class FragmentRistoranti : Fragment() ,RestaurantClickListener{
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_ristoranti, container, false)
-
-
     }
 
 
     override fun onClickResturant(restaurant: Restaurant) {
 
+        val bundle = Bundle()
+        bundle.putString("restID", restaurant.id.toString())
+        val fragmentDetail = RestaurantDetail()
+        fragmentDetail.arguments = bundle
+        view?.findNavController()?.navigate(R.id.RistorantiToDetail, bundle)
+
+/*
         val intent = Intent(context, RestaurantDetail::class.java)
         intent.putExtra(RESTAURANT_EXTRA, restaurant.id)
         startActivity(intent)
+*/
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,6 +65,8 @@ class FragmentRistoranti : Fragment() ,RestaurantClickListener{
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
         adapter.notifyDataSetChanged()
+
+
 
     }
 
@@ -94,7 +105,7 @@ class FragmentRistoranti : Fragment() ,RestaurantClickListener{
         )
 
         for (i in imageR.indices) {
-            val restaurant = Restaurant(imageR[i], nomeR[i], desc[i])
+            val restaurant = Restaurant(imageR[i], nomeR[i], desc[i], i)
             restArrayList.add(restaurant)
         }
 

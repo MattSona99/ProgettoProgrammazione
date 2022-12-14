@@ -17,4 +17,5 @@ class RestaurantViewHolder(
 
         restaurantBinding.copertina.setOnClickListener { clickListener.onClickResturant(restaurant) }
     }
+
 }

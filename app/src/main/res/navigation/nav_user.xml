@@ -5,6 +5,14 @@
     android:id="@+id/nav_user"
     app:startDestination="@id/fragmentRistoranti">
 
+    <action
+        android:id="@+id/Profilo"
+        app:destination="@+id/fragmentProfilo" />
+
+    <action
+        android:id="@+id/Ristoranti"
+        app:destination="@+id/fragmentRistoranti" />
+
     <fragment
         android:id="@+id/fragmentProfilo"
         android:name="com.example.progettoprogrammazione.fragment.FragmentProfilo"
@@ -13,9 +21,6 @@
         <action
             android:id="@+id/ProfiloToUpgrade"
             app:destination="@id/fragmentUpgrade" />
-        <action
-            android:id="@+id/ProfiloToRistorante"
-            app:destination="@id/fragmentRistoranti" />
     </fragment>
     <fragment
         android:id="@+id/fragmentRistoranti"
@@ -23,12 +28,16 @@
         android:label="fragment_ristoranti"
         tools:layout="@layout/fragment_ristoranti" >
         <action
-            android:id="@+id/RistoranteToProfilo"
-            app:destination="@id/fragmentProfilo" />
+            android:id="@+id/RistorantiToDetail"
+            app:destination="@id/restaurantDetail" />
     </fragment>
     <fragment
         android:id="@+id/fragmentUpgrade"
         android:name="com.example.progettoprogrammazione.utente.FragmentUpgrade"
         android:label="FragmentUpgrade"
         tools:layout="@layout/fragment_upgrade" />
+    <fragment
+        android:id="@+id/restaurantDetail"
+        android:name="com.example.progettoprogrammazione.ristorante.RestaurantDetail"
+        android:label="RestaurantDetail" />
 </navigation>
