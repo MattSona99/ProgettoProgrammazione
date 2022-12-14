@@ -1,7 +1,8 @@
 package com.example.progettoprogrammazione.ristorante
 
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +17,7 @@ class RestaurantDetail : Fragment(){
 
     private lateinit var binding: FragmentRestaurantDetailBinding
 
-
+    private var restaurantList : ArrayList<Restaurant>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,8 +30,10 @@ class RestaurantDetail : Fragment(){
 
         //PRENDO DATI RISTORANTE DAL BUNDLE
         val args = this.arguments
-        val restaurantID = args?.get("restID")
-        val restaurant=restaurantFromId(restaurantID.toString().toInt())
+        val restaurantID = args?.getInt("restID")
+        restaurantList = args?.getParcelableArrayList<Restaurant>("restArrayList")
+
+        val restaurant=restaurantFromId(restaurantID)
 
         if(restaurant != null)
         {
@@ -42,8 +45,8 @@ class RestaurantDetail : Fragment(){
         return inflater.inflate(R.layout.fragment_restaurant_detail, container, false)
     }
 
-    private fun restaurantFromId(restaurantID: Int): Restaurant? {
-        for (restaurant in restaurantList) {
+    private fun restaurantFromId(restaurantID: Int?): Restaurant? {
+        for (restaurant in restaurantList!!) {
             if(restaurant.id == restaurantID)
                 return restaurant
         }

@@ -1,6 +1,7 @@
 package com.example.progettoprogrammazione.fragment
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +23,6 @@ class FragmentRistoranti : Fragment() ,RestaurantClickListener{
     private lateinit var adapter: RestaurantAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var restArrayList: ArrayList<Restaurant>
-    private lateinit var navController: NavController
 
 
     lateinit var imageR: Array<Int>
@@ -43,8 +43,11 @@ class FragmentRistoranti : Fragment() ,RestaurantClickListener{
 
         val bundle = Bundle()
         bundle.putString("restID", restaurant.id.toString())
-        val fragmentDetail = RestaurantDetail()
+        bundle.putParcelableArrayList("restArrayList", restArrayList as ArrayList<out Parcelable?>?)
+
+/*        val fragmentDetail = RestaurantDetail()
         fragmentDetail.arguments = bundle
+*/
         view?.findNavController()?.navigate(R.id.RistorantiToDetail, bundle)
 
 /*
@@ -113,3 +116,4 @@ class FragmentRistoranti : Fragment() ,RestaurantClickListener{
     }
 
 }
+
