@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_user"
-    app:startDestination="@id/fragmentProfilo">
+    app:startDestination="@id/fragmentRistoranti">
 
     <fragment
         android:id="@+id/fragmentProfilo"
@@ -13,12 +13,19 @@
         <action
             android:id="@+id/ProfiloToUpgrade"
             app:destination="@id/fragmentUpgrade" />
+        <action
+            android:id="@+id/ProfiloToRistorante"
+            app:destination="@id/fragmentRistoranti" />
     </fragment>
     <fragment
         android:id="@+id/fragmentRistoranti"
         android:name="com.example.progettoprogrammazione.fragment.FragmentRistoranti"
         android:label="fragment_ristoranti"
-        tools:layout="@layout/fragment_ristoranti" />
+        tools:layout="@layout/fragment_ristoranti" >
+        <action
+            android:id="@+id/RistoranteToProfilo"
+            app:destination="@id/fragmentProfilo" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentUpgrade"
         android:name="com.example.progettoprogrammazione.utente.FragmentUpgrade"

@@ -28,28 +28,6 @@ class EmployeeActivity: AppCompatActivity() {
 
         user = FirebaseAuth.getInstance()
 
-        //replaceFragment(fragmentRistoranti)
-
-        //NUOVA NAVBAR?
-        binding.navbarEmployee.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                //FUNZIONI VARIE
-                R.id.ic_logout -> {
-                    user.signOut()
-                    Toast.makeText(this, "Logout effettuato con successo", Toast.LENGTH_LONG).show()
-                    val intent = Intent(this, IntroActivity::class.java)
-                    startActivity(intent)
-                }
-            }
-            true
-        }
-
     }
-    private fun replaceFragment(fragment: Fragment) {
-        if (fragment != null) {
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, fragment)
-            transaction.commit()
-        }
-    }
+
 }

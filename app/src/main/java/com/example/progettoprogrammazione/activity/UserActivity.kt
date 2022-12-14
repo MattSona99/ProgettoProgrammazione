@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityUserBinding
 import com.example.progettoprogrammazione.fragment.FragmentProfilo
@@ -36,17 +37,15 @@ class UserActivity : AppCompatActivity() {
 
         user = FirebaseAuth.getInstance()
 
-        replaceFragment(fragmentRistoranti)
-
         binding.navbar.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.ic_dashboard -> replaceFragment(fragmentRistoranti)
+                R.id.ic_dashboard -> {
+                    val navController = this.findNavController(R.id.user_nav)
+                    navController.navigate(R.id.ProfiloToRistorante)
+                }
                 R.id.ic_profile -> {
-                    replaceFragment(fragmentProfilo)
-/*                    val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
-                    
- */
+                    val navController = this.findNavController(R.id.user_nav)
+                    navController.navigate(R.id.RistoranteToProfilo)
                 }
                 R.id.ic_logout -> {
                     user.signOut()
@@ -79,21 +78,4 @@ class UserActivity : AppCompatActivity() {
         return super.dispatchTouchEvent(ev)
     }
 
-
-    private fun replaceFragment(fragment: Fragment) {
-        if (fragment != null) {
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, fragment)
-            transaction.commit()
-        }
-    }
-/*
-    override fun onClickResturant(restaurant: Restaurant) {
-
-        val intent = Intent(applicationContext, RestaurantDetail::class.java)
-        intent.putExtra(RESTAURANT_EXTRA, restaurant.id)
-        startActivity(intent)
-    }
-
- */
 }
