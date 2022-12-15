@@ -66,8 +66,6 @@ class FragmentRistoranti : Fragment() ,RestaurantClickListener{
         recyclerView.setHasFixedSize(true)
         adapter.notifyDataSetChanged()
 
-
-
     }
 
     private fun dataInitialize() {

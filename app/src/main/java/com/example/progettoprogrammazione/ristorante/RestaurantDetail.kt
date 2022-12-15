@@ -11,7 +11,7 @@ import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentRestaurantDetailBinding
 import com.example.progettoprogrammazione.models.RESTAURANT_EXTRA
 import com.example.progettoprogrammazione.models.Restaurant
-import com.example.progettoprogrammazione.models.restaurantList
+
 
 class RestaurantDetail : Fragment(){
 
