@@ -31,21 +31,21 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/splashscreen"
-        app:layout_constraintVertical_bias="0.071" />
+        app:layout_constraintVertical_bias="0.01" />
 
     <TextView
         android:id="@+id/ruolo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Qual'è il tuo ruolo?"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="23dp"
         android:textStyle="bold"
-        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="@+id/info"
         app:layout_constraintStart_toStartOf="@+id/info"
         app:layout_constraintTop_toBottomOf="@+id/info" />
@@ -94,7 +94,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintVertical_bias="0.9">
 
         <TextView
             android:id="@+id/upgrade"

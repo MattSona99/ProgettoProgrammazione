@@ -7,11 +7,19 @@
 
     <action
         android:id="@+id/Profilo"
-        app:destination="@+id/fragmentProfilo" />
+        app:destination="@+id/fragmentProfilo"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
     <action
         android:id="@+id/Ristoranti"
-        app:destination="@+id/fragmentRistoranti" />
+        app:destination="@+id/fragmentRistoranti"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
     <fragment
         android:id="@+id/fragmentProfilo"
@@ -20,7 +28,11 @@
         tools:layout="@layout/fragment_profilo">
         <action
             android:id="@+id/ProfiloToUpgrade"
-            app:destination="@id/fragmentUpgrade" />
+            app:destination="@id/fragmentUpgrade"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/fragmentRistoranti"
@@ -29,7 +41,11 @@
         tools:layout="@layout/fragment_ristoranti" >
         <action
             android:id="@+id/RistorantiToDetail"
-            app:destination="@id/restaurantDetail" />
+            app:destination="@id/restaurantDetail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/fragmentUpgrade"
@@ -39,5 +55,6 @@
     <fragment
         android:id="@+id/restaurantDetail"
         android:name="com.example.progettoprogrammazione.ristorante.RestaurantDetail"
-        android:label="RestaurantDetail" />
+        android:label="RestaurantDetail"
+        tools:layout="@layout/fragment_restaurant_detail"/>
 </navigation>

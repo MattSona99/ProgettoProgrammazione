@@ -9,30 +9,46 @@
         android:id="@+id/fragmentIntro"
         android:name="com.example.progettoprogrammazione.intro.FragmentIntro"
         android:label="FragmentIntro"
-        tools:layout="@layout/fragment_intro" >
+        tools:layout="@layout/fragment_intro">
         <action
             android:id="@+id/IntroToLogin"
-            app:destination="@id/fragmentLogin" />
+            app:destination="@id/fragmentLogin"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/IntroToRegister"
-            app:destination="@id/fragmentRegister" />
+            app:destination="@id/fragmentRegister"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/fragmentLogin"
         android:name="com.example.progettoprogrammazione.intro.FragmentLogin"
         android:label="FragmentLogin"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/LoginToRegister"
-            app:destination="@id/fragmentRegister" />
+            app:destination="@id/fragmentRegister"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/fragmentRegister"
         android:name="com.example.progettoprogrammazione.intro.FragmentRegister"
         android:label="FragmentRegister"
-        tools:layout="@layout/fragment_registrati" >
+        tools:layout="@layout/fragment_registrati">
         <action
             android:id="@+id/RegisterToLogin"
-            app:destination="@id/fragmentLogin" />
+            app:destination="@id/fragmentLogin"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 </navigation>

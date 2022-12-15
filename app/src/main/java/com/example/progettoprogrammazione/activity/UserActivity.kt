@@ -16,14 +16,12 @@ import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityUserBinding
 import com.example.progettoprogrammazione.fragment.FragmentProfilo
 import com.example.progettoprogrammazione.fragment.FragmentRistoranti
+import com.example.progettoprogrammazione.models.User
 //import com.example.progettoprogrammazione.models.RESTAURANT_EXTRA
 //import com.example.progettoprogrammazione.models.restaurantList
 import com.google.firebase.auth.FirebaseAuth
 
 class UserActivity : AppCompatActivity() {
-
-    private val fragmentProfilo = FragmentProfilo()
-    private val fragmentRistoranti = FragmentRistoranti()
 
     private lateinit var binding: ActivityUserBinding
 
@@ -37,6 +35,10 @@ class UserActivity : AppCompatActivity() {
 
         user = FirebaseAuth.getInstance()
 
+        var u = intent.getParcelableExtra("user") as User?
+        var bundle = Bundle()
+        bundle.putParcelable("user", u)
+
         binding.navbar.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.ic_dashboard -> {
@@ -45,7 +47,7 @@ class UserActivity : AppCompatActivity() {
                 }
                 R.id.ic_profile -> {
                     val navController = this.findNavController(R.id.user_nav)
-                    navController.navigate(R.id.Profilo)
+                    navController.navigate(R.id.Profilo, bundle)
                 }
                 R.id.ic_logout -> {
                     user.signOut()

@@ -25,7 +25,7 @@ class FragmentLogin : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firebaseDatabase: FirebaseDatabase
-    private lateinit var userlvl: String
+    private var userlvl: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,6 +54,9 @@ class FragmentLogin : Fragment() {
                             override fun onResponse(response: Response) {
                                 userlvl = response.user!!.Livello
 
+                                /*val bundle = Bundle()
+                                bundle.putParcelable("user", response.user)*/
+
                                 Toast.makeText(
                                     context,
                                     "Login effettuato con successo!",
@@ -61,13 +64,19 @@ class FragmentLogin : Fragment() {
                                 )
                                     .show()
                                 if (userlvl.equals("1")) {
-                                    val intent = Intent(context, UserActivity::class.java)
+                                    val intent = Intent(context, UserActivity::class.java).apply {
+                                        putExtra("user", response.user)
+                                    }
                                     startActivity(intent)
                                 } else if (userlvl.equals("2")) {
-                                    val intent = Intent(context, EmployeeActivity::class.java)
+                                    val intent = Intent(context, EmployeeActivity::class.java).apply {
+                                        putExtra("user", response.user)
+                                    }
                                     startActivity(intent)
                                 } else if (userlvl .equals("3") ) {
-                                    val intent = Intent(context, RestaurateurActivity::class.java)
+                                    val intent = Intent(context, RestaurateurActivity::class.java).apply {
+                                        putExtra("user", response.user)
+                                    }
                                     startActivity(intent)
                                 } else {
                                     Toast.makeText(

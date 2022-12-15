@@ -10,7 +10,7 @@
     >
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/btncard"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="5dp"
@@ -31,8 +31,8 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/copertina_desc"
         android:src="@drawable/pencil"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton"
+        app:layout_constraintBottom_toBottomOf="@+id/btncard"
+        app:layout_constraintEnd_toEndOf="@+id/btncard"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nome_ristorante"
@@ -62,7 +62,7 @@
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton"
+        app:layout_constraintEnd_toEndOf="@+id/btncard"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/copertina" />
 

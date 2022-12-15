@@ -15,7 +15,7 @@ class RestaurantViewHolder(
         restaurantBinding.nomeRistorante.text= restaurant.nome_r;
         restaurantBinding.descrizione.text= restaurant.descrizioneR;
 
-        restaurantBinding.copertina.setOnClickListener { clickListener.onClickResturant(restaurant) }
+        restaurantBinding.btncard.setOnClickListener { clickListener.onClickResturant(restaurant) }
     }
 
 }
