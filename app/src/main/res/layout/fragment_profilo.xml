@@ -4,15 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragment.FragmentProfilo">
-
-    <!-- TODO: Update blank fragment layout -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
 
     <ImageView
         android:id="@+id/splashscreen"
@@ -21,52 +14,79 @@
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/background_splash" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/formprofilo"
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="@+id/splashscreen"
+        android:layout_height="130dp"
+        android:padding="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/splashscreen"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imgprofilo"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
-            android:src="@drawable/defaultuserimg"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.07" />
+            android:id="@+id/img_profilo_utente"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/defaultuserimg" />
 
         <TextView
             android:id="@+id/benvenutoprofilo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Benvenuto, nome utente. Qui potrai modificare i tuoi dati personali!"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="23dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgprofilo"
-            app:layout_constraintVertical_bias="0.07" />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@id/img_profilo_utente"
+            android:text="BENVENUTO"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/nicknameprofilo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/benvenutoprofilo"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@id/img_profilo_utente"
+            android:text="Nome Utente"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/form_modifica"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+        <TextView
+            android:id="@+id/t_nomeprofilo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/nomeprofilo"
             android:layout_width="250dp"
             android:layout_height="50dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/custom_input"
             android:ems="10"
             android:gravity="center"
@@ -75,17 +95,22 @@
             android:textColor="@color/white"
             android:textColorHighlight="#E91E63"
             android:textColorHint="@color/pink"
-            android:textColorLink="#E91E63"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/benvenutoprofilo"
-            app:layout_constraintVertical_bias="0.07" />
+            android:textColorLink="#E91E63" />
+
+        <TextView
+            android:id="@+id/t_cognomeprofilo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cognome"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/cognomeprofilo"
             android:layout_width="250dp"
             android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/custom_input"
             android:ems="10"
             android:gravity="center"
@@ -94,17 +119,22 @@
             android:textColor="@color/white"
             android:textColorHighlight="#E91E63"
             android:textColorHint="@color/pink"
-            android:textColorLink="#E91E63"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nomeprofilo"
-            app:layout_constraintVertical_bias="0.07" />
+            android:textColorLink="#E91E63" />
+
+        <TextView
+            android:id="@+id/t_passwordprofilo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/passwordprofilo"
             android:layout_width="250dp"
             android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/custom_input"
             android:ems="10"
             android:gravity="center"
@@ -113,70 +143,86 @@
             android:textColor="@color/white"
             android:textColorHighlight="#E91E63"
             android:textColorHint="@color/pink"
-            android:textColorLink="#E91E63"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cognomeprofilo"
-            app:layout_constraintVertical_bias="0.1" />
+            android:textColorLink="#E91E63" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintCreaR"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/t_rpasswordprofilo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/rpasswordprofilo"
+            android:layout_width="250dp"
             android:layout_height="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Ripeti password"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textColorHighlight="#E91E63"
+            android:textColorHint="@color/pink"
+            android:textColorLink="#E91E63" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/form_modifica">
+
+        <TextView
+            android:id="@+id/creaRistorante"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crea e gestisci il tuo ristorante!"
+            android:textColor="@color/white"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintsalva">
+            app:layout_constraintTop_toTopOf="parent" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/creaRistorante"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Crea e gestisci il tuo ristorante!"
-                android:textSize="20sp"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintsalva"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/red_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.05">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintsalva"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:background="@drawable/red_button"
+        <TextView
+            android:id="@+id/salva"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Salva"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordprofilo"
-            app:layout_constraintVertical_bias="0.2">
-
-            <TextView
-                android:id="@+id/salva"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Salva"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

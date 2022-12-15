@@ -27,7 +27,7 @@ class FragmentProfilo : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val benvenutou = view.findViewById<TextView>(R.id.benvenutoprofilo)
+        val nicknameu = view.findViewById<TextView>(R.id.nicknameprofilo)
         val nomeu = view.findViewById<EditText>(R.id.nomeprofilo)
         val cognomeu = view.findViewById<EditText>(R.id.cognomeprofilo)
         val passwordu = view.findViewById<EditText>(R.id.passwordprofilo)
@@ -35,8 +35,7 @@ class FragmentProfilo : Fragment() {
         val args = this.arguments
         val user = args?.getParcelable<User>("user") as User
 
-        benvenutou?.text =
-            "Benvenuto, " + user.Nome + ".\nQui potrai modificare i tuoi dati personali!"
+        nicknameu?.text = user.Nome + user.Cognome
         nomeu?.hint = "Nome: " + user.Nome
         cognomeu?.hint = "Cognome: " + user.Cognome
         passwordu?.hint = "Password: " + user.Password
