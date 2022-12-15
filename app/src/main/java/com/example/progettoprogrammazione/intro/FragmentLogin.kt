@@ -35,6 +35,7 @@ class FragmentLogin : Fragment() {
         binding = FragmentLoginBinding.inflate(layoutInflater)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -69,14 +70,16 @@ class FragmentLogin : Fragment() {
                                     }
                                     startActivity(intent)
                                 } else if (userlvl.equals("2")) {
-                                    val intent = Intent(context, EmployeeActivity::class.java).apply {
-                                        putExtra("user", response.user)
-                                    }
+                                    val intent =
+                                        Intent(context, EmployeeActivity::class.java).apply {
+                                            putExtra("user", response.user)
+                                        }
                                     startActivity(intent)
-                                } else if (userlvl .equals("3") ) {
-                                    val intent = Intent(context, RestaurateurActivity::class.java).apply {
-                                        putExtra("user", response.user)
-                                    }
+                                } else if (userlvl.equals("3")) {
+                                    val intent =
+                                        Intent(context, RestaurateurActivity::class.java).apply {
+                                            putExtra("user", response.user)
+                                        }
                                     startActivity(intent)
                                 } else {
                                     Toast.makeText(
@@ -98,15 +101,6 @@ class FragmentLogin : Fragment() {
             view.findNavController().navigate(R.id.LoginToRegister)
         }
 
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-        if (firebaseAuth.currentUser != null) {
-            val intent = Intent(context, UserActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     //PRENDIAMO I DATI DEGLI USER
