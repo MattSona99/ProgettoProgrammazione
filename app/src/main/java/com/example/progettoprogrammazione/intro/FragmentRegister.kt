@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
+import com.example.progettoprogrammazione.activity.IntroActivity
 import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.databinding.FragmentRegistratiBinding
 import com.example.progettoprogrammazione.models.User
@@ -96,7 +97,7 @@ class FragmentRegister : Fragment() {
                                             "Utente creato con successo.",
                                             Toast.LENGTH_SHORT
                                         ).show()
-                                        val intent = Intent(context, UserActivity::class.java)
+                                        val intent = Intent(context, IntroActivity::class.java)
                                         startActivity(intent)
                                         //finish()
                                     } else {

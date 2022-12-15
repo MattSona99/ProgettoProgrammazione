@@ -45,8 +45,6 @@ class FragmentLogin : Fragment() {
             val Email = binding.email.text.toString()
             val Password = binding.password.text.toString()
 
-
-            //IF SCRITTO IN MANIERA MIGLIORE
             if (Email.isNotEmpty() && Password.isNotEmpty()) {
                 firebaseAuth.signInWithEmailAndPassword(Email, Password).addOnCompleteListener {
                     if (it.isSuccessful) {
@@ -64,29 +62,33 @@ class FragmentLogin : Fragment() {
                                     Toast.LENGTH_LONG
                                 )
                                     .show()
-                                if (userlvl.equals("1")) {
-                                    val intent = Intent(context, UserActivity::class.java).apply {
-                                        putExtra("user", response.user)
+
+                                when (userlvl) {
+                                    "1" -> {
+                                        val intent = Intent(context, UserActivity::class.java).apply {
+                                                putExtra("user", response.user)
+                                            }
+                                        startActivity(intent)
                                     }
-                                    startActivity(intent)
-                                } else if (userlvl.equals("2")) {
-                                    val intent =
-                                        Intent(context, EmployeeActivity::class.java).apply {
-                                            putExtra("user", response.user)
-                                        }
-                                    startActivity(intent)
-                                } else if (userlvl.equals("3")) {
-                                    val intent =
-                                        Intent(context, RestaurateurActivity::class.java).apply {
-                                            putExtra("user", response.user)
-                                        }
-                                    startActivity(intent)
-                                } else {
-                                    Toast.makeText(
-                                        context,
-                                        "Email e password non corrispondono!",
-                                        Toast.LENGTH_LONG
-                                    ).show()
+                                    "2" -> {
+                                        val intent = Intent(context, EmployeeActivity::class.java).apply {
+                                                putExtra("user", response.user)
+                                            }
+                                        startActivity(intent)
+                                    }
+                                    "3" -> {
+                                        val intent = Intent(context, RestaurateurActivity::class.java).apply {
+                                                putExtra("user", response.user)
+                                            }
+                                        startActivity(intent)
+                                    }
+                                    else -> {
+                                        Toast.makeText(
+                                            context,
+                                            "Email e password non corrispondono!",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                    }
                                 }
                             }
                         })
