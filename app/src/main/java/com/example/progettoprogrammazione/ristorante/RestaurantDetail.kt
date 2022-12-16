@@ -27,7 +27,6 @@ class RestaurantDetail : Fragment(){
         super.onCreate(savedInstanceState)
         binding = FragmentRestaurantDetailBinding.inflate(layoutInflater)
 
-
         //PRENDO DATI RISTORANTE DAL BUNDLE
         val args = this.arguments
         val restaurantID = args?.get("restID")

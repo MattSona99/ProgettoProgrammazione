@@ -17,7 +17,14 @@ interface UserUtil {
 
     //fun deleteUserData()
 
-    //fun updateUserData()
+    fun updateUserData(
+        callBack: FireBaseCallbackUser, context: Context?,
+        UpdateMap: HashMap<String, Any>
+    ){
+
+        firebaseDatabase.getReference("Utenti").child(firebaseAuth.currentUser!!.uid)
+            .updateChildren(UpdateMap)
+    }
 
     fun getUserData(callBack: FireBaseCallbackUser, context: Context?) {
 
