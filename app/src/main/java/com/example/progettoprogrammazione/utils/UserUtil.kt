@@ -1,7 +1,9 @@
 package com.example.progettoprogrammazione.utils
 
 import android.content.Context
+import android.content.Intent
 import android.widget.Toast
+import com.example.progettoprogrammazione.activity.IntroActivity
 import com.example.progettoprogrammazione.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -18,12 +20,17 @@ interface UserUtil {
     //fun deleteUserData()
 
     fun updateUserData(
-        callBack: FireBaseCallbackUser, context: Context?,
+        context: Context?,
         UpdateMap: HashMap<String, Any>
-    ){
+    ) {
 
         firebaseDatabase.getReference("Utenti").child(firebaseAuth.currentUser!!.uid)
-            .updateChildren(UpdateMap)
+            .updateChildren(UpdateMap).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    Toast.makeText(context, "Update effettuato con successo.", Toast.LENGTH_LONG)
+                        .show()
+                }
+            }
     }
 
     fun getUserData(callBack: FireBaseCallbackUser, context: Context?) {

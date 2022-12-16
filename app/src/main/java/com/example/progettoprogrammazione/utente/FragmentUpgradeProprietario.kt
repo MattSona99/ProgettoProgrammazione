@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.progettoprogrammazione.activity.IntroActivity
 import com.example.progettoprogrammazione.activity.RestaurateurActivity
 import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.databinding.FragmentUpgrProprietarioBinding
@@ -35,16 +36,10 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /*FUNZIONE BTN UPGRADE*/
-
-        //DATI CREAZIONE RISTORANTI (FORSE INUTILI SE ESISTE UNA FUNZIONE UPDATE)
-
         val Nome = binding.nomeristoranteNewR.text.toString()
         val descrizione = binding.descrizioneNewR.text.toString()
         val Indirizzo = binding.indirizzoNewR.text.toString()
-        //AGGIUNTA CAMPI AL RISTORANTE (ANCHE NELLA CLASSE RESTAURANT.KT CHE è IN MODEL)
 
-        //CONTROLLI
         if (Nome.length > 20) {
             binding.nomeristoranteNewR.setError("Il nome non può essere lungo più di 20 caratteri.")
         }
@@ -56,28 +51,22 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil {
         }
 
 
-        val childUpdates = hashMapOf<String, Any>(
-            "Livello" to "3"
-        )
-        //CREA RISTORANTE CON FUNZIONE DEFINITA IN INTERFACCIA
         binding.ConstraintCreaRist.setOnClickListener {
-            updateUserData(object : FireBaseCallbackUser {
-                override fun onResponse(response: ResponseUser) {
-                    //VADO A NUOVA ACTIVITY
-                    val intent = Intent(context, RestaurateurActivity::class.java).apply {
-                        putExtra("user", response.user)
-                    }
-                    Toast.makeText(
-                        context,
-                        "PORCO DIO!",
-                        Toast.LENGTH_LONG
-                    )
-                        .show()
-                    startActivity(intent)
-
-                }
-            }, context, childUpdates)
+            val childUpdates = hashMapOf<String, Any>(
+                "Livello" to "3"
+            )
+            updateUserData(
+                context, childUpdates
+            )
         }
-
+        getUserData(object : FireBaseCallbackUser {
+            override fun onResponse(response: ResponseUser) {
+                val intent = Intent(context, RestaurateurActivity::class.java).apply {
+                    putExtra("user", response.user)
+                }
+                startActivity(intent)
+            }
+        }, context)
     }
+
 }
