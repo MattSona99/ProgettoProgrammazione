@@ -14,15 +14,18 @@ import com.example.progettoprogrammazione.activity.IntroActivity
 import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.databinding.FragmentRegistratiBinding
 import com.example.progettoprogrammazione.models.User
+import com.example.progettoprogrammazione.utils.FireBaseCallback
+import com.example.progettoprogrammazione.utils.GetUserData
+import com.example.progettoprogrammazione.utils.Response
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 
-class FragmentRegister : Fragment() {
+class FragmentRegister : Fragment(), GetUserData {
 
     private lateinit var binding: FragmentRegistratiBinding
-    private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var firebaseDatabase: FirebaseDatabase
+    override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,9 +38,6 @@ class FragmentRegister : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        firebaseAuth = FirebaseAuth.getInstance()
-        firebaseDatabase = FirebaseDatabase.getInstance()
 
         binding.ConstraintRegistrati.setOnClickListener {
 
@@ -97,9 +97,13 @@ class FragmentRegister : Fragment() {
                                             "Utente creato con successo.",
                                             Toast.LENGTH_SHORT
                                         ).show()
-                                        val intent = Intent(context, IntroActivity::class.java)
-                                        startActivity(intent)
-                                        //finish()
+                                        getUserData(object : FireBaseCallback {
+                                            override fun onResponse(response: Response) {
+                                                val intent = Intent(context, IntroActivity::class.java)
+                                                startActivity(intent)
+                                                activity?.finish()
+                                            }
+                                        }, context)
                                     } else {
                                         Toast.makeText(
                                             context,
