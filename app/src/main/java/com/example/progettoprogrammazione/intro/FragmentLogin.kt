@@ -13,17 +13,13 @@ import com.example.progettoprogrammazione.activity.EmployeeActivity
 import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.activity.RestaurateurActivity
 import com.example.progettoprogrammazione.databinding.FragmentLoginBinding
-import com.example.progettoprogrammazione.models.User
-import com.example.progettoprogrammazione.utils.FireBaseCallback
-import com.example.progettoprogrammazione.utils.GetUserData
-import com.example.progettoprogrammazione.utils.Response
+import com.example.progettoprogrammazione.utils.FireBaseCallbackUser
+import com.example.progettoprogrammazione.utils.UserUtil
+import com.example.progettoprogrammazione.utils.ResponseUser
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 
-class FragmentLogin : Fragment(), GetUserData {
+class FragmentLogin : Fragment(), UserUtil {
 
     private lateinit var binding: FragmentLoginBinding
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -52,8 +48,8 @@ class FragmentLogin : Fragment(), GetUserData {
             if (Email.isNotEmpty() && Password.isNotEmpty()) {
                 firebaseAuth.signInWithEmailAndPassword(Email, Password).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        getUserData(object : FireBaseCallback {
-                            override fun onResponse(response: Response) {
+                        getUserData(object : FireBaseCallbackUser {
+                            override fun onResponse(response: ResponseUser) {
                                 userlvl = response.user!!.Livello
 
                                 Toast.makeText(

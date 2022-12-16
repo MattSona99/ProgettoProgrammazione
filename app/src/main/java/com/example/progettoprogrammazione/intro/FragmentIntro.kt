@@ -11,17 +11,13 @@ import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.databinding.FragmentIntroBinding
-import com.example.progettoprogrammazione.models.User
-import com.example.progettoprogrammazione.utils.FireBaseCallback
-import com.example.progettoprogrammazione.utils.GetUserData
-import com.example.progettoprogrammazione.utils.Response
+import com.example.progettoprogrammazione.utils.FireBaseCallbackUser
+import com.example.progettoprogrammazione.utils.UserUtil
+import com.example.progettoprogrammazione.utils.ResponseUser
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 
-class FragmentIntro : Fragment(), GetUserData {
+class FragmentIntro : Fragment(), UserUtil {
 
     private lateinit var binding: FragmentIntroBinding
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -40,10 +36,11 @@ class FragmentIntro : Fragment(), GetUserData {
         super.onViewCreated(view, savedInstanceState)
 
 
+
         binding.ConstraintLogin.setOnClickListener() {
             if (firebaseAuth.currentUser != null) {
-                getUserData(object : FireBaseCallback {
-                    override fun onResponse(response: Response) {
+                getUserData(object : FireBaseCallbackUser {
+                    override fun onResponse(response: ResponseUser) {
                         val intent = Intent(context, UserActivity::class.java).apply {
                             putExtra("user", response.user)
                         }

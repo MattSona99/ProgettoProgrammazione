@@ -11,17 +11,16 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.activity.IntroActivity
-import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.databinding.FragmentRegistratiBinding
 import com.example.progettoprogrammazione.models.User
-import com.example.progettoprogrammazione.utils.FireBaseCallback
-import com.example.progettoprogrammazione.utils.GetUserData
-import com.example.progettoprogrammazione.utils.Response
+import com.example.progettoprogrammazione.utils.FireBaseCallbackUser
+import com.example.progettoprogrammazione.utils.UserUtil
+import com.example.progettoprogrammazione.utils.ResponseUser
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 
-class FragmentRegister : Fragment(), GetUserData {
+class FragmentRegister : Fragment(), UserUtil {
 
     private lateinit var binding: FragmentRegistratiBinding
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -97,8 +96,8 @@ class FragmentRegister : Fragment(), GetUserData {
                                             "Utente creato con successo.",
                                             Toast.LENGTH_SHORT
                                         ).show()
-                                        getUserData(object : FireBaseCallback {
-                                            override fun onResponse(response: Response) {
+                                        getUserData(object : FireBaseCallbackUser {
+                                            override fun onResponse(response: ResponseUser) {
                                                 val intent = Intent(context, IntroActivity::class.java)
                                                 startActivity(intent)
                                                 activity?.finish()

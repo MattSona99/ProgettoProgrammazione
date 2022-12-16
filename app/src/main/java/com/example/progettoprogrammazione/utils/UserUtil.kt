@@ -9,18 +9,22 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-interface GetUserData {
+interface UserUtil {
     var firebaseAuth: FirebaseAuth
     var firebaseDatabase: FirebaseDatabase
 
-    //PRENDIAMO I DATI DEGLI USER
+    //fun putUserData()
 
-    fun getUserData(callBack: FireBaseCallback, context: Context?) {
+    //fun deleteUserData()
+
+    //fun updateUserData()
+
+    fun getUserData(callBack: FireBaseCallbackUser, context: Context?) {
 
         firebaseDatabase.getReference("Utenti").child(firebaseAuth.currentUser!!.uid)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val response = Response()
+                    val response = ResponseUser()
                     response.user = User(
                         snapshot.child("Nome").value.toString(),
                         snapshot.child("Cognome").value.toString(),
