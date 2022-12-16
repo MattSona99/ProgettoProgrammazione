@@ -51,6 +51,7 @@ class FragmentIntro : Fragment(), UserUtil {
                         )
                             .show()
                         startActivity(intent)
+                        activity?.finish()
                     }
                 }, context)
             } else {

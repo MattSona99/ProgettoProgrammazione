@@ -72,12 +72,14 @@ class FragmentLogin : Fragment(), UserUtil {
                                                 putExtra("user", response.user)
                                             }
                                         startActivity(intent)
+                                        activity?.finish()
                                     }
                                     "3" -> {
                                         val intent = Intent(context, RestaurateurActivity::class.java).apply {
                                                 putExtra("user", response.user)
                                             }
                                         startActivity(intent)
+                                        activity?.finish()
                                     }
                                     else -> {
                                         Toast.makeText(

@@ -99,6 +99,7 @@ class FragmentRegister : Fragment(), UserUtil {
                                         getUserData(object : FireBaseCallbackUser {
                                             override fun onResponse(response: ResponseUser) {
                                                 val intent = Intent(context, IntroActivity::class.java)
+                                                firebaseAuth.signOut()
                                                 startActivity(intent)
                                                 activity?.finish()
                                             }

@@ -64,6 +64,7 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil {
                         putExtra("user", response.user)
                     }
                     startActivity(intent)
+                    activity?.finish()
                 }
             }, context)
         }

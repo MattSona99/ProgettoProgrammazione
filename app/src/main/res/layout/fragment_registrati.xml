@@ -98,8 +98,6 @@
         android:id="@+id/til3"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
         app:hintEnabled="false"
         app:layout_constraintBottom_toBottomOf="@+id/splashscreen"
         app:layout_constraintEnd_toEndOf="parent"
