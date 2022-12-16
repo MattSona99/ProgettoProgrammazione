@@ -58,81 +58,94 @@
         android:id="@+id/cognome"
         android:layout_width="250dp"
         android:layout_height="50dp"
+        android:background="@drawable/custom_input"
         android:ems="10"
+        android:gravity="center"
         android:hint="Cognome"
         android:inputType="textPersonName"
         android:textColor="@color/white"
         android:textColorHighlight="#E91E63"
         android:textColorHint="@color/pink"
         android:textColorLink="#E91E63"
-        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/splashscreen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nome"
-        app:layout_constraintVertical_bias="0.050"
-        android:background="@drawable/custom_input"/>
+        app:layout_constraintVertical_bias="0.050" />
 
     <EditText
         android:id="@+id/email"
         android:layout_width="250dp"
         android:layout_height="50dp"
+        android:background="@drawable/custom_input"
         android:ems="10"
+        android:gravity="center"
         android:hint="E-mail"
         android:inputType="textEmailAddress"
         android:textColor="@color/white"
         android:textColorHighlight="#E91E63"
         android:textColorHint="@color/pink"
         android:textColorLink="#E91E63"
-        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cognome"
-        app:layout_constraintVertical_bias="0.050"
-        android:background="@drawable/custom_input"/>
+        app:layout_constraintVertical_bias="0.050" />
 
-    <EditText
-        android:id="@+id/password"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til3"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:textColor="@color/white"
-        android:textColorHighlight="#E91E63"
-        android:textColorHint="@color/pink"
-        android:textColorLink="#E91E63"
-        android:gravity="center"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:hintEnabled="false"
         app:layout_constraintBottom_toBottomOf="@+id/splashscreen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email"
         app:layout_constraintVertical_bias="0.050"
-        android:background="@drawable/custom_input"/>
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:background="@drawable/custom_input"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:hint="Password"
+            android:paddingStart="50dp"
+            android:paddingTop="10dp"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textColorHighlight="#E91E63"
+            android:textColorHint="@color/pink"
+            android:textColorLink="#E91E63" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <EditText
         android:id="@+id/telefono"
         android:layout_width="250dp"
         android:layout_height="50dp"
+        android:background="@drawable/custom_input"
         android:ems="10"
+        android:gravity="center"
         android:hint="Numero di telefono"
         android:inputType="phone"
         android:textColor="@color/white"
         android:textColorHighlight="#E91E63"
         android:textColorHint="@color/pink"
         android:textColorLink="#E91E63"
-        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.050"
-        android:background="@drawable/custom_input"/>
+        app:layout_constraintTop_toBottomOf="@+id/til3"
+        app:layout_constraintVertical_bias="0.050" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ConstraintRegistrati"
@@ -146,7 +159,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/telefono"
-        app:layout_constraintVertical_bias="0.341">
+        app:layout_constraintVertical_bias="0.2">
 
         <TextView
             android:id="@+id/registrati"

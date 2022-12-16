@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00000000">
 
     <ScrollView
-        android:id="@+id/scroll"
+        android:id="@+id/scrollprop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
+        android:background="@drawable/scrollviewborder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
 
 
             <TextView
-                android:id="@+id/text_form"
+                android:id="@+id/text_form_prop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -44,10 +44,10 @@
                 android:padding="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_form">
+                app:layout_constraintTop_toBottomOf="@id/text_form_prop">
 
                 <TextView
-                    android:id="@+id/text_nome"
+                    android:id="@+id/text_nome_rist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nome"
@@ -71,7 +71,7 @@
                     android:textColorLink="#E91E63" />
 
                 <TextView
-                    android:id="@+id/text_descrizione"
+                    android:id="@+id/text_descrizione_rist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Descrizione"
@@ -95,7 +95,7 @@
                     android:textColorLink="#E91E63" />
 
                 <TextView
-                    android:id="@+id/text_indirizzo"
+                    android:id="@+id/text_indirizzo_rist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Indirizzo"
@@ -120,7 +120,7 @@
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/ConstraintUpgrade"
+                    android:id="@+id/ConstraintUpgradeRist"
                     android:layout_width="280dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="50dp"
@@ -129,7 +129,7 @@
                     android:background="@drawable/red_button">
 
                     <TextView
-                        android:id="@+id/upgrade"
+                        android:id="@+id/upgrade_rist"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="UPGRADE"

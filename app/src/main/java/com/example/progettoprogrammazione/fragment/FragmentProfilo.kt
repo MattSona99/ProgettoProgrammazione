@@ -35,7 +35,7 @@ class FragmentProfilo : Fragment() {
         val args = this.arguments
         val user = args?.getParcelable<User>("user") as User
 
-        nicknameu?.text = user.Nome + user.Cognome
+        nicknameu?.text = user.Nome + " " + user.Cognome
         nomeu?.hint = "Nome: " + user.Nome
         cognomeu?.hint = "Cognome: " + user.Cognome
         passwordu?.hint = "Password: " + user.Password

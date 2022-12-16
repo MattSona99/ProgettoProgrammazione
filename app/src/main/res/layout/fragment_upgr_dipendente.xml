@@ -1,15 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#00000000">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="dipendente"
-        tools:layout_editor_absoluteX="173dp"
-        tools:layout_editor_absoluteY="144dp" />
+    <ScrollView
+        android:id="@+id/scrolldip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:background="@drawable/scrollviewborder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/text_form_dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Compila il form per confermare
+                 il tuo ruolo!"
+                android:textColor="@color/white"
+                android:textSize="23dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_form_dip">
+
+                <TextView
+                    android:id="@+id/text_nome_ristd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nome"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/nomeristorante_newD"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/custom_input"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Nome Ristorante"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="#E91E63"
+                    android:textColorHint="@color/pink"
+                    android:textColorLink="#E91E63" />
+
+                <TextView
+                    android:id="@+id/text_ruolo_ristd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ruolo"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/ruolo_newD"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/custom_input"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Ruolo"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="#E91E63"
+                    android:textColorHint="@color/pink"
+                    android:textColorLink="#E91E63" />
+
+                <TextView
+                    android:id="@+id/text_indirizzo_ristD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Indirizzo"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/indirizzo_newD"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/custom_input"
+                    android:ems="10"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"
+                    android:hint="Indirizzo"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="#E91E63"
+                    android:textColorHint="@color/pink"
+                    android:textColorLink="#E91E63" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ConstraintUpgradeDip"
+                    android:layout_width="280dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/red_button">
+
+                    <TextView
+                        android:id="@+id/upgrade_dip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="UPGRADE"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </FrameLayout>
