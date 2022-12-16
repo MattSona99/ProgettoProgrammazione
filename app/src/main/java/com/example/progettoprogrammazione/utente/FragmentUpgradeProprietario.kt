@@ -58,15 +58,15 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil {
             updateUserData(
                 context, childUpdates
             )
-        }
-        getUserData(object : FireBaseCallbackUser {
-            override fun onResponse(response: ResponseUser) {
-                val intent = Intent(context, RestaurateurActivity::class.java).apply {
-                    putExtra("user", response.user)
+            getUserData(object : FireBaseCallbackUser {
+                override fun onResponse(response: ResponseUser) {
+                    val intent = Intent(context, RestaurateurActivity::class.java).apply {
+                        putExtra("user", response.user)
+                    }
+                    startActivity(intent)
                 }
-                startActivity(intent)
-            }
-        }, context)
+            }, context)
+        }
     }
 
 }
