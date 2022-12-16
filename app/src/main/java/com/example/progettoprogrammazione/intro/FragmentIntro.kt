@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
+import com.example.progettoprogrammazione.activity.EmployeeActivity
+import com.example.progettoprogrammazione.activity.RestaurateurActivity
 import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.databinding.FragmentIntroBinding
 import com.example.progettoprogrammazione.utils.FireBaseCallbackUser
@@ -22,6 +24,8 @@ class FragmentIntro : Fragment(), UserUtil {
     private lateinit var binding: FragmentIntroBinding
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
+
+    private var userlvl: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,17 +45,44 @@ class FragmentIntro : Fragment(), UserUtil {
             if (firebaseAuth.currentUser != null) {
                 getUserData(object : FireBaseCallbackUser {
                     override fun onResponse(response: ResponseUser) {
-                        val intent = Intent(context, UserActivity::class.java).apply {
-                            putExtra("user", response.user)
-                        }
+                        userlvl = response.user!!.Livello
                         Toast.makeText(
                             context,
                             "Login effettuato con successo!",
                             Toast.LENGTH_LONG
                         )
                             .show()
-                        startActivity(intent)
-                        activity?.finish()
+                        when (userlvl) {
+                            "1" -> {
+                                val intent = Intent(context, UserActivity::class.java).apply {
+                                    putExtra("user", response.user)
+                                }
+                                startActivity(intent)
+                                activity?.finish()
+                            }
+                            "2" -> {
+                                val intent = Intent(context, EmployeeActivity::class.java).apply {
+                                    putExtra("user", response.user)
+                                }
+                                startActivity(intent)
+                                activity?.finish()
+                            }
+                            "3" -> {
+                                val intent =
+                                    Intent(context, RestaurateurActivity::class.java).apply {
+                                        putExtra("user", response.user)
+                                    }
+                                startActivity(intent)
+                                activity?.finish()
+                            }
+                            else -> {
+                                Toast.makeText(
+                                    context,
+                                    "Email e password non corrispondono!",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }
                     }
                 }, context)
             } else {

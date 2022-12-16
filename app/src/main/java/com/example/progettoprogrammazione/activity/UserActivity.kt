@@ -1,7 +1,5 @@
 package com.example.progettoprogrammazione.activity
 
-//import com.example.progettoprogrammazione.models.RESTAURANT_EXTRA
-//import com.example.progettoprogrammazione.models.restaurantList
 import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
@@ -38,17 +36,17 @@ class UserActivity : AppCompatActivity() {
         var bundle = Bundle()
         bundle.putParcelable("user", u)
 
-        binding.navbar.setOnNavigationItemSelectedListener {
+        binding.navbarUser.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.ic_dashboard -> {
+                R.id.ic_ristorantiU -> {
                     val navController = this.findNavController(R.id.user_nav)
-                    navController.navigate(R.id.Ristoranti)
+                    navController.navigate(R.id.Ristoranti_U)
                 }
-                R.id.ic_profile -> {
+                R.id.ic_profileU -> {
                     val navController = this.findNavController(R.id.user_nav)
-                    navController.navigate(R.id.Profilo, bundle)
+                    navController.navigate(R.id.Profilo_U, bundle)
                 }
-                R.id.ic_logout -> {
+                R.id.ic_logoutU -> {
                     user.signOut()
                     Toast.makeText(this, "Logout effettuato con successo", Toast.LENGTH_LONG).show()
                     val intent = Intent(this, IntroActivity::class.java)

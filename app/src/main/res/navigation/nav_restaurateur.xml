@@ -2,11 +2,11 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_user"
+    android:id="@+id/nav_restaurateur"
     app:startDestination="@id/fragmentRistoranti">
 
     <action
-        android:id="@+id/Profilo_U"
+        android:id="@+id/Profilo_R"
         app:destination="@+id/fragmentProfilo"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
@@ -14,7 +14,7 @@
         app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
     <action
-        android:id="@+id/Ristoranti_U"
+        android:id="@+id/Ristoranti_R"
         app:destination="@+id/fragmentRistoranti"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
@@ -25,20 +25,12 @@
         android:id="@+id/fragmentProfilo"
         android:name="com.example.progettoprogrammazione.fragment.FragmentProfilo"
         android:label="fragment_profilo"
-        tools:layout="@layout/fragment_profilo">
-        <action
-            android:id="@+id/ProfiloToUpgrade"
-            app:destination="@id/fragmentUpgrade"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-    </fragment>
+        tools:layout="@layout/fragment_profilo" />
     <fragment
         android:id="@+id/fragmentRistoranti"
         android:name="com.example.progettoprogrammazione.fragment.FragmentRistoranti"
         android:label="fragment_ristoranti"
-        tools:layout="@layout/fragment_ristoranti" >
+        tools:layout="@layout/fragment_ristoranti">
         <action
             android:id="@+id/RistorantiToDetail"
             app:destination="@id/restaurantDetail"
@@ -47,14 +39,11 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
-    <fragment
-        android:id="@+id/fragmentUpgrade"
-        android:name="com.example.progettoprogrammazione.utente.FragmentUpgrade"
-        android:label="FragmentUpgrade"
-        tools:layout="@layout/fragment_upgrade" />
+
     <fragment
         android:id="@+id/restaurantDetail"
         android:name="com.example.progettoprogrammazione.ristorante.RestaurantDetail"
         android:label="RestaurantDetail"
-        tools:layout="@layout/fragment_restaurant_detail"/>
+        tools:layout="@layout/fragment_restaurant_detail" />
+
 </navigation>

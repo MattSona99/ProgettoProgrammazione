@@ -12,14 +12,14 @@
         android:layout_height="0dp"
         android:background="@drawable/background_splash"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@+id/navbar"
+        app:layout_constraintBottom_toTopOf="@+id/navbar_user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/nav_user" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navbar"
+        android:id="@+id/navbar_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/red"
