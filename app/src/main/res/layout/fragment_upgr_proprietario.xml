@@ -120,7 +120,7 @@
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/ConstraintUpgradeRist"
+                    android:id="@+id/ConstraintCreaRist"
                     android:layout_width="280dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="50dp"
@@ -129,10 +129,10 @@
                     android:background="@drawable/red_button">
 
                     <TextView
-                        android:id="@+id/upgrade_rist"
+                        android:id="@+id/crea_rist"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="UPGRADE"
+                        android:text="CREA RISTORANTE"
                         android:textAlignment="center"
                         android:textColor="#FFFFFF"
                         android:textSize="20sp"

@@ -24,7 +24,7 @@ class FragmentUpgrade : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnProprietario.setOnClickListener() {
+        binding.btnProprietario.setOnClickListener {
             val fragmentTransaction = parentFragmentManager.beginTransaction()
             fragmentTransaction.setCustomAnimations(R.anim.slide_in, R.anim.fade_out)
             fragmentTransaction.replace(R.id.container_upgrade, FragmentUpgradeProprietario())
@@ -33,7 +33,7 @@ class FragmentUpgrade : Fragment() {
 
         }
 
-        binding.btnDipendente.setOnClickListener() {
+        binding.btnDipendente.setOnClickListener {
             val fragmentTransaction = parentFragmentManager.beginTransaction()
             fragmentTransaction.setCustomAnimations(R.anim.slide_in, R.anim.fade_out)
             fragmentTransaction.replace(R.id.container_upgrade, FragmentUpgradeDipendente())

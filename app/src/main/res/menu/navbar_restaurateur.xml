@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/ic_dashboardR"
+        android:icon="@drawable/ic_dashboard"
+        android:title="Ristoranti" />
+
+    <item
+        android:id="@+id/ic_profileR"
+        android:icon="@drawable/ic_profile"
+        android:title="Profilo" />
+    <item
         android:id="@+id/ic_gestioneR"
         android:icon="@drawable/garbage"
-        android:title="Gestione Attività"/>
+        android:title="Gestione Attività" />
 
     <item
         android:id="@+id/ic_logout"
         android:icon="@drawable/ic_logout"
-        android:title="Logout"/>
+        android:title="Logout" />
 </menu>

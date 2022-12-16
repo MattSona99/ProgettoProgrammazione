@@ -1,5 +1,7 @@
 package com.example.progettoprogrammazione.activity
 
+//import com.example.progettoprogrammazione.models.RESTAURANT_EXTRA
+//import com.example.progettoprogrammazione.models.restaurantList
 import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
@@ -10,15 +12,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityUserBinding
-import com.example.progettoprogrammazione.fragment.FragmentProfilo
-import com.example.progettoprogrammazione.fragment.FragmentRistoranti
 import com.example.progettoprogrammazione.models.User
-//import com.example.progettoprogrammazione.models.RESTAURANT_EXTRA
-//import com.example.progettoprogrammazione.models.restaurantList
 import com.google.firebase.auth.FirebaseAuth
 
 class UserActivity : AppCompatActivity() {
@@ -26,6 +23,8 @@ class UserActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUserBinding
 
     private lateinit var user: FirebaseAuth
+
+    private var pressedTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +58,16 @@ class UserActivity : AppCompatActivity() {
             }
             true
         }
+    }
 
+    override fun onBackPressed() {
+        if (pressedTime + 2000 > System.currentTimeMillis()) {
+            super.onBackPressed()
+            finishAffinity()
+        } else {
+            Toast.makeText(baseContext, "Premi indietro di nuovo per uscire.", Toast.LENGTH_SHORT).show()
+        }
+        pressedTime = System.currentTimeMillis()
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {

@@ -53,9 +53,6 @@ class FragmentLogin : Fragment() {
                             override fun onResponse(response: Response) {
                                 userlvl = response.user!!.Livello
 
-                                /*val bundle = Bundle()
-                                bundle.putParcelable("user", response.user)*/
-
                                 Toast.makeText(
                                     context,
                                     "Login effettuato con successo!",
@@ -69,6 +66,7 @@ class FragmentLogin : Fragment() {
                                                 putExtra("user", response.user)
                                             }
                                         startActivity(intent)
+                                        activity?.finish()
                                     }
                                     "2" -> {
                                         val intent = Intent(context, EmployeeActivity::class.java).apply {
