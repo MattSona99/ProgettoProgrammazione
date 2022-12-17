@@ -11,20 +11,24 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.models.Restaurant
+import com.example.progettoprogrammazione.models.restaurantList
 import com.example.progettoprogrammazione.ristorante.RestaurantAdapter
 import com.example.progettoprogrammazione.ristorante.RestaurantClickListener
+import com.example.progettoprogrammazione.utils.FireBaseCallbackRestaurant
+import com.example.progettoprogrammazione.utils.ResponseRistorante
+import com.example.progettoprogrammazione.utils.RestaurantUtils
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 
-class FragmentRistoranti : Fragment() ,RestaurantClickListener{
+class FragmentRistoranti : Fragment() ,RestaurantClickListener, RestaurantUtils{
 
     private lateinit var adapter: RestaurantAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var restArrayList: ArrayList<Restaurant>
 
-
-    lateinit var imageR: Array<Int>
-    lateinit var nomeR: Array<String>
-    lateinit var desc: Array<String>
+    override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
 
     override fun onCreateView(
@@ -56,9 +60,19 @@ class FragmentRistoranti : Fragment() ,RestaurantClickListener{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dataInitialize()
+
+        restArrayList = arrayListOf<Restaurant>()
+        getRestaurantData(object : FireBaseCallbackRestaurant {
+            override fun onResponse(response: ResponseRistorante) {
+
+                restArrayList.add(response.ristorante!!)
+            }
+
+        },context)
+
+
         val layoutManager = GridLayoutManager(context, 2)
-//       val layoutManager = LinearLayoutManager(context)
+//      val layoutManager = LinearLayoutManager(context)
         recyclerView = view.findViewById(R.id.recycleView)
         recyclerView.layoutManager = layoutManager
         adapter = RestaurantAdapter(restArrayList,this)
@@ -66,49 +80,12 @@ class FragmentRistoranti : Fragment() ,RestaurantClickListener{
         recyclerView.setHasFixedSize(true)
         adapter.notifyDataSetChanged()
 
-    }
 
-    private fun dataInitialize() {
-        restArrayList = arrayListOf<Restaurant>()
-
-      /*  imageR = arrayOf(
-            R.drawable.pencil,
-            R.drawable.pencil,
-            R.drawable.pencil,
-            R.drawable.pencil,
-            R.drawable.pencil,
-            R.drawable.pencil,
-            R.drawable.pencil
-        )
-
-        nomeR = arrayOf(
-            "pino little italy",
-            "poldo pizza",
-            "la vecchia osteria",
-            "pino little italy",
-            "poldo pizza",
-            "la vecchia osteria",
-            "pino little italy"
-
-        )
-
-        desc = arrayOf(
-            "desc1",
-            "desc1",
-            "desc1",
-            "desc1",
-            "desc1",
-            "desc1",
-            "desc1"
-        )
-
-        for (i in imageR.indices) {
-            val restaurant = Restaurant(imageR[i], nomeR[i], desc[i], i)
-            restArrayList.add(restaurant)
-        }*/
 
 
     }
+
+
 
 }
 
