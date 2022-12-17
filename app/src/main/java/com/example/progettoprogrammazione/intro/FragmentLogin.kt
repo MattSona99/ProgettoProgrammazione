@@ -61,37 +61,46 @@ class FragmentLogin : Fragment(), UserUtil {
 
                                 when (userlvl) {
                                     "1" -> {
-                                        val intent = Intent(context, UserActivity::class.java).apply {
+                                        val intent =
+                                            Intent(context, UserActivity::class.java).apply {
                                                 putExtra("user", response.user)
                                             }
                                         startActivity(intent)
                                         activity?.finish()
                                     }
                                     "2" -> {
-                                        val intent = Intent(context, EmployeeActivity::class.java).apply {
+                                        val intent =
+                                            Intent(context, EmployeeActivity::class.java).apply {
                                                 putExtra("user", response.user)
                                             }
                                         startActivity(intent)
                                         activity?.finish()
                                     }
                                     "3" -> {
-                                        val intent = Intent(context, RestaurateurActivity::class.java).apply {
-                                                putExtra("user", response.user)
-                                            }
+                                        val intent = Intent(
+                                            context,
+                                            RestaurateurActivity::class.java
+                                        ).apply {
+                                            putExtra("user", response.user)
+                                        }
                                         startActivity(intent)
                                         activity?.finish()
                                     }
                                     else -> {
                                         Toast.makeText(
                                             context,
-                                            "Email e password non corrispondono!",
+                                            "Errore durante il caricamento.",
                                             Toast.LENGTH_LONG
                                         ).show()
                                     }
                                 }
                             }
                         }, context)
-                    }
+                    } else Toast.makeText(
+                        context,
+                        "Email e password non corrispondono!",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             } else {
                 Toast.makeText(context, "Nessun campo può essere vuoto!", Toast.LENGTH_LONG).show()

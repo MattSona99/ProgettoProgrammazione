@@ -47,22 +47,22 @@ class FragmentRegister : Fragment(), UserUtil {
             val Telefono = binding.telefono.text.toString()
 
             if (Nome.length > 20) {
-                binding.nome.setError("Il nome non può essere lungo più di 20 caratteri.")
+                binding.nome.error = "Il nome non può essere lungo più di 20 caratteri."
             }
             if (Cognome.length > 20) {
-                binding.cognome.setError("Il cognome non può essere lungo più di 20 caratteri.")
+                binding.cognome.error = "Il cognome non può essere lungo più di 20 caratteri."
             }
             if (Email.length > 40) {
-                binding.email.setError("L'email non può essere lunga più di 40 caratteri.")
+                binding.email.error = "L'email non può essere lunga più di 40 caratteri."
             }
             if (TextUtils.isEmpty(Email)) {
-                binding.email.setError("Inserisci un'email valida.")
+                binding.email.error = "Inserisci un'email valida."
             }
             if (Password.length < 6) {
-                binding.password.setError("La password deve essere lunga almeno 6 caratteri.")
+                binding.password.error = "La password deve essere lunga almeno 6 caratteri."
             }
             if (Telefono.length > 11) {
-                binding.telefono.setError("Il numero di telefono deve contenere al massimo 11 cifre.")
+                binding.telefono.error = "Il numero di telefono deve contenere al massimo 11 cifre."
             }
 
             if (Nome.isNotEmpty() && Cognome.isNotEmpty() && Email.isNotEmpty() && Password.isNotEmpty() && Telefono.isNotEmpty()) {
@@ -79,13 +79,13 @@ class FragmentRegister : Fragment(), UserUtil {
                                 "1"
                             )
                             val user = mutableMapOf<String, String>()
-                            user.put("Nome", save.Nome!!)
-                            user.put("Cognome", save.Cognome!!)
-                            user.put("Email", save.Email!!)
-                            user.put("Password", save.Password!!)
-                            user.put("Telefono", save.Telefono!!)
-                            user.put("Uri", save.Uri!!)
-                            user.put("Livello", save.Livello!!)
+                            user["Nome"] = save.Nome!!
+                            user["Cognome"] = save.Cognome!!
+                            user["Email"] = save.Email!!
+                            user["Password"] = save.Password!!
+                            user["Telefono"] = save.Telefono!!
+                            user["Uri"] = save.Uri!!
+                            user["Livello"] = save.Livello!!
 
                             firebaseDatabase.getReference("Utenti")
                                 .child(firebaseAuth.currentUser!!.uid).setValue(user)

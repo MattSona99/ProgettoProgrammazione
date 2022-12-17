@@ -29,8 +29,17 @@ interface UserUtil {
                 if (it.isSuccessful) {
                     Toast.makeText(context, "Update effettuato con successo.", Toast.LENGTH_LONG)
                         .show()
-                }
+                } else Toast.makeText(
+                    context,
+                    "Errore durante l'update dei dati.",
+                    Toast.LENGTH_LONG
+                )
+                    .show()
             }
+    }
+
+    fun updateUserPassword(context: Context?, newpassword: String, email: String) {
+        firebaseAuth.currentUser!!.updatePassword(newpassword)
     }
 
     fun getUserData(callBack: FireBaseCallbackUser, context: Context?) {

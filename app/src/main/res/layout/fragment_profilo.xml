@@ -125,7 +125,7 @@
             android:id="@+id/t_passwordprofilo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Password"
+            android:text="Nuova password"
             android:textColor="@color/white"
             android:textSize="15dp"
             android:textStyle="bold" />
@@ -138,7 +138,7 @@
             android:background="@drawable/custom_input"
             android:ems="10"
             android:gravity="center"
-            android:hint="Password"
+            android:hint="Nuova password"
             android:inputType="textPassword"
             android:textColor="@color/white"
             android:textColorHighlight="#E91E63"
