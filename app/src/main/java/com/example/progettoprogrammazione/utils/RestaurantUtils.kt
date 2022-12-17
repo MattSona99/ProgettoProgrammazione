@@ -12,9 +12,8 @@ interface RestaurantUtils {
     var firebaseDatabase: FirebaseDatabase
 
     fun createRestaurant(
-        callbackRestaurant: FireBaseCallbackRestaurant,
         context: Context?, rData: Restaurant
     ) {
-        firebaseDatabase.getReference("Ristoranti").setValue(rData)
+        firebaseDatabase.getReference("Ristoranti").push().setValue(rData)
     }
 }

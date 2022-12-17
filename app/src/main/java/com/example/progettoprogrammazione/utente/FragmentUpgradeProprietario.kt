@@ -89,18 +89,13 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil, RestaurantUtils {
                 context, childUpdates
             )
             getUserData(object : FireBaseCallbackUser {
-                override fun onResponse(responseUser: ResponseUser) {
-
-                    createRestaurant(object : FireBaseCallbackRestaurant {
-                        override fun onResponse(responseRistorante: ResponseRistorante) {
-                            val intent = Intent(context, RestaurateurActivity::class.java).apply {
-                                putExtra("user", responseUser.user)
-                                putExtra("ristorante", responseRistorante.ristorante)
-                            }
-                        }
-
-                    }, context, restaurantData)
-
+                override fun onResponse(response: ResponseUser) {
+                    createRestaurant(context, restaurantData)
+                    val intent= Intent(context, RestaurateurActivity::class.java).apply {
+                        putExtra("user", response.user)
+                    }
+                    startActivity(intent)
+                    activity?.finish()
                 }
             }, context)
 
