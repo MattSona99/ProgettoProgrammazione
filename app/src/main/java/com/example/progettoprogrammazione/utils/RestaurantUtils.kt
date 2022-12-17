@@ -33,7 +33,7 @@ interface RestaurantUtils {
                         snapshot.child("telefonoR").value.toString(),
                         snapshot.child("tipoCiboR").value.toString(),
                         snapshot.child("veganR").value.toString().toBoolean(),
-                        snapshot.child("ratingR").value.toString().toFloat()
+                        snapshot.child("ratingR").value.toString()
                     )
                     callBack.onResponse(response)
                 }

@@ -80,7 +80,7 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil, RestaurantUtils {
                 telefonoR,
                 tipoCiboR,
                 vegan,
-                0.0F
+                "1.0"
             )
             val childUpdates = hashMapOf<String, Any>(
                 "Livello" to "3"

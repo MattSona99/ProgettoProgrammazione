@@ -17,7 +17,7 @@ data class Restaurant (
     var telefonoR: String?,
     var tipoCiboR: String?,
     var veganR: Boolean?,
-    var ratingR: Float= 0.0F,
+    var ratingR: String?,
 
     val id: Int? = restaurantList.size
 ) : Parcelable {
@@ -30,10 +30,8 @@ data class Restaurant (
         parcel.readString(),
         parcel.readString(),
         parcel.readBoolean(),
-        parcel.readFloat()
-      //parcel.readValue(Int::class.java.classLoader) as? Int
-    ) {
-    }
+        parcel.readString()
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(imageR)
@@ -44,7 +42,7 @@ data class Restaurant (
         parcel.writeString(telefonoR)
         parcel.writeString(tipoCiboR)
         parcel.writeBoolean(veganR!!)
-        parcel.writeFloat(ratingR!!)
+        parcel.writeString(ratingR)
         parcel.writeValue(id)
     }
 
