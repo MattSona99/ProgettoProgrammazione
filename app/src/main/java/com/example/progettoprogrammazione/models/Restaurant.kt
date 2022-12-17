@@ -8,23 +8,43 @@ var restaurantList = mutableListOf<Restaurant>()
 val RESTAURANT_EXTRA="restaurantExtra"
 
 data class Restaurant (
-    var image_r: Int,
-    var nome_r : String?,
+
+    var imageR: String?,
+    var nomeR : String?,
     var descrizioneR: String?,
+    var indirizzoR: String?,
+    var orariolavorativoR: String?,
+    var telefonoR: String?,
+    var tipoCiboR: String?,
+    var veganR: Boolean?,
+    var ratingR: Float= 0.0F,
+
     val id: Int? = restaurantList.size
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readValue(Int::class.java.classLoader) as? Int
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readBoolean(),
+        parcel.readFloat()
+      //parcel.readValue(Int::class.java.classLoader) as? Int
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(image_r)
-        parcel.writeString(nome_r)
+        parcel.writeString(imageR)
+        parcel.writeString(nomeR)
         parcel.writeString(descrizioneR)
+        parcel.writeString(indirizzoR)
+        parcel.writeString(orariolavorativoR)
+        parcel.writeString(telefonoR)
+        parcel.writeString(tipoCiboR)
+        parcel.writeBoolean(veganR!!)
+        parcel.writeFloat(ratingR!!)
         parcel.writeValue(id)
     }
 
@@ -41,4 +61,5 @@ data class Restaurant (
             return arrayOfNulls(size)
         }
     }
+
 }

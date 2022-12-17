@@ -2,14 +2,11 @@ package com.example.progettoprogrammazione.ristorante
 
 
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentRestaurantDetailBinding
-import com.example.progettoprogrammazione.models.RESTAURANT_EXTRA
 import com.example.progettoprogrammazione.models.Restaurant
 
 
@@ -36,8 +33,8 @@ class RestaurantDetail : Fragment(){
 
         if(restaurant != null)
         {
-            binding.imgRistoranteDetail.setImageResource(restaurant.image_r)
-            binding.nomeRistoranteDetail.text = restaurant.nome_r
+            binding.imgRistoranteDetail.setImageResource( (restaurant.imageR)!!.toInt())
+            binding.nomeRistoranteDetail.text = restaurant.nomeR
             binding.descrizioneDetail.text = restaurant.descrizioneR
 
         }

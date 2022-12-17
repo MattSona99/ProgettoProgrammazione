@@ -11,8 +11,8 @@ class RestaurantViewHolder(
     :RecyclerView.ViewHolder(restaurantBinding.root) {
 
     fun bindRestaurants(restaurant: Restaurant){
-        restaurantBinding.copertina.setImageResource(restaurant.image_r)
-        restaurantBinding.nomeRistorante.text= restaurant.nome_r;
+        restaurantBinding.copertina.setImageResource( (restaurant.imageR)!!.toInt() )
+        restaurantBinding.nomeRistorante.text= restaurant.nomeR;
         restaurantBinding.descrizione.text= restaurant.descrizioneR;
 
         restaurantBinding.btncard.setOnClickListener { clickListener.onClickResturant(restaurant) }

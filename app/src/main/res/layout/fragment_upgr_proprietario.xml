@@ -9,8 +9,8 @@
         android:id="@+id/scrollprop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
         android:background="@drawable/scrollviewborder"
+        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,9 +107,9 @@
                     android:id="@+id/indirizzo_newR"
                     android:layout_width="250dp"
                     android:layout_height="50dp"
+                    android:layout_marginBottom="20dp"
                     android:background="@drawable/custom_input"
                     android:ems="10"
-                    android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:hint="Indirizzo"
                     android:inputType="textPersonName"
@@ -117,6 +117,92 @@
                     android:textColorHighlight="#E91E63"
                     android:textColorHint="@color/pink"
                     android:textColorLink="#E91E63" />
+
+                <TextView
+                    android:id="@+id/text_orario_lavorativo_rist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Orario Lavorativo"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/orariolavorativo_newR"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/custom_input"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Orario Lavorativo"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="#E91E63"
+                    android:textColorHint="@color/pink"
+                    android:textColorLink="#E91E63" />
+
+                <TextView
+                    android:id="@+id/text_telefono_rist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Telefono"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/telefono_newR"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/custom_input"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Telefono"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="#E91E63"
+                    android:textColorHint="@color/pink"
+                    android:textColorLink="#E91E63" />
+
+                <TextView
+                    android:id="@+id/text_Categoria_rist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Categoria cibo"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/tipocibo_newR"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/custom_input"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Categoria Cibo"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="#E91E63"
+                    android:textColorHint="@color/pink"
+                    android:textColorLink="#E91E63" />
+
+                <TextView
+                    android:id="@+id/text_vegan_rist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vegan"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/vegan_newR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout

@@ -71,7 +71,7 @@ class FragmentRistoranti : Fragment() ,RestaurantClickListener{
     private fun dataInitialize() {
         restArrayList = arrayListOf<Restaurant>()
 
-        imageR = arrayOf(
+      /*  imageR = arrayOf(
             R.drawable.pencil,
             R.drawable.pencil,
             R.drawable.pencil,
@@ -105,7 +105,7 @@ class FragmentRistoranti : Fragment() ,RestaurantClickListener{
         for (i in imageR.indices) {
             val restaurant = Restaurant(imageR[i], nomeR[i], desc[i], i)
             restArrayList.add(restaurant)
-        }
+        }*/
 
 
     }

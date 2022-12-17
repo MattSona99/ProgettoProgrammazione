@@ -5,24 +5,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.progettoprogrammazione.activity.IntroActivity
 import com.example.progettoprogrammazione.activity.RestaurateurActivity
-import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.databinding.FragmentUpgrProprietarioBinding
-import com.example.progettoprogrammazione.utils.FireBaseCallbackUser
-import com.example.progettoprogrammazione.utils.ResponseUser
-import com.example.progettoprogrammazione.utils.UserUtil
+import com.example.progettoprogrammazione.models.Restaurant
+import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class FragmentUpgradeProprietario : Fragment(), UserUtil {
+class FragmentUpgradeProprietario : Fragment(), UserUtil, RestaurantUtils {
 
     private lateinit var binding: FragmentUpgrProprietarioBinding
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
+
+    private lateinit var restaurantData: Restaurant
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,22 +34,54 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val Nome = binding.nomeristoranteNewR.text.toString()
-        val descrizione = binding.descrizioneNewR.text.toString()
-        val Indirizzo = binding.indirizzoNewR.text.toString()
-
-        if (Nome.length > 20) {
-            binding.nomeristoranteNewR.setError("Il nome non può essere lungo più di 20 caratteri.")
-        }
-        if (descrizione.length > 20) {
-            binding.nomeristoranteNewR.setError("La descizione non può essere lungo più di 20 caratteri.")
-        }
-        if (Indirizzo.length > 20) {
-            binding.nomeristoranteNewR.setError("L' Indirizzo non può essere lungo più di 20 caratteri.")
-        }
-
 
         binding.ConstraintCreaRist.setOnClickListener {
+
+
+            val ImgR = binding.nomeristoranteNewR.text.toString()
+            val NomeR = binding.nomeristoranteNewR.text.toString()
+            val DescrizioneR = binding.descrizioneNewR.text.toString()
+            val IndirizzoR = binding.indirizzoNewR.text.toString()
+            val orariolavorativoR = binding.orariolavorativoNewR.text.toString()
+            val telefonoR = binding.telefonoNewR.text.toString()
+            val tipoCiboR = binding.tipociboNewR.text.toString()
+            //DA CAMBIARE NON SONO DI TIPO STRINGA
+            val veganR = binding.veganNewR
+            var vegan: Boolean
+/*
+            if (NomeR.length != null && NomeR.length < 25) {
+                binding.nomeristoranteNewR.setError("Il nome non può essere lungo più di 20 caratteri.")
+            }
+            if (DescrizioneR.length != null && DescrizioneR.length < 250) {
+                binding.nomeristoranteNewR.setError("Descrizione vuota o troppo lunga")
+            }
+            if (IndirizzoR.length != null && IndirizzoR.length > 15) {
+                binding.indirizzoNewR.setError("Indririzzo Errrato o vuoto.")
+            }
+            if (orariolavorativoR.length!= null ) {
+                binding.nomeristoranteNewR.setError("Formato Errato quello corretto e'(gg: xx:xx-xx:xx)  ")
+            }
+            if (telefonoR != null && telefonoR.length > 9) {
+                binding.nomeristoranteNewR.setError("Numero telefono deve contenere almeno 9 caratteri")
+            }
+            if (tipoCiboR.length != null ) {
+                binding.nomeristoranteNewR.setError("Inserisci una tipologia di cibo")
+            }
+            */
+            vegan = veganR.isChecked
+
+
+            restaurantData = Restaurant(
+                "Restaurants-images/defaultrestaurantimg",
+                NomeR,
+                DescrizioneR,
+                IndirizzoR,
+                orariolavorativoR,
+                telefonoR,
+                tipoCiboR,
+                vegan,
+                0.0F
+            )
             val childUpdates = hashMapOf<String, Any>(
                 "Livello" to "3"
             )
@@ -59,15 +89,23 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil {
                 context, childUpdates
             )
             getUserData(object : FireBaseCallbackUser {
-                override fun onResponse(response: ResponseUser) {
-                    val intent = Intent(context, RestaurateurActivity::class.java).apply {
-                        putExtra("user", response.user)
-                    }
-                    startActivity(intent)
-                    activity?.finish()
+                override fun onResponse(responseUser: ResponseUser) {
+
+                    createRestaurant(object : FireBaseCallbackRestaurant {
+                        override fun onResponse(responseRistorante: ResponseRistorante) {
+                            val intent = Intent(context, RestaurateurActivity::class.java).apply {
+                                putExtra("user", responseUser.user)
+                                putExtra("ristorante", responseRistorante.ristorante)
+                            }
+                        }
+
+                    }, context, restaurantData)
+
                 }
             }, context)
-        }
-    }
 
+
+        }
+
+    }
 }
