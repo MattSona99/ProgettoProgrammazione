@@ -16,7 +16,7 @@ data class Restaurant (
     var orariolavorativoR: String?,
     var telefonoR: String?,
     var tipoCiboR: String?,
-    var veganR: Boolean?,
+    var veganR: Boolean,
     var ratingR: String?,
 
     val id: Int? = restaurantList.size
@@ -41,7 +41,7 @@ data class Restaurant (
         parcel.writeString(orariolavorativoR)
         parcel.writeString(telefonoR)
         parcel.writeString(tipoCiboR)
-        parcel.writeBoolean(veganR!!)
+        parcel.writeBoolean(veganR)
         parcel.writeString(ratingR)
         parcel.writeValue(id)
     }

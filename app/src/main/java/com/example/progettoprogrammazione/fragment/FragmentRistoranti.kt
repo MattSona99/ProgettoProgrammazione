@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 
-class FragmentRistoranti : Fragment() ,RestaurantClickListener, RestaurantUtils{
+class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils {
 
     private lateinit var adapter: RestaurantAdapter
     private lateinit var recyclerView: RecyclerView
@@ -61,30 +61,24 @@ class FragmentRistoranti : Fragment() ,RestaurantClickListener, RestaurantUtils{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        restArrayList = arrayListOf<Restaurant>()
+        restArrayList = arrayListOf()
         getRestaurantData(object : FireBaseCallbackRestaurant {
             override fun onResponse(response: ResponseRistorante) {
-
-                restArrayList.add(response.ristorante!!)
+                restArrayList = response.ristoranti
             }
-
-        },context)
+        }, context)
 
 
         val layoutManager = GridLayoutManager(context, 2)
-//      val layoutManager = LinearLayoutManager(context)
         recyclerView = view.findViewById(R.id.recycleView)
         recyclerView.layoutManager = layoutManager
-        adapter = RestaurantAdapter(restArrayList,this)
+        adapter = RestaurantAdapter(restArrayList, this)
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
         adapter.notifyDataSetChanged()
 
 
-
-
     }
-
 
 
 }

@@ -1,6 +1,7 @@
 package com.example.progettoprogrammazione.utils
 
 import android.content.Context
+import android.provider.ContactsContract.Data
 import android.widget.Toast
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
@@ -24,17 +25,20 @@ interface RestaurantUtils {
         firebaseDatabase.getReference("Ristoranti").addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val response = ResponseRistorante()
-                    response.ristorante = Restaurant(
-                        snapshot.child("imageR").value.toString(),
-                        snapshot.child("nomeR").value.toString(),
-                        snapshot.child("descrizioneR").value.toString(),
-                        snapshot.child("indrizzoR").value.toString(),
-                        snapshot.child("orariolavorativoR").value.toString(),
-                        snapshot.child("telefonoR").value.toString(),
-                        snapshot.child("tipoCiboR").value.toString(),
-                        snapshot.child("veganR").value.toString().toBoolean(),
-                        snapshot.child("ratingR").value.toString()
-                    )
+                    for(rist : DataSnapshot in snapshot.children){
+                        val ristorante = Restaurant(
+                            rist.child("imageR").value.toString(),
+                            rist.child("nomeR").value.toString(),
+                            rist.child("descrizioneR").value.toString(),
+                            rist.child("indirizzoR").value.toString(),
+                            rist.child("orariolavorativoR").value.toString(),
+                            rist.child("telefonoR").value.toString(),
+                            rist.child("tipoCiboR").value.toString(),
+                            rist.child("veganR").value.toString().toBoolean(),
+                            rist.child("ratingR").value.toString()
+                        )
+                        response.ristoranti.add(ristorante)
+                    }
                     callBack.onResponse(response)
                 }
 
