@@ -15,12 +15,6 @@ interface RestaurantUtils {
         callbackRestaurant: FireBaseCallbackRestaurant,
         context: Context?, rData: Restaurant
     ) {
-
-        firebaseDatabase.getReference("Ristoranti").setValue(callbackRestaurant)
-            .addOnSuccessListener {
-                Toast.makeText(context, "Ristorante Creato con successo", Toast.LENGTH_LONG).show()
-            }.addOnFailureListener {
-                Toast.makeText(context, "Errore creazione ristorante", Toast.LENGTH_LONG).show()
-            }
+        firebaseDatabase.getReference("Ristoranti").setValue(rData)
     }
 }
