@@ -19,7 +19,7 @@ class Dipendente(
     var Livello: String?,
     var Stipendio:Int?,
 
-    val id: Int? = restaurantList.size
+    val id: Int? = dipendenteList.size
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
