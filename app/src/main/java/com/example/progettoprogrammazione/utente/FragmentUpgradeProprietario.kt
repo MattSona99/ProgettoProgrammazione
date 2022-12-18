@@ -37,7 +37,6 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil, RestaurantUtils {
 
         binding.ConstraintCreaRist.setOnClickListener {
 
-
             val ImgR = binding.nomeristoranteNewR.text.toString()
             val NomeR = binding.nomeristoranteNewR.text.toString()
             val DescrizioneR = binding.descrizioneNewR.text.toString()
