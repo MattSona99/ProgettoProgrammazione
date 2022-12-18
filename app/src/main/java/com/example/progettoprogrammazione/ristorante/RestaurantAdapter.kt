@@ -26,11 +26,11 @@ class RestaurantAdapter(
 
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
         holder.bindRestaurants(restaurant[position])
-        /*
+/*
             val currentItem = restaurant[position]
 
-            holder.image_r.setImageResource(currentItem.image_r)
-            holder.nome_r.text = currentItem.nome_r
+            holder.image_r.setImageResource(currentItem.imageR)
+            holder.nome_r.text = currentItem.nomeR
             holder.descrizioneR.text = currentItem.descrizioneR
              */
     }

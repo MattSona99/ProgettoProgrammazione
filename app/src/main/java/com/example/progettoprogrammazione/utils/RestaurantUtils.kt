@@ -21,8 +21,8 @@ interface RestaurantUtils {
     }
 
     fun getRestaurantData(callBack: FireBaseCallbackRestaurant, context: Context?) {
-
-        firebaseDatabase.getReference("Ristoranti").addListenerForSingleValueEvent(object : ValueEventListener {
+        firebaseDatabase.getReference("Ristoranti")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val response = ResponseRistorante()
                     for(rist : DataSnapshot in snapshot.children){

@@ -39,23 +39,14 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
         return inflater.inflate(R.layout.fragment_ristoranti, container, false)
     }
 
-
     override fun onClickResturant(restaurant: Restaurant) {
 
         val bundle = Bundle()
         bundle.putString("restID", restaurant.id.toString())
         bundle.putParcelableArrayList("restArrayList", restArrayList as ArrayList<out Parcelable?>?)
 
-/*        val fragmentDetail = RestaurantDetail()
-        fragmentDetail.arguments = bundle
-*/
         view?.findNavController()?.navigate(R.id.RistorantiToDetail, bundle)
 
-/*
-        val intent = Intent(context, RestaurantDetail::class.java)
-        intent.putExtra(RESTAURANT_EXTRA, restaurant.id)
-        startActivity(intent)
-*/
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -76,7 +67,6 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
         adapter.notifyDataSetChanged()
-
 
     }
 
