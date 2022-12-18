@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,217 +7,258 @@
     android:orientation="vertical"
     tools:context=".fragment.FragmentProfilo">
 
-    <ImageView
-        android:id="@+id/splashscreen"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/background_splash" />
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
+    <ScrollView
+        android:id="@+id/scrollprop"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:padding="24dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/scrollviewborder"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/img_profilo_utente"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/defaultuserimg" />
-
-        <TextView
-            android:id="@+id/benvenutoprofilo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="30dp"
-            android:layout_toRightOf="@id/img_profilo_utente"
-            android:text="BENVENUTO"
-            android:textColor="@color/white"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/nicknameprofilo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/benvenutoprofilo"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="30dp"
-            android:layout_toRightOf="@id/img_profilo_utente"
-            android:text="Nome Utente"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/form_modifica"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
-
-        <TextView
-            android:id="@+id/t_nomeprofilo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nome"
-            android:textColor="@color/white"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/nomeprofilo"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/custom_input"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Nome"
-            android:inputType="textPersonName"
-            android:textColor="@color/white"
-            android:textColorHighlight="#E91E63"
-            android:textColorHint="@color/pink"
-            android:textColorLink="#E91E63" />
-
-        <TextView
-            android:id="@+id/t_cognomeprofilo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cognome"
-            android:textColor="@color/white"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/cognomeprofilo"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/custom_input"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Cognome"
-            android:inputType="textPersonName"
-            android:textColor="@color/white"
-            android:textColorHighlight="#E91E63"
-            android:textColorHint="@color/pink"
-            android:textColorLink="#E91E63" />
-
-        <TextView
-            android:id="@+id/t_passwordprofilo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nuova password"
-            android:textColor="@color/white"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordprofilo"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/custom_input"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Nuova password"
-            android:inputType="textPassword"
-            android:textColor="@color/white"
-            android:textColorHighlight="#E91E63"
-            android:textColorHint="@color/pink"
-            android:textColorLink="#E91E63" />
-
-        <TextView
-            android:id="@+id/t_rpasswordprofilo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ripeti password"
-            android:textColor="@color/white"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/rpasswordprofilo"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/custom_input"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Ripeti password"
-            android:inputType="textPassword"
-            android:textColor="@color/white"
-            android:textColorHighlight="#E91E63"
-            android:textColorHint="@color/pink"
-            android:textColorLink="#E91E63" />
-
-    </LinearLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintsalva">
-
-        <TextView
-            android:id="@+id/creaRistorante"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Diventa un membro dello staff!"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintsalva"
-        android:layout_width="312dp"
-        android:layout_height="50dp"
-        android:background="@drawable/red_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/form_modifica">
-
-        <TextView
-            android:id="@+id/salva"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Salva"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/splashscreen"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/background_splash" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:padding="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/img_profilo_utente"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/defaultuserimg" />
+
+                <TextView
+                    android:id="@+id/benvenutoprofilo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:layout_toRightOf="@id/img_profilo_utente"
+                    android:text="BENVENUTO"
+                    android:textColor="@color/white"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/nicknameprofilo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/benvenutoprofilo"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:layout_toRightOf="@id/img_profilo_utente"
+                    android:text="Nome Utente"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/form_modifica"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+                <TextView
+                    android:id="@+id/t_nomeprofilo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nome"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/nomeprofilo"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/custom_input"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Nome"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="#E91E63"
+                    android:textColorHint="@color/pink"
+                    android:textColorLink="#E91E63" />
+
+                <TextView
+                    android:id="@+id/t_cognomeprofilo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cognome"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/cognomeprofilo"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/custom_input"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Cognome"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="#E91E63"
+                    android:textColorHint="@color/pink"
+                    android:textColorLink="#E91E63" />
+
+                <TextView
+                    android:id="@+id/t_passwordprofilo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nuova password"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordprofilo"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/custom_input"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Nuova password"
+                    android:inputType="textPassword"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="#E91E63"
+                    android:textColorHint="@color/pink"
+                    android:textColorLink="#E91E63" />
+
+                <TextView
+                    android:id="@+id/t_rpasswordprofilo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ripeti password"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/rpasswordprofilo"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/custom_input"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Ripeti password"
+                    android:inputType="textPassword"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="#E91E63"
+                    android:textColorHint="@color/pink"
+                    android:textColorLink="#E91E63" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintsalva">
+
+                <TextView
+                    android:id="@+id/membrostaff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sei un membro dello staff? Clicca qui!"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/constraintLayout">
+
+                <TextView
+                    android:id="@+id/elimina_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/garbage"
+                    android:paddingVertical="10dp"
+                    android:text="Elimina account  "
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintsalva"
+                android:layout_width="312dp"
+                android:layout_height="50dp"
+                android:background="@drawable/red_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/form_modifica">
+
+                <TextView
+                    android:id="@+id/salva"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Salva"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>

@@ -1,9 +1,7 @@
 package com.example.progettoprogrammazione.utils
 
 import android.content.Context
-import android.content.Intent
 import android.widget.Toast
-import com.example.progettoprogrammazione.activity.IntroActivity
 import com.example.progettoprogrammazione.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -15,9 +13,25 @@ interface UserUtil {
     var firebaseAuth: FirebaseAuth
     var firebaseDatabase: FirebaseDatabase
 
-    //fun putUserData()
+    fun deleteUserData(context: Context?) {
+        firebaseAuth.currentUser!!.delete()
+        firebaseDatabase.getReference("Utenti").child(firebaseAuth.currentUser!!.uid)
+            .removeValue().addOnCompleteListener {
+                if (it.isSuccessful) {
+                    Toast.makeText(
+                        context,
+                        "Utente eliminato con successo.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else Toast.makeText(
+                    context,
+                    "Errore durante l'eliminazione dell'account.",
+                    Toast.LENGTH_LONG
+                )
+                    .show()
+            }
+    }
 
-    //fun deleteUserData()
 
     fun updateUserData(
         context: Context?,

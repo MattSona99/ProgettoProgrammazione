@@ -1,5 +1,8 @@
 package com.example.progettoprogrammazione.fragment
 
+import android.app.AlertDialog
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
+import com.example.progettoprogrammazione.activity.IntroActivity
 import com.example.progettoprogrammazione.databinding.FragmentProfiloBinding
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.utils.UserUtil
@@ -39,8 +43,9 @@ class FragmentProfilo : Fragment(), UserUtil {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        binding.creaRistorante.setOnClickListener {
+        binding.membrostaff.setOnClickListener {
             view.findNavController().navigate(R.id.ProfiloToUpgrade)
         }
 
@@ -55,7 +60,8 @@ class FragmentProfilo : Fragment(), UserUtil {
                 binding.nomeprofilo.error = "Il nome non può essere lungo più di 20 caratteri."
             }
             if (newcognome.length > 20) {
-                binding.cognomeprofilo.error = "Il cognome non può essere lungo più di 20 caratteri."
+                binding.cognomeprofilo.error =
+                    "Il cognome non può essere lungo più di 20 caratteri."
             }
             if (newpassword.length < 6) {
                 binding.passwordprofilo.error = "La password deve essere lunga almeno 6 caratteri."
@@ -70,12 +76,29 @@ class FragmentProfilo : Fragment(), UserUtil {
                 if (newnome.isNotEmpty()) childUpdates["Nome"] = newnome
                 if (newcognome.isNotEmpty()) childUpdates["Cognome"] = newcognome
                 if (newrpassword.isNotEmpty()) childUpdates["Password"] = newrpassword
+
                 updateUserData(context, childUpdates)
 
             }
         }
 
-        super.onViewCreated(view, savedInstanceState)
+        binding.eliminaAccount.setOnClickListener {
+            val builder = AlertDialog.Builder(activity)
+            builder.setTitle("Conferma l'eliminazione dell'account")
+            builder.setMessage("Sei sicuro di voler eliminare l'account?")
+            builder.setPositiveButton("Sì") { dialog, _ ->
+                deleteUserData(context)
+                firebaseAuth.signOut()
+                val intent = Intent(requireActivity(), IntroActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+                dialog.cancel()
+            }
+            builder.setNegativeButton("No") { dialog, _ ->
+                dialog.cancel()
+            }
+            builder.show()
+        }
     }
 }
 
