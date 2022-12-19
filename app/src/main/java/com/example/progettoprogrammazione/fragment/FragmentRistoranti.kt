@@ -10,7 +10,9 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.R
+import com.example.progettoprogrammazione.databinding.FragmentRistorantiBinding
 import com.example.progettoprogrammazione.models.Restaurant
+import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.models.restaurantList
 import com.example.progettoprogrammazione.ristorante.RestaurantAdapter
 import com.example.progettoprogrammazione.ristorante.RestaurantClickListener
@@ -23,8 +25,8 @@ import com.google.firebase.database.FirebaseDatabase
 
 class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils {
 
+    private lateinit var binding : FragmentRistorantiBinding
     private lateinit var adapter: RestaurantAdapter
-    private lateinit var recyclerView: RecyclerView
     private lateinit var restArrayList: ArrayList<Restaurant>
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -34,9 +36,21 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        binding = FragmentRistorantiBinding.inflate(layoutInflater)
 
-        return inflater.inflate(R.layout.fragment_ristoranti, container, false)
+        val args = this.arguments
+        val rist = args?.getBundle("ristoranti")
+        restArrayList = rist?.getSerializable("arraylist") as ArrayList<Restaurant>
+
+        val layoutManager = GridLayoutManager(context, 2)
+        binding.recycleView.layoutManager = layoutManager
+        adapter = RestaurantAdapter(restArrayList, this)
+        binding.recycleView.adapter = adapter
+        binding.recycleView.setHasFixedSize(true)
+        adapter.notifyDataSetChanged()
+
+        return binding.root
     }
 
     override fun onClickResturant(restaurant: Restaurant) {
@@ -51,22 +65,6 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        restArrayList = arrayListOf()
-        getRestaurantData(object : FireBaseCallbackRestaurant {
-            override fun onResponse(response: ResponseRistorante) {
-                restArrayList = response.ristoranti
-            }
-        }, context)
-
-
-        val layoutManager = GridLayoutManager(context, 2)
-        recyclerView = view.findViewById(R.id.recycleView)
-        recyclerView.layoutManager = layoutManager
-        adapter = RestaurantAdapter(restArrayList, this)
-        recyclerView.adapter = adapter
-        recyclerView.setHasFixedSize(true)
-        adapter.notifyDataSetChanged()
 
     }
 

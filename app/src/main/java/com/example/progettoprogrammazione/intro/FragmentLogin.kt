@@ -50,20 +50,14 @@ class FragmentLogin : Fragment(), UserUtil,DipendenteUtil,RestaurantUtils {
         firebaseAuth = FirebaseAuth.getInstance()
 
         binding.ConstraintLogin.setOnClickListener() {
-            val Email = binding.email.text.toString()
-            val Password = binding.password.text.toString()
+            val email = binding.email.text.toString()
+            val password = binding.password.text.toString()
 
-            if (Email.isNotEmpty() && Password.isNotEmpty()) {
-                firebaseAuth.signInWithEmailAndPassword(Email, Password).addOnCompleteListener {
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                     if (it.isSuccessful) {
 
                         //FUNZIONE CHE PRENDE DATI RISTORANTI
-                        restArrayList = arrayListOf()
-                        getRestaurantData(object : FireBaseCallbackRestaurant {
-                            override fun onResponse(response: ResponseRistorante) {
-                                restArrayList = response.ristoranti
-                            }
-                        }, context)
 
                         /*
                         FUNZIONE CHE PRENDE I DATI DI DIPENDENTE
@@ -90,30 +84,55 @@ class FragmentLogin : Fragment(), UserUtil,DipendenteUtil,RestaurantUtils {
 
                                 when (userlvl) {
                                     "1" -> {
-                                        val intent =
-                                            Intent(context, UserActivity::class.java).apply {
-                                                putExtra("user", response.user)
+                                        getRestaurantData(object : FireBaseCallbackRestaurant {
+                                            override fun onResponse(responseR: ResponseRistorante) {
+                                                restArrayList = arrayListOf()
+                                                restArrayList = responseR.ristoranti
+                                                val args = Bundle()
+                                                args.putSerializable("arraylist", restArrayList)
+                                                val intent =
+                                                    Intent(context, UserActivity::class.java).apply {
+                                                        putExtra("user", response.user)
+                                                        putExtra("ristoranti", args)
+                                                    }
+                                                startActivity(intent)
+                                                activity?.finish()
                                             }
-                                        startActivity(intent)
-                                        activity?.finish()
+                                        }, context)
                                     }
                                     "2" -> {
-                                        val intent =
-                                            Intent(context, EmployeeActivity::class.java).apply {
-                                                putExtra("user", response.user)
+                                        getRestaurantData(object : FireBaseCallbackRestaurant {
+                                            override fun onResponse(responseR: ResponseRistorante) {
+                                                restArrayList = arrayListOf()
+                                                restArrayList = responseR.ristoranti
+                                                val args = Bundle()
+                                                args.putSerializable("arraylist", restArrayList)
+                                                val intent =
+                                                    Intent(context, EmployeeActivity::class.java).apply {
+                                                        putExtra("user", response.user)
+                                                        putExtra("ristoranti", args)
+                                                    }
+                                                startActivity(intent)
+                                                activity?.finish()
                                             }
-                                        startActivity(intent)
-                                        activity?.finish()
+                                        }, context)
                                     }
                                     "3" -> {
-                                        val intent = Intent(
-                                            context,
-                                            RestaurateurActivity::class.java
-                                        ).apply {
-                                            putExtra("user", response.user)
-                                        }
-                                        startActivity(intent)
-                                        activity?.finish()
+                                        getRestaurantData(object : FireBaseCallbackRestaurant {
+                                            override fun onResponse(responseR: ResponseRistorante) {
+                                                restArrayList = arrayListOf()
+                                                restArrayList = responseR.ristoranti
+                                                val args = Bundle()
+                                                args.putSerializable("arraylist", restArrayList)
+                                                val intent =
+                                                    Intent(context, RestaurateurActivity::class.java).apply {
+                                                        putExtra("user", response.user)
+                                                        putExtra("ristoranti", args)
+                                                    }
+                                                startActivity(intent)
+                                                activity?.finish()
+                                            }
+                                        }, context)
                                     }
                                     else -> {
                                         Toast.makeText(

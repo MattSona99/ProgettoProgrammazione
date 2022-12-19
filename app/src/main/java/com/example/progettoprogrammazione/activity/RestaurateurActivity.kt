@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityRestaurateurBinding
+import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
 import com.google.firebase.auth.FirebaseAuth
 
@@ -33,15 +34,19 @@ class RestaurateurActivity: AppCompatActivity() {
 
         user = FirebaseAuth.getInstance()
 
-        var u = intent.getParcelableExtra("user") as User?
-        var bundle = Bundle()
+        val u = intent.getParcelableExtra("user") as User?
+        val bundle = Bundle()
         bundle.putParcelable("user", u)
+
+        val r = intent.getBundleExtra("ristoranti")
+        val bundler = Bundle()
+        bundler.putBundle("ristoranti", r)
 
         binding.navbarRestaurateur.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.ic_ristorantiR -> {
                     val navController = this.findNavController(R.id.restaurateur_nav)
-                    navController.navigate(R.id.Ristoranti_R)
+                    navController.navigate(R.id.Ristoranti_R, bundler)
                 }
                 R.id.ic_profileR -> {
                     val navController = this.findNavController(R.id.restaurateur_nav)

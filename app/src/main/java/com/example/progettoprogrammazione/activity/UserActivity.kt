@@ -32,8 +32,8 @@ class UserActivity : AppCompatActivity() {
 
         user = FirebaseAuth.getInstance()
 
-        var u = intent.getParcelableExtra("user") as User?
-        var bundle = Bundle()
+        val u = intent.getParcelableExtra("user") as User?
+        val bundle = Bundle()
         bundle.putParcelable("user", u)
 
         binding.navbarUser.setOnNavigationItemSelectedListener {
