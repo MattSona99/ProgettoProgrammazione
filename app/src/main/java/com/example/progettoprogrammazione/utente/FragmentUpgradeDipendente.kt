@@ -40,6 +40,26 @@ class FragmentUpgradeDipendente : Fragment() , UserUtil,DipendenteUtil{
 
         binding.ConstraintUpgradeDip.setOnClickListener {
 
+            val NomeD = binding.nomedipNewD.text.toString()
+            val CognomeD = binding.cognomeNewD.text.toString()
+            val Business_EmailD = binding.bemailNewD.text.toString()
+            val TelefonoD = binding.telefonodNewD.text.toString()
+            val PartTimeD = binding.parttimeDip.text.toString()
+            //DA CAMBIARE NON SONO DI TIPO STRINGA
+
+            dipendenteData= Dipendente(
+                NomeD,
+                CognomeD,
+                Business_EmailD,
+                "11111111",
+                TelefonoD,
+                "Giornaliero",
+                "",
+                "Dipendente-images/defaultrestaurantimg",
+                "2",
+                PartTimeD,
+                1000
+            )
             val childUpdates = hashMapOf<String, Any>(
                 "Livello" to "2"
             )

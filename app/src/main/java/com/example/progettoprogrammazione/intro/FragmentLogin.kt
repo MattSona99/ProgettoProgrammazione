@@ -1,5 +1,6 @@
 package com.example.progettoprogrammazione.intro
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,17 +14,24 @@ import com.example.progettoprogrammazione.activity.EmployeeActivity
 import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.activity.RestaurateurActivity
 import com.example.progettoprogrammazione.databinding.FragmentLoginBinding
-import com.example.progettoprogrammazione.utils.FireBaseCallbackUser
-import com.example.progettoprogrammazione.utils.UserUtil
-import com.example.progettoprogrammazione.utils.ResponseUser
+import com.example.progettoprogrammazione.models.Dipendente
+import com.example.progettoprogrammazione.models.Restaurant
+import com.example.progettoprogrammazione.models.dipendenteList
+import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
-class FragmentLogin : Fragment(), UserUtil {
+class FragmentLogin : Fragment(), UserUtil,DipendenteUtil,RestaurantUtils {
 
     private lateinit var binding: FragmentLoginBinding
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
+
+    private lateinit var restArrayList: ArrayList<Restaurant>
+    private lateinit var dipArrayList: ArrayList<Dipendente>
 
     private var userlvl: String? = null
 
@@ -41,13 +49,34 @@ class FragmentLogin : Fragment(), UserUtil {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
-        binding.ConstraintEntra.setOnClickListener() {
+        binding.ConstraintLogin.setOnClickListener() {
             val Email = binding.email.text.toString()
             val Password = binding.password.text.toString()
 
             if (Email.isNotEmpty() && Password.isNotEmpty()) {
                 firebaseAuth.signInWithEmailAndPassword(Email, Password).addOnCompleteListener {
                     if (it.isSuccessful) {
+
+                        //FUNZIONE CHE PRENDE DATI RISTORANTI
+                        restArrayList = arrayListOf()
+                        getRestaurantData(object : FireBaseCallbackRestaurant {
+                            override fun onResponse(response: ResponseRistorante) {
+                                restArrayList = response.ristoranti
+                            }
+                        }, context)
+
+                        /*
+                        FUNZIONE CHE PRENDE I DATI DI DIPENDENTE
+
+                        dipArrayList = arrayListOf()
+                        getDipendenteData(object : FireBaseCallbackDipendente {
+                            override fun onResponse(response: ResponseDipendente) {
+                                dipArrayList = response.dipendenti
+                            }
+                        }, context)
+                        */
+
+                        //LOGIN
                         getUserData(object : FireBaseCallbackUser {
                             override fun onResponse(response: ResponseUser) {
                                 userlvl = response.user!!.Livello

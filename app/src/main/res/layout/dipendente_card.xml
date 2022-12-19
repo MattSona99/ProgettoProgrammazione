@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:orientation="horizontal"
+    app:layout_constraintVertical_bias="0.20"
+    >
+
+    <ImageButton
+        android:id="@+id/btncard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="#00000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/white_button" />
+
+    <ImageView
+        android:id="@+id/copertina"
+        android:layout_width="wrap_content"
+        android:layout_height="85dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/copertina_desc"
+        android:src="@drawable/pencil"
+        app:layout_constraintBottom_toBottomOf="@+id/btncard"
+        app:layout_constraintEnd_toEndOf="@+id/btncard"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nome_dipendente"
+        app:layout_constraintVertical_bias="0.288" />
+
+    <TextView
+        android:id="@+id/nome_dipendente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:lines="2"
+        android:text="nome dipendente"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/descrizione"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Descrizione dipendente"
+        android:textColor="@color/red"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btncard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/copertina" />
+
+    <!--
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+-->
+</androidx.constraintlayout.widget.ConstraintLayout>

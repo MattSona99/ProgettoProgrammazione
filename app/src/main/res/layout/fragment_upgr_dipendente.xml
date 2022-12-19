@@ -48,7 +48,7 @@
                 app:layout_constraintTop_toBottomOf="@id/text_form_dip">
 
                 <TextView
-                    android:id="@+id/text_nome_ristd"
+                    android:id="@+id/text_nome_dipd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nome"
@@ -57,14 +57,14 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/nomeristorante_newD"
+                    android:id="@+id/nomedip_newD"
                     android:layout_width="250dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/custom_input"
                     android:ems="10"
                     android:gravity="center"
-                    android:hint="Nome Ristorante"
+                    android:hint="Nome "
                     android:inputType="textPersonName"
                     android:textColor="@color/white"
                     android:textColorHighlight="#E91E63"
@@ -72,23 +72,23 @@
                     android:textColorLink="#E91E63" />
 
                 <TextView
-                    android:id="@+id/text_ruolo_ristd"
+                    android:id="@+id/text_cognome_dipd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ruolo"
+                    android:text="Cognome"
                     android:textColor="@color/white"
                     android:textSize="15dp"
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/ruolo_newD"
+                    android:id="@+id/cognome_newD"
                     android:layout_width="250dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/custom_input"
                     android:ems="10"
                     android:gravity="center"
-                    android:hint="Ruolo"
+                    android:hint="Cognome"
                     android:inputType="textPersonName"
                     android:textColor="@color/white"
                     android:textColorHighlight="#E91E63"
@@ -96,7 +96,7 @@
                     android:textColorLink="#E91E63" />
 
                 <TextView
-                    android:id="@+id/text_indirizzo_ristD"
+                    android:id="@+id/text_bemail_dipD"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Indirizzo"
@@ -105,19 +105,58 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/indirizzo_newD"
+                    android:id="@+id/bemail_newD"
                     android:layout_width="250dp"
                     android:layout_height="50dp"
                     android:background="@drawable/custom_input"
                     android:ems="10"
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
-                    android:hint="Indirizzo"
+                    android:hint="Busisness email"
                     android:inputType="textPersonName"
                     android:textColor="@color/white"
                     android:textColorHighlight="#E91E63"
                     android:textColorHint="@color/pink"
                     android:textColorLink="#E91E63" />
+
+                <TextView
+                    android:id="@+id/text_telefonod_dipD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Numero Telefono"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/telefonod_newD"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/custom_input"
+                    android:ems="10"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"
+                    android:hint="Numero Telefono"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="#E91E63"
+                    android:textColorHint="@color/pink"
+                    android:textColorLink="#E91E63" />
+
+                <TextView
+                    android:id="@+id/text_parttimed_dip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PartTime"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/parttime_dip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout

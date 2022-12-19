@@ -3,7 +3,6 @@ package com.example.progettoprogrammazione.utils
 import android.content.Context
 import android.widget.Toast
 import com.example.progettoprogrammazione.models.Dipendente
-import com.example.progettoprogrammazione.models.Restaurant
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -34,6 +33,7 @@ interface DipendenteUtil {
                             dipend.child("DataAssunsioneD").value.toString(),
                             dipend.child("UriD").value.toString(),
                             dipend.child("LivelloD").value.toString(),
+                            dipend.child("PartTimeP").value.toString(),
                             dipend.child("StipendioD").value.toString().toInt()
                         )
                         response.dipendenti.add(dipendente)
@@ -51,6 +51,5 @@ interface DipendenteUtil {
             })
     }
 
-
-
 }
+

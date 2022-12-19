@@ -119,7 +119,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ConstraintEntra"
+            android:id="@+id/ConstraintLogin"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="50dp"
@@ -161,7 +161,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ConstraintEntra"
+            app:layout_constraintTop_toBottomOf="@+id/ConstraintLogin"
             app:layout_constraintVertical_bias="0.25" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

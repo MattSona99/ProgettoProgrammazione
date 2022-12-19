@@ -6,6 +6,8 @@ import java.util.Date
 
 var dipendenteList = mutableListOf<Dipendente>()
 
+val DIPENDENTE_EXTRA="dipendenteExtra"
+
 class Dipendente(
 
     var Nome: String?,
@@ -17,11 +19,13 @@ class Dipendente(
     var DataAssunzione:String?,
     var Uri: String?,
     var Livello: String?,
+    var PartTime:String?,
     var Stipendio:Int?,
 
     val id: Int? = dipendenteList.size
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -45,6 +49,7 @@ class Dipendente(
         parcel.writeString(DataAssunzione)
         parcel.writeString(Uri)
         parcel.writeString(Livello)
+        parcel.writeString(PartTime)
         parcel.writeInt(Stipendio!!)
         parcel.writeValue(id)
     }

@@ -11,14 +11,19 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityEmployeeBinding
 import com.example.progettoprogrammazione.fragment.FragmentProfilo
 import com.example.progettoprogrammazione.fragment.FragmentRistoranti
+import com.example.progettoprogrammazione.models.User
 import com.google.firebase.auth.FirebaseAuth
 
 class EmployeeActivity: AppCompatActivity() {
+
     private lateinit var binding: ActivityEmployeeBinding
+
+    private lateinit var user: FirebaseAuth
 
     private var pressedTime = 0L
 
@@ -27,6 +32,32 @@ class EmployeeActivity: AppCompatActivity() {
 
         binding = ActivityEmployeeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        var u = intent.getParcelableExtra("user") as User?
+        var bundle = Bundle()
+        bundle.putParcelable("user", u)
+
+        binding.navbarEmployee.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.ic_work -> {
+                    val navController = this.findNavController(R.id.employee_nav)
+                    navController.navigate(R.id.Ristoranti_R)
+                }
+                R.id.ic_profileR -> {
+                    val navController = this.findNavController(R.id.employee_nav)
+                    navController.navigate(R.id.Profilo_R, bundle)
+                }
+                R.id.ic_logoutR -> {
+                    user.signOut()
+                    Toast.makeText(this, "Logout effettuato con successo", Toast.LENGTH_LONG).show()
+                    val intent = Intent(this, IntroActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+            true
+        }
+
     }
 
     override fun onBackPressed() {

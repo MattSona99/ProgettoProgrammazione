@@ -20,7 +20,7 @@ interface RestaurantUtils {
         firebaseDatabase.getReference("Ristoranti").push().setValue(rData)
     }
 
-    fun getRestaurantData(callBack: FireBaseCallbackRestaurant, context: Context?) {
+     fun getRestaurantData(callBack: FireBaseCallbackRestaurant, context: Context?) {
         firebaseDatabase.getReference("Ristoranti")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -51,5 +51,6 @@ interface RestaurantUtils {
                 }
             })
     }
+
 
 }
