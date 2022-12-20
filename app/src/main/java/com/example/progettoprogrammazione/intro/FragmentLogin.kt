@@ -1,6 +1,5 @@
 package com.example.progettoprogrammazione.intro
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,13 +15,9 @@ import com.example.progettoprogrammazione.activity.RestaurateurActivity
 import com.example.progettoprogrammazione.databinding.FragmentLoginBinding
 import com.example.progettoprogrammazione.models.Dipendente
 import com.example.progettoprogrammazione.models.Restaurant
-import com.example.progettoprogrammazione.models.dipendenteList
 import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 
 class FragmentLogin : Fragment(), UserUtil,DipendenteUtil,RestaurantUtils {
 
@@ -39,7 +34,7 @@ class FragmentLogin : Fragment(), UserUtil,DipendenteUtil,RestaurantUtils {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentLoginBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -72,8 +67,8 @@ class FragmentLogin : Fragment(), UserUtil,DipendenteUtil,RestaurantUtils {
 
                         //LOGIN
                         getUserData(object : FireBaseCallbackUser {
-                            override fun onResponse(response: ResponseUser) {
-                                userlvl = response.user!!.Livello
+                            override fun onResponse(responseU: ResponseUser) {
+                                userlvl = responseU.user!!.Livello
 
                                 Toast.makeText(
                                     context,
@@ -88,12 +83,10 @@ class FragmentLogin : Fragment(), UserUtil,DipendenteUtil,RestaurantUtils {
                                             override fun onResponse(responseR: ResponseRistorante) {
                                                 restArrayList = arrayListOf()
                                                 restArrayList = responseR.ristoranti
-                                                val args = Bundle()
-                                                args.putSerializable("arraylist", restArrayList)
                                                 val intent =
                                                     Intent(context, UserActivity::class.java).apply {
-                                                        putExtra("user", response.user)
-                                                        putExtra("ristoranti", args)
+                                                        putExtra("user", responseU.user)
+                                                        putParcelableArrayListExtra("ristoranti", responseR.ristoranti)
                                                     }
                                                 startActivity(intent)
                                                 activity?.finish()
@@ -105,12 +98,10 @@ class FragmentLogin : Fragment(), UserUtil,DipendenteUtil,RestaurantUtils {
                                             override fun onResponse(responseR: ResponseRistorante) {
                                                 restArrayList = arrayListOf()
                                                 restArrayList = responseR.ristoranti
-                                                val args = Bundle()
-                                                args.putSerializable("arraylist", restArrayList)
                                                 val intent =
                                                     Intent(context, EmployeeActivity::class.java).apply {
-                                                        putExtra("user", response.user)
-                                                        putExtra("ristoranti", args)
+                                                        putExtra("user", responseU.user)
+                                                        putParcelableArrayListExtra("ristoranti", responseR.ristoranti)
                                                     }
                                                 startActivity(intent)
                                                 activity?.finish()
@@ -122,12 +113,10 @@ class FragmentLogin : Fragment(), UserUtil,DipendenteUtil,RestaurantUtils {
                                             override fun onResponse(responseR: ResponseRistorante) {
                                                 restArrayList = arrayListOf()
                                                 restArrayList = responseR.ristoranti
-                                                val args = Bundle()
-                                                args.putSerializable("arraylist", restArrayList)
                                                 val intent =
                                                     Intent(context, RestaurateurActivity::class.java).apply {
-                                                        putExtra("user", response.user)
-                                                        putExtra("ristoranti", args)
+                                                        putExtra("user", responseU.user)
+                                                        putParcelableArrayListExtra("ristoranti", responseR.ristoranti)
                                                     }
                                                 startActivity(intent)
                                                 activity?.finish()

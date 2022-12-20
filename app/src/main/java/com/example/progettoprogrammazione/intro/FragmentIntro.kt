@@ -31,7 +31,7 @@ class FragmentIntro : Fragment(), UserUtil, RestaurantUtils {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentIntroBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -41,11 +41,11 @@ class FragmentIntro : Fragment(), UserUtil, RestaurantUtils {
 
 
 
-        binding.ConstraintLogin.setOnClickListener() {
+        binding.ConstraintLogin.setOnClickListener {
             if (firebaseAuth.currentUser != null) {
                 getUserData(object : FireBaseCallbackUser {
-                    override fun onResponse(response: ResponseUser) {
-                        userlvl = response.user!!.Livello
+                    override fun onResponse(responseU: ResponseUser) {
+                        userlvl = responseU.user!!.Livello
                         Toast.makeText(
                             context,
                             "Login effettuato con successo!",
@@ -60,8 +60,8 @@ class FragmentIntro : Fragment(), UserUtil, RestaurantUtils {
                                         restArrayList = responseR.ristoranti
                                         val intent =
                                             Intent(context, UserActivity::class.java).apply {
-                                                putExtra("user", response.user)
-                                                putExtra("ristoranti", responseR.ristoranti)
+                                                putExtra("user", responseU.user)
+                                                putParcelableArrayListExtra("ristoranti", responseR.ristoranti)
                                             }
                                         startActivity(intent)
                                         activity?.finish()
@@ -75,8 +75,8 @@ class FragmentIntro : Fragment(), UserUtil, RestaurantUtils {
                                         restArrayList = responseR.ristoranti
                                         val intent =
                                             Intent(context, EmployeeActivity::class.java).apply {
-                                                putExtra("user", response.user)
-                                                putExtra("ristoranti", responseR.ristoranti)
+                                                putExtra("user", responseU.user)
+                                                putParcelableArrayListExtra("ristoranti", responseR.ristoranti)
                                             }
                                         startActivity(intent)
                                         activity?.finish()
@@ -90,8 +90,8 @@ class FragmentIntro : Fragment(), UserUtil, RestaurantUtils {
                                         restArrayList = responseR.ristoranti
                                         val intent =
                                             Intent(context, RestaurateurActivity::class.java).apply {
-                                                putExtra("user", response.user)
-                                                putExtra("ristoranti", responseR.ristoranti)
+                                                putExtra("user", responseU.user)
+                                                putParcelableArrayListExtra("ristoranti", responseR.ristoranti)
                                             }
                                         startActivity(intent)
                                         activity?.finish()
@@ -112,7 +112,7 @@ class FragmentIntro : Fragment(), UserUtil, RestaurantUtils {
                 view.findNavController().navigate(R.id.IntroToLogin)
             }
         }
-        binding.registrati.setOnClickListener() {
+        binding.registrati.setOnClickListener {
             view.findNavController().navigate(R.id.IntroToRegister)
         }
     }

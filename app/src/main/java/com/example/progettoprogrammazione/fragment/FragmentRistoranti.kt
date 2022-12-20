@@ -8,16 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentRistorantiBinding
 import com.example.progettoprogrammazione.models.Restaurant
-import com.example.progettoprogrammazione.models.User
-import com.example.progettoprogrammazione.models.restaurantList
 import com.example.progettoprogrammazione.ristorante.RestaurantAdapter
 import com.example.progettoprogrammazione.ristorante.RestaurantClickListener
-import com.example.progettoprogrammazione.utils.FireBaseCallbackRestaurant
-import com.example.progettoprogrammazione.utils.ResponseRistorante
 import com.example.progettoprogrammazione.utils.RestaurantUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -39,9 +34,8 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
     ): View {
         binding = FragmentRistorantiBinding.inflate(layoutInflater)
 
-        val args = this.arguments
-        val rist = args?.getBundle("ristoranti")
-        restArrayList = rist?.getSerializable("arraylist") as ArrayList<Restaurant>
+        val args = arguments
+        restArrayList = args!!.getParcelableArrayList<Restaurant>("ristoranti") as ArrayList<Restaurant>
 
         val layoutManager = GridLayoutManager(context, 2)
         binding.recycleView.layoutManager = layoutManager

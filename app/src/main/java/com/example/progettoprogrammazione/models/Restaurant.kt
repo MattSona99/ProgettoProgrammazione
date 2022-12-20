@@ -30,7 +30,8 @@ data class Restaurant (
         parcel.readString(),
         parcel.readString(),
         parcel.readBoolean(),
-        parcel.readString()
+        parcel.readString(),
+        parcel.readInt()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -43,7 +44,7 @@ data class Restaurant (
         parcel.writeString(tipoCiboR)
         parcel.writeBoolean(veganR)
         parcel.writeString(ratingR)
-        parcel.writeValue(id)
+        parcel.writeInt(id!!)
     }
 
     override fun describeContents(): Int {

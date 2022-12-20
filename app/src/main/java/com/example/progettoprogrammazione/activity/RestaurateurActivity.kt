@@ -10,9 +10,12 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityRestaurateurBinding
+import com.example.progettoprogrammazione.fragment.FragmentRistoranti
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
 import com.google.firebase.auth.FirebaseAuth
@@ -38,9 +41,9 @@ class RestaurateurActivity: AppCompatActivity() {
         val bundle = Bundle()
         bundle.putParcelable("user", u)
 
-        val r = intent.getBundleExtra("ristoranti")
+        val r = intent.getParcelableArrayListExtra<Restaurant>("ristoranti") as ArrayList<Restaurant>
         val bundler = Bundle()
-        bundler.putBundle("ristoranti", r)
+        bundle.putParcelableArrayList("ristoranti", r)
 
         binding.navbarRestaurateur.setOnNavigationItemSelectedListener {
             when (it.itemId) {
