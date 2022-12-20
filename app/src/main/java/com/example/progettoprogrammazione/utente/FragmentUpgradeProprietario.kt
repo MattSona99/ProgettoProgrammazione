@@ -6,10 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.progettoprogrammazione.activity.RestaurateurActivity
 import com.example.progettoprogrammazione.databinding.FragmentUpgrProprietarioBinding
 import com.example.progettoprogrammazione.models.Restaurant
+import com.example.progettoprogrammazione.models.restaurantList
 import com.example.progettoprogrammazione.utils.*
+import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -20,7 +23,9 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil, RestaurantUtils {
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
+    private lateinit var resturantDataViewModel: RestaurantViewModel
     private lateinit var restaurantData: Restaurant
+    private lateinit var restArrayList: ArrayList<Restaurant>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,37 +74,52 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil, RestaurantUtils {
             */
             vegan = veganR.isChecked
 
+            resturantDataViewModel =
+                ViewModelProvider(requireActivity())[RestaurantViewModel::class.java]
+            resturantDataViewModel.arrayListaRistorantiLiveData.observe(viewLifecycleOwner) { arraylist ->
+                restArrayList = arraylist
 
-            restaurantData = Restaurant(
-                "Restaurants-images/defaultrestaurantimg",
-                NomeR,
-                DescrizioneR,
-                IndirizzoR,
-                orariolavorativoR,
-                telefonoR,
-                tipoCiboR,
-                vegan,
-                "1.0"
-            )
-            val childUpdates = hashMapOf<String, Any>(
-                "Livello" to "3"
-            )
-            updateUserData(
-                context, childUpdates
-            )
-            getUserData(object : FireBaseCallbackUser {
-                override fun onResponse(response: ResponseUser) {
-                    createRestaurant(context, restaurantData)
-                    val intent= Intent(context, RestaurateurActivity::class.java).apply {
-                        putExtra("user", response.user)
+                restaurantData = Restaurant(
+                    "Restaurants-images/defaultrestaurantimg",
+                    NomeR,
+                    DescrizioneR,
+                    IndirizzoR,
+                    orariolavorativoR,
+                    telefonoR,
+                    tipoCiboR,
+                    vegan,
+                    "1.0",
+                    restArrayList.size
+                )
+                val childUpdates = hashMapOf<String, Any>(
+                    "Livello" to "3"
+                )
+                updateUserData(
+                    context, childUpdates
+                )
+                getUserData(object : FireBaseCallbackUser {
+                    override fun onResponse(responseU: ResponseUser) {
+                        createRestaurant(context, restaurantData)
+                        getRestaurantData(object : FireBaseCallbackRestaurant {
+                            override fun onResponse(responseR: ResponseRistorante) {
+                                restArrayList = responseR.ristoranti
+                                val intent =
+                                    Intent(context, RestaurateurActivity::class.java).apply {
+                                        putExtra("user", responseU.user)
+                                        putParcelableArrayListExtra(
+                                            "ristoranti",
+                                            responseR.ristoranti
+                                        )
+                                    }
+                                startActivity(intent)
+                                activity?.finish()
+                            }
+                        }, context)
+
+
                     }
-                    startActivity(intent)
-                    activity?.finish()
-                }
-            }, context)
-
-
+                }, context)
+            }
         }
-
     }
 }

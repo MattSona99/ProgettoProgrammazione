@@ -61,7 +61,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
 
         val bundle = Bundle()
         bundle.putString("restID", restaurant.id.toString())
-        bundle.putParcelableArrayList("restArrayList", restArrayList as ArrayList<out Parcelable?>?)
+        bundle.putParcelableArrayList("restArrayList", restArrayList)
 
         view?.findNavController()?.navigate(R.id.RistorantiToDetail, bundle)
 
@@ -69,13 +69,6 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        resturantDataViewModel=ViewModelProvider(requireActivity()).get(RestaurantViewModel::class.java)
-        resturantDataViewModel.arrayListaRistorantiLiveData.observe(viewLifecycleOwner){
-            ristorantiArrayList->
-
-
-        }
 
     }
 
