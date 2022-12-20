@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.progettoprogrammazione.R
+import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
+import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.databinding.FragmentRistorantiBinding
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.ristorante.RestaurantAdapter
@@ -22,11 +25,13 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
 
     private lateinit var binding : FragmentRistorantiBinding
     private lateinit var adapter: RestaurantAdapter
-    private lateinit var restArrayList: ArrayList<Restaurant>
+
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
+    private lateinit var resturantDataViewModel: RestaurantViewModel
+    private lateinit var restArrayList: ArrayList<Restaurant>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,15 +39,24 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
     ): View {
         binding = FragmentRistorantiBinding.inflate(layoutInflater)
 
-        val args = arguments
+        /*
+        val args = this.arguments
         restArrayList = args!!.getParcelableArrayList<Restaurant>("ristoranti") as ArrayList<Restaurant>
 
-        val layoutManager = GridLayoutManager(context, 2)
-        binding.recycleView.layoutManager = layoutManager
-        adapter = RestaurantAdapter(restArrayList, this)
-        binding.recycleView.adapter = adapter
-        binding.recycleView.setHasFixedSize(true)
-        adapter.notifyDataSetChanged()
+         */
+
+        resturantDataViewModel=ViewModelProvider(requireActivity()).get(RestaurantViewModel::class.java)
+        resturantDataViewModel.arrayListaRistorantiLiveData.observe(viewLifecycleOwner){
+                arraylist->
+            val layoutManager = GridLayoutManager(context, 2)
+            binding.recycleView.layoutManager = layoutManager
+            adapter = RestaurantAdapter(arraylist, this)
+            binding.recycleView.adapter = adapter
+            binding.recycleView.setHasFixedSize(true)
+            adapter.notifyDataSetChanged()
+
+
+        }
 
         return binding.root
     }
@@ -59,6 +73,13 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        resturantDataViewModel=ViewModelProvider(requireActivity()).get(RestaurantViewModel::class.java)
+        resturantDataViewModel.arrayListaRistorantiLiveData.observe(viewLifecycleOwner){
+            ristorantiArrayList->
+
+
+        }
 
     }
 

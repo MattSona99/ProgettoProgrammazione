@@ -10,10 +10,13 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityUserBinding
+import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
+import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 class UserActivity : AppCompatActivity() {
@@ -21,6 +24,8 @@ class UserActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUserBinding
 
     private lateinit var user: FirebaseAuth
+
+    private lateinit var resturantDataViewModel: RestaurantViewModel
 
     private var pressedTime = 0L
 
@@ -33,18 +38,27 @@ class UserActivity : AppCompatActivity() {
         user = FirebaseAuth.getInstance()
 
         val u = intent.getParcelableExtra("user") as User?
-        val bundle = Bundle()
-        bundle.putParcelable("user", u)
+        val bundleU = Bundle()
+        bundleU.putParcelable("user", u)
+
+
+        val r = intent.getParcelableArrayListExtra<Restaurant>("ristoranti") as ArrayList<Restaurant>
+        val bundler = Bundle()
+        bundleU.putParcelableArrayList("ristoranti", r)
+
+        resturantDataViewModel=ViewModelProvider(this).get(RestaurantViewModel::class.java)
+        resturantDataViewModel.arrayListaRistorantiLiveData.postValue(r)
+
 
         binding.navbarUser.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.ic_ristorantiU -> {
                     val navController = this.findNavController(R.id.user_nav)
-                    navController.navigate(R.id.Ristoranti_U)
+                    navController.navigate(R.id.Ristoranti_U, bundleU)
                 }
                 R.id.ic_profileU -> {
                     val navController = this.findNavController(R.id.user_nav)
-                    navController.navigate(R.id.Profilo_U, bundle)
+                    navController.navigate(R.id.Profilo_U, bundleU)
                 }
                 R.id.ic_logoutU -> {
                     user.signOut()
