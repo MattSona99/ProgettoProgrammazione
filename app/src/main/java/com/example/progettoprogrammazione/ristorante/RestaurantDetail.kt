@@ -1,6 +1,7 @@
 package com.example.progettoprogrammazione.ristorante
 
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,21 +25,25 @@ class RestaurantDetail : Fragment(){
         super.onCreate(savedInstanceState)
         binding = FragmentRestaurantDetailBinding.inflate(layoutInflater)
 
-        //PRENDO DATI RISTORANTE DAL BUNDLE
         val args = this.arguments
         val restaurantID = args?.get("restID")
-        restaurantList = args?.getParcelableArrayList<Restaurant>("restArrayList")
+        restaurantList = args?.getParcelableArrayList("restArrayList")
 
         val restaurant=restaurantFromId(restaurantID.toString().toInt())
 
         if(restaurant != null)
         {
-            binding.imgRistoranteDetail.setImageResource( (restaurant.imageR)!!.toInt())
+            binding.imgRistoranteDetail.setImageResource( getImageId( binding.root.context,restaurant.imageR!!))
             binding.nomeRistoranteDetail.text = restaurant.nomeR
             binding.descrizioneDetail.text = restaurant.descrizioneR
 
         }
         return binding.root
+    }
+
+    private fun getImageId(context: Context, imageName: String): Int {
+        return context.resources
+            .getIdentifier("drawable/$imageName", null, context.packageName)
     }
 
     private fun restaurantFromId(restaurantID: Int?): Restaurant? {

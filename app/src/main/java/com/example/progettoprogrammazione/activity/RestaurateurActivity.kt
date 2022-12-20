@@ -12,12 +12,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityRestaurateurBinding
 import com.example.progettoprogrammazione.fragment.FragmentRistoranti
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
+import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 class RestaurateurActivity: AppCompatActivity() {
@@ -25,6 +27,8 @@ class RestaurateurActivity: AppCompatActivity() {
     private lateinit var binding: ActivityRestaurateurBinding
 
     private lateinit var user: FirebaseAuth
+
+    private lateinit var resturantDataViewModel: RestaurantViewModel
 
     private var pressedTime = 0L
 
@@ -42,14 +46,16 @@ class RestaurateurActivity: AppCompatActivity() {
         bundle.putParcelable("user", u)
 
         val r = intent.getParcelableArrayListExtra<Restaurant>("ristoranti") as ArrayList<Restaurant>
-        val bundler = Bundle()
-        bundle.putParcelableArrayList("ristoranti", r)
+
+        resturantDataViewModel= ViewModelProvider(this)[RestaurantViewModel::class.java]
+        resturantDataViewModel.arrayListaRistorantiLiveData.postValue(r)
+
 
         binding.navbarRestaurateur.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.ic_ristorantiR -> {
                     val navController = this.findNavController(R.id.restaurateur_nav)
-                    navController.navigate(R.id.Ristoranti_R, bundler)
+                    navController.navigate(R.id.Ristoranti_R)
                 }
                 R.id.ic_profileR -> {
                     val navController = this.findNavController(R.id.restaurateur_nav)

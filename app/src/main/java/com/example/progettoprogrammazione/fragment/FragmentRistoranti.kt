@@ -39,15 +39,11 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
     ): View {
         binding = FragmentRistorantiBinding.inflate(layoutInflater)
 
-        /*
-        val args = this.arguments
-        restArrayList = args!!.getParcelableArrayList<Restaurant>("ristoranti") as ArrayList<Restaurant>
 
-         */
-
-        resturantDataViewModel=ViewModelProvider(requireActivity()).get(RestaurantViewModel::class.java)
+        resturantDataViewModel= ViewModelProvider(requireActivity())[RestaurantViewModel::class.java]
         resturantDataViewModel.arrayListaRistorantiLiveData.observe(viewLifecycleOwner){
                 arraylist->
+            restArrayList = arraylist
             val layoutManager = GridLayoutManager(context, 2)
             binding.recycleView.layoutManager = layoutManager
             adapter = RestaurantAdapter(arraylist, this)

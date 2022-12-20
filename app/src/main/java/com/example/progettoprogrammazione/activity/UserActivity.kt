@@ -43,10 +43,8 @@ class UserActivity : AppCompatActivity() {
 
 
         val r = intent.getParcelableArrayListExtra<Restaurant>("ristoranti") as ArrayList<Restaurant>
-        val bundler = Bundle()
-        bundleU.putParcelableArrayList("ristoranti", r)
 
-        resturantDataViewModel=ViewModelProvider(this).get(RestaurantViewModel::class.java)
+        resturantDataViewModel= ViewModelProvider(this)[RestaurantViewModel::class.java]
         resturantDataViewModel.arrayListaRistorantiLiveData.postValue(r)
 
 
@@ -54,7 +52,7 @@ class UserActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.ic_ristorantiU -> {
                     val navController = this.findNavController(R.id.user_nav)
-                    navController.navigate(R.id.Ristoranti_U, bundleU)
+                    navController.navigate(R.id.Ristoranti_U)
                 }
                 R.id.ic_profileU -> {
                     val navController = this.findNavController(R.id.user_nav)
