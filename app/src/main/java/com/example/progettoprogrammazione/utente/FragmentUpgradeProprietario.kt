@@ -8,13 +8,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.progettoprogrammazione.activity.RestaurateurActivity
+import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.databinding.FragmentUpgrProprietarioBinding
 import com.example.progettoprogrammazione.models.Restaurant
-import com.example.progettoprogrammazione.models.restaurantList
 import com.example.progettoprogrammazione.utils.*
 import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import java.util.*
+import kotlin.collections.ArrayList
 
 class FragmentUpgradeProprietario : Fragment(), UserUtil, RestaurantUtils {
 
@@ -89,10 +91,10 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil, RestaurantUtils {
                     tipoCiboR,
                     vegan,
                     "1.0",
-                    restArrayList.size
+                    UUID.randomUUID().toString()
                 )
                 val childUpdates = hashMapOf<String, Any>(
-                    "Livello" to "3"
+                    "Livello" to "1"
                 )
                 updateUserData(
                     context, childUpdates
@@ -104,7 +106,7 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil, RestaurantUtils {
                             override fun onResponse(responseR: ResponseRistorante) {
                                 restArrayList = responseR.ristoranti
                                 val intent =
-                                    Intent(context, RestaurateurActivity::class.java).apply {
+                                    Intent(context, UserActivity::class.java).apply {
                                         putExtra("user", responseU.user)
                                         putParcelableArrayListExtra(
                                             "ristoranti",

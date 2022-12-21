@@ -29,7 +29,7 @@ class RestaurantDetail : Fragment(){
         val restaurantID = args?.get("restID")
         restaurantList = args?.getParcelableArrayList("restArrayList")
 
-        val restaurant=restaurantFromId(restaurantID.toString().toInt())
+        val restaurant=restaurantFromId(restaurantID.toString())
 
         if(restaurant != null)
         {
@@ -46,9 +46,9 @@ class RestaurantDetail : Fragment(){
             .getIdentifier("drawable/$imageName", null, context.packageName)
     }
 
-    private fun restaurantFromId(restaurantID: Int?): Restaurant? {
+    private fun restaurantFromId(restaurantID: String?): Restaurant? {
         for (restaurant in restaurantList!!) {
-            if(restaurant.id == restaurantID)
+            if(restaurant.idR == restaurantID)
                 return restaurant
         }
         return null

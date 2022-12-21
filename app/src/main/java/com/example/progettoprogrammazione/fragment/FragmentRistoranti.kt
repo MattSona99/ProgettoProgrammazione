@@ -60,7 +60,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
     override fun onClickResturant(restaurant: Restaurant) {
 
         val bundle = Bundle()
-        bundle.putString("restID", restaurant.id.toString())
+        bundle.putString("restID", restaurant.idR.toString())
         bundle.putParcelableArrayList("restArrayList", restArrayList)
 
         view?.findNavController()?.navigate(R.id.RistorantiToDetail, bundle)

@@ -3,8 +3,6 @@ package com.example.progettoprogrammazione.models
 import android.os.Parcel
 import android.os.Parcelable
 
-var restaurantList = mutableListOf<Restaurant>()
-
 val RESTAURANT_EXTRA="restaurantExtra"
 
 data class Restaurant (
@@ -18,8 +16,8 @@ data class Restaurant (
     var tipoCiboR: String?,
     var veganR: Boolean,
     var ratingR: String?,
+    val idR: String?
 
-    val id: Int? = restaurantList.size
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -31,7 +29,7 @@ data class Restaurant (
         parcel.readString(),
         parcel.readBoolean(),
         parcel.readString(),
-        parcel.readInt()
+        parcel.readString()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -44,7 +42,7 @@ data class Restaurant (
         parcel.writeString(tipoCiboR)
         parcel.writeBoolean(veganR)
         parcel.writeString(ratingR)
-        parcel.writeInt(id!!)
+        parcel.writeString(idR)
     }
 
     override fun describeContents(): Int {
