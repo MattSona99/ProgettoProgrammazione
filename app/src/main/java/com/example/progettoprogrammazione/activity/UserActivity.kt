@@ -45,7 +45,7 @@ class UserActivity : AppCompatActivity() {
         val r = intent.getParcelableArrayListExtra<Restaurant>("ristoranti") as ArrayList<Restaurant>
 
         resturantDataViewModel= ViewModelProvider(this)[RestaurantViewModel::class.java]
-        resturantDataViewModel.arrayListaRistorantiLiveData.postValue(r)
+        resturantDataViewModel.arrayListRistorantiLiveData.postValue(r)
 
 
         binding.navbarUser.setOnNavigationItemSelectedListener {

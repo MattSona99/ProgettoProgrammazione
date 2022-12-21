@@ -1,7 +1,6 @@
 package com.example.progettoprogrammazione.fragment
 
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
-import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.databinding.FragmentRistorantiBinding
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.ristorante.RestaurantAdapter
@@ -41,12 +39,11 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
 
 
         resturantDataViewModel= ViewModelProvider(requireActivity())[RestaurantViewModel::class.java]
-        resturantDataViewModel.arrayListaRistorantiLiveData.observe(viewLifecycleOwner){
-                arraylist->
-            restArrayList = arraylist
+        resturantDataViewModel.arrayListRistorantiLiveData.observe(viewLifecycleOwner){
+            restArrayList = it
             val layoutManager = GridLayoutManager(context, 2)
             binding.recycleView.layoutManager = layoutManager
-            adapter = RestaurantAdapter(arraylist, this)
+            adapter = RestaurantAdapter(it, this)
             binding.recycleView.adapter = adapter
             binding.recycleView.setHasFixedSize(true)
             adapter.notifyDataSetChanged()

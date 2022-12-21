@@ -5,6 +5,6 @@ import androidx.lifecycle.ViewModel
 import com.example.progettoprogrammazione.models.Restaurant
 
 class RestaurantViewModel: ViewModel() {
-    val arrayListaRistorantiLiveData = MutableLiveData<ArrayList<Restaurant>>()
+    val arrayListRistorantiLiveData = MutableLiveData<ArrayList<Restaurant>>()
 
 }

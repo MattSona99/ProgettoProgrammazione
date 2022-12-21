@@ -1,7 +1,6 @@
 package com.example.progettoprogrammazione.fragment
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +12,8 @@ import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.activity.IntroActivity
 import com.example.progettoprogrammazione.databinding.FragmentProfiloBinding
 import com.example.progettoprogrammazione.models.User
+import com.example.progettoprogrammazione.utils.FireBaseCallbackUser
+import com.example.progettoprogrammazione.utils.ResponseUser
 import com.example.progettoprogrammazione.utils.UserUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -56,30 +57,41 @@ class FragmentProfilo : Fragment(), UserUtil {
             val newpassword = binding.passwordprofilo.text.toString()
             val newrpassword = binding.rpasswordprofilo.text.toString()
 
-            if (newnome.length > 20) {
+            if (newnome.length > 20 && newnome.isNotEmpty()) {
                 binding.nomeprofilo.error = "Il nome non può essere lungo più di 20 caratteri."
             }
-            if (newcognome.length > 20) {
+            if (newcognome.length > 20 && newcognome.isNotEmpty()) {
                 binding.cognomeprofilo.error =
                     "Il cognome non può essere lungo più di 20 caratteri."
             }
-            if (newpassword.length < 6) {
+            if (newpassword.length < 6 && newpassword.isNotEmpty()) {
                 binding.passwordprofilo.error = "La password deve essere lunga almeno 6 caratteri."
             }
 
             if (newrpassword != newpassword) {
                 binding.rpasswordprofilo.error = "Le password non corrispondono."
             }
-            if (newrpassword.isNotEmpty() && newpassword.isNotEmpty()) {
+
+            val childUpdates: HashMap<String, Any> = hashMapOf()
+            if (newnome.isNotEmpty()) childUpdates["Nome"] = newnome
+            if (newcognome.isNotEmpty()) childUpdates["Cognome"] = newcognome
+
+            if (newrpassword == newpassword || (newrpassword.isEmpty() && newpassword.isEmpty())) {
+                if(newrpassword.isNotEmpty()){
                 updateUserPassword(context, newrpassword, user.Email.toString())
-                val childUpdates: HashMap<String, Any> = hashMapOf()
-                if (newnome.isNotEmpty()) childUpdates["Nome"] = newnome
-                if (newcognome.isNotEmpty()) childUpdates["Cognome"] = newcognome
-                if (newrpassword.isNotEmpty()) childUpdates["Password"] = newrpassword
-
+                childUpdates["Password"] = newrpassword
+                }
                 updateUserData(context, childUpdates)
-
+                getUserData(object : FireBaseCallbackUser {
+                    override fun onResponse(responseU: ResponseUser) {
+                        val bundleU = Bundle()
+                        bundleU.putParcelable("user", responseU.user)
+                        view.findNavController().navigate(R.id.ProfiloSelf, bundleU)
+                    }
+                }, context)
             }
+
+
         }
 
         binding.eliminaAccount.setOnClickListener {

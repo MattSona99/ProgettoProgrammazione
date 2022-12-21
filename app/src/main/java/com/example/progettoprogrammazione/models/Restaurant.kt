@@ -16,7 +16,8 @@ data class Restaurant (
     var tipoCiboR: String?,
     var veganR: Boolean,
     var ratingR: String?,
-    var idR: String?
+    var idR: String?,
+    var proprietarioR: String?
 
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
@@ -28,6 +29,7 @@ data class Restaurant (
         parcel.readString(),
         parcel.readString(),
         parcel.readBoolean(),
+        parcel.readString(),
         parcel.readString(),
         parcel.readString()
     )
@@ -43,6 +45,7 @@ data class Restaurant (
         parcel.writeBoolean(veganR)
         parcel.writeString(ratingR)
         parcel.writeString(idR)
+        parcel.writeString(proprietarioR)
     }
 
     override fun describeContents(): Int {
