@@ -72,16 +72,15 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil, RestaurantUtils {
 
             val vegan: Boolean = veganR.isChecked
 
-
-            val childUpdates = hashMapOf<String, Any>(
-                "Livello" to "3"
-            )
-            updateUserData(
-                context, childUpdates
-            )
             if (nomeR.isNotEmpty() && descrizioneR.isNotEmpty() && indirizzoR.isNotEmpty() && orariolavorativoR.isNotEmpty() && telefonoR.isNotEmpty()) {
                 getUserData(object : FireBaseCallbackUser {
                     override fun onResponse(responseU: ResponseUser) {
+                        val childUpdates = hashMapOf<String, Any>(
+                            "Livello" to "3"
+                        )
+                        updateUserData(
+                            context, childUpdates
+                        )
                         restaurantData = Restaurant(
                             "Restaurants-images/defaultrestaurantimg",
                             nomeR,
