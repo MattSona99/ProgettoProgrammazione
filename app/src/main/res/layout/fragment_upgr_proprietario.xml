@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
             <TextView
                 android:id="@+id/text_form_prop"
                 android:layout_width="wrap_content"
@@ -68,6 +69,36 @@
                     android:textColorHighlight="#E91E63"
                     android:textColorHint="@color/pink"
                     android:textColorLink="#E91E63" />
+
+                <TextView
+                    android:id="@+id/text_select_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Seleziona l'immagine del tuo ristorante"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/select_img_newR"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/custom_input"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Seleziona Immagine"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="#E91E63"
+                    android:textColorHint="@color/pink"
+                    android:textColorLink="#E91E63" />
+
+                <ImageView
+                    android:id="@+id/preview_image"
+                    android:layout_width="374dp"
+                    android:layout_height="151dp"
+                    app:srcCompat="@android:drawable/ic_menu_gallery"
+                    android:layout_marginBottom="10dp" />
 
                 <TextView
                     android:id="@+id/text_descrizione_rist"
@@ -189,60 +220,20 @@
                     android:textColorHint="@color/pink"
                     android:textColorLink="#E91E63" />
 
-                <RelativeLayout
-                    android:id="@+id/relativeLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:padding="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/ConstraintCreaRist">
+                <TextView
+                    android:id="@+id/text_vegan_rist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vegan"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/text_select_img"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="50dp"
-                        android:text="Carica immagine"
-                        android:textColor="@color/white"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
+                <CheckBox
+                    android:id="@+id/vegan_newR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-                    <Button
-                        android:id="@+id/select_img_newR"
-                        android:layout_width="150dp"
-                        android:layout_height="50dp"
-                        android:layout_below="@id/text_select_img"
-                        android:layout_marginLeft="35dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@drawable/red_button"
-                        android:ems="10"
-                        android:gravity="center"
-                        android:hint="Carica"
-                        android:textColorHighlight="#E91E63"
-                        android:textColorHint="@color/white"
-                        android:textColorLink="#E91E63" />
-
-                    <TextView
-                        android:id="@+id/text_vegan_rist"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="100dp"
-                        android:layout_toRightOf="@id/text_select_img"
-                        android:text="Vegan"
-                        android:textColor="@color/white"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-
-                    <CheckBox
-                        android:id="@+id/vegan_newR"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/text_vegan_rist"
-                        android:layout_marginLeft="75dp"
-                        android:layout_toRightOf="@id/select_img_newR" />
-
-                </RelativeLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ConstraintCreaRist"
@@ -267,6 +258,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
             </LinearLayout>
