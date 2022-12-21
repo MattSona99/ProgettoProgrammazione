@@ -13,12 +13,6 @@
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
-    <fragment
-        android:id="@+id/fragmentProfiloD"
-        android:name="com.example.progettoprogrammazione.fragment.FragmentProfilo"
-        android:label="fragment_profilo_d"
-        tools:layout="@layout/fragment_profilo" />
-
     <action
         android:id="@+id/ristoranti_D"
         app:destination="@+id/RistorantiD"
@@ -27,11 +21,25 @@
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
+    <action
+        android:id="@+id/lavoro_D"
+        app:destination="@+id/fragmentLavoro"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    <fragment
+        android:id="@+id/fragmentProfiloD"
+        android:name="com.example.progettoprogrammazione.fragment.FragmentProfilo"
+        android:label="fragment_profilo_d"
+        tools:layout="@layout/fragment_profilo" />
+
     <fragment
         android:id="@+id/RistorantiD"
         android:name="com.example.progettoprogrammazione.fragment.FragmentRistoranti"
         android:label="fragment_ristoranti"
-        tools:layout="@layout/fragment_ristoranti" >
+        tools:layout="@layout/fragment_ristoranti">
         <action
             android:id="@+id/action_fragmentRistorantiD_to_restaurantDetailD"
             app:destination="@id/restaurantDetailD" />
@@ -41,15 +49,7 @@
         android:id="@+id/restaurantDetailD"
         android:name="com.example.progettoprogrammazione.ristorante.RestaurantDetail"
         android:label="RestaurantDetail"
-        tools:layout="@layout/fragment_restaurant_detail"/>
-
-    <action
-        android:id="@+id/lavoro_D"
-        app:destination="@+id/fragmentLavoro"
-        app:enterAnim="@anim/nav_default_enter_anim"
-        app:exitAnim="@anim/nav_default_exit_anim"
-        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        tools:layout="@layout/fragment_restaurant_detail" />
 
     <fragment
         android:id="@+id/fragmentLavoro"

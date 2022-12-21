@@ -18,7 +18,7 @@ class Dipendente(
     var Uri: String?,
     var Livello: String?,
     var PartTime:Boolean,
-    var Stipendio:Int?,
+    var Stipendio:String?,
     var idD: String?,
     var catenaRistorante: String?
 
@@ -34,7 +34,7 @@ class Dipendente(
         parcel.readString(),
         parcel.readString(),
         parcel.readBoolean(),
-        parcel.readInt(),
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
     ) {
@@ -51,7 +51,7 @@ class Dipendente(
         parcel.writeString(Uri)
         parcel.writeString(Livello)
         parcel.writeBoolean(PartTime)
-        parcel.writeInt(Stipendio!!)
+        parcel.writeString(Stipendio)
         parcel.writeString(idD)
         parcel.writeString(catenaRistorante)
     }

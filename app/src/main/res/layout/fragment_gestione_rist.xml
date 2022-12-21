@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragment.FragmentProfilo">
+    tools:context=".fragment.FragmentGestione">
 
     <ScrollView
-        android:id="@+id/scrollprop"
+        android:id="@+id/scrollgest"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/scrollviewborder"
@@ -56,7 +56,7 @@
             </RelativeLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycleViewR"
+                    android:id="@+id/recycleViewG"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     tools:listitem="@layout/restaurant_card"

@@ -22,7 +22,7 @@ import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 
-class EmployeeActivity: AppCompatActivity() {
+class EmployeeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEmployeeBinding
 
@@ -36,10 +36,12 @@ class EmployeeActivity: AppCompatActivity() {
         binding = ActivityEmployeeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        user = FirebaseAuth.getInstance()
+
         val u = intent.getParcelableExtra("user") as User?
         val bundle = Bundle()
         bundle.putParcelable("user", u)
-        
+
 
         binding.navbarEmployee.setOnNavigationItemSelectedListener {
             when (it.itemId) {
@@ -51,11 +53,11 @@ class EmployeeActivity: AppCompatActivity() {
                     val navController = this.findNavController(R.id.employee_nav)
                     navController.navigate(R.id.lavoro_D)
                 }
-                R.id.ic_profileR -> {
+                R.id.ic_profileD -> {
                     val navController = this.findNavController(R.id.employee_nav)
                     navController.navigate(R.id.Profilo_D, bundle)
                 }
-                R.id.ic_logoutR -> {
+                R.id.ic_logoutD -> {
                     user.signOut()
                     Toast.makeText(this, "Logout effettuato con successo", Toast.LENGTH_LONG).show()
                     val intent = Intent(this, IntroActivity::class.java)
@@ -73,7 +75,8 @@ class EmployeeActivity: AppCompatActivity() {
             super.onBackPressed()
             finishAffinity()
         } else {
-            Toast.makeText(baseContext, "Premi indietro di nuovo per uscire.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(baseContext, "Premi indietro di nuovo per uscire.", Toast.LENGTH_SHORT)
+                .show()
         }
         pressedTime = System.currentTimeMillis()
     }
