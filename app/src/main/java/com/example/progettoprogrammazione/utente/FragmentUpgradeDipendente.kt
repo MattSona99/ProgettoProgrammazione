@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.progettoprogrammazione.activity.EmployeeActivity
 import com.example.progettoprogrammazione.activity.RestaurateurActivity
 import com.example.progettoprogrammazione.databinding.FragmentUpgrDipendenteBinding
 import com.example.progettoprogrammazione.models.Dipendente
@@ -79,12 +80,6 @@ class FragmentUpgradeDipendente : Fragment(), UserUtil, DipendenteUtil {
                         updateUserData(
                             context, childUpdates
                         )
-                        //PRENDO DATI RISTORANTE
-                        resturantDataViewModel= ViewModelProvider(requireActivity())[RestaurantViewModel::class.java]
-                        resturantDataViewModel.arrayListRistorantiLiveData.observe(viewLifecycleOwner) {
-                        restArrayList=it
-                        }
-
                         dipendenteData = Dipendente(
                             nomeD,
                             cognomeD,
@@ -96,26 +91,17 @@ class FragmentUpgradeDipendente : Fragment(), UserUtil, DipendenteUtil {
                             "Dipendente-images/defaultrestaurantimg",
                             "2",
                             partime,
-                            1000,
+                            "1000",
                             UUID.randomUUID().toString(),
                             "non assunto"
                         )
                         createDipendente(context, dipendenteData)
-                        getDipendenteData(object : FireBaseCallbackDipendente {
-                                override fun onResponse(responseD: ResponseDipendente) {
-                                    val intent =
-                                        Intent(context, RestaurateurActivity::class.java).apply {
-                                            putExtra("user", responseU.user)
-                                            putParcelableArrayListExtra(
-                                                "dipendenti",
-                                                responseD.dipendenti
-                                            )
-                                        }
-                                    startActivity(intent)
-                                    activity?.finish()
-                                }
-                            }, context
-                        )
+                        val intent =
+                            Intent(context, EmployeeActivity::class.java).apply {
+                                putExtra("user", responseU.user)
+                            }
+                        startActivity(intent)
+                        activity?.finish()
                     }
                 }, context)
             } else {

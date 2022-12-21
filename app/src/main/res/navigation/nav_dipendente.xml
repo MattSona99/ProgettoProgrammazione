@@ -7,17 +7,11 @@
 
     <action
         android:id="@+id/Profilo_D"
-        app:destination="@+id/ProfiloD"
+        app:destination="@+id/fragmentProfiloD"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-
-    <fragment
-        android:id="@+id/ProfiloD"
-        android:name="com.example.progettoprogrammazione.fragment.FragmentProfilo"
-        android:label="fragment_profilo_d"
-        tools:layout="@layout/fragment_profilo" />
 
     <action
         android:id="@+id/ristoranti_D"
@@ -26,26 +20,6 @@
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-
-    <fragment
-        android:id="@+id/RistorantiD"
-        android:name="com.example.progettoprogrammazione.fragment.FragmentRistoranti"
-        android:label="fragment_ristoranti"
-        tools:layout="@layout/fragment_ristoranti" >
-        <action
-            android:id="@+id/action_fragmentRistorantiD_to_restaurantDetailD"
-            app:destination="@id/restaurantDetailD" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/restaurantDetailD"
-        android:name="com.example.progettoprogrammazione.ristorante.RestaurantDetail"
-        android:label="RestaurantDetail"
-        tools:layout="@layout/fragment_restaurant_detail">
-        <action
-            android:id="@+id/action_restaurantDetailD_to_fragmentMenu2"
-            app:destination="@id/fragmentMenu" />
-    </fragment>
 
     <action
         android:id="@+id/lavoro_D"
@@ -56,31 +30,32 @@
         app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
     <fragment
+        android:id="@+id/fragmentProfiloD"
+        android:name="com.example.progettoprogrammazione.fragment.FragmentProfilo"
+        android:label="fragment_profilo_d"
+        tools:layout="@layout/fragment_profilo" />
+
+    <fragment
+        android:id="@+id/RistorantiD"
+        android:name="com.example.progettoprogrammazione.fragment.FragmentRistoranti"
+        android:label="fragment_ristoranti"
+        tools:layout="@layout/fragment_ristoranti">
+        <action
+            android:id="@+id/action_fragmentRistorantiD_to_restaurantDetailD"
+            app:destination="@id/restaurantDetailD" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/restaurantDetailD"
+        android:name="com.example.progettoprogrammazione.ristorante.RestaurantDetail"
+        android:label="RestaurantDetail"
+        tools:layout="@layout/fragment_restaurant_detail" />
+
+    <fragment
         android:id="@+id/fragmentLavoro"
         android:name="com.example.progettoprogrammazione.fragment.FragmentLavoro"
         android:label="fragment_lavoro"
         tools:layout="@layout/fragment_lavoro" />
-    <fragment
-        android:id="@+id/fragmentMenu"
-        android:name="com.example.progettoprogrammazione.fragment.FragmentMenu"
-        android:label="fragment_menu"
-        tools:layout="@layout/fragment_menu" >
-        <action
-            android:id="@+id/action_fragmentMenu_to_productDetail"
-            app:destination="@id/productDetail" />
-        <action
-            android:id="@+id/action_fragmentMenu_to_restaurantDetailD"
-            app:destination="@id/restaurantDetailD" />
-    </fragment>
-    <fragment
-        android:id="@+id/productDetail"
-        android:name="com.example.progettoprogrammazione.prodotti.ProductDetail"
-        android:label="ProductDetail"
-        tools:layout="@layout/fragment_menuproduct_detail">
-        <action
-            android:id="@+id/action_productDetail_to_fragmentMenu2"
-            app:destination="@id/fragmentMenu" />
-    </fragment>
 
 
 </navigation>

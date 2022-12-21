@@ -42,10 +42,10 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
         resturantDataViewModel.arrayListRistorantiLiveData.observe(viewLifecycleOwner) {
             restArrayList = it
             val layoutManager = GridLayoutManager(context, 2)
-            binding.recycleViewR.layoutManager = layoutManager
+            binding.recycleViewG.layoutManager = layoutManager
             adapter = RestaurantAdapter(it, this)
-            binding.recycleViewR.adapter = adapter
-            binding.recycleViewR.setHasFixedSize(true)
+            binding.recycleViewG.adapter = adapter
+            binding.recycleViewG.setHasFixedSize(true)
             adapter.notifyDataSetChanged()
         }
 
