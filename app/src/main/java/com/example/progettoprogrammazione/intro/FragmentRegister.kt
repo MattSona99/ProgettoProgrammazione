@@ -40,41 +40,41 @@ class FragmentRegister : Fragment(), UserUtil {
 
         binding.ConstraintRegistrati.setOnClickListener {
 
-            val Nome = binding.nome.text.toString()
-            val Cognome = binding.cognome.text.toString()
-            val Email = binding.email.text.toString()
-            val Password = binding.password.text.toString()
-            val Telefono = binding.telefono.text.toString()
+            val nome = binding.nome.text.toString()
+            val cognome = binding.cognome.text.toString()
+            val email = binding.email.text.toString()
+            val password = binding.password.text.toString()
+            val telefono = binding.telefono.text.toString()
 
-            if (Nome.length > 20) {
+            if (nome.length > 20) {
                 binding.nome.error = "Il nome non può essere lungo più di 20 caratteri."
             }
-            if (Cognome.length > 20) {
+            if (cognome.length > 20) {
                 binding.cognome.error = "Il cognome non può essere lungo più di 20 caratteri."
             }
-            if (Email.length > 40) {
+            if (email.length > 40) {
                 binding.email.error = "L'email non può essere lunga più di 40 caratteri."
             }
-            if (TextUtils.isEmpty(Email)) {
+            if (TextUtils.isEmpty(email)) {
                 binding.email.error = "Inserisci un'email valida."
             }
-            if (Password.length < 6) {
+            if (password.length < 6) {
                 binding.password.error = "La password deve essere lunga almeno 6 caratteri."
             }
-            if (Telefono.length > 11) {
+            if (telefono.length > 11) {
                 binding.telefono.error = "Il numero di telefono deve contenere al massimo 11 cifre."
             }
 
-            if (Nome.isNotEmpty() && Cognome.isNotEmpty() && Email.isNotEmpty() && Password.isNotEmpty() && Telefono.isNotEmpty()) {
-                firebaseAuth.createUserWithEmailAndPassword(Email, Password)
-                    .addOnCompleteListener{
+            if (nome.isNotEmpty() && cognome.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && telefono.isNotEmpty()) {
+                firebaseAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener {
                         if (it.isSuccessful) {
                             val save = User(
-                                Nome,
-                                Cognome,
-                                Email,
-                                Password,
-                                Telefono,
+                                nome,
+                                cognome,
+                                email,
+                                password,
+                                telefono,
                                 "Users-images/defaultuserimg",
                                 "1"
                             )
@@ -98,7 +98,8 @@ class FragmentRegister : Fragment(), UserUtil {
                                         ).show()
                                         getUserData(object : FireBaseCallbackUser {
                                             override fun onResponse(response: ResponseUser) {
-                                                val intent = Intent(context, IntroActivity::class.java)
+                                                val intent =
+                                                    Intent(context, IntroActivity::class.java)
                                                 firebaseAuth.signOut()
                                                 startActivity(intent)
                                                 activity?.finish()
@@ -122,6 +123,8 @@ class FragmentRegister : Fragment(), UserUtil {
                         }
                     }
 
+            } else {
+                Toast.makeText(context, "Nessun campo può essere vuoto!", Toast.LENGTH_LONG).show()
             }
         }
         binding.already.setOnClickListener() {

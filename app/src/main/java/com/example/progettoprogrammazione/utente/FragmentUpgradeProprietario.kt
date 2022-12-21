@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.progettoprogrammazione.activity.RestaurateurActivity
-import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.databinding.FragmentUpgrProprietarioBinding
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.utils.*
@@ -16,7 +16,6 @@ import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
-import kotlin.collections.ArrayList
 
 class FragmentUpgradeProprietario : Fragment(), UserUtil, RestaurantUtils {
 
@@ -33,7 +32,7 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil, RestaurantUtils {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentUpgrProprietarioBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -44,69 +43,63 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil, RestaurantUtils {
 
         binding.ConstraintCreaRist.setOnClickListener {
 
-            val ImgR = binding.nomeristoranteNewR.text.toString()
-            val NomeR = binding.nomeristoranteNewR.text.toString()
-            val DescrizioneR = binding.descrizioneNewR.text.toString()
-            val IndirizzoR = binding.indirizzoNewR.text.toString()
+            binding.nomeristoranteNewR.text.toString()
+            val nomeR = binding.nomeristoranteNewR.text.toString()
+            val descrizioneR = binding.descrizioneNewR.text.toString()
+            val indirizzoR = binding.indirizzoNewR.text.toString()
             val orariolavorativoR = binding.orariolavorativoNewR.text.toString()
             val telefonoR = binding.telefonoNewR.text.toString()
             val tipoCiboR = binding.tipociboNewR.text.toString()
-            //DA CAMBIARE NON SONO DI TIPO STRINGA
             val veganR = binding.veganNewR
-            val vegan: Boolean
-/*
-            if (NomeR.length != null && NomeR.length < 25) {
-                binding.nomeristoranteNewR.setError("Il nome non può essere lungo più di 20 caratteri.")
-            }
-            if (DescrizioneR.length != null && DescrizioneR.length < 250) {
-                binding.nomeristoranteNewR.setError("Descrizione vuota o troppo lunga")
-            }
-            if (IndirizzoR.length != null && IndirizzoR.length > 15) {
-                binding.indirizzoNewR.setError("Indririzzo Errrato o vuoto.")
-            }
-            if (orariolavorativoR.length!= null ) {
-                binding.nomeristoranteNewR.setError("Formato Errato quello corretto e'(gg: xx:xx-xx:xx)  ")
-            }
-            if (telefonoR != null && telefonoR.length > 9) {
-                binding.nomeristoranteNewR.setError("Numero telefono deve contenere almeno 9 caratteri")
-            }
-            if (tipoCiboR.length != null ) {
-                binding.nomeristoranteNewR.setError("Inserisci una tipologia di cibo")
-            }
-            */
-            vegan = veganR.isChecked
 
-            resturantDataViewModel =
-                ViewModelProvider(requireActivity())[RestaurantViewModel::class.java]
-            resturantDataViewModel.arrayListaRistorantiLiveData.observe(viewLifecycleOwner) { arraylist ->
-                restArrayList = arraylist
+            if (nomeR.length > 20) {
+                binding.nomeristoranteNewR.error =
+                    "Il nome non può essere lungo più di 20 caratteri."
+            }
+            if (descrizioneR.length < 250) {
+                binding.nomeristoranteNewR.error = "Descrizione vuota o troppo lunga"
+            }
+            if (indirizzoR.length < 15) {
+                binding.indirizzoNewR.error = "Indririzzo errato o vuoto."
+            }
+            if (orariolavorativoR.length < 10)
+                binding.nomeristoranteNewR.error = "Formato errato. (gg: xx:xx-xx:xx)"
 
-                restaurantData = Restaurant(
-                    "Restaurants-images/defaultrestaurantimg",
-                    NomeR,
-                    DescrizioneR,
-                    IndirizzoR,
-                    orariolavorativoR,
-                    telefonoR,
-                    tipoCiboR,
-                    vegan,
-                    "1.0",
-                    UUID.randomUUID().toString()
-                )
-                val childUpdates = hashMapOf<String, Any>(
-                    "Livello" to "1"
-                )
-                updateUserData(
-                    context, childUpdates
-                )
+            if (telefonoR.length < 9) {
+                binding.nomeristoranteNewR.error =
+                    "Il numero di telefono deve contenere almeno 9 caratteri"
+            }
+
+            val vegan: Boolean = veganR.isChecked
+
+
+            val childUpdates = hashMapOf<String, Any>(
+                "Livello" to "3"
+            )
+            updateUserData(
+                context, childUpdates
+            )
+            if (nomeR.isNotEmpty() && descrizioneR.isNotEmpty() && indirizzoR.isNotEmpty() && orariolavorativoR.isNotEmpty() && telefonoR.isNotEmpty()) {
                 getUserData(object : FireBaseCallbackUser {
                     override fun onResponse(responseU: ResponseUser) {
+                        restaurantData = Restaurant(
+                            "Restaurants-images/defaultrestaurantimg",
+                            nomeR,
+                            descrizioneR,
+                            indirizzoR,
+                            orariolavorativoR,
+                            telefonoR,
+                            tipoCiboR,
+                            vegan,
+                            "1.0",
+                            UUID.randomUUID().toString(),
+                            responseU.user!!.Email
+                        )
                         createRestaurant(context, restaurantData)
                         getRestaurantData(object : FireBaseCallbackRestaurant {
                             override fun onResponse(responseR: ResponseRistorante) {
-                                restArrayList = responseR.ristoranti
                                 val intent =
-                                    Intent(context, UserActivity::class.java).apply {
+                                    Intent(context, RestaurateurActivity::class.java).apply {
                                         putExtra("user", responseU.user)
                                         putParcelableArrayListExtra(
                                             "ristoranti",
@@ -117,10 +110,11 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil, RestaurantUtils {
                                 activity?.finish()
                             }
                         }, context)
-
-
                     }
                 }, context)
+            } else {
+                Toast.makeText(context, "Nessun campo può essere vuoto!", Toast.LENGTH_LONG)
+                    .show()
             }
         }
     }
