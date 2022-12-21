@@ -56,7 +56,11 @@
         android:id="@+id/restaurantDetail"
         android:name="com.example.progettoprogrammazione.ristorante.RestaurantDetail"
         android:label="RestaurantDetail"
-        tools:layout="@layout/fragment_restaurant_detail" />
+        tools:layout="@layout/fragment_restaurant_detail" >
+        <action
+            android:id="@+id/action_restaurantDetail_to_fragmentMenu2"
+            app:destination="@id/fragmentMenu" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentGestione"
         android:name="com.example.progettoprogrammazione.fragment.FragmentGestione"
@@ -65,6 +69,20 @@
         <action
             android:id="@+id/GestioneToDetail"
             app:destination="@id/restaurantDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetail"
+        android:name="com.example.progettoprogrammazione.prodotti.ProductDetail"
+        android:label="ProductDetail"
+        tools:layout="@layout/fragment_menuproduct_detail"/>
+    <fragment
+        android:id="@+id/fragmentMenu"
+        android:name="com.example.progettoprogrammazione.fragment.FragmentMenu"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_fragmentMenu_to_productDetail2"
+            app:destination="@id/productDetail" />
     </fragment>
 
 </navigation>

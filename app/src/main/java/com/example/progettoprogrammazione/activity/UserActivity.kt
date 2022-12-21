@@ -47,7 +47,6 @@ class UserActivity : AppCompatActivity() {
         resturantDataViewModel= ViewModelProvider(this)[RestaurantViewModel::class.java]
         resturantDataViewModel.arrayListRistorantiLiveData.postValue(r)
 
-
         binding.navbarUser.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.ic_ristorantiU -> {

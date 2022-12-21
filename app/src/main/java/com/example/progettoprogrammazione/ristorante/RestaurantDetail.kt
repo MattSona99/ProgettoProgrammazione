@@ -1,6 +1,5 @@
 package com.example.progettoprogrammazione.ristorante
 
-
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.progettoprogrammazione.databinding.FragmentRestaurantDetailBinding
 import com.example.progettoprogrammazione.models.Restaurant
-
 
 class RestaurantDetail : Fragment(){
 
@@ -38,6 +36,11 @@ class RestaurantDetail : Fragment(){
             binding.descrizioneDetail.text = restaurant.descrizioneR
 
         }
+
+        binding.visualizzaMenu.setOnClickListener{
+
+        }
+
         return binding.root
     }
 
@@ -53,4 +56,5 @@ class RestaurantDetail : Fragment(){
         }
         return null
     }
+
 }

@@ -59,5 +59,35 @@
         android:id="@+id/restaurantDetail"
         android:name="com.example.progettoprogrammazione.ristorante.RestaurantDetail"
         android:label="RestaurantDetail"
-        tools:layout="@layout/fragment_restaurant_detail"/>
+        tools:layout="@layout/fragment_restaurant_detail">
+        <action
+            android:id="@+id/action_restaurantDetail_to_fragmentMenu"
+            app:destination="@id/fragmentMenu" />
+        <action
+            android:id="@+id/action_restaurantDetail_to_fragmentRistoranti"
+            app:destination="@id/fragmentRistoranti" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentMenu"
+        android:name="com.example.progettoprogrammazione.fragment.FragmentMenu"
+        android:label="FragmentMenu"
+        tools:layout="@layout/fragment_menu">
+        <action
+            android:id="@+id/action_fragmentMenu_to_restaurantDetail"
+            app:destination="@id/restaurantDetail" />
+        <action
+            android:id="@+id/action_fragmentMenu_to_productDetail"
+            app:destination="@id/productDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetail"
+        android:name="com.example.progettoprogrammazione.prodotti.ProductDetail"
+        android:label="ProductDetail"
+        tools:layout="@layout/fragment_menuproduct_detail">
+        <action
+            android:id="@+id/action_productDetail_to_fragmentMenu"
+            app:destination="@id/fragmentMenu" />
+    </fragment>
+
 </navigation>
