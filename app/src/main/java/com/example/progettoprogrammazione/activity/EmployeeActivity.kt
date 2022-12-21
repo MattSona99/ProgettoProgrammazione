@@ -51,11 +51,11 @@ class EmployeeActivity: AppCompatActivity() {
                     val navController = this.findNavController(R.id.employee_nav)
                     navController.navigate(R.id.lavoro_D)
                 }
-                R.id.ic_profileR -> {
+                R.id.ic_profileD -> {
                     val navController = this.findNavController(R.id.employee_nav)
                     navController.navigate(R.id.Profilo_D, bundle)
                 }
-                R.id.ic_logoutR -> {
+                R.id.ic_logoutD -> {
                     user.signOut()
                     Toast.makeText(this, "Logout effettuato con successo", Toast.LENGTH_LONG).show()
                     val intent = Intent(this, IntroActivity::class.java)

@@ -7,14 +7,14 @@
 
     <action
         android:id="@+id/Profilo_D"
-        app:destination="@+id/fragmentProfiloD"
+        app:destination="@+id/ProfiloD"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
     <fragment
-        android:id="@+id/fragmentProfiloD"
+        android:id="@+id/ProfiloD"
         android:name="com.example.progettoprogrammazione.fragment.FragmentProfilo"
         android:label="fragment_profilo_d"
         tools:layout="@layout/fragment_profilo" />
