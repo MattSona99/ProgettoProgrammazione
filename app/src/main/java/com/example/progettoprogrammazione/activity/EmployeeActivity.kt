@@ -36,6 +36,8 @@ class EmployeeActivity: AppCompatActivity() {
         binding = ActivityEmployeeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        user=FirebaseAuth.getInstance()
+
         val u = intent.getParcelableExtra("user") as User?
         val bundle = Bundle()
         bundle.putParcelable("user", u)
