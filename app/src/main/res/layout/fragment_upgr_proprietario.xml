@@ -71,6 +71,59 @@
                     android:textColorLink="#E91E63" />
 
                 <TextView
+                    android:id="@+id/text_select_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Seleziona l'immagine del tuo ristorante"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/select_img_newR"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/custom_input"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Seleziona Immagine"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="#E91E63"
+                    android:textColorHint="@color/pink"
+                    android:textColorLink="#E91E63" />
+
+                <ImageView
+                    android:id="@+id/preview_image"
+                    android:layout_width="374dp"
+                    android:layout_height="151dp"
+                    app:srcCompat="@android:drawable/ic_menu_gallery"
+                    android:layout_marginBottom="10dp" />
+
+                <TextView
+                    android:id="@+id/text_upload_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Clicca il bottone per caricare l'immagine"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/upload_img_newR"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/custom_input"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Carica Immagine"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="#E91E63"
+                    android:textColorHint="@color/pink"
+                    android:textColorLink="#E91E63" />
+
+                <TextView
                     android:id="@+id/text_descrizione_rist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
