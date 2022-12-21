@@ -19,7 +19,7 @@ import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 
-class RestaurateurActivity: AppCompatActivity() {
+class RestaurateurActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRestaurateurBinding
 
@@ -42,9 +42,10 @@ class RestaurateurActivity: AppCompatActivity() {
         val bundle = Bundle()
         bundle.putParcelable("user", u)
 
-        val r = intent.getParcelableArrayListExtra<Restaurant>("ristoranti") as ArrayList<Restaurant>
+        val r =
+            intent.getParcelableArrayListExtra<Restaurant>("ristoranti") as ArrayList<Restaurant>
 
-        resturantDataViewModel= ViewModelProvider(this)[RestaurantViewModel::class.java]
+        resturantDataViewModel = ViewModelProvider(this)[RestaurantViewModel::class.java]
         resturantDataViewModel.arrayListRistorantiLiveData.postValue(r)
 
 
@@ -57,6 +58,10 @@ class RestaurateurActivity: AppCompatActivity() {
                 R.id.ic_profileR -> {
                     val navController = this.findNavController(R.id.restaurateur_nav)
                     navController.navigate(R.id.Profilo_R, bundle)
+                }
+                R.id.ic_gestioneR -> {
+                    val navController = this.findNavController(R.id.restaurateur_nav)
+                    navController.navigate(R.id.Gestione_R)
                 }
                 R.id.ic_logoutR -> {
                     user.signOut()
@@ -75,7 +80,8 @@ class RestaurateurActivity: AppCompatActivity() {
             super.onBackPressed()
             finishAffinity()
         } else {
-            Toast.makeText(baseContext, "Premi indietro di nuovo per uscire.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(baseContext, "Premi indietro di nuovo per uscire.", Toast.LENGTH_SHORT)
+                .show()
         }
         pressedTime = System.currentTimeMillis()
     }

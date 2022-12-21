@@ -21,11 +21,23 @@
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
+    <action
+        android:id="@+id/Gestione_R"
+        app:destination="@+id/fragmentGestione"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
     <fragment
         android:id="@+id/fragmentProfilo"
         android:name="com.example.progettoprogrammazione.fragment.FragmentProfilo"
         android:label="fragment_profilo"
-        tools:layout="@layout/fragment_profilo" />
+        tools:layout="@layout/fragment_profilo" >
+        <action
+            android:id="@+id/ProfiloRSelf"
+            app:destination="@id/fragmentProfilo" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentRistoranti"
         android:name="com.example.progettoprogrammazione.fragment.FragmentRistoranti"
@@ -45,5 +57,14 @@
         android:name="com.example.progettoprogrammazione.ristorante.RestaurantDetail"
         android:label="RestaurantDetail"
         tools:layout="@layout/fragment_restaurant_detail" />
+    <fragment
+        android:id="@+id/fragmentGestione"
+        android:name="com.example.progettoprogrammazione.fragment.FragmentGestione"
+        android:label="FragmentGestione"
+        tools:layout="@layout/fragment_gestione_rist">
+        <action
+            android:id="@+id/GestioneToDetail"
+            app:destination="@id/restaurantDetail" />
+    </fragment>
 
 </navigation>

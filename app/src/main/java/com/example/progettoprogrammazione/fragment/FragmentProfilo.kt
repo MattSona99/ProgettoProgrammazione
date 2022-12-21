@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
@@ -36,6 +37,11 @@ class FragmentProfilo : Fragment(), UserUtil {
 
         val args = this.arguments
         user = args?.getParcelable<User>("user") as User
+
+        when(user.Livello){
+            "1" -> binding.constraintmembrostaff.isVisible = true
+            else -> binding.constraintmembrostaff.isVisible = false
+        }
 
         binding.nicknameprofilo.text = user.Nome + " " + user.Cognome
         binding.nomeprofilo.hint = "Nome: " + user.Nome
@@ -86,7 +92,12 @@ class FragmentProfilo : Fragment(), UserUtil {
                     override fun onResponse(responseU: ResponseUser) {
                         val bundleU = Bundle()
                         bundleU.putParcelable("user", responseU.user)
-                        view.findNavController().navigate(R.id.ProfiloSelf, bundleU)
+                        when(user.Livello){
+                            "1" -> view.findNavController().navigate(R.id.ProfiloUSelf, bundleU)
+                            //"2" -> view.findNavController().navigate(R.id.ProfiloDSelf, bundleU)
+                            "3" -> view.findNavController().navigate(R.id.ProfiloRSelf, bundleU)
+                        }
+
                     }
                 }, context)
             }

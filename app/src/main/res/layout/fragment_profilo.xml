@@ -189,9 +189,10 @@
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
+                android:id="@+id/constraintmembrostaff"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintsalva">
@@ -215,7 +216,7 @@
                 android:layout_height="50dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/constraintLayout">
+                app:layout_constraintTop_toBottomOf="@id/constraintmembrostaff">
 
                 <TextView
                     android:id="@+id/elimina_account"
