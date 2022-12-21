@@ -53,7 +53,7 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil, RestaurantUtils {
             val tipoCiboR = binding.tipociboNewR.text.toString()
             //DA CAMBIARE NON SONO DI TIPO STRINGA
             val veganR = binding.veganNewR
-            var vegan: Boolean
+            val vegan: Boolean
 /*
             if (NomeR.length != null && NomeR.length < 25) {
                 binding.nomeristoranteNewR.setError("Il nome non può essere lungo più di 20 caratteri.")

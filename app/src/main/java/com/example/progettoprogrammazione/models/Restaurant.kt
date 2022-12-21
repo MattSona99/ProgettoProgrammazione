@@ -16,7 +16,7 @@ data class Restaurant (
     var tipoCiboR: String?,
     var veganR: Boolean,
     var ratingR: String?,
-    val idR: String?
+    var idR: String?
 
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
