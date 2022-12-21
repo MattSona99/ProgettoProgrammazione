@@ -39,8 +39,6 @@ class FragmentIntro : Fragment(), UserUtil, RestaurantUtils {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         binding.ConstraintLogin.setOnClickListener {
             if (firebaseAuth.currentUser != null) {
                 getUserData(object : FireBaseCallbackUser {
