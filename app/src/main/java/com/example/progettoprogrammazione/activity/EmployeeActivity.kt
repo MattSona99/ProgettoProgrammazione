@@ -11,12 +11,15 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityEmployeeBinding
 import com.example.progettoprogrammazione.fragment.FragmentProfilo
 import com.example.progettoprogrammazione.fragment.FragmentRistoranti
+import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
+import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 class EmployeeActivity: AppCompatActivity() {
@@ -33,19 +36,24 @@ class EmployeeActivity: AppCompatActivity() {
         binding = ActivityEmployeeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var u = intent.getParcelableExtra("user") as User?
-        var bundle = Bundle()
+        val u = intent.getParcelableExtra("user") as User?
+        val bundle = Bundle()
         bundle.putParcelable("user", u)
+        
 
         binding.navbarEmployee.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.ic_work -> {
+                R.id.ristoranti_D -> {
                     val navController = this.findNavController(R.id.employee_nav)
-                    navController.navigate(R.id.Ristoranti_R)
+                    navController.navigate(R.id.RistorantiD)
+                }
+                R.id.ic_workD -> {
+                    val navController = this.findNavController(R.id.employee_nav)
+                    navController.navigate(R.id.lavoro_D)
                 }
                 R.id.ic_profileR -> {
                     val navController = this.findNavController(R.id.employee_nav)
-                    navController.navigate(R.id.Profilo_R, bundle)
+                    navController.navigate(R.id.Profilo_D, bundle)
                 }
                 R.id.ic_logoutR -> {
                     user.signOut()

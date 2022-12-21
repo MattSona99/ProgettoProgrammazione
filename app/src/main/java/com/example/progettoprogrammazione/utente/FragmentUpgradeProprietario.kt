@@ -24,9 +24,7 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil, RestaurantUtils {
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
-    private lateinit var resturantDataViewModel: RestaurantViewModel
     private lateinit var restaurantData: Restaurant
-    private lateinit var restArrayList: ArrayList<Restaurant>
 
     override fun onCreateView(
         inflater: LayoutInflater,

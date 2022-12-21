@@ -22,10 +22,13 @@ class DipendenteDetail : Fragment(){
         super.onCreate(savedInstanceState)
         binding = FragmentDipendenteDetailBinding.inflate(layoutInflater)
 
-        //PRENDO DATI RISTORANTE DAL BUNDLE
+        /*
+        PRENDO DATI RISTORANTE DAL BUNDLE
+
         val args = this.arguments
         val dipendenteID = args?.get("dipID")
         dipendenteList = args?.getParcelableArrayList<Dipendente>("dipArrayList")
+
 
         val dipendente=dipendenteFromId(dipendenteID.toString().toInt())
 
@@ -47,6 +50,9 @@ class DipendenteDetail : Fragment(){
             if(dipendente.id == dipendenteID)
                 return dipendente
         }
+        */
+
         return null
     }
+
 }

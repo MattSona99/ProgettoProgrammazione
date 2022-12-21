@@ -22,19 +22,21 @@ interface DipendenteUtil {
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val response = ResponseDipendente()
-                    for(dipend : DataSnapshot in snapshot.children){
+                    for (dipend: DataSnapshot in snapshot.children) {
                         val dipendente = Dipendente(
                             dipend.child("NomeD").value.toString(),
                             dipend.child("cognomeD").value.toString(),
-                            dipend.child("Buisness_emailD").value.toString(),
-                            dipend.child("PasswordD").value.toString(),
+                            dipend.child("BuisnessEmailD").value.toString(),
                             dipend.child("telefonoD").value.toString(),
                             dipend.child("TurnoD").value.toString(),
+                            dipend.child("apppianceDateD").value.toString(),
                             dipend.child("DataAssunsioneD").value.toString(),
                             dipend.child("UriD").value.toString(),
                             dipend.child("LivelloD").value.toString(),
-                            dipend.child("PartTimeP").value.toString(),
-                            dipend.child("StipendioD").value.toString().toInt()
+                            dipend.child("PartTimeP").value.toString().toBoolean(),
+                            dipend.child("StipendioD").value.toString().toInt(),
+                            dipend.child ("idD").value.toString(),
+                            dipend.child("catenaRistorante").value.toString(),
                         )
                         response.dipendenti.add(dipendente)
                     }

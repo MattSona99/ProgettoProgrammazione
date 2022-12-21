@@ -24,7 +24,6 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
     private lateinit var binding : FragmentRistorantiBinding
     private lateinit var adapter: RestaurantAdapter
 
-
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
@@ -37,7 +36,6 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
     ): View {
         binding = FragmentRistorantiBinding.inflate(layoutInflater)
 
-
         resturantDataViewModel= ViewModelProvider(requireActivity())[RestaurantViewModel::class.java]
         resturantDataViewModel.arrayListRistorantiLiveData.observe(viewLifecycleOwner){
             restArrayList = it
@@ -47,7 +45,6 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
             binding.recycleView.adapter = adapter
             binding.recycleView.setHasFixedSize(true)
             adapter.notifyDataSetChanged()
-
 
         }
 

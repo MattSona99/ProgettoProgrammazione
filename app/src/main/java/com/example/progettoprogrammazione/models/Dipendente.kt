@@ -4,8 +4,6 @@ import android.os.Parcel
 import android.os.Parcelable
 import java.util.Date
 
-var dipendenteList = mutableListOf<Dipendente>()
-
 val DIPENDENTE_EXTRA="dipendenteExtra"
 
 class Dipendente(
@@ -13,16 +11,17 @@ class Dipendente(
     var Nome: String?,
     var Cognome: String?,
     var Business_Email: String?,
-    var Password: String?,
     var Telefono: String?,
     var Turno:String?,
+    var applianceDate:String?,
     var DataAssunzione:String?,
     var Uri: String?,
     var Livello: String?,
-    var PartTime:String?,
+    var PartTime:Boolean,
     var Stipendio:Int?,
+    var idD: String?,
+    var catenaRistorante: String?
 
-    val id: Int? = dipendenteList.size
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -34,8 +33,10 @@ class Dipendente(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
+        parcel.readBoolean(),
+        parcel.readInt(),
         parcel.readString(),
-        parcel.readInt()
+        parcel.readString(),
     ) {
     }
 
@@ -43,15 +44,16 @@ class Dipendente(
         parcel.writeString(Nome)
         parcel.writeString(Cognome)
         parcel.writeString(Business_Email)
-        parcel.writeString(Password)
         parcel.writeString(Telefono)
         parcel.writeString(Turno)
+        parcel.writeString(applianceDate)
         parcel.writeString(DataAssunzione)
         parcel.writeString(Uri)
         parcel.writeString(Livello)
-        parcel.writeString(PartTime)
+        parcel.writeBoolean(PartTime)
         parcel.writeInt(Stipendio!!)
-        parcel.writeValue(id)
+        parcel.writeString(idD)
+        parcel.writeString(catenaRistorante)
     }
 
     override fun describeContents(): Int {
