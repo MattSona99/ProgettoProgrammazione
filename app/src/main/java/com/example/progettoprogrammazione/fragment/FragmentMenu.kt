@@ -38,6 +38,7 @@ class FragmentMenu: Fragment(),ProductClickListener, ProductUtils {
 
         productDataViewModel= ViewModelProvider(requireActivity())[ProductViewModel::class.java]
         productDataViewModel.arrayListaprodottiLiveData.observe(viewLifecycleOwner){
+
             prodArrayList = it
             val layoutManager = GridLayoutManager(context, 1)
             binding.recycleViewP.layoutManager = layoutManager
@@ -45,10 +46,7 @@ class FragmentMenu: Fragment(),ProductClickListener, ProductUtils {
             binding.recycleViewP.adapter = adapter
             binding.recycleViewP.setHasFixedSize(true)
             adapter.notifyDataSetChanged()
-
         }
-
-
 
         return binding.root
     }

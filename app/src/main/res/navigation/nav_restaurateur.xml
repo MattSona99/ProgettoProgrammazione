@@ -58,7 +58,7 @@
         android:label="RestaurantDetail"
         tools:layout="@layout/fragment_restaurant_detail" >
         <action
-            android:id="@+id/action_restaurantDetail_to_fragmentMenu2"
+            android:id="@+id/DetailToMenu"
             app:destination="@id/fragmentMenu" />
     </fragment>
     <fragment
