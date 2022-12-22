@@ -87,12 +87,16 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
             if (nomeR.isNotEmpty() && descrizioneR.isNotEmpty() && indirizzoR.isNotEmpty() && orariolavorativoR.isNotEmpty() && telefonoR.isNotEmpty()) {
                 getUserData(object : FireBaseCallbackUser {
                     override fun onResponse(responseU: ResponseUser) {
-                        val childUpdates = hashMapOf<String, Any>(
-                            "Livello" to "1"
-                        )
-                        updateUserData(
-                            context, childUpdates
-                        )
+
+                        if(responseU.user!!.Livello == "1"){
+                            val childUpdates = hashMapOf<String, Any>(
+                                "Livello" to "3"
+                            )
+                            updateUserData(
+                                context, childUpdates
+                            )
+                        }
+
                         restaurantData = Restaurant(
                             "Restaurants-images/" + fileName,
                             nomeR,

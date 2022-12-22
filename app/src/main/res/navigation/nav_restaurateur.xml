@@ -69,6 +69,9 @@
         <action
             android:id="@+id/GestioneToDetail"
             app:destination="@id/restaurantDetail" />
+        <action
+            android:id="@+id/GestioneToCrea"
+            app:destination="@id/fragmentCreaRist" />
     </fragment>
     <fragment
         android:id="@+id/productDetail"
@@ -84,5 +87,10 @@
             android:id="@+id/action_fragmentMenu_to_productDetail2"
             app:destination="@id/productDetail" />
     </fragment>
+    <fragment
+        android:id="@+id/fragmentCreaRist"
+        android:name="com.example.progettoprogrammazione.ristoratore.FragmentCreaRist"
+        android:label="FragmentCreaRist"
+        tools:layout="@layout/fragment_crea_rist"/>
 
 </navigation>
