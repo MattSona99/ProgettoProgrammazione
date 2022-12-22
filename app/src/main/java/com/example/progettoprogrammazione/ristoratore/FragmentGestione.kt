@@ -40,7 +40,7 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
             ViewModelProvider(requireActivity())[RestaurantViewModel::class.java]
         resturantDataViewModel.arrayListRistorantiLiveData.observe(viewLifecycleOwner) {
             restArrayList = it
-            val layoutManager = GridLayoutManager(context, 2)
+            val layoutManager = GridLayoutManager(context, 1)
             binding.recycleViewRist.layoutManager = layoutManager
             adapter = RestaurantAdapter(it, this)
             binding.recycleViewRist.adapter = adapter
@@ -67,7 +67,7 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
         bundle.putString("restID", restaurant.idR.toString())
         bundle.putParcelableArrayList("restArrayList", restArrayList)
 
-        view?.findNavController()?.navigate(R.id.RistorantiToDetail, bundle)
+        view?.findNavController()?.navigate(R.id.GestioneToDetail, bundle)
 
     }
 
