@@ -63,7 +63,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentGestione"
-        android:name="com.example.progettoprogrammazione.fragment.FragmentGestione"
+        android:name="com.example.progettoprogrammazione.ristoratore.FragmentGestione"
         android:label="FragmentGestione"
         tools:layout="@layout/fragment_gestione_rist">
         <action

@@ -57,7 +57,7 @@
 
     <fragment
         android:id="@+id/fragmentLavoro"
-        android:name="com.example.progettoprogrammazione.fragment.FragmentLavoro"
+        android:name="com.example.progettoprogrammazione.dipendente.FragmentLavoro"
         android:label="fragment_lavoro"
         tools:layout="@layout/fragment_lavoro" />
     <fragment

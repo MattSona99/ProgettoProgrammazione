@@ -1,4 +1,4 @@
-package com.example.progettoprogrammazione.fragment
+package com.example.progettoprogrammazione.ristoratore
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,7 +18,7 @@ import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
+class FragmentGestione : Fragment(), RestaurantUtils {
 
     private lateinit var binding: FragmentGestioneRistBinding
     private lateinit var adapter: RestaurantAdapter
@@ -27,9 +27,6 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
-    private lateinit var resturantDataViewModel: RestaurantViewModel
-    private lateinit var restArrayList: ArrayList<Restaurant>
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,29 +34,9 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
         binding = FragmentGestioneRistBinding.inflate(layoutInflater)
 
 
-        resturantDataViewModel =
-            ViewModelProvider(requireActivity())[RestaurantViewModel::class.java]
-        resturantDataViewModel.arrayListRistorantiLiveData.observe(viewLifecycleOwner) {
-            restArrayList = it
-            val layoutManager = GridLayoutManager(context, 2)
-            binding.recycleViewG.layoutManager = layoutManager
-            adapter = RestaurantAdapter(it, this)
-            binding.recycleViewG.adapter = adapter
-            binding.recycleViewG.setHasFixedSize(true)
-            adapter.notifyDataSetChanged()
-        }
 
         return binding.root
     }
 
-    override fun onClickResturant(restaurant: Restaurant) {
-
-        val bundle = Bundle()
-        bundle.putString("restID", restaurant.idR.toString())
-        bundle.putParcelableArrayList("restArrayList", restArrayList)
-
-        view?.findNavController()?.navigate(R.id.GestioneToDetail, bundle)
-
-    }
 
 }

@@ -1,4 +1,4 @@
-package com.example.progettoprogrammazione.utente
+package com.example.progettoprogrammazione.ristoratore
 
 import android.content.Intent
 import android.net.Uri
@@ -18,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import java.util.*
 
-class FragmentUpgradeProprietario : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
+class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
 
     private lateinit var binding: FragmentUpgrProprietarioBinding
 
@@ -27,17 +27,15 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil, RestaurantUtils, ImgUt
 
     private lateinit var restaurantData: Restaurant
 
-    lateinit var ImageUri: Uri
-    private val CHOOSE_PHOTO = 2
+    private lateinit var imageUri: Uri
+
     private val selectImageFromGalleryResult =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let {
-                previewImage.setImageURI(uri)
-                ImageUri = uri
+                imageUri = uri
             }
         }
-    private val previewImage by lazy { binding.previewImage }
-    lateinit var fileName : String
+    lateinit var fileName: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -96,7 +94,7 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil, RestaurantUtils, ImgUt
                             context, childUpdates
                         )
                         restaurantData = Restaurant(
-                            "Restaurants-images/"+fileName,
+                            "Restaurants-images/" + fileName,
                             nomeR,
                             descrizioneR,
                             indirizzoR,
@@ -135,23 +133,21 @@ class FragmentUpgradeProprietario : Fragment(), UserUtil, RestaurantUtils, ImgUt
     override fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
 
     override fun uploadImage() {
-        if (ImageUri != null) {
-            fileName = UUID.randomUUID().toString() + ".jpg"
+        fileName = UUID.randomUUID().toString() + ".jpg"
 
-            val database = FirebaseDatabase.getInstance()
-            val refStorage = FirebaseStorage.getInstance().getReference("Restaurants-images/").child("$fileName")
+        val refStorage =
+            FirebaseStorage.getInstance().getReference("Restaurants-images/").child(fileName)
 
-            refStorage.putFile(ImageUri)
-                .addOnSuccessListener { taskSnapshot ->
-                    taskSnapshot.storage.downloadUrl.addOnSuccessListener {
-                        val imageUrl = it.toString()
-                    }
+        refStorage.putFile(imageUri)
+            .addOnSuccessListener { taskSnapshot ->
+                taskSnapshot.storage.downloadUrl.addOnSuccessListener {
+                    it.toString()
                 }
+            }
 
-                ?.addOnFailureListener { e ->
-                    print(e.message)
-                }
-        }
+            .addOnFailureListener { e ->
+                print(e.message)
+            }
     }
 }
 
