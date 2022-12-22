@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.progettoprogrammazione.activity.RestaurateurActivity
-import com.example.progettoprogrammazione.databinding.FragmentUpgrProprietarioBinding
+import com.example.progettoprogrammazione.databinding.FragmentCreaRistBinding
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
@@ -20,7 +20,7 @@ import java.util.*
 
 class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
 
-    private lateinit var binding: FragmentUpgrProprietarioBinding
+    private lateinit var binding: FragmentCreaRistBinding
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
@@ -42,7 +42,7 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentUpgrProprietarioBinding.inflate(layoutInflater)
+        binding = FragmentCreaRistBinding.inflate(layoutInflater)
         return binding.root
     }
 
