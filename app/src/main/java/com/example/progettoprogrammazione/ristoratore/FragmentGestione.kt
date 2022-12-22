@@ -67,7 +67,7 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
         bundle.putString("restID", restaurant.idR.toString())
         bundle.putParcelableArrayList("restArrayList", restArrayList)
 
-        view?.findNavController()?.navigate(R.id.RistorantiToDetail, bundle)
+        view?.findNavController()?.navigate(R.id.GestioneToDetail, bundle)
 
     }
 

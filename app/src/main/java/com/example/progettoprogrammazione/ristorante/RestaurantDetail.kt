@@ -10,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentRestaurantDetailBinding
 import com.example.progettoprogrammazione.models.Restaurant
 import com.google.firebase.storage.FirebaseStorage
@@ -54,7 +56,7 @@ class RestaurantDetail : Fragment(){
         }
 
         binding.visualizzaMenu.setOnClickListener{
-
+            view?.findNavController()?.navigate(R.id.DetailToMenu)
         }
 
         return binding.root

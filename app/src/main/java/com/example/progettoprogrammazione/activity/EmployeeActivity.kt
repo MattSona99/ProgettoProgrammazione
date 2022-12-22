@@ -28,6 +28,8 @@ class EmployeeActivity : AppCompatActivity() {
 
     private lateinit var user: FirebaseAuth
 
+    private lateinit var resturantDataViewModel: RestaurantViewModel
+
     private var pressedTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,12 +44,16 @@ class EmployeeActivity : AppCompatActivity() {
         val bundle = Bundle()
         bundle.putParcelable("user", u)
 
+        val r = intent.getParcelableArrayListExtra<Restaurant>("ristoranti") as ArrayList<Restaurant>
+
+        resturantDataViewModel= ViewModelProvider(this)[RestaurantViewModel::class.java]
+        resturantDataViewModel.arrayListRistorantiLiveData.postValue(r)
 
         binding.navbarEmployee.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.ristoranti_D -> {
+                R.id.ic_ristorantiD -> {
                     val navController = this.findNavController(R.id.employee_nav)
-                    navController.navigate(R.id.RistorantiD)
+                    navController.navigate(R.id.ristoranti_D)
                 }
                 R.id.ic_workD -> {
                     val navController = this.findNavController(R.id.employee_nav)
