@@ -2,9 +2,6 @@ package com.example.progettoprogrammazione.models
 
 import android.os.Parcel
 import android.os.Parcelable
-import java.util.Date
-
-val DIPENDENTE_EXTRA="dipendenteExtra"
 
 class Dipendente(
 

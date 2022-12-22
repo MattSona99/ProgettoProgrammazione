@@ -1,34 +1,15 @@
 package com.example.progettoprogrammazione.dipendente
 
-import android.app.AlertDialog
-import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.activity.IntroActivity
 import com.example.progettoprogrammazione.databinding.FragmentDipendenteBinding
-import com.example.progettoprogrammazione.databinding.FragmentProfiloBinding
-import com.example.progettoprogrammazione.databinding.FragmentRistorantiBinding
-import com.example.progettoprogrammazione.dipendente.DipendenteAdapter
-import com.example.progettoprogrammazione.dipendente.DipendenteClickListener
 import com.example.progettoprogrammazione.models.Dipendente
-import com.example.progettoprogrammazione.models.Restaurant
-import com.example.progettoprogrammazione.models.User
-import com.example.progettoprogrammazione.ristorante.RestaurantAdapter
 import com.example.progettoprogrammazione.utils.DipendenteUtil
-import com.example.progettoprogrammazione.utils.FireBaseCallbackDipendente
-import com.example.progettoprogrammazione.utils.ResponseDipendente
 import com.example.progettoprogrammazione.utils.UserUtil
-import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 

@@ -11,6 +11,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.progettoprogrammazione.activity.RestaurateurActivity
 import com.example.progettoprogrammazione.databinding.FragmentCreaRistBinding
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth

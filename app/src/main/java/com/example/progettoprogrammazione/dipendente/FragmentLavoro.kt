@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.databinding.FragmentDipendenteBinding
 import com.example.progettoprogrammazione.databinding.FragmentLavoroBinding
 
 class FragmentLavoro : Fragment(){

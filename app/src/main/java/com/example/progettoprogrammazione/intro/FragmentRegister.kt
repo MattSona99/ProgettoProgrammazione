@@ -13,7 +13,7 @@ import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.activity.IntroActivity
 import com.example.progettoprogrammazione.databinding.FragmentRegistratiBinding
 import com.example.progettoprogrammazione.models.User
-import com.example.progettoprogrammazione.utils.FireBaseCallbackUser
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.utils.UserUtil
 import com.example.progettoprogrammazione.utils.ResponseUser
 import com.google.firebase.auth.FirebaseAuth
@@ -30,7 +30,7 @@ class FragmentRegister : Fragment(), UserUtil {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentRegistratiBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -97,7 +97,7 @@ class FragmentRegister : Fragment(), UserUtil {
                                             Toast.LENGTH_SHORT
                                         ).show()
                                         getUserData(object : FireBaseCallbackUser {
-                                            override fun onResponse(response: ResponseUser) {
+                                            override fun onResponse(responseU: ResponseUser) {
                                                 val intent =
                                                     Intent(context, IntroActivity::class.java)
                                                 firebaseAuth.signOut()

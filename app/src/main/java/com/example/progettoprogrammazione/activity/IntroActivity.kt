@@ -1,19 +1,14 @@
 package com.example.progettoprogrammazione.activity
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.intro.FragmentLogin
-import com.example.progettoprogrammazione.intro.FragmentRegister
 
 class IntroActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -13,8 +13,12 @@ import com.example.progettoprogrammazione.activity.EmployeeActivity
 import com.example.progettoprogrammazione.activity.RestaurateurActivity
 import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.databinding.FragmentIntroBinding
-import com.example.progettoprogrammazione.models.Restaurant
-import com.example.progettoprogrammazione.utils.*
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
+import com.example.progettoprogrammazione.utils.ResponseRistorante
+import com.example.progettoprogrammazione.utils.ResponseUser
+import com.example.progettoprogrammazione.utils.RestaurantUtils
+import com.example.progettoprogrammazione.utils.UserUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -24,8 +28,7 @@ class FragmentIntro : Fragment(), UserUtil, RestaurantUtils {
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
-    private lateinit var restArrayList: ArrayList<Restaurant>
-    private var userlvl: String? = null
+    var userlvl: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,

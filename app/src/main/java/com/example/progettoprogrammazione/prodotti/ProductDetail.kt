@@ -9,17 +9,17 @@ import androidx.fragment.app.Fragment
 import com.example.progettoprogrammazione.databinding.FragmentMenuBinding
 import com.example.progettoprogrammazione.models.Product
 
-class ProductDetail: Fragment() {
+class ProductDetail : Fragment() {
 
     private lateinit var binding: FragmentMenuBinding
 
-    private var productList : ArrayList<Product>? = null
+    private var productList: ArrayList<Product>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         super.onCreate(savedInstanceState)
         binding = FragmentMenuBinding.inflate(layoutInflater)
 
@@ -27,24 +27,18 @@ class ProductDetail: Fragment() {
         val productID = args?.get("productID")
         productList = args?.getParcelableArrayList("productArrayList")
 
-        val prodotti=producttFromId(productID.toString())
+        val prodotti = producttFromId(productID.toString())
 
-        if(prodotti != null)
-        {
+        if (prodotti != null) {
 
 
         }
         return binding.root
     }
 
-    private fun getImageId(context: Context, imageName: String): Int {
-        return context.resources
-            .getIdentifier("drawable/$imageName", null, context.packageName)
-    }
-
     private fun producttFromId(productID: String?): Product? {
         for (prodotti in productList!!) {
-            if(prodotti.idProduct == productID)
+            if (prodotti.idProduct == productID)
                 return prodotti
         }
         return null

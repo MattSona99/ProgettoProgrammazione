@@ -1,9 +1,6 @@
 package com.example.progettoprogrammazione.ristorante
 
-import android.content.Context
 import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +24,7 @@ class RestaurantDetail : Fragment(){
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         super.onCreate(savedInstanceState)
         binding = FragmentRestaurantDetailBinding.inflate(layoutInflater)
 
@@ -49,7 +46,6 @@ class RestaurantDetail : Fragment(){
                 Toast.makeText(context, "Caricamento immagine fallito",Toast.LENGTH_SHORT).show()
             }
 
-//            binding.imgRistoranteDetail.setImageResource( getImageId( binding.root.context,restaurant.imageR!!))
             binding.nomeRistoranteDetail.text = restaurant.nomeR
             binding.descrizioneDetail.text = restaurant.descrizioneR
 
@@ -60,11 +56,6 @@ class RestaurantDetail : Fragment(){
         }
 
         return binding.root
-    }
-
-    private fun getImageId(context: Context, imageName: String): Int {
-        return context.resources
-            .getIdentifier("drawable/$imageName", null, context.packageName)
     }
 
     private fun restaurantFromId(restaurantID: String?): Restaurant? {

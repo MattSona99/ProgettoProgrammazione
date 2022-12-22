@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.activity.EmployeeActivity
-import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.activity.RestaurateurActivity
+import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.databinding.FragmentLoginBinding
-import com.example.progettoprogrammazione.models.Dipendente
-import com.example.progettoprogrammazione.models.Restaurant
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -24,9 +24,6 @@ class FragmentLogin : Fragment(), UserUtil, DipendenteUtil, RestaurantUtils {
     private lateinit var binding: FragmentLoginBinding
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
-
-    private lateinit var restArrayList: ArrayList<Restaurant>
-    private lateinit var dipArrayList: ArrayList<Dipendente>
 
     private var userlvl: String? = null
 

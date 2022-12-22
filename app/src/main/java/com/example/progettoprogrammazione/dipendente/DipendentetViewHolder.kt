@@ -2,9 +2,7 @@ package com.example.progettoprogrammazione.dipendente
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.databinding.DipendenteCardBinding
-import com.example.progettoprogrammazione.databinding.RestaurantCardBinding
 import com.example.progettoprogrammazione.models.Dipendente
-import com.example.progettoprogrammazione.models.Restaurant
 
 class DipendentetViewHolder(
     private val dipendenteBinding: DipendenteCardBinding,

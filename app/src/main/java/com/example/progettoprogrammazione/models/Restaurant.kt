@@ -3,8 +3,6 @@ package com.example.progettoprogrammazione.models
 import android.os.Parcel
 import android.os.Parcelable
 
-val RESTAURANT_EXTRA="restaurantExtra"
-
 data class Restaurant (
 
     var imageR: String?,

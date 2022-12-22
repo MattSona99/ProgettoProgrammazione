@@ -4,12 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.view.menu.MenuAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentMenuBinding
 import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.prodotti.ProductAdapter
@@ -51,10 +48,10 @@ class FragmentMenu: Fragment(),ProductClickListener, ProductUtils {
         return binding.root
     }
 
-    override fun onClickProduct(prodotti: Product) {
+    override fun onClickProduct(prodotto: Product) {
 
         val bundle = Bundle()
-        bundle.putString("prodID", prodotti.idProduct.toString())
+        bundle.putString("prodID", prodotto.idProduct.toString())
         bundle.putParcelableArrayList("prodArrayList", prodArrayList)
 
         //view?.findNavController()?.navigate(R.id.RistorantiToDetail, bundle)

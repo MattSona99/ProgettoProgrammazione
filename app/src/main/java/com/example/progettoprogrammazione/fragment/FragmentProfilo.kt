@@ -13,7 +13,7 @@ import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.activity.IntroActivity
 import com.example.progettoprogrammazione.databinding.FragmentProfiloBinding
 import com.example.progettoprogrammazione.models.User
-import com.example.progettoprogrammazione.utils.FireBaseCallbackUser
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.utils.ResponseUser
 import com.example.progettoprogrammazione.utils.UserUtil
 import com.google.firebase.auth.FirebaseAuth

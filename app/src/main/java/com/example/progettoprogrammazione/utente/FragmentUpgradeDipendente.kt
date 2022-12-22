@@ -8,14 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.progettoprogrammazione.activity.EmployeeActivity
-import com.example.progettoprogrammazione.activity.RestaurateurActivity
 import com.example.progettoprogrammazione.databinding.FragmentUpgrDipendenteBinding
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.models.Dipendente
-import com.example.progettoprogrammazione.models.Restaurant
-import com.example.progettoprogrammazione.utils.*
-import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
+import com.example.progettoprogrammazione.utils.DipendenteUtil
+import com.example.progettoprogrammazione.utils.ResponseUser
+import com.example.progettoprogrammazione.utils.UserUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
@@ -27,16 +26,13 @@ class FragmentUpgradeDipendente : Fragment(), UserUtil, DipendenteUtil {
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
-    private lateinit var resturantDataViewModel: RestaurantViewModel
-    private lateinit var restArrayList: ArrayList<Restaurant>
-
     private lateinit var dipendenteData: Dipendente
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentUpgrDipendenteBinding.inflate(layoutInflater)
         return binding.root
     }

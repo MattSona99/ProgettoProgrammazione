@@ -16,7 +16,7 @@ class FragmentUpgrade : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentUpgradeBinding.inflate(layoutInflater)
         return binding.root
