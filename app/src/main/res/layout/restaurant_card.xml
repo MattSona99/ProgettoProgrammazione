@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="260dp"
     android:orientation="horizontal"
-    app:layout_constraintVertical_bias="0.20"
-    >
+    app:layout_constraintVertical_bias="0.20">
 
     <ImageButton
         android:id="@+id/btncard"
@@ -26,17 +25,16 @@
 
     <ImageView
         android:id="@+id/copertina"
-        android:layout_width="wrap_content"
-        android:layout_height="85dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/copertina_desc"
         android:src="@drawable/pencil"
-        app:layout_constraintBottom_toBottomOf="@+id/btncard"
+        app:layout_constraintBottom_toTopOf="@+id/nome_ristorante"
         app:layout_constraintEnd_toEndOf="@+id/btncard"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nome_ristorante"
-        app:layout_constraintVertical_bias="0.288" />
+        app:layout_constraintTop_toTopOf="@+id/btncard" />
 
     <TextView
         android:id="@+id/nome_ristorante"
@@ -48,9 +46,9 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/descrizione"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/descrizione"
@@ -61,10 +59,10 @@
         android:textColor="@color/red"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/btncard"
         app:layout_constraintEnd_toEndOf="@+id/btncard"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/copertina" />
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!--
         </LinearLayout>

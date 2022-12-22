@@ -39,7 +39,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
         resturantDataViewModel= ViewModelProvider(requireActivity())[RestaurantViewModel::class.java]
         resturantDataViewModel.arrayListRistorantiLiveData.observe(viewLifecycleOwner){
             restArrayList = it
-            val layoutManager = GridLayoutManager(context, 2)
+            val layoutManager = GridLayoutManager(context, 1)
             binding.recycleView.layoutManager = layoutManager
             adapter = RestaurantAdapter(it, this)
             binding.recycleView.adapter = adapter
