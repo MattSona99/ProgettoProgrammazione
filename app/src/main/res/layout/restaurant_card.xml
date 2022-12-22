@@ -32,8 +32,7 @@
         android:src="@drawable/pencil"
         app:layout_constraintBottom_toTopOf="@+id/nome_ristorante"
         app:layout_constraintEnd_toEndOf="@+id/btncard"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btncard"
         app:layout_constraintTop_toTopOf="@+id/btncard" />
 
     <TextView
@@ -47,8 +46,8 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/descrizione"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/btncard"
+        app:layout_constraintStart_toStartOf="@+id/btncard" />
 
     <TextView
         android:id="@+id/descrizione"
@@ -61,8 +60,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/btncard"
         app:layout_constraintEnd_toEndOf="@+id/btncard"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/btncard" />
 
     <!--
         </LinearLayout>
