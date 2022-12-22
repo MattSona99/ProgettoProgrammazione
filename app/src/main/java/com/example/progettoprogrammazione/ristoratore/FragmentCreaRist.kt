@@ -88,7 +88,7 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
                 getUserData(object : FireBaseCallbackUser {
                     override fun onResponse(responseU: ResponseUser) {
                         val childUpdates = hashMapOf<String, Any>(
-                            "Livello" to "3"
+                            "Livello" to "1"
                         )
                         updateUserData(
                             context, childUpdates
