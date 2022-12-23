@@ -84,13 +84,9 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
                     "Il numero di telefono deve contenere almeno 9 caratteri"
             }
 
-            if (fileName.isEmpty()) {
-                binding.selectImgNewR.error = "Carica un'immagine."
-            }
-
             val vegan: Boolean = veganR.isChecked
 
-            if (nomeR.isNotEmpty() && descrizioneR.isNotEmpty() && indirizzoR.isNotEmpty() && orariolavorativoR.isNotEmpty() && telefonoR.isNotEmpty() && fileName.isNotEmpty()) {
+            if (nomeR.isNotEmpty() && descrizioneR.isNotEmpty() && indirizzoR.isNotEmpty() && orariolavorativoR.isNotEmpty() && telefonoR.isNotEmpty()) {
                 getUserData(object : FireBaseCallbackUser {
                     override fun onResponse(responseU: ResponseUser) {
 
