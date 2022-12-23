@@ -61,7 +61,7 @@ class RestaurateurActivity : AppCompatActivity() {
                 }
                 R.id.ic_gestioneR -> {
                     val navController = this.findNavController(R.id.restaurateur_nav)
-                    navController.navigate(R.id.Gestione_R)
+                    navController.navigate(R.id.Gestione_R, bundle)
                 }
                 R.id.ic_logoutR -> {
                     user.signOut()
