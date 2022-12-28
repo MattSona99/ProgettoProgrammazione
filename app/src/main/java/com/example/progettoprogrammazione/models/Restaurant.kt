@@ -3,10 +3,10 @@ package com.example.progettoprogrammazione.models
 import android.os.Parcel
 import android.os.Parcelable
 
-data class Restaurant (
+data class Restaurant(
 
     var imageR: String?,
-    var nomeR : String?,
+    var nomeR: String?,
     var descrizioneR: String?,
     var indirizzoR: String?,
     var orariolavorativoR: String?,
@@ -15,7 +15,8 @@ data class Restaurant (
     var veganR: Boolean,
     var ratingR: String?,
     var idR: String?,
-    var proprietarioR: String?
+    var proprietarioR: String?,
+//    var menus: List<Menu?>?
 
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
@@ -26,10 +27,11 @@ data class Restaurant (
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readBoolean(),
+        parcel.readByte() != 0.toByte(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readString()
+        parcel.readString(),
+//        parcel.createTypedArrayList(Menu)
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -40,10 +42,11 @@ data class Restaurant (
         parcel.writeString(orariolavorativoR)
         parcel.writeString(telefonoR)
         parcel.writeString(tipoCiboR)
-        parcel.writeBoolean(veganR)
+        parcel.writeByte(if (veganR) 1 else 0)
         parcel.writeString(ratingR)
         parcel.writeString(idR)
         parcel.writeString(proprietarioR)
+//        parcel.writeTypedList(menus)
     }
 
     override fun describeContents(): Int {
@@ -59,5 +62,41 @@ data class Restaurant (
             return arrayOfNulls(size)
         }
     }
-
 }
+
+data class Menu(
+        val name: String?,
+        val price: Float,
+        val uri: String?,
+        var totInCart: Int
+    ) : Parcelable {
+        constructor(parcel: Parcel) : this(
+            parcel.readString(),
+            parcel.readFloat(),
+            parcel.readString(),
+            parcel.readInt()
+        ) {
+        }
+
+        override fun writeToParcel(parcel: Parcel, flags: Int) {
+            parcel.writeString(name)
+            parcel.writeFloat(price)
+            parcel.writeString(uri)
+            parcel.writeInt(totInCart)
+        }
+
+        override fun describeContents(): Int {
+            return 0
+        }
+
+        companion object CREATOR : Parcelable.Creator<Menu> {
+            override fun createFromParcel(parcel: Parcel): Menu {
+                return Menu(parcel)
+            }
+
+            override fun newArray(size: Int): Array<Menu?> {
+                return arrayOfNulls(size)
+            }
+        }
+    }
+

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/add_bevanda"
+        android:layout_width="260dp"
+        android:layout_height="70dp"
+        android:text="Aggiungi Bevanda"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_bevanda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="@+id/add_bevanda"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/add_bevanda"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/add_antipasto"
+        android:layout_width="260dp"
+        android:layout_height="70dp"
+        android:text="Aggiungi Antipasto"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_bevanda" />
+
+    <Button
+        android:id="@+id/btn_antipasto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="@+id/add_antipasto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/add_antipasto"
+        app:layout_constraintTop_toTopOf="@+id/add_antipasto" />
+
+    <TextView
+        android:id="@+id/add_primo"
+        android:layout_width="260dp"
+        android:layout_height="70dp"
+        android:text="Aggiungi Primo"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_antipasto" />
+
+    <Button
+        android:id="@+id/btn_primo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="@+id/add_primo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/add_primo"
+        app:layout_constraintTop_toTopOf="@+id/add_primo" />
+
+    <TextView
+        android:id="@+id/add_secondo"
+        android:layout_width="260dp"
+        android:layout_height="70dp"
+        android:text="Aggiungi Secondo"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_primo" />
+
+    <Button
+        android:id="@+id/btn_secondo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="@+id/add_secondo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/add_secondo"
+        app:layout_constraintTop_toTopOf="@+id/add_secondo" />
+
+    <TextView
+        android:id="@+id/add_dolce"
+        android:layout_width="260dp"
+        android:layout_height="70dp"
+        android:text="Aggiungi Dolce"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_secondo" />
+
+    <Button
+        android:id="@+id/btn_dolce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="@+id/add_dolce"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/add_dolce"
+        app:layout_constraintTop_toTopOf="@+id/add_dolce" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
