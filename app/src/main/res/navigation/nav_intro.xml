@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/fragmentIntro"
         android:name="com.example.progettoprogrammazione.intro.FragmentIntro"
-        android:label="FragmentIntro"
+        android:label="COOKADE"
         tools:layout="@layout/fragment_intro">
         <action
             android:id="@+id/IntroToLogin"
@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/fragmentLogin"
         android:name="com.example.progettoprogrammazione.intro.FragmentLogin"
-        android:label="FragmentLogin"
+        android:label="Login"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/LoginToRegister"
@@ -41,7 +41,7 @@
     <fragment
         android:id="@+id/fragmentRegister"
         android:name="com.example.progettoprogrammazione.intro.FragmentRegister"
-        android:label="FragmentRegister"
+        android:label="Registrati"
         tools:layout="@layout/fragment_registrati">
         <action
             android:id="@+id/RegisterToLogin"

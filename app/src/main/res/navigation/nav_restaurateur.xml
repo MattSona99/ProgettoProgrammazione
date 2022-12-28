@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/fragmentProfilo"
         android:name="com.example.progettoprogrammazione.fragment.FragmentProfilo"
-        android:label="fragment_profilo"
+        android:label="Profilo"
         tools:layout="@layout/fragment_profilo" >
         <action
             android:id="@+id/ProfiloRSelf"
@@ -41,7 +41,7 @@
     <fragment
         android:id="@+id/fragmentRistoranti"
         android:name="com.example.progettoprogrammazione.fragment.FragmentRistoranti"
-        android:label="fragment_ristoranti"
+        android:label="Ristoranti"
         tools:layout="@layout/fragment_ristoranti">
         <action
             android:id="@+id/RistorantiToDetail"
@@ -55,7 +55,7 @@
     <fragment
         android:id="@+id/restaurantDetail"
         android:name="com.example.progettoprogrammazione.ristorante.RestaurantDetail"
-        android:label="RestaurantDetail"
+        android:label="Dettagli ristorante"
         tools:layout="@layout/fragment_restaurant_detail" >
         <action
             android:id="@+id/DetailToMenu"
@@ -64,7 +64,7 @@
     <fragment
         android:id="@+id/fragmentGestione"
         android:name="com.example.progettoprogrammazione.ristoratore.FragmentGestione"
-        android:label="FragmentGestione"
+        android:label="Gestione ristoranti"
         tools:layout="@layout/fragment_gestione_rist">
         <action
             android:id="@+id/GestioneToDetail"
@@ -76,12 +76,12 @@
     <fragment
         android:id="@+id/productDetail"
         android:name="com.example.progettoprogrammazione.prodotti.ProductDetail"
-        android:label="ProductDetail"
+        android:label="Dettagli prodotto"
         tools:layout="@layout/fragment_menuproduct_detail"/>
     <fragment
         android:id="@+id/fragmentMenu"
         android:name="com.example.progettoprogrammazione.fragment.FragmentMenu"
-        android:label="fragment_menu"
+        android:label="Menù"
         tools:layout="@layout/fragment_menu" >
         <action
             android:id="@+id/action_fragmentMenu_to_productDetail2"
@@ -90,7 +90,7 @@
     <fragment
         android:id="@+id/fragmentCreaRist"
         android:name="com.example.progettoprogrammazione.ristoratore.FragmentCreaRist"
-        android:label="FragmentCreaRist"
+        android:label="Crea ristorante"
         tools:layout="@layout/fragment_crea_rist"/>
 
 </navigation>

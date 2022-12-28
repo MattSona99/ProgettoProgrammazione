@@ -8,12 +8,36 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.progettoprogrammazione.R
+import com.example.progettoprogrammazione.databinding.ActivityIntroBinding
+import com.example.progettoprogrammazione.databinding.ActivityRestaurateurBinding
 
 class IntroActivity : AppCompatActivity() {
+
+    private lateinit var binding : ActivityIntroBinding
+
+    private lateinit var navController: NavController
+    private lateinit var navHostFragment: NavHostFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_intro)
+        binding = ActivityIntroBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        navHostFragment =
+            supportFragmentManager.findFragmentById(binding.navHost.id) as NavHostFragment
+
+        navController = navHostFragment.findNavController()
+
+        setupActionBarWithNavController(navController)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {

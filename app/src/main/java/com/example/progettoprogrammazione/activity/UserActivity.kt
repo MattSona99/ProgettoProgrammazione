@@ -11,7 +11,11 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityUserBinding
 import com.example.progettoprogrammazione.models.Restaurant
@@ -25,6 +29,9 @@ class UserActivity : AppCompatActivity() {
 
     private lateinit var user: FirebaseAuth
 
+    private lateinit var navController: NavController
+    private lateinit var navHostFragment: NavHostFragment
+
     private lateinit var resturantDataViewModel: RestaurantViewModel
 
     private var pressedTime = 0L
@@ -35,6 +42,13 @@ class UserActivity : AppCompatActivity() {
         binding = ActivityUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        navHostFragment =
+            supportFragmentManager.findFragmentById(binding.userNav.id) as NavHostFragment
+
+        navController = navHostFragment.findNavController()
+
+        setupActionBarWithNavController(navController)
+
         user = FirebaseAuth.getInstance()
 
         val u = intent.getParcelableExtra("user") as User?
@@ -42,19 +56,18 @@ class UserActivity : AppCompatActivity() {
         bundleU.putParcelable("user", u)
 
 
-        val r = intent.getParcelableArrayListExtra<Restaurant>("ristoranti") as ArrayList<Restaurant>
+        val r =
+            intent.getParcelableArrayListExtra<Restaurant>("ristoranti") as ArrayList<Restaurant>
 
-        resturantDataViewModel= ViewModelProvider(this)[RestaurantViewModel::class.java]
+        resturantDataViewModel = ViewModelProvider(this)[RestaurantViewModel::class.java]
         resturantDataViewModel.arrayListRistorantiLiveData.postValue(r)
 
         binding.navbarUser.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.ic_ristorantiU -> {
-                    val navController = this.findNavController(R.id.user_nav)
                     navController.navigate(R.id.Ristoranti_U)
                 }
                 R.id.ic_profileU -> {
-                    val navController = this.findNavController(R.id.user_nav)
                     navController.navigate(R.id.Profilo_U, bundleU)
                 }
                 R.id.ic_logoutU -> {
@@ -69,12 +82,17 @@ class UserActivity : AppCompatActivity() {
         }
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
     override fun onBackPressed() {
         if (pressedTime + 2000 > System.currentTimeMillis()) {
             super.onBackPressed()
             finishAffinity()
         } else {
-            Toast.makeText(baseContext, "Premi indietro di nuovo per uscire.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(baseContext, "Premi indietro di nuovo per uscire.", Toast.LENGTH_SHORT)
+                .show()
         }
         pressedTime = System.currentTimeMillis()
     }

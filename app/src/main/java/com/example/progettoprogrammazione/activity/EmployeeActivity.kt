@@ -11,7 +11,11 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityEmployeeBinding
 import com.example.progettoprogrammazione.models.Restaurant
@@ -25,6 +29,9 @@ class EmployeeActivity : AppCompatActivity() {
 
     private lateinit var user: FirebaseAuth
 
+    private lateinit var navController: NavController
+    private lateinit var navHostFragment: NavHostFragment
+
     private lateinit var resturantDataViewModel: RestaurantViewModel
 
     private var pressedTime = 0L
@@ -37,27 +44,32 @@ class EmployeeActivity : AppCompatActivity() {
 
         user = FirebaseAuth.getInstance()
 
+        navHostFragment =
+            supportFragmentManager.findFragmentById(binding.employeeNav.id) as NavHostFragment
+
+        navController = navHostFragment.findNavController()
+
+        setupActionBarWithNavController(navController)
+
         val u = intent.getParcelableExtra("user") as User?
         val bundle = Bundle()
         bundle.putParcelable("user", u)
 
-        val r = intent.getParcelableArrayListExtra<Restaurant>("ristoranti") as ArrayList<Restaurant>
+        val r =
+            intent.getParcelableArrayListExtra<Restaurant>("ristoranti") as ArrayList<Restaurant>
 
-        resturantDataViewModel= ViewModelProvider(this)[RestaurantViewModel::class.java]
+        resturantDataViewModel = ViewModelProvider(this)[RestaurantViewModel::class.java]
         resturantDataViewModel.arrayListRistorantiLiveData.postValue(r)
 
         binding.navbarEmployee.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.ic_ristorantiD -> {
-                    val navController = this.findNavController(R.id.employee_nav)
                     navController.navigate(R.id.ristoranti_D)
                 }
                 R.id.ic_workD -> {
-                    val navController = this.findNavController(R.id.employee_nav)
                     navController.navigate(R.id.lavoro_D)
                 }
                 R.id.ic_profileD -> {
-                    val navController = this.findNavController(R.id.employee_nav)
                     navController.navigate(R.id.Profilo_D, bundle)
                 }
                 R.id.ic_logoutD -> {
@@ -82,6 +94,10 @@ class EmployeeActivity : AppCompatActivity() {
                 .show()
         }
         pressedTime = System.currentTimeMillis()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {

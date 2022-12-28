@@ -11,7 +11,11 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityRestaurateurBinding
 import com.example.progettoprogrammazione.models.Restaurant
@@ -26,6 +30,9 @@ class RestaurateurActivity : AppCompatActivity() {
     private lateinit var user: FirebaseAuth
 
     private lateinit var resturantDataViewModel: RestaurantViewModel
+
+    private lateinit var navController: NavController
+    private lateinit var navHostFragment: NavHostFragment
 
     private var pressedTime = 0L
 
@@ -48,19 +55,23 @@ class RestaurateurActivity : AppCompatActivity() {
         resturantDataViewModel = ViewModelProvider(this)[RestaurantViewModel::class.java]
         resturantDataViewModel.arrayListRistorantiLiveData.postValue(r)
 
+        navHostFragment =
+            supportFragmentManager.findFragmentById(binding.restaurateurNav.id) as NavHostFragment
+
+        navController = navHostFragment.findNavController()
+
+        setupActionBarWithNavController(navController)
+
 
         binding.navbarRestaurateur.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.ic_ristorantiR -> {
-                    val navController = this.findNavController(R.id.restaurateur_nav)
                     navController.navigate(R.id.Ristoranti_R)
                 }
                 R.id.ic_profileR -> {
-                    val navController = this.findNavController(R.id.restaurateur_nav)
                     navController.navigate(R.id.Profilo_R, bundle)
                 }
                 R.id.ic_gestioneR -> {
-                    val navController = this.findNavController(R.id.restaurateur_nav)
                     navController.navigate(R.id.Gestione_R, bundle)
                 }
                 R.id.ic_logoutR -> {
@@ -84,6 +95,10 @@ class RestaurateurActivity : AppCompatActivity() {
                 .show()
         }
         pressedTime = System.currentTimeMillis()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
