@@ -15,6 +15,8 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityUserBinding
@@ -42,12 +44,19 @@ class UserActivity : AppCompatActivity() {
         binding = ActivityUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val appBarConfiguration = AppBarConfiguration
+            .Builder(
+                R.id.fragmentRistoranti,
+                R.id.fragmentProfilo
+            )
+            .build()
+
         navHostFragment =
             supportFragmentManager.findFragmentById(binding.userNav.id) as NavHostFragment
 
         navController = navHostFragment.findNavController()
 
-        setupActionBarWithNavController(navController)
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
 
         user = FirebaseAuth.getInstance()
 

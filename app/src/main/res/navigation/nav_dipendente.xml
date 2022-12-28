@@ -23,7 +23,7 @@
 
     <action
         android:id="@+id/lavoro_D"
-        app:destination="@+id/fragmentLavoro"
+        app:destination="@+id/fragmentLavoroD"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -56,12 +56,12 @@
     </fragment>
 
     <fragment
-        android:id="@+id/fragmentLavoro"
+        android:id="@+id/fragmentLavoroD"
         android:name="com.example.progettoprogrammazione.dipendente.FragmentLavoro"
         android:label="Gestione lavoro"
         tools:layout="@layout/fragment_lavoro" />
     <fragment
-        android:id="@+id/fragmentMenu"
+        android:id="@+id/fragmentMenuD"
         android:name="com.example.progettoprogrammazione.fragment.FragmentMenu"
         android:label="Menù"
         tools:layout="@layout/fragment_menu" >
@@ -70,7 +70,7 @@
             app:destination="@id/productDetail" />
     </fragment>
     <fragment
-        android:id="@+id/productDetail"
+        android:id="@+id/productDetailD"
         android:name="com.example.progettoprogrammazione.prodotti.ProductDetail"
         android:label="Dettagli prodotto"
         tools:layout="@layout/fragment_menuproduct_detail"/>

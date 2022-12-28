@@ -18,6 +18,7 @@ interface RestaurantUtils {
 
     fun createRestaurant(context: Context?, rData: Restaurant) {
         firebaseDatabase.getReference("Ristoranti").push().setValue(rData)
+        Toast.makeText(context, "Ristorante creato con successo.", Toast.LENGTH_LONG).show()
     }
 
     fun getRestaurantData(callBack: FireBaseCallbackRestaurant, context: Context?) {
