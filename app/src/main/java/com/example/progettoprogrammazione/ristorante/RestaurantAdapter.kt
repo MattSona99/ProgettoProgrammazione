@@ -7,7 +7,7 @@ import com.example.progettoprogrammazione.databinding.RestaurantCardBinding
 import com.example.progettoprogrammazione.models.Restaurant
 
 class RestaurantAdapter(
-    private val restaurant: ArrayList<Restaurant>,
+    private var restaurant: ArrayList<Restaurant>,
     private val clickListener: RestaurantClickListener
 ) :
     RecyclerView.Adapter<RestaurantViewHolder>() {
@@ -16,6 +16,11 @@ class RestaurantAdapter(
         val itemView = LayoutInflater.from(parent.context)
         val binding = RestaurantCardBinding.inflate(itemView, parent, false)
         return RestaurantViewHolder(binding, clickListener)
+    }
+
+    fun filterList(filterlist: ArrayList<Restaurant>) {
+        restaurant = filterlist
+        notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
