@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityIntroBinding
@@ -18,7 +20,7 @@ import com.example.progettoprogrammazione.databinding.ActivityRestaurateurBindin
 
 class IntroActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityIntroBinding
+    private lateinit var binding: ActivityIntroBinding
 
     private lateinit var navController: NavController
     private lateinit var navHostFragment: NavHostFragment
@@ -28,12 +30,20 @@ class IntroActivity : AppCompatActivity() {
         binding = ActivityIntroBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val appBarConfiguration = AppBarConfiguration
+            .Builder(
+                R.id.fragmentIntro,
+                R.id.fragmentLogin,
+                R.id.fragmentRegister
+            )
+            .build()
+
         navHostFragment =
             supportFragmentManager.findFragmentById(binding.navHost.id) as NavHostFragment
 
         navController = navHostFragment.findNavController()
 
-        setupActionBarWithNavController(navController)
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
     }
 
     override fun onSupportNavigateUp(): Boolean {

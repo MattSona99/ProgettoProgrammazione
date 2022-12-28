@@ -15,6 +15,8 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityEmployeeBinding
@@ -44,13 +46,6 @@ class EmployeeActivity : AppCompatActivity() {
 
         user = FirebaseAuth.getInstance()
 
-        navHostFragment =
-            supportFragmentManager.findFragmentById(binding.employeeNav.id) as NavHostFragment
-
-        navController = navHostFragment.findNavController()
-
-        setupActionBarWithNavController(navController)
-
         val u = intent.getParcelableExtra("user") as User?
         val bundle = Bundle()
         bundle.putParcelable("user", u)
@@ -60,6 +55,21 @@ class EmployeeActivity : AppCompatActivity() {
 
         resturantDataViewModel = ViewModelProvider(this)[RestaurantViewModel::class.java]
         resturantDataViewModel.arrayListRistorantiLiveData.postValue(r)
+
+        val appBarConfiguration = AppBarConfiguration
+            .Builder(
+                R.id.RistorantiD,
+                R.id.fragmentProfiloD,
+                R.id.fragmentLavoroD
+            )
+            .build()
+
+        navHostFragment =
+            supportFragmentManager.findFragmentById(binding.employeeNav.id) as NavHostFragment
+
+        navController = navHostFragment.findNavController()
+
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
 
         binding.navbarEmployee.setOnNavigationItemSelectedListener {
             when (it.itemId) {
