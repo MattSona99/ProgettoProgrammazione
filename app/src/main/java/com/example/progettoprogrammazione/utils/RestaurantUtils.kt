@@ -17,14 +17,15 @@ interface RestaurantUtils {
 
     fun createRestaurant(context: Context?, rData: Restaurant) {
         firebaseDatabase.getReference("Ristoranti").push().setValue(rData)
+        Toast.makeText(context, "Ristorante creato con successo.", Toast.LENGTH_LONG).show()
     }
 
-     fun getRestaurantData(callBack: FireBaseCallbackRestaurant, context: Context?) {
+    fun getRestaurantData(callBack: FireBaseCallbackRestaurant, context: Context?) {
         firebaseDatabase.getReference("Ristoranti")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val response = ResponseRistorante()
-                    for(rist : DataSnapshot in snapshot.children){
+                    for (rist: DataSnapshot in snapshot.children) {
                         val ristorante = Restaurant(
                             rist.child("imageR").value.toString(),
                             rist.child("nomeR").value.toString(),
