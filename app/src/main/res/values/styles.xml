@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="SearchView" parent="Widget.AppCompat.SearchView">
+
+    <style name="TextStyle" parent="@android:style/TextAppearance">
+
+        <item name="android:textSize">20sp</item>
         <!--This line changes the color of text in Toolbar-->
         <item name="android:textColorPrimary">@color/white</item>
         <!--This line changes the color of icons in toolbar (back, overflow menu icons)-->
         <item name="android:textColorSecondary">@color/white</item>
-
+        <item name="android:editTextColor">@color/white</item>
         <item name="android:textColorHint">@color/white</item>
+        <item name="android:textColorHighlight">@color/white</item>
+        <item name="android:textColorLink">@color/white</item>
     </style>
 </resources>

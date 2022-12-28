@@ -16,24 +16,102 @@
         <LinearLayout
             android:id="@+id/searchlayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="5dp">
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/search_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/scrollviewborder"
+                android:theme="@style/TextStyle"
                 app:iconifiedByDefault="false"
-                app:searchIcon="@drawable/ic_search_icon"
                 app:queryHint="Cerca ristoranti..."
-                style="@style/SearchView"/>
+                app:searchIcon="@drawable/ic_search_icon" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/radiogroups"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/search_bar">
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="@+id/ruolo"
+                    app:layout_constraintStart_toStartOf="@+id/ruolo"
+                    app:layout_constraintTop_toBottomOf="@+id/ruolo">
+
+                    <RadioButton
+                        android:id="@+id/btnPizza"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/radio_selector"
+                        android:button="@android:color/transparent"
+                        android:elevation="5dp"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="Pizza"
+                        android:textColor="@drawable/radio_text_color" />
+
+                    <RadioButton
+                        android:id="@+id/btnHambrurger"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/radio_selector"
+                        android:button="@android:color/transparent"
+                        android:elevation="5dp"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="Hamburger"
+                        android:textColor="@drawable/radio_text_color" />
+
+                    <RadioButton
+                        android:id="@+id/btnSushi"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/radio_selector"
+                        android:button="@android:color/transparent"
+                        android:elevation="5dp"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="Sushi"
+                        android:textColor="@drawable/radio_text_color" />
+
+                    <RadioButton
+                        android:id="@+id/btnVegan"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/radio_selector"
+                        android:button="@android:color/transparent"
+                        android:elevation="5dp"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="Vegan"
+                        android:textColor="@drawable/radio_text_color" />
+
+                </RadioGroup>
+
+            </HorizontalScrollView>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/search">
+            app:layout_constraintBottom_toBottomOf="@id/radiogroups">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleView"
