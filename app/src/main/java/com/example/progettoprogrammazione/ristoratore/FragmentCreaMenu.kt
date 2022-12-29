@@ -68,7 +68,7 @@ class FragmentCreaMenu : Fragment() {
                 veganPbind,
                 UUID.randomUUID().toString()
             )
-            firebaseDatabase.getReference("Ristoranti/$idR/Menu/Bevande").push().setValue(pData)
+            firebaseDatabase.getReference("Ristoranti/$idR/Menu/Bevande").child("$nomePbind").setValue(pData)
         }
         addDialog.setNegativeButton("Cancel") { dialog, _ ->
             dialog.cancel()
