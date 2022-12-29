@@ -91,6 +91,14 @@
         android:id="@+id/fragmentCreaRist"
         android:name="com.example.progettoprogrammazione.ristoratore.FragmentCreaRist"
         android:label="Crea ristorante"
-        tools:layout="@layout/fragment_crea_rist"/>
+        tools:layout="@layout/fragment_crea_rist">
+        <action
+            android:id="@+id/CreaRist_to_CreaMenu"
+            app:destination="@id/fragmentCreaMenu" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentCreaMenu"
+        android:name="com.example.progettoprogrammazione.ristoratore.FragmentCreaMenu"
+        android:label="Crea Menu" />
 
 </navigation>

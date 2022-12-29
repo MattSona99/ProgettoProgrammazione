@@ -4,8 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Product(
-
-    var imageProduct: String?,
+//    var imageProduct: String?,
     var nomeProduct: String?,
     var prezzoProduct: Float,
     var descrizioneProduct: String?,
@@ -13,7 +12,7 @@ data class Product(
     var idProduct: String?,
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readString(),
+ //       parcel.readString(),
         parcel.readString(),
         parcel.readFloat(),
         parcel.readString(),
@@ -23,7 +22,7 @@ data class Product(
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(imageProduct)
+//        parcel.writeString(imageProduct)
         parcel.writeString(nomeProduct)
         parcel.writeFloat(prezzoProduct)
         parcel.writeString(descrizioneProduct)

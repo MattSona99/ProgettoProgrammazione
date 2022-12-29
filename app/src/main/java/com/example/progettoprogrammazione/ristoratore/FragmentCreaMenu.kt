@@ -9,43 +9,60 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.progettoprogrammazione.R
+import com.example.progettoprogrammazione.databinding.FragmentAddToMenuBinding
 import com.example.progettoprogrammazione.databinding.FragmentCreaMenuBinding
 import com.example.progettoprogrammazione.databinding.FragmentCreaRistBinding
 import com.example.progettoprogrammazione.models.Product
+import com.example.progettoprogrammazione.models.Restaurant
 import com.google.firebase.database.FirebaseDatabase
+import java.util.*
 
 class FragmentCreaMenu : Fragment() {
 
     private lateinit var binding: FragmentCreaMenuBinding
-    private lateinit var firebaseDatabase: FirebaseDatabase
+    private lateinit var bindingAdd: FragmentAddToMenuBinding
+    private var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        return inflater.inflate(R.layout.fragment_crea_menu, container, false)
+        binding = FragmentCreaMenuBinding.inflate(layoutInflater)
+        bindingAdd = FragmentAddToMenuBinding.inflate(layoutInflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val args = this.arguments
+        val restaurant = args?.getParcelable<Restaurant>("ristorante")
+        val restName = restaurant?.idR
         binding.btnBevanda.setOnClickListener {
-        //    addBevanda()
+            addBevanda(restName)
         }
     }
 
-    private fun addBevanda(mData: Product, idR: String) {
+    private fun addBevanda(idR: String?) {
         val inflater = LayoutInflater.from(activity)
         val v = inflater.inflate(R.layout.fragment_add_to_menu, null)
         val addDialog = AlertDialog.Builder(activity)
+        var pData: Product
         addDialog.setView(v)
-               addDialog.setPositiveButton("ok", DialogInterface.OnClickListener{
-                       dialog, id-> firebaseDatabase.getReference("Ristoranti/$idR/Menu/Bevande").push().setValue(mData)
+        addDialog.setPositiveButton("OK") { dialog, _ ->
 
-              })
-        //       addDialog.setNegativeButton("Cancel") { dialog, ->
-        //      }
+            pData = Product(
+                bindingAdd.nomeProdotto.text.toString(),
+                bindingAdd.prezzoProdotto.text.toString().toFloat(),
+                bindingAdd.descrizioneProdotto.text.toString(),
+                bindingAdd.veganNewP.isChecked,
+                UUID.randomUUID().toString()
+            )
+            firebaseDatabase.getReference("Ristoranti/$idR/Menu/Bevande").push().setValue(pData)
+        }
+        addDialog.setNegativeButton("Cancel") { dialog, _ ->
+            dialog.cancel()
+        }
 
 
         addDialog.create()

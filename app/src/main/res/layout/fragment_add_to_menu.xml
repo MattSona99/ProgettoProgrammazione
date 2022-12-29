@@ -53,7 +53,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/descrizione_prodottor"
+            android:id="@+id/descrizione_prodotto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Descrizione prodotto"
@@ -79,7 +79,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/select_img_newR"
+                android:id="@+id/select_img_newP"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_below="@id/text_select_img"
@@ -106,12 +106,12 @@
                 android:textStyle="bold" />
 
             <CheckBox
-                android:id="@+id/vegan_newR"
+                android:id="@+id/vegan_newP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_vegan_rist"
                 android:layout_marginLeft="75dp"
-                android:layout_toRightOf="@id/select_img_newR"
+                android:layout_toRightOf="@id/select_img_newP"
                 android:buttonTint="@color/white" />
 
         </RelativeLayout>

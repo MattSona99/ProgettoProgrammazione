@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.activity.RestaurateurActivity
 import com.example.progettoprogrammazione.databinding.FragmentCreaRistBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
@@ -113,10 +115,15 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
                                 responseU.user!!.Email
                             )
                             createRestaurant(context, restaurantData)
+                            val bundle = Bundle()
+                            bundle.putParcelable("ristorante", restaurantData)
+                           view.findNavController().navigate(R.id.CreaRist_to_CreaMenu, bundle)
+/*
                             getRestaurantData(object : FireBaseCallbackRestaurant {
                                 override fun onResponse(responseR: ResponseRistorante) {
+
                                     val intent =
-                                        Intent(context, RestaurateurActivity::class.java).apply {
+                                        Intent(context, RestaurateurActivity ::class.java).apply {
                                             putExtra("user", responseU.user)
                                             putParcelableArrayListExtra(
                                                 "ristoranti",
@@ -127,6 +134,8 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
                                     activity?.finish()
                                 }
                             }, context)
+
+ */
                         }
                     }, context)
                 } else {
