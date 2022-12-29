@@ -31,25 +31,28 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/nome_ristorante"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:paddingLeft="5dp"
+            android:text="Titolo ristorante"
+            android:textColor="@color/red"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:padding="5dp">
 
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/nome_ristorante"
-                    android:layout_width="200dp"
-                    android:layout_height="30dp"
-                    android:text="Titolo ristorante"
-                    android:textColor="@color/red"
-                    android:textSize="24dp"
-                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -67,9 +70,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="4,7"
-                        android:textSize="24dp"
                         android:textColor="@color/red"
-                        />
+                        android:textSize="24dp" />
 
                 </LinearLayout>
 
@@ -139,10 +141,10 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:adjustViewBounds="true"
-                    android:maxHeight="170dp"
-                    android:maxWidth="170dp"
-                    android:scaleType="centerCrop"
                     android:contentDescription="@string/copertina_desc"
+                    android:maxWidth="170dp"
+                    android:maxHeight="170dp"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/pencil" />
             </RelativeLayout>
 
