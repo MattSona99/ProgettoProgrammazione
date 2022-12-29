@@ -98,7 +98,7 @@
                 android:id="@+id/text_vegan_rist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="83dp"
+                android:layout_marginLeft="58dp"
                 android:layout_toRightOf="@id/text_select_img"
                 android:text="Vegan"
                 android:textColor="@color/red"
@@ -110,7 +110,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_vegan_rist"
-                android:layout_marginLeft="75dp"
+                android:layout_marginLeft="50dp"
                 android:layout_toRightOf="@id/select_img_newP"
                 android:buttonTint="@color/white" />
 

@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
+import android.widget.EditText
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentAddToMenuBinding
 import com.example.progettoprogrammazione.databinding.FragmentCreaMenuBinding
@@ -48,14 +50,22 @@ class FragmentCreaMenu : Fragment() {
         val v = inflater.inflate(R.layout.fragment_add_to_menu, null)
         val addDialog = AlertDialog.Builder(activity)
         var pData: Product
+        val nomeP = v.findViewById<EditText>(R.id.nome_prodotto)
+        val prezzoP = v.findViewById<EditText>(R.id.prezzo_prodotto)
+        val descrizioneP = v.findViewById<EditText>(R.id.descrizione_prodotto)
+        val vegan = v.findViewById<CheckBox>(R.id.vegan_newP)
+
         addDialog.setView(v)
         addDialog.setPositiveButton("OK") { dialog, _ ->
-
+            val nomePbind = nomeP.text.toString()
+            val prezzoPbind = prezzoP.text.toString()
+            val descrizionePbind = descrizioneP.text.toString()
+            val veganPbind = vegan.isChecked
             pData = Product(
-                bindingAdd.nomeProdotto.text.toString(),
-                bindingAdd.prezzoProdotto.text.toString().toFloat(),
-                bindingAdd.descrizioneProdotto.text.toString(),
-                bindingAdd.veganNewP.isChecked,
+                nomePbind,
+                prezzoPbind,
+                descrizionePbind,
+                veganPbind,
                 UUID.randomUUID().toString()
             )
             firebaseDatabase.getReference("Ristoranti/$idR/Menu/Bevande").push().setValue(pData)
