@@ -1,6 +1,5 @@
 package com.example.progettoprogrammazione.ristoratore
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,11 +10,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.activity.RestaurateurActivity
 import com.example.progettoprogrammazione.databinding.FragmentCreaRistBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.models.Restaurant
+import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -25,6 +24,8 @@ import java.util.*
 class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
 
     private lateinit var binding: FragmentCreaRistBinding
+
+    private lateinit var user : User
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
@@ -47,6 +48,10 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCreaRistBinding.inflate(layoutInflater)
+
+        val args = this.arguments
+        user = args?.getParcelable<User>("user") as User
+
         return binding.root
     }
 
@@ -115,27 +120,17 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
                                 responseU.user!!.Email
                             )
                             createRestaurant(context, restaurantData)
-                            val bundle = Bundle()
-                            bundle.putParcelable("ristorante", restaurantData)
-                           view.findNavController().navigate(R.id.CreaRist_to_CreaMenu, bundle)
-/*
+
+
                             getRestaurantData(object : FireBaseCallbackRestaurant {
                                 override fun onResponse(responseR: ResponseRistorante) {
-
-                                    val intent =
-                                        Intent(context, RestaurateurActivity ::class.java).apply {
-                                            putExtra("user", responseU.user)
-                                            putParcelableArrayListExtra(
-                                                "ristoranti",
-                                                responseR.ristoranti
-                                            )
-                                        }
-                                    startActivity(intent)
-                                    activity?.finish()
+                                    val bundle = Bundle()
+                                    bundle.putParcelable("ristorante", restaurantData)
+                                    bundle.putParcelable("user", user)
+                                    view.findNavController()
+                                        .navigate(R.id.CreaRist_to_CreaMenu, bundle)
                                 }
                             }, context)
-
- */
                         }
                     }, context)
                 } else {

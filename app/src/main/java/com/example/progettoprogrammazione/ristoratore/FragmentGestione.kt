@@ -67,7 +67,9 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonCrea.setOnClickListener {
-            view.findNavController().navigate(R.id.GestioneToCrea)
+            val bundleu = Bundle()
+            bundleu.putParcelable("user", user)
+            view.findNavController().navigate(R.id.GestioneToCrea, bundleu)
         }
     }
 

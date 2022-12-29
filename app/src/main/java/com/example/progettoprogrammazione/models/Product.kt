@@ -4,30 +4,24 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Product(
-//    var imageProduct: String?,
-    var nomeProduct: String?,
-    var prezzoProduct: String?,
-    var descrizioneProduct: String?,
-    var veganProduct: Boolean,
-    var idProduct: String?,
+    var nomeP: String?,
+    var prezzoP: String?,
+    var descrizioneP: String?,
+    var idP: String?,
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
- //       parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readByte() != 0.toByte(),
         parcel.readString()
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-//        parcel.writeString(imageProduct)
-        parcel.writeString(nomeProduct)
-        parcel.writeString(prezzoProduct)
-        parcel.writeString(descrizioneProduct)
-        parcel.writeByte(if (veganProduct) 1 else 0)
-        parcel.writeString(idProduct)
+        parcel.writeString(nomeP)
+        parcel.writeString(prezzoP)
+        parcel.writeString(descrizioneP)
+        parcel.writeString(idP)
     }
 
     override fun describeContents(): Int {

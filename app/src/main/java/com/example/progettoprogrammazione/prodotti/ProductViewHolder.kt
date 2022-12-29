@@ -11,8 +11,7 @@ class ProductViewHolder(
 ) : RecyclerView.ViewHolder(prodottoBinding.root) {
 
     fun bindProdotti(prodotto: Product) {
-  //      prodottoBinding.copertinaprod.setImageResource(getImageId(prodottoBinding.root.context,prodotto.imageProduct!!))
-        prodottoBinding.descrizione.text=prodotto.descrizioneProduct
+        prodottoBinding.descrizione.text=prodotto.descrizioneP
 
         prodottoBinding.btncard.setOnClickListener { clickListener.onClickProduct(prodotto) }
     }

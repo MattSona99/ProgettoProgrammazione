@@ -94,7 +94,7 @@ class FragmentProfilo : Fragment(), UserUtil {
                         bundleU.putParcelable("user", responseU.user)
                         when(user.Livello){
                             "1" -> view.findNavController().navigate(R.id.ProfiloUSelf, bundleU)
-                            //"2" -> view.findNavController().navigate(R.id.ProfiloDSelf, bundleU)
+                            "2" -> view.findNavController().navigate(R.id.ProfiloDSelf, bundleU)
                             "3" -> view.findNavController().navigate(R.id.ProfiloRSelf, bundleU)
                         }
 

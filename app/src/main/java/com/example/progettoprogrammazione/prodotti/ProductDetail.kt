@@ -38,7 +38,7 @@ class ProductDetail : Fragment() {
 
     private fun producttFromId(productID: String?): Product? {
         for (prodotti in productList!!) {
-            if (prodotti.idProduct == productID)
+            if (prodotti.idP == productID)
                 return prodotti
         }
         return null

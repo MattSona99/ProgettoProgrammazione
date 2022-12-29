@@ -21,7 +21,6 @@ class FragmentMenu: Fragment(),ProductClickListener, ProductUtils {
     private lateinit var binding:FragmentMenuBinding
     private lateinit var adapter: ProductAdapter
 
-    override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     private lateinit var productDataViewModel: ProductViewModel
@@ -51,7 +50,7 @@ class FragmentMenu: Fragment(),ProductClickListener, ProductUtils {
     override fun onClickProduct(prodotto: Product) {
 
         val bundle = Bundle()
-        bundle.putString("prodID", prodotto.idProduct.toString())
+        bundle.putString("prodID", prodotto.idP.toString())
         bundle.putParcelableArrayList("prodArrayList", prodArrayList)
 
         //view?.findNavController()?.navigate(R.id.RistorantiToDetail, bundle)

@@ -99,6 +99,7 @@
     <fragment
         android:id="@+id/fragmentCreaMenu"
         android:name="com.example.progettoprogrammazione.ristoratore.FragmentCreaMenu"
-        android:label="Crea Menu" />
+        android:label="Crea Menu"
+        tools:layout="@layout/fragment_crea_menu"/>
 
 </navigation>
