@@ -7,17 +7,32 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentRestaurantDetailBinding
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackProdotto
+import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.models.Restaurant
+import com.example.progettoprogrammazione.models.User
+import com.example.progettoprogrammazione.prodotti.ProductClickListener
+import com.example.progettoprogrammazione.utils.ProductUtils
+import com.example.progettoprogrammazione.utils.ResponseProdotto
+import com.example.progettoprogrammazione.viewmodels.ProductViewModel
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 
-class RestaurantDetail : Fragment() {
+class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
 
     private lateinit var binding: FragmentRestaurantDetailBinding
 
+    override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
+
+    private lateinit var productDataViewModel: ProductViewModel
+
+    private var prodArrayList: ArrayList<Product>? = null
     private var restaurantList: ArrayList<Restaurant>? = null
 
     override fun onCreateView(
@@ -53,11 +68,48 @@ class RestaurantDetail : Fragment() {
 
         }
 
-        binding.visualizzaMenu.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.DetailToMenu)
-        }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val args = this.arguments
+        val restaurantID = args?.get("restID")
+        restaurantList = args?.getParcelableArrayList("restArrayList")
+
+        val bundle = Bundle()
+        getMenu(restaurantID.toString(),
+            object: FireBaseCallbackProdotto{
+                override fun onResponse(responseP: ResponseProdotto) {
+                    prodArrayList= responseP.prodotto
+                }
+            },context)
+
+        binding.visualizzaMenu.setOnClickListener {
+            //PASSAGGIO DATI RISTORANTI -->(CONTIENE ANCHE TUTTI I MENU)
+
+            bundle.putParcelableArrayList("prodotti", prodArrayList )
+            bundle.putString("restID", restaurantID.toString())
+            bundle.putParcelableArrayList("restArrayList", restaurantList)
+
+/*
+            productDataViewModel = ViewModelProvider(this)[productDataViewModel::class.java]
+            productDataViewModel.arrayListaprodottiLiveData.postValue()
+*/
+            view?.findNavController()?.navigate(R.id.DetailToMenu,bundle)
+        }
+
+    }
+
+    override fun onClickProduct(prodotto: Product) {
+
+        val bundle1 = Bundle()
+        bundle1.putString("prodID", prodotto.idP.toString())
+        bundle1.putParcelableArrayList("prodArrayList", prodArrayList)
+
+        view?.findNavController()?.navigate(R.id.productDetail, bundle1)
     }
 
     private fun restaurantFromId(restaurantID: String?): Restaurant? {
@@ -98,5 +150,7 @@ class RestaurantDetail : Fragment() {
         // Return the circular bitmap
         return dstBitmap
     }
+
+
 
 }

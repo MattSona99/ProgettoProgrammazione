@@ -1,6 +1,7 @@
 package com.example.progettoprogrammazione.ristoratore
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +10,15 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
+import com.example.progettoprogrammazione.activity.RestaurateurActivity
 import com.example.progettoprogrammazione.databinding.FragmentAddToMenuBinding
 import com.example.progettoprogrammazione.databinding.FragmentCreaMenuBinding
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackProdotto
 import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.utils.ProductUtils
+import com.example.progettoprogrammazione.utils.ResponseProdotto
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
@@ -43,7 +47,27 @@ class FragmentCreaMenu : Fragment(), ProductUtils {
         val restaurant = args?.getParcelable<Restaurant>("ristorante")
         user = args?.getParcelable<User>("user") as User
         val restName = restaurant?.idR
+/*
+        getMenu(restName, object : FireBaseCallbackProdotto {
+            override fun onResponse(responseP: ResponseProdotto) {
+                val intent =
+                    Intent(
+                        context,
+                        RestaurateurActivity::class.java
+                    ).apply {
+                        putParcelableArrayListExtra(
+                            "prodotti",
+                            responseP.prodotto
+                        )
+                    }
+                startActivity(intent)
+                activity?.finish()
 
+            }
+        }, context)
+
+
+ */
         binding.btnBevanda.setOnClickListener {
             showDialog("bevanda", restName)
         }

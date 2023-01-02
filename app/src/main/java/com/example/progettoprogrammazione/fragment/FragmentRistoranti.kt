@@ -64,23 +64,12 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
 
     }
 
-    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val searchView: SearchView = binding.searchBar
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
-            android.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                filter(newText)
-                return false
-            }
-        })
-    }*/
+    }
 
     private fun filter(text: String) {
         val filteredList: ArrayList<Restaurant> = restArrayList

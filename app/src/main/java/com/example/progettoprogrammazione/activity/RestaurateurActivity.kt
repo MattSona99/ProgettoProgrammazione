@@ -20,8 +20,10 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityRestaurateurBinding
+import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
+import com.example.progettoprogrammazione.viewmodels.ProductViewModel
 import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 
@@ -32,6 +34,7 @@ class RestaurateurActivity : AppCompatActivity() {
     private lateinit var user: FirebaseAuth
 
     private lateinit var resturantDataViewModel: RestaurantViewModel
+    private lateinit var producttDataViewModel: ProductViewModel
 
     private lateinit var navController: NavController
     private lateinit var navHostFragment: NavHostFragment
@@ -56,6 +59,12 @@ class RestaurateurActivity : AppCompatActivity() {
 
         resturantDataViewModel = ViewModelProvider(this)[RestaurantViewModel::class.java]
         resturantDataViewModel.arrayListRistorantiLiveData.postValue(r)
+
+        val p =
+            intent.getParcelableArrayListExtra<Product>("prodotti") as ArrayList<Product>
+
+        producttDataViewModel = ViewModelProvider(this)[producttDataViewModel::class.java]
+        producttDataViewModel.arrayListaprodottiLiveData.postValue(p)
 
         val appBarConfiguration = AppBarConfiguration
             .Builder(

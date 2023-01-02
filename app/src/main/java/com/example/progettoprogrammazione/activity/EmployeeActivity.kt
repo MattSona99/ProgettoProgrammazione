@@ -20,8 +20,10 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityEmployeeBinding
+import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
+import com.example.progettoprogrammazione.viewmodels.ProductViewModel
 import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 
@@ -35,6 +37,7 @@ class EmployeeActivity : AppCompatActivity() {
     private lateinit var navHostFragment: NavHostFragment
 
     private lateinit var resturantDataViewModel: RestaurantViewModel
+    private lateinit var productDataViewModel: ProductViewModel
 
     private var pressedTime = 0L
 
@@ -56,6 +59,15 @@ class EmployeeActivity : AppCompatActivity() {
         resturantDataViewModel = ViewModelProvider(this)[RestaurantViewModel::class.java]
         resturantDataViewModel.arrayListRistorantiLiveData.postValue(r)
 
+        /*
+        val p =
+            intent.getParcelableArrayListExtra<Product>("prodotti") as ArrayList<Product>
+
+        productDataViewModel = ViewModelProvider(this)[producttDataViewModel::class.java]
+        productDataViewModel.arrayListaprodottiLiveData.postValue(p)
+
+
+         */
         val appBarConfiguration = AppBarConfiguration
             .Builder(
                 R.id.RistorantiD,
