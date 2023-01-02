@@ -13,16 +13,7 @@ import com.google.firebase.database.ValueEventListener
 interface ProductUtils {
 
     var firebaseDatabase: FirebaseDatabase
-
-    fun getMenu(idR: String?, callBack: FireBaseCallbackProdotto, context: Context?){
-        getBevanda(idR,callBack,context)
-        getAntipasto(idR,callBack,context)
-        getPrimo(idR,callBack,context)
-        getSecondo(idR,callBack,context)
-        getContorno(idR,callBack,context)
-        getDolce(idR,callBack,context)
-    }
-
+    
     fun getBevanda(idR: String?, callBack: FireBaseCallbackProdotto, context: Context?){
         firebaseDatabase.getReference("Ristoranti/$idR/Menu/Bevande").addListenerForSingleValueEvent(object: ValueEventListener  {
             override fun onDataChange(snapshot: DataSnapshot) {
