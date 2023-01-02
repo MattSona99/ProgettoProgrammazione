@@ -36,6 +36,7 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
     private var contornoArrayList: ArrayList<Product>? = null
     private var dolceArrayList: ArrayList<Product>? = null
 
+    private var tmpprodArrayList= mutableListOf<Product>()
     private var prodArrayList: ArrayList<Product>? = null
 
     private var restaurantList: ArrayList<Restaurant>? = null
@@ -125,32 +126,20 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
         binding.visualizzaMenu.setOnClickListener {
             //PASSAGGIO DATI RISTORANTI -->(CONTIENE ANCHE TUTTI I MENU)
 
-            prodArrayList=bevandeArrayList!!
-            //prodArrayList=antipastiArrayList!!
-            //prodArrayList?.addAll(antipastiArrayList!!)
-            //prodArrayList?.addAll(primiArrayList!!)
-            //prodArrayList?.addAll(secondiArrayList!!)
-            //prodArrayList?.addAll(secondiArrayList!!)
-            //prodArrayList?.addAll(contornoArrayList!!)
-            //prodArrayList?.addAll(dolceArrayList!!)
+            tmpprodArrayList.addAll(bevandeArrayList!!.toMutableList())
+            tmpprodArrayList.addAll(antipastiArrayList!!.toMutableList())
+            tmpprodArrayList.addAll(primiArrayList!!.toMutableList())
+            tmpprodArrayList.addAll(secondiArrayList!!.toMutableList())
+            tmpprodArrayList.addAll(contornoArrayList!!.toMutableList())
+            tmpprodArrayList.addAll(dolceArrayList!!.toMutableList())
 
-
-            //bundle.putParcelableArrayList("bevande", bevandeArrayList )
-            //bundle.putParcelableArrayList("antipasti", antipastiArrayList )
-            //bundle.putParcelableArrayList("primi", primiArrayList )
-            //bundle.putParcelableArrayList("secondi", secondiArrayList )
-            //bundle.putParcelableArrayList("contorni", contornoArrayList )
-            //bundle.putParcelableArrayList("dolci", dolceArrayList )
+            prodArrayList=tmpprodArrayList as ArrayList<Product>
 
             bundle.putParcelableArrayList("prodotti", prodArrayList )
 
             bundle.putString("restID", restaurantID.toString())
             bundle.putParcelableArrayList("restArrayList", restaurantList)
 
-/*
-            productDataViewModel = ViewModelProvider(this)[productDataViewModel::class.java]
-            productDataViewModel.arrayListaprodottiLiveData.postValue()
-*/
             view?.findNavController()?.navigate(R.id.DetailToMenu,bundle)
         }
 

@@ -70,7 +70,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
         val searchView: SearchView = binding.searchBar
 
     }
-
+/*
     private fun filter(text: String) {
         val filteredList: ArrayList<Restaurant> = restArrayList
 
@@ -86,6 +86,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
             adapter.filterList(filteredList)
         }
     }
+    */
 
 }
 

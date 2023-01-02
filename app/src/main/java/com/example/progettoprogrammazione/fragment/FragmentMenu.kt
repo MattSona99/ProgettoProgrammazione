@@ -57,23 +57,8 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils {
         binding.recycleViewP.setHasFixedSize(true)
         adapter.notifyDataSetChanged()
 
-        /*
-        productDataViewModel= ViewModelProvider(requireActivity())[ProductViewModel::class.java]
-        productDataViewModel.arrayListaprodottiLiveData.observe(viewLifecycleOwner){
-
-            prodArrayList = it
-            val layoutManager = GridLayoutManager(context, 1)
-            binding.recycleViewP.layoutManager = layoutManager
-            adapter = ProductAdapter(it, this)
-            binding.recycleViewP.adapter = adapter
-            binding.recycleViewP.setHasFixedSize(true)
-            adapter.notifyDataSetChanged()
-        }
-        */
 
         return binding.root
-
-
     }
 
     override fun onClickProduct(prodotto: Product) {
