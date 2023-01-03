@@ -64,7 +64,8 @@ class RestaurateurActivity : AppCompatActivity() {
             .Builder(
                 R.id.fragmentRistoranti,
                 R.id.fragmentProfilo,
-                R.id.fragmentGestione
+                R.id.fragmentGestione,
+                R.id.fragmentCreaMenu
             )
             .build()
 

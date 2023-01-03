@@ -78,16 +78,16 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
                         "Il nome non può essere lungo più di 20 caratteri."
                 }
                 if (descrizioneR.length < 250) {
-                    binding.nomeristoranteNewR.error = "Descrizione vuota o troppo lunga"
+                    binding.descrizioneNewR.error = "Descrizione vuota o troppo lunga"
                 }
                 if (indirizzoR.length < 15) {
                     binding.indirizzoNewR.error = "Indririzzo errato o vuoto."
                 }
                 if (orariolavorativoR.length < 10)
-                    binding.nomeristoranteNewR.error = "Formato errato. (gg: xx:xx-xx:xx)"
+                    binding.orariolavorativoNewR.error = "Formato errato. (gg: xx:xx-xx:xx)"
 
                 if (telefonoR.length < 9) {
-                    binding.nomeristoranteNewR.error =
+                    binding.telefonoNewR.error =
                         "Il numero di telefono deve contenere almeno 9 caratteri"
                 }
 
