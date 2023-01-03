@@ -86,7 +86,7 @@ class EmployeeActivity : AppCompatActivity() {
         binding.navbarEmployee.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.ic_ristorantiD -> {
-                    navController.navigate(R.id.ristoranti_D)
+                    navController.navigate(R.id.ristoranti_D, bundle)
                 }
                 R.id.ic_workD -> {
                     navController.navigate(R.id.lavoro_D)
