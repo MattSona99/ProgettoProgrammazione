@@ -51,7 +51,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
 
         }
 
-        binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.searchBarRistoranti.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }

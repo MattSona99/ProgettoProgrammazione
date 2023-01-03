@@ -20,7 +20,7 @@
             android:padding="5dp">
 
             <androidx.appcompat.widget.SearchView
-                android:id="@+id/search_bar"
+                android:id="@+id/search_bar_ristoranti"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/scrollviewborder"

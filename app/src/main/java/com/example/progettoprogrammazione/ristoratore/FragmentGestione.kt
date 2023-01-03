@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -55,9 +56,22 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
             adapter = RestaurantAdapter(restArrayList, this)
             binding.recycleViewRist.adapter = adapter
             binding.recycleViewRist.setHasFixedSize(true)
+            showData()
             adapter.notifyDataSetChanged()
 
         }
+
+        binding.searchBarGestione.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter.filter(newText)
+                return false
+            }
+
+        })
 
         return binding.root
     }
@@ -81,6 +95,10 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
 
         view?.findNavController()?.navigate(R.id.GestioneToDetail, bundle)
 
+    }
+
+    private fun showData() {
+        adapter.setData(restArrayList)
     }
 
 }
