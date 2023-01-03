@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -44,12 +43,25 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
             restArrayList = it
             val layoutManager = GridLayoutManager(context, 1)
             binding.recycleView.layoutManager = layoutManager
-            adapter = RestaurantAdapter(it, this)
+            adapter = RestaurantAdapter(restArrayList, this)
             binding.recycleView.adapter = adapter
             binding.recycleView.setHasFixedSize(true)
+            showData()
             adapter.notifyDataSetChanged()
 
         }
+
+        binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter.filter(newText)
+                return false
+            }
+
+        })
 
         return binding.root
     }
@@ -64,29 +76,8 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
 
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val searchView: SearchView = binding.searchBar
-
+    private fun showData() {
+        adapter.setData(restArrayList)
     }
-/*
-    private fun filter(text: String) {
-        val filteredList: ArrayList<Restaurant> = restArrayList
-
-        for (item in restArrayList) {
-            if (item.nomeR!!.lowercase().contains(text.lowercase())
-            ) {
-                filteredList.add(item)
-            }
-        }
-        if (filteredList.isEmpty()) {
-            Toast.makeText(context, "Nessun ristorante trovato...", Toast.LENGTH_SHORT).show()
-        } else {
-            adapter.filterList(filteredList)
-        }
-    }
-    */
-
 }
 

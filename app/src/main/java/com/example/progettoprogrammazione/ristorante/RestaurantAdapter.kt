@@ -2,6 +2,8 @@ package com.example.progettoprogrammazione.ristorante
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.databinding.RestaurantCardBinding
 import com.example.progettoprogrammazione.models.Restaurant
@@ -10,7 +12,15 @@ class RestaurantAdapter(
     private var restaurant: ArrayList<Restaurant>,
     private val clickListener: RestaurantClickListener
 ) :
-    RecyclerView.Adapter<RestaurantViewHolder>() {
+    RecyclerView.Adapter<RestaurantViewHolder>(), Filterable {
+
+    private var restaurantFiltered: ArrayList<Restaurant> = arrayListOf()
+
+    public fun setData(restaurant: ArrayList<Restaurant>) {
+        this.restaurant = restaurant
+        this.restaurantFiltered = restaurant
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -18,33 +28,47 @@ class RestaurantAdapter(
         return RestaurantViewHolder(binding, clickListener)
     }
 
-    fun filterList(filterlist: ArrayList<Restaurant>) {
-        restaurant = filterlist
-        notifyDataSetChanged()
-    }
-
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
         holder.bindRestaurants(restaurant[position])
-/*
-            val currentItem = restaurant[position]
-
-            holder.image_r.setImageResource(currentItem.imageR)
-            holder.nome_r.text = currentItem.nomeR
-            holder.descrizioneR.text = currentItem.descrizioneR
-             */
     }
 
     override fun getItemCount(): Int {
         return restaurant.size
     }
 
-    /*
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val image_r: AppCompatImageView = itemView.findViewById(R.id.copertina)
-        val nome_r: TextView = itemView.findViewById(R.id.nome_ristorante)
-        val descrizioneR: TextView = itemView.findViewById(R.id.descrizione)
-    }
-     */
+    override fun getFilter(): Filter {
+        var filter = object : Filter() {
+            override fun performFiltering(p0: CharSequence?): FilterResults {
+                var filterResults = FilterResults()
+                if(p0 == null || p0.isEmpty()){
+                    filterResults.values = restaurantFiltered
+                    filterResults.count = restaurantFiltered.size
+                }else{
+                    var searchChar = p0.toString().lowercase()
 
+                    var filteredResults = ArrayList<Restaurant>()
+
+                    for(ristorante in restaurantFiltered){
+                        if(ristorante.nomeR!!.lowercase().contains(searchChar)){
+                            filteredResults.add(ristorante)
+                        }
+                    }
+
+                    filterResults.values = filteredResults
+                    filterResults.count = filteredResults.size
+                }
+
+                return filterResults
+            }
+
+            override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
+                restaurant = p1!!.values as ArrayList<Restaurant>
+                notifyDataSetChanged()
+            }
+
+        }
+
+        return filter
+    }
 
 }

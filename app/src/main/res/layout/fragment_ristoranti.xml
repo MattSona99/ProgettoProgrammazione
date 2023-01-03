@@ -26,7 +26,7 @@
                 android:background="@drawable/scrollviewborder"
                 android:theme="@style/TextStyle"
                 app:iconifiedByDefault="false"
-                app:queryHint="Cerca ristoranti..."
+                app:queryHint="Cerca un ristorante..."
                 app:searchIcon="@drawable/ic_search_icon" />
 
         </LinearLayout>
