@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
@@ -16,6 +17,7 @@ import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.prodotti.ProductClickListener
 import com.example.progettoprogrammazione.utils.ProductUtils
 import com.example.progettoprogrammazione.utils.ResponseProdotto
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
@@ -35,6 +37,9 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
 
     private var restaurantList: ArrayList<Restaurant>? = null
 
+
+    private lateinit var user: FirebaseAuth
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,7 +52,17 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
         val restaurantID = args?.get("restID")
         restaurantList = args?.getParcelableArrayList("restArrayList")
 
+        user = FirebaseAuth.getInstance()
+        user.currentUser?.email
+
         val restaurant = restaurantFromId(restaurantID.toString())
+
+        if (restaurant != null) {
+            binding.modificaRistorante.isVisible =
+                restaurant.proprietarioR == user.currentUser?.email
+            binding.eliminaRistorante.isVisible =
+                restaurant.proprietarioR == user.currentUser?.email
+        }
 
         if (restaurant != null) {
             val imageName = restaurant.imageR
@@ -80,41 +95,47 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
         restaurantList = args?.getParcelableArrayList("restArrayList")
 
         getBevanda(restaurantID.toString(),
-            object: FireBaseCallbackProdotto{
+            object : FireBaseCallbackProdotto {
                 override fun onResponse(responseP: ResponseProdotto) {
-                    bevandeArrayList= responseP.prodotto
+                    bevandeArrayList = responseP.prodotto
                 }
-            },context)
+            }, context
+        )
         getAntipasto(restaurantID.toString(),
-            object: FireBaseCallbackProdotto{
+            object : FireBaseCallbackProdotto {
                 override fun onResponse(responseP: ResponseProdotto) {
-                    antipastiArrayList= responseP.prodotto
+                    antipastiArrayList = responseP.prodotto
                 }
-            },context)
+            }, context
+        )
         getPrimo(restaurantID.toString(),
-            object: FireBaseCallbackProdotto{
+            object : FireBaseCallbackProdotto {
                 override fun onResponse(responseP: ResponseProdotto) {
-                    primiArrayList= responseP.prodotto
+                    primiArrayList = responseP.prodotto
                 }
-            },context)
+            }, context
+        )
         getSecondo(restaurantID.toString(),
-            object: FireBaseCallbackProdotto{
+            object : FireBaseCallbackProdotto {
                 override fun onResponse(responseP: ResponseProdotto) {
-                    secondiArrayList= responseP.prodotto
+                    secondiArrayList = responseP.prodotto
                 }
-            },context)
+            }, context
+        )
         getContorno(restaurantID.toString(),
-            object: FireBaseCallbackProdotto{
+            object : FireBaseCallbackProdotto {
                 override fun onResponse(responseP: ResponseProdotto) {
-                    contorniArrayList= responseP.prodotto
+                    contorniArrayList = responseP.prodotto
                 }
-            },context)
+            }, context
+        )
         getDolce(restaurantID.toString(),
-            object: FireBaseCallbackProdotto{
+            object : FireBaseCallbackProdotto {
                 override fun onResponse(responseP: ResponseProdotto) {
-                    dolciArrayList= responseP.prodotto
+                    dolciArrayList = responseP.prodotto
                 }
-            },context)
+            }, context
+        )
 
         binding.visualizzaMenu.setOnClickListener {
             val bundle = Bundle()
@@ -125,7 +146,7 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
             bundle.putParcelableArrayList("contorni", contorniArrayList)
             bundle.putParcelableArrayList("dolci", dolciArrayList)
 
-            view.findNavController().navigate(R.id.DetailToMenu,bundle)
+            view.findNavController().navigate(R.id.DetailToMenu, bundle)
         }
 
     }
@@ -177,7 +198,6 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
         // Return the circular bitmap
         return dstBitmap
     }
-
 
 
 }
