@@ -91,6 +91,7 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
 
         val bundle = Bundle()
         bundle.putString("restID", restaurant.idR.toString())
+        bundle.putParcelable("user", user)
         bundle.putParcelableArrayList("restArrayList", restArrayList)
 
         view?.findNavController()?.navigate(R.id.GestioneToDetail, bundle)

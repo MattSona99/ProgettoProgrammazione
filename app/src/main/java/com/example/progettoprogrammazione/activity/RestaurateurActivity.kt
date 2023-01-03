@@ -34,7 +34,7 @@ class RestaurateurActivity : AppCompatActivity() {
     private lateinit var user: FirebaseAuth
 
     private lateinit var resturantDataViewModel: RestaurantViewModel
-    private lateinit var producttDataViewModel: ProductViewModel
+    private lateinit var productDataViewModel: ProductViewModel
 
     private lateinit var navController: NavController
     private lateinit var navHostFragment: NavHostFragment

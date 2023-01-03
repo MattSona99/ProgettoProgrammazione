@@ -121,7 +121,6 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
                             )
                             createRestaurant(context, restaurantData)
 
-
                             getRestaurantData(object : FireBaseCallbackRestaurant {
                                 override fun onResponse(responseR: ResponseRistorante) {
                                     val bundle = Bundle()

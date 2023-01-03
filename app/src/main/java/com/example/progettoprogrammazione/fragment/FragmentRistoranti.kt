@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentRistorantiBinding
 import com.example.progettoprogrammazione.models.Restaurant
+import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.ristorante.RestaurantAdapter
 import com.example.progettoprogrammazione.ristorante.RestaurantClickListener
 import com.example.progettoprogrammazione.utils.RestaurantUtils
