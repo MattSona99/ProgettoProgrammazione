@@ -11,7 +11,7 @@ class ProductViewHolder(
 ) : RecyclerView.ViewHolder(prodottoBinding.root) {
 
     fun bindProdotti(prodotto: Product) {
-        prodottoBinding.descrizione.text=prodotto.descrizioneP
+        prodottoBinding.nomeProdottoCard.text=prodotto.descrizioneP
 
         prodottoBinding.btncard.setOnClickListener { clickListener.onClickProduct(prodotto) }
     }

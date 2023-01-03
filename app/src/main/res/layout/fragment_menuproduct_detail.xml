@@ -20,7 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="160dp"
-                android:text="Descrizione Prodotto"
+                android:text="Nome Prodotto"
                 android:textColor="@color/white"
                 android:textSize="33dp"
                 app:layout_constraintBottom_toBottomOf="parent"

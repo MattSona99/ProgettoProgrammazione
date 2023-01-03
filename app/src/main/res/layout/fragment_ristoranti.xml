@@ -32,77 +32,76 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/radiogroups"
+            android:id="@+id/checkboxes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@id/search_bar">
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
 
-                <RadioGroup
-                    android:id="@+id/radioGroup"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="@+id/ruolo"
-                    app:layout_constraintStart_toStartOf="@+id/ruolo"
-                    app:layout_constraintTop_toBottomOf="@+id/ruolo">
+                    android:orientation="horizontal">
 
-                    <RadioButton
-                        android:id="@+id/btnPizza"
-                        android:layout_width="110dp"
+                    <CheckBox
+                        android:id="@+id/checkpizza"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
+                        android:layout_marginRight="15dp"
                         android:background="@drawable/radio_selector"
-                        android:button="@android:color/transparent"
-                        android:elevation="5dp"
+                        android:button="@null"
+                        app:buttonCompat="@null"
                         android:gravity="center"
-                        android:padding="5dp"
                         android:text="Pizza"
-                        android:textColor="@drawable/radio_text_color" />
+                        android:textColor="@drawable/radio_text_color"
+                        android:textSize="15dp" />
 
-                    <RadioButton
-                        android:id="@+id/btnHambrurger"
-                        android:layout_width="110dp"
+                    <CheckBox
+                        android:id="@+id/checksushi"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
+                        android:layout_marginRight="15dp"
                         android:background="@drawable/radio_selector"
-                        android:button="@android:color/transparent"
-                        android:elevation="5dp"
+                        android:button="@null"
+                        app:buttonCompat="@null"
                         android:gravity="center"
-                        android:padding="5dp"
-                        android:text="Hamburger"
-                        android:textColor="@drawable/radio_text_color" />
-
-                    <RadioButton
-                        android:id="@+id/btnSushi"
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/radio_selector"
-                        android:button="@android:color/transparent"
-                        android:elevation="5dp"
-                        android:gravity="center"
-                        android:padding="5dp"
                         android:text="Sushi"
-                        android:textColor="@drawable/radio_text_color" />
+                        android:textColor="@drawable/radio_text_color"
+                        android:textSize="15dp" />
 
-                    <RadioButton
-                        android:id="@+id/btnVegan"
-                        android:layout_width="110dp"
+                    <CheckBox
+                        android:id="@+id/checkhamburger"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
+                        android:layout_marginRight="15dp"
                         android:background="@drawable/radio_selector"
-                        android:button="@android:color/transparent"
-                        android:elevation="5dp"
+                        android:button="@null"
+                        app:buttonCompat="@null"
                         android:gravity="center"
-                        android:padding="5dp"
-                        android:text="Vegan"
-                        android:textColor="@drawable/radio_text_color" />
+                        android:text="Hamburger"
+                        android:textColor="@drawable/radio_text_color"
+                        android:textSize="15dp" />
 
-                </RadioGroup>
+                    <CheckBox
+                        android:id="@+id/checkvegan"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/radio_selector"
+                        android:button="@null"
+                        app:buttonCompat="@null"
+                        android:gravity="center"
+                        android:text="Vegan"
+                        android:textColor="@drawable/radio_text_color"
+                        android:textSize="15dp" />
+
+
+                </LinearLayout>
+
 
             </HorizontalScrollView>
 
@@ -111,7 +110,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/radiogroups">
+            app:layout_constraintBottom_toBottomOf="@id/checkboxes">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleView"

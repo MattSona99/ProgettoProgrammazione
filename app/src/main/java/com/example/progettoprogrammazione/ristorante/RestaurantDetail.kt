@@ -16,7 +16,6 @@ import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.prodotti.ProductClickListener
 import com.example.progettoprogrammazione.utils.ProductUtils
 import com.example.progettoprogrammazione.utils.ResponseProdotto
-import com.example.progettoprogrammazione.viewmodels.ProductViewModel
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
@@ -27,17 +26,12 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
 
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
-    private lateinit var productDataViewModel: ProductViewModel
-
-    private var bevandeArrayList: ArrayList<Product>? = null
-    private var antipastiArrayList: ArrayList<Product>? = null
-    private var primiArrayList: ArrayList<Product>? = null
-    private var secondiArrayList: ArrayList<Product>? = null
-    private var contornoArrayList: ArrayList<Product>? = null
-    private var dolceArrayList: ArrayList<Product>? = null
-
-    private var tmpprodArrayList= mutableListOf<Product>()
-    private var prodArrayList: ArrayList<Product>? = null
+    private lateinit var bevandeArrayList: ArrayList<Product>
+    private lateinit var antipastiArrayList: ArrayList<Product>
+    private lateinit var primiArrayList: ArrayList<Product>
+    private lateinit var secondiArrayList: ArrayList<Product>
+    private lateinit var contorniArrayList: ArrayList<Product>
+    private lateinit var dolciArrayList: ArrayList<Product>
 
     private var restaurantList: ArrayList<Restaurant>? = null
 
@@ -85,7 +79,6 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
         val restaurantID = args?.get("restID")
         restaurantList = args?.getParcelableArrayList("restArrayList")
 
-        val bundle = Bundle()
         getBevanda(restaurantID.toString(),
             object: FireBaseCallbackProdotto{
                 override fun onResponse(responseP: ResponseProdotto) {
@@ -113,34 +106,26 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
         getContorno(restaurantID.toString(),
             object: FireBaseCallbackProdotto{
                 override fun onResponse(responseP: ResponseProdotto) {
-                    contornoArrayList= responseP.prodotto
+                    contorniArrayList= responseP.prodotto
                 }
             },context)
         getDolce(restaurantID.toString(),
             object: FireBaseCallbackProdotto{
                 override fun onResponse(responseP: ResponseProdotto) {
-                    dolceArrayList= responseP.prodotto
+                    dolciArrayList= responseP.prodotto
                 }
             },context)
 
         binding.visualizzaMenu.setOnClickListener {
-            //PASSAGGIO DATI RISTORANTI -->(CONTIENE ANCHE TUTTI I MENU)
+            val bundle = Bundle()
+            bundle.putParcelableArrayList("bevande", bevandeArrayList)
+            bundle.putParcelableArrayList("antipasti", antipastiArrayList)
+            bundle.putParcelableArrayList("primi", primiArrayList)
+            bundle.putParcelableArrayList("secondi", secondiArrayList)
+            bundle.putParcelableArrayList("contorni", contorniArrayList)
+            bundle.putParcelableArrayList("dolci", dolciArrayList)
 
-            tmpprodArrayList.addAll(bevandeArrayList!!.toMutableList())
-            tmpprodArrayList.addAll(antipastiArrayList!!.toMutableList())
-            tmpprodArrayList.addAll(primiArrayList!!.toMutableList())
-            tmpprodArrayList.addAll(secondiArrayList!!.toMutableList())
-            tmpprodArrayList.addAll(contornoArrayList!!.toMutableList())
-            tmpprodArrayList.addAll(dolceArrayList!!.toMutableList())
-
-            prodArrayList=tmpprodArrayList as ArrayList<Product>
-
-            bundle.putParcelableArrayList("prodotti", prodArrayList )
-
-            bundle.putString("restID", restaurantID.toString())
-            bundle.putParcelableArrayList("restArrayList", restaurantList)
-
-            view?.findNavController()?.navigate(R.id.DetailToMenu,bundle)
+            view.findNavController().navigate(R.id.DetailToMenu,bundle)
         }
 
     }

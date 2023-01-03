@@ -5,5 +5,5 @@ import androidx.lifecycle.ViewModel
 import com.example.progettoprogrammazione.models.Product
 
 class ProductViewModel :ViewModel() {
-    val arrayListaprodottiLiveData = MutableLiveData<ArrayList<Product>>()
+    val arrayListProdottiLiveData = MutableLiveData<ArrayList<Product>>()
 }
