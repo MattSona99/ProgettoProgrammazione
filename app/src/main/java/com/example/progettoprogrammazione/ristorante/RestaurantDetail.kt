@@ -1,5 +1,7 @@
 package com.example.progettoprogrammazione.ristorante
 
+import android.app.AlertDialog
+import android.content.Intent
 import android.graphics.*
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +12,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
+import com.example.progettoprogrammazione.activity.IntroActivity
 import com.example.progettoprogrammazione.databinding.FragmentRestaurantDetailBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackProdotto
 import com.example.progettoprogrammazione.models.Product
@@ -43,7 +46,7 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
     private var prodArrayList: ArrayList<Product>? = null
 
     private var restaurantList: ArrayList<Restaurant>? = null
-
+    private var restaurant : Restaurant? = null
     private lateinit var user : FirebaseAuth
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,22 +58,20 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
 
 
         val args = this.arguments
- //    user = args!!.getParcelable<User>("user") as User
         val restaurantID = args?.get("restID")
         restaurantList = args?.getParcelableArrayList("restArrayList")
-        val restaurant = restaurantFromId(restaurantID.toString())
+        restaurant = restaurantFromId(restaurantID.toString())
 
         user = FirebaseAuth.getInstance()
         user.currentUser?.email
 
         if (restaurant != null) {
-            binding.modificaRistorante.isVisible = restaurant.proprietarioR == user.currentUser?.email
-            binding.eliminaRistorante.isVisible = restaurant.proprietarioR == user.currentUser?.email
+            binding.btnModificaRistorante.isVisible = restaurant?.proprietarioR == user.currentUser?.email
+            binding.btnEliminaRistorante.isVisible = restaurant?.proprietarioR == user.currentUser?.email
         }
 
-
         if (restaurant != null) {
-            val imageName = restaurant.imageR
+            val imageName = restaurant?.imageR
             val storageRef = FirebaseStorage.getInstance().reference.child("$imageName")
             val localfile = File.createTempFile("tempImage", "jpg")
             storageRef.getFile(localfile).addOnSuccessListener {
@@ -81,10 +82,10 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
                 Toast.makeText(context, "Caricamento immagine fallito", Toast.LENGTH_SHORT).show()
             }
 
-            binding.nomeRistoranteDetail.text = restaurant.nomeR
-            binding.descrizioneDetail.text = restaurant.descrizioneR
-            binding.numeroDetail.text = restaurant.telefonoR
-            binding.indirizzodetail.text = restaurant.indirizzoR
+            binding.nomeRistoranteDetail.text = restaurant?.nomeR
+            binding.descrizioneDetail.text = restaurant?.descrizioneR
+            binding.numeroDetail.text = restaurant?.telefonoR
+            binding.indirizzodetail.text = restaurant?.indirizzoR
 
         }
 
@@ -155,6 +156,23 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
             view?.findNavController()?.navigate(R.id.DetailToMenu,bundle)
         }
 
+        binding.eliminaRistorante.setOnClickListener{
+            val builder = AlertDialog.Builder(activity)
+            val reference = firebaseDatabase.getReference("Ristoranti")
+            val idR = restaurant?.idR
+            builder.setTitle("Conferma l'eliminazione del ristorante")
+            builder.setMessage("Sei sicuro di voler eliminare il ristorante?")
+            builder.setPositiveButton("Sì") { dialog, _ ->
+                reference.child("$idR").removeValue()
+                view?.findNavController()?.navigate(R.id.Ristoranti_R)
+
+            }
+            builder.setNegativeButton("No") { dialog, _ ->
+                dialog.cancel()
+            }
+            builder.show()
+
+        }
     }
 
     override fun onClickProduct(prodotto: Product) {
