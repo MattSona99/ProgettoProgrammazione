@@ -1,18 +1,13 @@
 package com.example.progettoprogrammazione.prodotti
 
-import android.content.Context
 import android.graphics.*
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.progettoprogrammazione.databinding.FragmentMenuBinding
 import com.example.progettoprogrammazione.databinding.FragmentMenuproductDetailBinding
 import com.example.progettoprogrammazione.models.Product
-import com.google.firebase.storage.FirebaseStorage
-import java.io.File
 
 class ProductDetail : Fragment() {
 
@@ -29,12 +24,10 @@ class ProductDetail : Fragment() {
         binding = FragmentMenuproductDetailBinding.inflate(layoutInflater)
 
         val args = this.arguments
-        val productID = args?.get("productID")
+        val productID = args?.get("prodID")
         productList = args?.getParcelableArrayList("prodArrayList")
 
-        val prodotti = producttFromId(productID.toString())
-
-        if (prodotti != null) {
+        val prodotto = productFromId(productID.toString())
 /*
             val imageName = prodotti.imageP
             val storageRef = FirebaseStorage.getInstance().reference.child("$imageName")
@@ -49,10 +42,10 @@ class ProductDetail : Fragment() {
 
 
  */
-            binding.imgRistoranteDetail
-            binding.nomeProdottoDetail.text=prodotti.nomeP
+        binding.imgRistoranteDetail
+        binding.nomeProdottoDetail.text = prodotto!!.nomeP.toString()
 
-        }
+
         return binding.root
     }
 
@@ -61,7 +54,7 @@ class ProductDetail : Fragment() {
 
     }
 
-    private fun producttFromId(productID: String?): Product? {
+    private fun productFromId(productID: String?): Product? {
         for (prodotti in productList!!) {
             if (prodotti.idP == productID)
                 return prodotti

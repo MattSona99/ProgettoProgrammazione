@@ -1,42 +1,40 @@
 package com.example.progettoprogrammazione.fragment
 
 import android.os.Bundle
-import android.provider.ContactsContract.Data
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentMenuBinding
-import com.example.progettoprogrammazione.firebase.FireBaseCallbackProdotto
 import com.example.progettoprogrammazione.models.Product
-import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.prodotti.ProductAdapter
 import com.example.progettoprogrammazione.prodotti.ProductClickListener
 import com.example.progettoprogrammazione.utils.ProductUtils
-import com.example.progettoprogrammazione.utils.ResponseProdotto
-import com.example.progettoprogrammazione.viewmodels.ProductViewModel
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 
 class FragmentMenu : Fragment(), ProductClickListener, ProductUtils {
 
     private lateinit var binding: FragmentMenuBinding
-    private lateinit var adapter: ProductAdapter
+    private lateinit var adapterBev: ProductAdapter
+    private lateinit var adapterAnt: ProductAdapter
+    private lateinit var adapterPri: ProductAdapter
+    private lateinit var adapterSec: ProductAdapter
+    private lateinit var adapterCon: ProductAdapter
+    private lateinit var adapterDol: ProductAdapter
 
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
-    private var restaurantList: ArrayList<Restaurant>? = null
+    private lateinit var bevandeArrayList: ArrayList<Product>
+    private lateinit var antipastiArrayList: ArrayList<Product>
+    private lateinit var primiArrayList: ArrayList<Product>
+    private lateinit var secondiArrayList: ArrayList<Product>
+    private lateinit var contorniArrayList: ArrayList<Product>
+    private lateinit var dolciArrayList: ArrayList<Product>
 
-    private lateinit var productDataViewModel: ProductViewModel
-    private lateinit var prodArrayList: ArrayList<Product>
+    private var prodotti = arrayListOf<Product>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,18 +43,56 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils {
         binding = FragmentMenuBinding.inflate(layoutInflater)
 
         val args = this.arguments
-        val restaurantID = args?.get("restID")
-        restaurantList = args?.getParcelableArrayList("restArrayList")
 
-        prodArrayList= args?.getParcelableArrayList("prodotti")!!
+        bevandeArrayList = args?.getParcelableArrayList<Product>("bevande") as ArrayList<Product>
+        antipastiArrayList = args.getParcelableArrayList<Product>("antipasti") as ArrayList<Product>
+        primiArrayList = args.getParcelableArrayList<Product>("primi") as ArrayList<Product>
+        secondiArrayList = args.getParcelableArrayList<Product>("secondi") as ArrayList<Product>
+        contorniArrayList = args.getParcelableArrayList<Product>("contorni") as ArrayList<Product>
+        dolciArrayList = args.getParcelableArrayList<Product>("dolci") as ArrayList<Product>
 
-        val layoutManager = GridLayoutManager(context, 1)
-        binding.recycleViewP.layoutManager = layoutManager
-        adapter = ProductAdapter(prodArrayList, this)
-        binding.recycleViewP.adapter = adapter
-        binding.recycleViewP.setHasFixedSize(true)
-        adapter.notifyDataSetChanged()
+        val layoutManagerBev = GridLayoutManager(context, 3)
+        binding.recycleViewBevande.layoutManager = layoutManagerBev
+        adapterBev = ProductAdapter(bevandeArrayList, this)
+        binding.recycleViewBevande.adapter = adapterBev
+        binding.recycleViewBevande.setHasFixedSize(true)
 
+        val layoutManagerAnt = GridLayoutManager(context, 3)
+        binding.recycleViewAntipasti.layoutManager = layoutManagerAnt
+        adapterAnt = ProductAdapter(antipastiArrayList, this)
+        binding.recycleViewAntipasti.adapter = adapterAnt
+        binding.recycleViewAntipasti.setHasFixedSize(true)
+
+        val layoutManagerPri = GridLayoutManager(context, 3)
+        binding.recycleViewPrimi.layoutManager = layoutManagerPri
+        adapterPri = ProductAdapter(primiArrayList, this)
+        binding.recycleViewPrimi.adapter = adapterPri
+        binding.recycleViewPrimi.setHasFixedSize(true)
+
+        val layoutManagerSec = GridLayoutManager(context, 3)
+        binding.recycleViewSecondi.layoutManager = layoutManagerSec
+        adapterSec = ProductAdapter(secondiArrayList, this)
+        binding.recycleViewSecondi.adapter = adapterSec
+        binding.recycleViewSecondi.setHasFixedSize(true)
+
+        val layoutManagerCon = GridLayoutManager(context, 3)
+        binding.recycleViewContorni.layoutManager = layoutManagerCon
+        adapterCon = ProductAdapter(contorniArrayList, this)
+        binding.recycleViewContorni.adapter = adapterCon
+        binding.recycleViewContorni.setHasFixedSize(true)
+
+        val layoutManagerDol = GridLayoutManager(context, 3)
+        binding.recycleViewDolci.layoutManager = layoutManagerDol
+        adapterDol = ProductAdapter(dolciArrayList, this)
+        binding.recycleViewDolci.adapter = adapterDol
+        binding.recycleViewDolci.setHasFixedSize(true)
+
+        prodotti.addAll(bevandeArrayList)
+        prodotti.addAll(antipastiArrayList)
+        prodotti.addAll(primiArrayList)
+        prodotti.addAll(secondiArrayList)
+        prodotti.addAll(contorniArrayList)
+        prodotti.addAll(dolciArrayList)
 
         return binding.root
     }
@@ -65,14 +101,9 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils {
 
         val bundle = Bundle()
         bundle.putString("prodID", prodotto.idP.toString())
-        bundle.putParcelableArrayList("prodArrayList", prodArrayList)
+        bundle.putParcelableArrayList("prodArrayList", prodotti)
 
         view?.findNavController()?.navigate(R.id.productDetail, bundle)
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
     }
 

@@ -1,7 +1,5 @@
 package com.example.progettoprogrammazione.ristorante
 
-import android.app.AlertDialog
-import android.content.Intent
 import android.graphics.*
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,16 +10,13 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.activity.IntroActivity
 import com.example.progettoprogrammazione.databinding.FragmentRestaurantDetailBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackProdotto
 import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.models.Restaurant
-import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.prodotti.ProductClickListener
 import com.example.progettoprogrammazione.utils.ProductUtils
 import com.example.progettoprogrammazione.utils.ResponseProdotto
-import com.example.progettoprogrammazione.viewmodels.ProductViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -33,21 +28,18 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
 
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
-    private lateinit var productDataViewModel: ProductViewModel
-
-    private var bevandeArrayList: ArrayList<Product>? = null
-    private var antipastiArrayList: ArrayList<Product>? = null
-    private var primiArrayList: ArrayList<Product>? = null
-    private var secondiArrayList: ArrayList<Product>? = null
-    private var contornoArrayList: ArrayList<Product>? = null
-    private var dolceArrayList: ArrayList<Product>? = null
-
-    private var tmpprodArrayList= mutableListOf<Product>()
-    private var prodArrayList: ArrayList<Product>? = null
+    private lateinit var bevandeArrayList: ArrayList<Product>
+    private lateinit var antipastiArrayList: ArrayList<Product>
+    private lateinit var primiArrayList: ArrayList<Product>
+    private lateinit var secondiArrayList: ArrayList<Product>
+    private lateinit var contorniArrayList: ArrayList<Product>
+    private lateinit var dolciArrayList: ArrayList<Product>
 
     private var restaurantList: ArrayList<Restaurant>? = null
-    private var restaurant : Restaurant? = null
-    private lateinit var user : FirebaseAuth
+
+
+    private lateinit var user: FirebaseAuth
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -56,22 +48,24 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
         super.onCreate(savedInstanceState)
         binding = FragmentRestaurantDetailBinding.inflate(layoutInflater)
 
-
         val args = this.arguments
         val restaurantID = args?.get("restID")
         restaurantList = args?.getParcelableArrayList("restArrayList")
-        restaurant = restaurantFromId(restaurantID.toString())
 
         user = FirebaseAuth.getInstance()
         user.currentUser?.email
 
+        val restaurant = restaurantFromId(restaurantID.toString())
+
         if (restaurant != null) {
-            binding.btnModificaRistorante.isVisible = restaurant?.proprietarioR == user.currentUser?.email
-            binding.btnEliminaRistorante.isVisible = restaurant?.proprietarioR == user.currentUser?.email
+            binding.modificaRistorante.isVisible =
+                restaurant.proprietarioR == user.currentUser?.email
+            binding.eliminaRistorante.isVisible =
+                restaurant.proprietarioR == user.currentUser?.email
         }
 
         if (restaurant != null) {
-            val imageName = restaurant?.imageR
+            val imageName = restaurant.imageR
             val storageRef = FirebaseStorage.getInstance().reference.child("$imageName")
             val localfile = File.createTempFile("tempImage", "jpg")
             storageRef.getFile(localfile).addOnSuccessListener {
@@ -82,12 +76,13 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
                 Toast.makeText(context, "Caricamento immagine fallito", Toast.LENGTH_SHORT).show()
             }
 
-            binding.nomeRistoranteDetail.text = restaurant?.nomeR
-            binding.descrizioneDetail.text = restaurant?.descrizioneR
-            binding.numeroDetail.text = restaurant?.telefonoR
-            binding.indirizzodetail.text = restaurant?.indirizzoR
+            binding.nomeRistoranteDetail.text = restaurant.nomeR
+            binding.descrizioneDetail.text = restaurant.descrizioneR
+            binding.numeroDetail.text = restaurant.telefonoR
+            binding.indirizzodetail.text = restaurant.indirizzoR
 
         }
+
 
         return binding.root
     }
@@ -99,80 +94,61 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
         val restaurantID = args?.get("restID")
         restaurantList = args?.getParcelableArrayList("restArrayList")
 
-        val bundle = Bundle()
         getBevanda(restaurantID.toString(),
-            object: FireBaseCallbackProdotto{
+            object : FireBaseCallbackProdotto {
                 override fun onResponse(responseP: ResponseProdotto) {
                     bevandeArrayList = responseP.prodotto
                 }
-            },context)
+            }, context
+        )
         getAntipasto(restaurantID.toString(),
-            object: FireBaseCallbackProdotto{
+            object : FireBaseCallbackProdotto {
                 override fun onResponse(responseP: ResponseProdotto) {
                     antipastiArrayList = responseP.prodotto
                 }
-            },context)
+            }, context
+        )
         getPrimo(restaurantID.toString(),
-            object: FireBaseCallbackProdotto{
+            object : FireBaseCallbackProdotto {
                 override fun onResponse(responseP: ResponseProdotto) {
                     primiArrayList = responseP.prodotto
                 }
-            },context)
+            }, context
+        )
         getSecondo(restaurantID.toString(),
-            object: FireBaseCallbackProdotto{
+            object : FireBaseCallbackProdotto {
                 override fun onResponse(responseP: ResponseProdotto) {
                     secondiArrayList = responseP.prodotto
                 }
-            },context)
+            }, context
+        )
         getContorno(restaurantID.toString(),
-            object: FireBaseCallbackProdotto{
+            object : FireBaseCallbackProdotto {
                 override fun onResponse(responseP: ResponseProdotto) {
-                    contornoArrayList = responseP.prodotto
+                    contorniArrayList = responseP.prodotto
                 }
-            },context)
+            }, context
+        )
         getDolce(restaurantID.toString(),
-            object: FireBaseCallbackProdotto{
+            object : FireBaseCallbackProdotto {
                 override fun onResponse(responseP: ResponseProdotto) {
-                    dolceArrayList = responseP.prodotto
+                    dolciArrayList = responseP.prodotto
                 }
-            },context)
-
+            }, context
+        )
 
         binding.visualizzaMenu.setOnClickListener {
-            //PASSAGGIO DATI RISTORANTI -->(CONTIENE ANCHE TUTTI I MENU)
+            val bundle = Bundle()
+            bundle.putParcelableArrayList("bevande", bevandeArrayList)
+            bundle.putParcelableArrayList("antipasti", antipastiArrayList)
+            bundle.putParcelableArrayList("primi", primiArrayList)
+            bundle.putParcelableArrayList("secondi", secondiArrayList)
+            bundle.putParcelableArrayList("contorni", contorniArrayList)
+            bundle.putParcelableArrayList("dolci", dolciArrayList)
 
-            tmpprodArrayList.addAll(bevandeArrayList!!.toMutableList())
-            tmpprodArrayList.addAll(antipastiArrayList!!.toMutableList())
-            tmpprodArrayList.addAll(primiArrayList!!.toMutableList())
-            tmpprodArrayList.addAll(secondiArrayList!!.toMutableList())
-            tmpprodArrayList.addAll(contornoArrayList!!.toMutableList())
-            tmpprodArrayList.addAll(dolceArrayList!!.toMutableList())
-
-            prodArrayList=tmpprodArrayList as ArrayList<Product>
-            bundle.putParcelableArrayList("prodotti", prodArrayList )
-            bundle.putString("restID", restaurantID.toString())
-            bundle.putParcelableArrayList("restArrayList", restaurantList)
-
-            view?.findNavController()?.navigate(R.id.DetailToMenu,bundle)
+            view.findNavController().navigate(R.id.DetailToMenu, bundle)
         }
 
-        binding.eliminaRistorante.setOnClickListener{
-            val builder = AlertDialog.Builder(activity)
-            val reference = firebaseDatabase.getReference("Ristoranti")
-            val idR = restaurant?.idR
-            builder.setTitle("Conferma l'eliminazione del ristorante")
-            builder.setMessage("Sei sicuro di voler eliminare il ristorante?")
-            builder.setPositiveButton("Sì") { dialog, _ ->
-                reference.child("$idR").removeValue()
-                view?.findNavController()?.navigate(R.id.Ristoranti_R)
-
-            }
-            builder.setNegativeButton("No") { dialog, _ ->
-                dialog.cancel()
-            }
-            builder.show()
-
-        }
     }
 
     override fun onClickProduct(prodotto: Product) {
@@ -222,7 +198,6 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
         // Return the circular bitmap
         return dstBitmap
     }
-
 
 
 }
