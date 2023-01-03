@@ -46,10 +46,10 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
             val layoutManager = GridLayoutManager(context, 1)
             binding.recycleView.layoutManager = layoutManager
             adapter = RestaurantAdapter(restArrayList, this)
-            adapter.notifyDataSetChanged()
             binding.recycleView.adapter = adapter
             binding.recycleView.setHasFixedSize(true)
             showData()
+            adapter.notifyDataSetChanged()
 
         }
 
