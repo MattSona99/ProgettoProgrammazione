@@ -43,7 +43,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/layout_crea"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,6 +55,8 @@
                     android:id="@+id/crea_rist_t"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginLeft="20dp"
                     android:text="CREA UNA NUOVA ATTIVITÀ"
                     android:textColor="@color/white"
                     android:textSize="20sp"
@@ -64,16 +66,17 @@
                     android:id="@+id/button_crea"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginRight="30dp"
                     android:background="@drawable/red_button"
                     android:gravity="center"
                     android:hint="+"
+                    android:layout_alignParentRight="true"
                     android:textColorHighlight="#E91E63"
                     android:textColorHint="@color/white"
                     android:textColorLink="#E91E63"
                     android:textSize="20sp"
                     android:textStyle="bold" />
-            </LinearLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/searchlayout_rist"

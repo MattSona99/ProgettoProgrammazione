@@ -43,7 +43,7 @@
                     android:orientation="vertical">
 
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -52,7 +52,7 @@
 
                         <TextView
                             android:id="@+id/add_bevanda"
-                            android:layout_width="300dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Aggiungi una bevanda"
@@ -64,6 +64,7 @@
                             android:id="@+id/btn_bevanda"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
+                            android:layout_alignParentRight="true"
                             android:layout_marginStart="20dp"
                             android:background="@drawable/red_button"
                             android:gravity="center"
@@ -74,14 +75,14 @@
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="2px"
                         android:background="@drawable/red_button" />
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -90,7 +91,7 @@
 
                         <TextView
                             android:id="@+id/add_antipasto"
-                            android:layout_width="300dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Aggiungi un antipasto"
@@ -102,24 +103,26 @@
                             android:id="@+id/btn_antipasto"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
+                            android:layout_alignParentRight="true"
                             android:layout_marginStart="20dp"
                             android:background="@drawable/red_button"
                             android:gravity="center"
                             android:hint="+"
+
                             android:textColorHighlight="#E91E63"
                             android:textColorHint="@color/white"
                             android:textColorLink="#E91E63"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="2px"
                         android:background="@drawable/red_button" />
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -128,7 +131,7 @@
 
                         <TextView
                             android:id="@+id/add_primo"
-                            android:layout_width="300dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Aggiungi un primo"
@@ -140,6 +143,7 @@
                             android:id="@+id/btn_primo"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
+                            android:layout_alignParentRight="true"
                             android:layout_marginStart="20dp"
                             android:background="@drawable/red_button"
                             android:gravity="center"
@@ -150,14 +154,14 @@
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="2px"
                         android:background="@drawable/red_button" />
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -166,7 +170,7 @@
 
                         <TextView
                             android:id="@+id/add_secondo"
-                            android:layout_width="300dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Aggiungi un secondo"
@@ -178,6 +182,7 @@
                             android:id="@+id/btn_secondo"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
+                            android:layout_alignParentRight="true"
                             android:layout_marginStart="20dp"
                             android:background="@drawable/red_button"
                             android:gravity="center"
@@ -188,14 +193,14 @@
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="2px"
                         android:background="@drawable/red_button" />
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -204,7 +209,7 @@
 
                         <TextView
                             android:id="@+id/add_contorno"
-                            android:layout_width="300dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Aggiungi un contorno"
@@ -216,6 +221,7 @@
                             android:id="@+id/btn_contorno"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
+                            android:layout_alignParentRight="true"
                             android:layout_marginStart="20dp"
                             android:background="@drawable/red_button"
                             android:gravity="center"
@@ -226,14 +232,14 @@
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="2px"
                         android:background="@drawable/red_button" />
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -242,7 +248,7 @@
 
                         <TextView
                             android:id="@+id/add_dolce"
-                            android:layout_width="300dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="Aggiungi un dolce"
@@ -254,6 +260,7 @@
                             android:id="@+id/btn_dolce"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
+                            android:layout_alignParentRight="true"
                             android:layout_marginStart="20dp"
                             android:background="@drawable/red_button"
                             android:gravity="center"
@@ -264,7 +271,7 @@
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
                 </LinearLayout>
 
