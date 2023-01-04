@@ -1,18 +1,18 @@
 package com.example.progettoprogrammazione.ristoratore
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.activity.CreaMenu
-import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.databinding.FragmentCreaRistBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
@@ -37,6 +37,8 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
 
     private lateinit var imageUri: Uri
 
+    private lateinit var tipocibo: TextView
+
     private val selectImageFromGalleryResult =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let {
@@ -51,6 +53,42 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCreaRistBinding.inflate(layoutInflater)
+        tipocibo = binding.tipociboNewR
+        val typearray =
+            arrayOf("Italiano", "Cinese", "Giapponese", "Indiano", "Greco", "Pizza", "Burger")
+        val typelist = arrayListOf<String>()
+        val selected = BooleanArray(typearray.size)
+
+        binding.tipociboNewR.setOnClickListener {
+            val builder = AlertDialog.Builder(activity)
+            builder.setTitle("Seleziona il tipo di cibo")
+
+            val selectedItems = mutableListOf(*typearray)
+
+            builder.setCancelable(false)
+
+            builder.setMultiChoiceItems(typearray, selected) { dialog, which, isChecked ->
+                selected[which] = isChecked
+                val currentItem = selectedItems[which]
+            }
+
+            builder.setPositiveButton("Ok") { dialog, _ ->
+                for (i in selected.indices) {
+                    if (selected[i]) {
+                        binding.tipociboNewR.text =
+                            String.format("%s%s, ", binding.tipociboNewR.text, selectedItems[i])
+                    }
+                }
+            }
+            builder.setNegativeButton("Annulla") { dialog, _ ->
+                dialog.cancel()
+            }
+            builder.setNeutralButton("Pulisci") { dialog: DialogInterface?, which: Int ->
+                Arrays.fill(selected, false)
+                binding.tipociboNewR.text = ""
+            }
+            builder.show()
+        }
 
         val args = this.arguments
         user = args?.getParcelable<User>("user") as User
@@ -64,6 +102,7 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
         binding.selectImgNewR.setOnClickListener {
             selectImageFromGallery()
         }
+
         binding.ConstraintCreaRist.setOnClickListener {
             if (this::imageUri.isInitialized) {
                 binding.nomeristoranteNewR.text.toString()
@@ -102,7 +141,8 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
                     && descrizioneR.length > 50 && descrizioneR.length < 250
                     && indirizzoR.isNotEmpty() && indirizzoR.length > 15
                     && orariolavorativoR.isNotEmpty() && orariolavorativoR.length > 10
-                    && telefonoR.isNotEmpty() && telefonoR.length > 8) {
+                    && telefonoR.isNotEmpty() && telefonoR.length > 8
+                ) {
                     getUserData(object : FireBaseCallbackUser {
                         override fun onResponse(responseU: ResponseUser) {
 
