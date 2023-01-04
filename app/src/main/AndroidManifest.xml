@@ -18,44 +18,47 @@
         android:theme="@style/Theme.ProgettoProgrammazione"
         tools:targetApi="31"
 
-    >
+        >
 
-    <provider
-        android:name="androidx.core.content.FileProvider"
-        android:authorities="${applicationId}.provider"
-        android:exported="false"
-        android:grantUriPermissions="true">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/provider_paths" />
-    </provider>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
 
-    <activity
-        android:name=".ristorante.RestaurantDetail"
-        android:exported="false">
-        <meta-data
-            android:name="android.app.lib_name"
-            android:value="" />
-    </activity>
-    <activity
-        android:name=".activity.UserActivity"
-        android:windowSoftInputMode="adjustPan" />
-    <activity
-        android:name=".activity.RestaurateurActivity"
-        android:windowSoftInputMode="adjustPan" />
-    <activity
-        android:name=".activity.EmployeeActivity"
-        android:windowSoftInputMode="adjustPan" />
-    <activity
-        android:name=".activity.IntroActivity"
-        android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity
+            android:name=".ristorante.RestaurantDetail"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.UserActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.RestaurateurActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.EmployeeActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.CreaMenu"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.IntroActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
-</application>
+    </application>
 
-    </manifest>
+</manifest>

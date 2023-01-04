@@ -1,5 +1,6 @@
 package com.example.progettoprogrammazione.ristoratore
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +11,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
+import com.example.progettoprogrammazione.activity.CreaMenu
+import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.databinding.FragmentCreaRistBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
@@ -25,7 +28,7 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
 
     private lateinit var binding: FragmentCreaRistBinding
 
-    private lateinit var user : User
+    private lateinit var user: User
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
@@ -123,11 +126,16 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
 
                             getRestaurantData(object : FireBaseCallbackRestaurant {
                                 override fun onResponse(responseR: ResponseRistorante) {
-                                    val bundle = Bundle()
-                                    bundle.putParcelable("ristorante", restaurantData)
-                                    bundle.putParcelable("user", user)
-                                    view.findNavController()
-                                        .navigate(R.id.CreaRist_to_CreaMenu, bundle)
+                                    val intent =
+                                        Intent(
+                                            context,
+                                            CreaMenu::class.java
+                                        ).apply {
+                                            putExtra("ristorante", restaurantData)
+                                            putExtra("user", user)
+                                        }
+                                    startActivity(intent)
+                                    activity?.finish()
                                 }
                             }, context)
                         }
