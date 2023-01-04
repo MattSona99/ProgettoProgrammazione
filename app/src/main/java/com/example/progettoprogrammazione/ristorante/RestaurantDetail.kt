@@ -59,9 +59,9 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
         restaurant = restaurantFromId(restaurantID.toString())
 
         if (restaurant != null) {
-            binding.modificaRistorante.isVisible =
+            binding.btnModificaRistorante.isVisible =
                 restaurant?.proprietarioR == user.currentUser?.email
-            binding.eliminaRistorante.isVisible =
+            binding.btnEliminaRistorante.isVisible =
                 restaurant?.proprietarioR == user.currentUser?.email
         }
 

@@ -19,8 +19,7 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:id="@+id/btn_modifica_ristorante">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -192,7 +191,8 @@
                         android:layout_height="50dp"
                         android:background="@drawable/red_button"
                         android:gravity="center"
-                        android:layout_marginBottom="20dp">
+                        android:layout_marginBottom="20dp"
+                        android:id="@+id/btn_modifica_ristorante">
 
                         <TextView
                             android:id="@+id/modifica_ristorante"
