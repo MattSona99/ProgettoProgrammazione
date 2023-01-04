@@ -5,12 +5,12 @@
 
         <item name="android:textSize">20sp</item>
         <!--This line changes the color of text in Toolbar-->
-        <item name="android:textColorPrimary">@color/red</item>
+        <item name="android:textColorPrimary">@color/white</item>
         <!--This line changes the color of icons in toolbar (back, overflow menu icons)-->
-        <item name="android:textColorSecondary">@color/red</item>
-        <item name="android:editTextColor">@color/red</item>
-        <item name="android:textColorHint">@color/red</item>
-        <item name="android:textColorHighlight">@color/red</item>
-        <item name="android:textColorLink">@color/red</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:editTextColor">@color/white</item>
+            <item name="android:textColorHint">@color/white</item>
+        <item name="android:textColorHighlight">@color/white</item>
+        <item name="android:textColorLink">@color/white</item>
     </style>
 </resources>
