@@ -4,192 +4,198 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_splash"
     tools:context=".intro.FragmentRegister">
 
-    <ImageView
-        android:id="@+id/splashscreen"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/background_splash" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Compila tutti i campi per
-        completare la registrazione!"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="23dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/nome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/splashscreen" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:gravity="center">
 
-    <EditText
-        android:id="@+id/nome"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:background="@drawable/custom_input"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Nome"
-        android:inputType="textPersonName"
-        android:textColor="@color/white"
-        android:textColorHighlight="#E91E63"
-        android:textColorHint="@color/pink"
-        android:textColorLink="#E91E63"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/splashscreen"
-        app:layout_constraintVertical_bias="0.2" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Compila tutti i campi per completare la registrazione!"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/cognome"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:background="@drawable/custom_input"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Cognome"
-        android:inputType="textPersonName"
-        android:textColor="@color/white"
-        android:textColorHighlight="#E91E63"
-        android:textColorHint="@color/pink"
-        android:textColorLink="#E91E63"
-        app:layout_constraintBottom_toBottomOf="@+id/splashscreen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nome"
-        app:layout_constraintVertical_bias="0.050" />
+        </LinearLayout>
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:background="@drawable/custom_input"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="E-mail"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/white"
-        android:textColorHighlight="#E91E63"
-        android:textColorHint="@color/pink"
-        android:textColorLink="#E91E63"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cognome"
-        app:layout_constraintVertical_bias="0.050" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til3"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        app:hintEnabled="false"
-        app:layout_constraintBottom_toBottomOf="@+id/splashscreen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        app:layout_constraintVertical_bias="0.050"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/white">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/password"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:background="@drawable/custom_input"
-            android:textSize="18dp"
-            android:gravity="center"
-            android:hint="Password"
-            android:paddingStart="50dp"
-            android:paddingTop="10dp"
-            android:inputType="textPassword"
-            android:textColor="@color/white"
-            android:textColorHighlight="#E91E63"
-            android:textColorHint="@color/pink"
-            android:textColorLink="#E91E63" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <EditText
-        android:id="@+id/telefono"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:background="@drawable/custom_input"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Numero di telefono"
-        android:inputType="phone"
-        android:textColor="@color/white"
-        android:textColorHighlight="#E91E63"
-        android:textColorHint="@color/pink"
-        android:textColorLink="#E91E63"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/til3"
-        app:layout_constraintVertical_bias="0.050" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ConstraintRegistrati"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/red_button"
-        app:layout_constraintBottom_toBottomOf="@+id/splashscreen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/telefono"
-        app:layout_constraintVertical_bias="0.2">
-
-        <TextView
-            android:id="@+id/registrati"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="REGISTRATI"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="30dp">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/already"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Già registrato? Effettua il login!"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="23dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ConstraintRegistrati"
-        app:layout_constraintVertical_bias="0.3
-" />
+            <EditText
+                android:id="@+id/nome"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_input"
+                android:gravity="center"
+                android:hint="Nome"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/white"
+                android:textColorHint="@color/pink"
+                android:textColorLink="@color/white" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="3px"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/red_button" />
+
+            <EditText
+                android:id="@+id/cognome"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="Cognome"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/white"
+                android:textColorHint="@color/pink"
+                android:textColorLink="@color/white" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="3px"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/red_button" />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="E-mail"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/white"
+                android:textColorHint="@color/pink"
+                android:textColorLink="@color/white" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="3px"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/red_button" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til3"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:hintEnabled="false"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/custom_input"
+                    android:gravity="center"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:paddingStart="50dp"
+                    android:paddingTop="10dp"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="@color/white"
+                    android:textColorHint="@color/pink"
+                    android:textColorLink="@color/white"
+                    android:textSize="18dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="3px"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/red_button" />
+
+            <EditText
+                android:id="@+id/telefono"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="Numero di telefono"
+                android:inputType="phone"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/white"
+                android:textColorHint="@color/pink"
+                android:textColorLink="@color/white" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="3px"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/red_button" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ConstraintRegistrati"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/red_button">
+
+                <TextView
+                    android:id="@+id/registrati"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="REGISTRATI"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="3px"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/red_button" />
+
+            <TextView
+                android:id="@+id/already"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Già registrato? Effettua il login!"
+                android:textAlignment="center"
+                android:textColor="@color/red"
+                android:textSize="23dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,22 +12,19 @@
         android:id="@+id/btncard"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
         android:background="#00000000"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/white_button" />
+        app:srcCompat="@drawable/card_button" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="5dp"
+        android:padding="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -40,6 +37,12 @@
             android:textColor="@color/red"
             android:textSize="25dp"
             android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/red_button" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,6 +78,12 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="3px"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/red_button" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -96,10 +105,15 @@
                         <TextView
                             android:id="@+id/descrizione"
                             android:layout_width="200dp"
-                            android:layout_height="100dp"
+                            android:layout_height="80dp"
                             android:text="Descrizione ristorante.."
                             android:textColor="@color/red"
                             android:textSize="18dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="3px"
+                            android:background="@drawable/red_button" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"

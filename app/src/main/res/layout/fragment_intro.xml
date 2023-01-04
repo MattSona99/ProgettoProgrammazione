@@ -2,89 +2,104 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".intro.FragmentIntro"
-    android:background="@drawable/background_splash">
+    android:background="@drawable/background_splash"
+    tools:context=".intro.FragmentIntro">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
 
-        <TextView
-            android:id="@+id/COOKADE"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="COOKADE"
-            android:textColor="#FFFFFF"
-            android:textSize="48sp"
-            android:textStyle="bold" />
+        android:padding="20dp">
 
         <ImageView
-            android:id="@+id/logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             app:srcCompat="@drawable/logo" />
 
         <TextView
-            android:id="@+id/benvenuto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Benvenuto nel mondo di Cookade!"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:layout_gravity="center"
+            android:text="Benvenuto su Cookade!"
+            android:textColor="@color/red"
             android:textSize="28dp"
             android:textStyle="bold" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ConstraintLogin"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:background="@drawable/red_button">
-
-            <TextView
-                android:id="@+id/login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="LOGIN"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp">
+            android:gravity="center">
 
-            <TextView
-                android:id="@+id/registrati"
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Non sei registrato? Clicca qui!"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="22dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ConstraintLogin"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@drawable/red_button">
+
+                    <TextView
+                        android:id="@+id/login"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="LOGIN"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="3px"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/red_button" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp">
+
+                    <TextView
+                        android:id="@+id/registrati"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Non sei registrato?
+                        Clicca qui!"
+                        android:textAlignment="center"
+                        android:textColor="@color/red"
+                        android:textSize="22dp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

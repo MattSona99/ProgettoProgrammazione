@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ristoratore.FragmentGestione"
-    android:background="@drawable/background_splash">
+    android:background="@drawable/background_splash_2">
 
     <ScrollView
         android:id="@+id/scrollgest"
@@ -37,7 +37,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Gestisci le tue attività"
-                    android:textColor="@color/white"
+                    android:textColor="@color/red"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -58,7 +58,7 @@
                     android:layout_marginTop="13dp"
                     android:layout_marginLeft="20dp"
                     android:text="CREA UNA NUOVA ATTIVITÀ"
-                    android:textColor="@color/white"
+                    android:textColor="@color/red"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -89,7 +89,7 @@
                     android:id="@+id/search_bar_gestione"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/scrollviewborder"
+                    android:background="@drawable/search_border"
                     android:theme="@style/TextStyle"
                     app:iconifiedByDefault="false"
                     app:queryHint="Cerca un ristorante..."

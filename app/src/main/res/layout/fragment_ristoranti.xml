@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_splash"
+    android:background="@drawable/background_splash_2"
     tools:context=".fragment.FragmentRistoranti">
 
     <LinearLayout
@@ -23,7 +23,7 @@
                 android:id="@+id/search_bar_ristoranti"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/scrollviewborder"
+                android:background="@drawable/search_border"
                 android:theme="@style/TextStyle"
                 app:iconifiedByDefault="false"
                 app:queryHint="Cerca un ristorante..."
@@ -109,8 +109,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/checkboxes">
+            android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleView"

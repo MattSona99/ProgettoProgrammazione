@@ -16,250 +16,250 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/text_form_prop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Compila il form per creare il tuo ristorante!"
-                android:textColor="@color/white"
-                android:textSize="23dp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-
-                app:layout_constraintTop_toTopOf="parent" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_form_prop">
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/text_nome_rist"
+                    android:id="@+id/text_form_prop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nome"
+                    android:gravity="center"
+                    android:text="Compila il form per creare il tuo ristorante!"
                     android:textColor="@color/white"
-                    android:textSize="15dp"
+                    android:textSize="23dp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/nomeristorante_newR"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/custom_input"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="Nome Ristorante"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/white"
-                    android:textColorHighlight="#E91E63"
-                    android:textColorHint="@color/pink"
-                    android:textColorLink="#E91E63" />
-
-                <TextView
-                    android:id="@+id/text_descrizione_rist"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Descrizione"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/descrizione_newR"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/custom_input"
-                    android:ems="10"
+                    android:layout_gravity="center"
+                    android:background="@drawable/user_form"
                     android:gravity="center"
-                    android:hint="Descrizione"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/white"
-                    android:textColorHighlight="#E91E63"
-                    android:textColorHint="@color/pink"
-                    android:textColorLink="#E91E63" />
-
-                <TextView
-                    android:id="@+id/text_indirizzo_rist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Indirizzo"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/indirizzo_newR"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/custom_input"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="Indirizzo"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/white"
-                    android:textColorHighlight="#E91E63"
-                    android:textColorHint="@color/pink"
-                    android:textColorLink="#E91E63" />
-
-                <TextView
-                    android:id="@+id/text_orario_lavorativo_rist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Orario Lavorativo"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/orariolavorativo_newR"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/custom_input"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="Orario Lavorativo"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/white"
-                    android:textColorHighlight="#E91E63"
-                    android:textColorHint="@color/pink"
-                    android:textColorLink="#E91E63" />
-
-                <TextView
-                    android:id="@+id/text_telefono_rist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Telefono"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/telefono_newR"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/custom_input"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="Telefono"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/white"
-                    android:textColorHighlight="#E91E63"
-                    android:textColorHint="@color/pink"
-                    android:textColorLink="#E91E63" />
-
-                <TextView
-                    android:id="@+id/text_Categoria_rist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Categoria cibo"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/tipocibo_newR"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/custom_input"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="Categoria Cibo"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/white"
-                    android:textColorHighlight="#E91E63"
-                    android:textColorHint="@color/pink"
-                    android:textColorLink="#E91E63" />
-
-                <RelativeLayout
-                    android:id="@+id/relativeLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:padding="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/ConstraintCreaRist">
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
                     <TextView
-                        android:id="@+id/text_select_img"
+                        android:id="@+id/text_nome_rist"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="50dp"
-                        android:text="Carica immagine"
-                        android:textColor="@color/white"
+                        android:text="Nome"
+                        android:textColor="@color/red"
                         android:textSize="15dp"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/select_img_newR"
-                        android:layout_width="150dp"
+                    <EditText
+                        android:id="@+id/nomeristorante_new_R"
+                        android:layout_width="250dp"
                         android:layout_height="50dp"
-                        android:layout_below="@id/text_select_img"
-                        android:layout_marginLeft="35dp"
                         android:layout_marginBottom="10dp"
-                        android:background="@drawable/red_button"
+                        android:background="@drawable/custom_input"
                         android:ems="10"
                         android:gravity="center"
-                        android:hint="Carica"
+                        android:hint="Nome Ristorante"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/white"
                         android:textColorHighlight="#E91E63"
-                        android:textColorHint="@color/white"
+                        android:textColorHint="@color/pink"
                         android:textColorLink="#E91E63" />
 
                     <TextView
-                        android:id="@+id/text_vegan_rist"
+                        android:id="@+id/text_descrizione_rist"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="100dp"
-                        android:layout_toRightOf="@id/text_select_img"
-                        android:text="Vegan"
-                        android:textColor="@color/white"
+                        android:text="Descrizione"
+                        android:textColor="@color/red"
                         android:textSize="15dp"
                         android:textStyle="bold" />
 
-                    <CheckBox
-                        android:id="@+id/vegan_newR"
+                    <EditText
+                        android:id="@+id/descrizione_new_R"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/custom_input"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Descrizione"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/white"
+                        android:textColorHighlight="#E91E63"
+                        android:textColorHint="@color/pink"
+                        android:textColorLink="#E91E63" />
+
+                    <TextView
+                        android:id="@+id/text_indirizzo_rist"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/text_vegan_rist"
-                        android:layout_marginLeft="75dp"
-                        android:layout_toRightOf="@id/select_img_newR"
-                        android:buttonTint="@color/white" />
+                        android:text="Indirizzo"
+                        android:textColor="@color/red"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
 
-                </RelativeLayout>
+                    <EditText
+                        android:id="@+id/indirizzo_new_R"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/custom_input"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Indirizzo"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/white"
+                        android:textColorHighlight="#E91E63"
+                        android:textColorHint="@color/pink"
+                        android:textColorLink="#E91E63" />
+
+                    <TextView
+                        android:id="@+id/text_orario_lavorativo_rist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Orario Lavorativo"
+                        android:textColor="@color/red"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/orariolavorativo_new_R"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/custom_input"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Orario Lavorativo"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/white"
+                        android:textColorHighlight="#E91E63"
+                        android:textColorHint="@color/pink"
+                        android:textColorLink="#E91E63" />
+
+                    <TextView
+                        android:id="@+id/text_telefono_rist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Telefono"
+                        android:textColor="@color/red"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/telefono_new_R"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/custom_input"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Telefono"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/white"
+                        android:textColorHighlight="#E91E63"
+                        android:textColorHint="@color/pink"
+                        android:textColorLink="#E91E63" />
+
+                    <TextView
+                        android:id="@+id/text_Categoria_rist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Categoria cibo"
+                        android:textColor="@color/red"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/tipocibo_new_R"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/custom_input"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="Categoria Cibo"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/white"
+                        android:textColorHighlight="#E91E63"
+                        android:textColorHint="@color/pink"
+                        android:textColorLink="#E91E63" />
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp"
+                        android:padding="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/ConstraintCreaRist">
+
+                        <TextView
+                            android:id="@+id/text_select_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="Carica immagine"
+                            android:textColor="@color/red"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/select_img_new_R"
+                            android:layout_width="150dp"
+                            android:layout_height="50dp"
+                            android:layout_below="@id/text_select_img"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/red_button"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="Carica"
+                            android:textColorHighlight="#E91E63"
+                            android:textColorHint="@color/white"
+                            android:textColorLink="#E91E63" />
+
+                        <TextView
+                            android:id="@+id/text_vegan_rist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="80dp"
+                            android:layout_toRightOf="@id/text_select_img"
+                            android:text="Vegan"
+                            android:textColor="@color/red"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <CheckBox
+                            android:id="@+id/vegan_new_R"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/text_vegan_rist"
+                            android:layout_marginLeft="60dp"
+                            android:layout_toRightOf="@id/select_img_new_R"
+                            android:buttonTint="@color/red" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ConstraintCreaRist"
-                    android:layout_width="280dp"
+                    android:layout_width="200dp"
                     android:layout_height="50dp"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/red_button">
 
                     <TextView
                         android:id="@+id/crea_rist"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="CREA RISTORANTE"
+                        android:text="CREA"
                         android:textAlignment="center"
                         android:textColor="#FFFFFF"
                         android:textSize="20sp"
@@ -270,9 +270,9 @@
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
 
 </FrameLayout>

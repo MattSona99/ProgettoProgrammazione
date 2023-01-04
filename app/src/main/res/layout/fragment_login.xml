@@ -4,48 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".intro.FragmentLogin"
-    android:background="@drawable/background_splash">
+    android:background="@drawable/background_splash"
+    tools:context=".intro.FragmentLogin">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/COOKADE"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="COOKADE"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="40sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/logo" />
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="90dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Effettua il Login"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/logo" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til1"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
-                app:hintEnabled="false"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.050">
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email"
@@ -60,21 +68,19 @@
                     android:paddingEnd="12dp"
                     android:singleLine="true"
                     android:textColor="@color/white"
-                    android:textColorHighlight="#E91E63"
+                    android:textColorHighlight="@color/white"
                     android:textColorHint="@color/pink"
-                    android:textColorLink="#E91E63"
+                    android:textColorLink="@color/white"
                     android:textSize="20dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@id/til2"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
                 app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="@+id/til1"
-                app:layout_constraintStart_toStartOf="@+id/til1"
-                app:layout_constraintTop_toBottomOf="@+id/til1"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="@color/white">
 
@@ -90,15 +96,22 @@
                     android:paddingTop="10dp"
                     android:paddingEnd="12dp"
                     android:textColor="@color/white"
-                    android:textColorHighlight="#E91E63"
+                    android:textColorHighlight="@color/white"
                     android:textColorHint="@color/pink"
-                    android:textColorLink="#E91E63"
+                    android:textColorLink="@color/white"
                     android:textSize="20dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password dimenticata?"
+                android:textColor="@color/red"
+                android:textSize="18dp" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ConstraintLogin"
-                android:layout_width="0dp"
+                android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="24dp"
@@ -115,7 +128,7 @@
                     android:id="@+id/login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ENTRA SU COOKADE"
+                    android:text="ENTRA"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
@@ -128,21 +141,23 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="3px"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/red_button" />
+
+            <TextView
                 android:id="@+id/noaccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:text="Non hai un account? Registrati!"
                 android:textAlignment="center"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/red"
                 android:textSize="23dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ConstraintLogin"
-                app:layout_constraintVertical_bias="0.25" />
+                android:textStyle="bold" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
     </LinearLayout>
 
