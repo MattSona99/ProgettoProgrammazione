@@ -38,7 +38,7 @@ class FragmentProfilo : Fragment(), UserUtil {
         val args = this.arguments
         user = args?.getParcelable<User>("user") as User
 
-        when(user.Livello){
+        when (user.Livello) {
             "1" -> binding.constraintmembrostaff.isVisible = true
             else -> binding.constraintmembrostaff.isVisible = false
         }
@@ -53,7 +53,9 @@ class FragmentProfilo : Fragment(), UserUtil {
         super.onViewCreated(view, savedInstanceState)
 
         binding.membrostaff.setOnClickListener {
-            view.findNavController().navigate(R.id.ProfiloToUpgrade)
+            val bundle = Bundle()
+            bundle.putParcelable("user", user)
+            view.findNavController().navigate(R.id.ProfiloToUpgrade, bundle)
         }
 
         binding.salva.setOnClickListener {
@@ -83,16 +85,16 @@ class FragmentProfilo : Fragment(), UserUtil {
             if (newcognome.isNotEmpty()) childUpdates["Cognome"] = newcognome
 
             if (newrpassword == newpassword || (newrpassword.isEmpty() && newpassword.isEmpty())) {
-                if(newrpassword.isNotEmpty()){
-                updateUserPassword(context, newrpassword, user.Email.toString())
-                childUpdates["Password"] = newrpassword
+                if (newrpassword.isNotEmpty()) {
+                    updateUserPassword(context, newrpassword, user.Email.toString())
+                    childUpdates["Password"] = newrpassword
                 }
                 updateUserData(context, childUpdates)
                 getUserData(object : FireBaseCallbackUser {
                     override fun onResponse(responseU: ResponseUser) {
                         val bundleU = Bundle()
                         bundleU.putParcelable("user", responseU.user)
-                        when(user.Livello){
+                        when (user.Livello) {
                             "1" -> view.findNavController().navigate(R.id.ProfiloUSelf, bundleU)
                             "2" -> view.findNavController().navigate(R.id.ProfiloDSelf, bundleU)
                             "3" -> view.findNavController().navigate(R.id.ProfiloRSelf, bundleU)
