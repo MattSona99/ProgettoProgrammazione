@@ -104,18 +104,8 @@
         android:name="com.example.progettoprogrammazione.ristoratore.FragmentCreaRist"
         android:label="Crea ristorante"
         tools:layout="@layout/fragment_crea_rist">
-        <action
-            android:id="@+id/CreaRist_to_CreaMenu"
-            app:destination="@id/fragmentCreaMenu"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
     </fragment>
-    <fragment
-        android:id="@+id/fragmentCreaMenu"
-        android:name="com.example.progettoprogrammazione.ristoratore.FragmentCreaMenu"
-        android:label="Crea Menu"
-        tools:layout="@layout/fragment_crea_menu" />
+
 
 </navigation>

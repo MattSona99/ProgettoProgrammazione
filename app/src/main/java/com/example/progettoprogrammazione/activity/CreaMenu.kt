@@ -33,7 +33,7 @@ class CreaMenu : AppCompatActivity(), ProductUtils, RestaurantUtils {
         setContentView(binding.root)
 
         val user = intent.getParcelableExtra("user") as User?
-        val ristorante = intent.getParcelableExtra<Restaurant>("ristoranti")
+        val ristorante = intent.getParcelableExtra<Restaurant>("ristorante")
         val restName = ristorante?.idR
 
         binding.btnBevanda.setOnClickListener {
@@ -63,7 +63,7 @@ class CreaMenu : AppCompatActivity(), ProductUtils, RestaurantUtils {
         binding.constraintfine.setOnClickListener {
             getRestaurantData(object : FireBaseCallbackRestaurant {
                 override fun onResponse(responseR: ResponseRistorante) {
-                    val intent = Intent(this, RestaurateurActivity::class.java)
+                    val intent = Intent(this@CreaMenu, RestaurateurActivity::class.java)
                     intent.putExtra("user", user)
                     intent.putExtra("ristoranti", responseR.ristoranti)
                     startActivity(intent)
