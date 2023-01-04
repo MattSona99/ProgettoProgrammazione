@@ -68,6 +68,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/DetailToModifica"
+            app:destination="@id/fragmentModificaRist" />
     </fragment>
     <fragment
         android:id="@+id/fragmentGestione"
@@ -106,6 +109,10 @@
         tools:layout="@layout/fragment_crea_rist">
 
     </fragment>
+    <fragment
+        android:id="@+id/fragmentModificaRist"
+        android:name="com.example.progettoprogrammazione.ristoratore.FragmentModificaRist"
+        android:label="FragmentModificaRist" />
 
 
 </navigation>
