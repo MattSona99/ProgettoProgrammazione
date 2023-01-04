@@ -65,7 +65,11 @@ class FragmentRegister : Fragment(), UserUtil {
                 binding.telefono.error = "Il numero di telefono deve contenere al massimo 11 cifre."
             }
 
-            if (nome.isNotEmpty() && cognome.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && telefono.isNotEmpty()) {
+            if (nome.isNotEmpty() && nome.length < 20
+                && cognome.isNotEmpty() && cognome.length < 20
+                && email.isNotEmpty() && email.length < 41
+                && password.isNotEmpty() && password.length < 6
+                && telefono.isNotEmpty() && telefono.length > 11) {
                 firebaseAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {

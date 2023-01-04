@@ -76,27 +76,33 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
                 val veganR = binding.veganNewR
                 uploadImage()
 
-                if (nomeR.length > 20) {
+                if (nomeR.length > 35) {
                     binding.nomeristoranteNewR.error =
-                        "Il nome non può essere lungo più di 20 caratteri."
+                        "Il nome non può essere lungo più di 35 caratteri."
                 }
-                if (descrizioneR.length < 250) {
-                    binding.descrizioneNewR.error = "Descrizione vuota o troppo lunga"
+                if (descrizioneR.length > 250 || descrizioneR.length < 50) {
+                    binding.descrizioneNewR.error =
+                        "La descrizione deve essere compresa tra 50 e 250 caratteri"
                 }
                 if (indirizzoR.length < 15) {
                     binding.indirizzoNewR.error = "Indririzzo errato o vuoto."
                 }
-                if (orariolavorativoR.length < 10)
+                if (orariolavorativoR.length < 11)
                     binding.orariolavorativoNewR.error = "Formato errato. (gg: xx:xx-xx:xx)"
 
                 if (telefonoR.length < 9) {
                     binding.telefonoNewR.error =
-                        "Il numero di telefono deve contenere almeno 9 caratteri"
+                        "Il numero di telefono deve contenere almeno 9 caratteri."
                 }
 
                 val vegan: Boolean = veganR.isChecked
 
-                if (nomeR.isNotEmpty() && descrizioneR.isNotEmpty() && indirizzoR.isNotEmpty() && orariolavorativoR.isNotEmpty() && telefonoR.isNotEmpty()) {
+                if (nomeR.isNotEmpty() && nomeR.length < 35
+                    && descrizioneR.isNotEmpty()
+                    && descrizioneR.length > 50 && descrizioneR.length < 250
+                    && indirizzoR.isNotEmpty() && indirizzoR.length > 15
+                    && orariolavorativoR.isNotEmpty() && orariolavorativoR.length > 10
+                    && telefonoR.isNotEmpty() && telefonoR.length > 8) {
                     getUserData(object : FireBaseCallbackUser {
                         override fun onResponse(responseU: ResponseUser) {
 

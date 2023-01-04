@@ -60,38 +60,41 @@ class FragmentModificaRist : Fragment(), ImgUtils {
             val newtel = binding.newTelefono.text.toString()
             val newtipocibo = binding.newTipocibo.text.toString()
             val newvegan = binding.newVegan
-            if(imageUri != null) {
+            if (imageUri != null) {
                 uploadImage()
                 newimg = "Restaurants-images/" + fileName
             }
 
 
-            if (newnome.length > 20) {
+            if (newnome.length > 35) {
                 binding.newNomeristorante.error =
-                    "Il nome non può essere lungo più di 20 caratteri."
+                    "Il nome non può essere lungo più di 35 caratteri."
             }
-            if (newdescrizione.length < 250) {
-                binding.newDescrizione.error = "Descrizione vuota o troppo lunga"
+            if (newdescrizione.length > 250 || newdescrizione.length < 50) {
+                binding.newDescrizione.error =
+                    "La descrizione deve essere compresa tra 50 e 250 caratteri"
             }
             if (newindirizzo.length < 15) {
                 binding.newIndirizzo.error = "Indririzzo errato o vuoto."
             }
-            if (neworario.length < 10)
+            if (neworario.length < 11)
                 binding.newOrariolavorativo.error = "Formato errato. (gg: xx:xx-xx:xx)"
 
-            if (newtel.length < 9) {
+            if (newtel.length > 11) {
                 binding.newTelefono.error =
-                    "Il numero di telefono deve contenere almeno 9 caratteri"
+                    "Il numero di telefono deve contenere al massimo 11 cifre."
             }
 
             val vegan: Boolean = newvegan.isChecked
 
             val childUpdates: HashMap<String, Any> = hashMapOf()
-            if (newnome.isNotEmpty()) childUpdates["nomeR"] = newnome
-            if (newdescrizione.isNotEmpty()) childUpdates["descrizioneR"] = newdescrizione
-            if (newindirizzo.isNotEmpty()) childUpdates["indirizzoR"] = newindirizzo
-            if (neworario.isNotEmpty()) childUpdates["orariolavorativoR"] = neworario
-            if (newtel.isNotEmpty()) childUpdates["telefonoR"] = newtel
+            if (newnome.isNotEmpty() && newnome.length < 35) childUpdates["nomeR"] = newnome
+            if (newdescrizione.isNotEmpty() && newdescrizione.length < 250
+                && newdescrizione.length > 50) childUpdates["descrizioneR"] =
+                newdescrizione
+            if (newindirizzo.isNotEmpty() && newindirizzo.length > 15) childUpdates["indirizzoR"] = newindirizzo
+            if (neworario.isNotEmpty() && neworario.length > 10) childUpdates["orariolavorativoR"] = neworario
+            if (newtel.isNotEmpty() && newtel.length < 12) childUpdates["telefonoR"] = newtel
             if (newtipocibo.isNotEmpty()) childUpdates["tipoCiboR"] = newtipocibo
             if (newimg != null) childUpdates["imageR"] = newimg!!
             childUpdates["veganR"] = vegan

@@ -81,10 +81,11 @@ class FragmentProfilo : Fragment(), UserUtil {
             }
 
             val childUpdates: HashMap<String, Any> = hashMapOf()
-            if (newnome.isNotEmpty()) childUpdates["Nome"] = newnome
-            if (newcognome.isNotEmpty()) childUpdates["Cognome"] = newcognome
+            if (newnome.isNotEmpty() && newnome.length < 21) childUpdates["Nome"] = newnome
+            if (newcognome.isNotEmpty() && newcognome.length < 21) childUpdates["Cognome"] = newcognome
 
-            if (newrpassword == newpassword || (newrpassword.isEmpty() && newpassword.isEmpty())) {
+            if (newrpassword == newpassword && newrpassword.isEmpty() && newpassword.isEmpty()
+                        && newpassword.length > 5) {
                 if (newrpassword.isNotEmpty()) {
                     updateUserPassword(context, newrpassword, user.Email.toString())
                     childUpdates["Password"] = newrpassword
