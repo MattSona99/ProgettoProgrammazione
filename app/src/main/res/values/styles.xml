@@ -13,15 +13,15 @@
         <item name="android:textColorHighlight">@color/white</item>
         <item name="android:textColorLink">@color/white</item>
 
-        <item name="android:fontFamily">@font/oswald_regular</item>
+        <item name="android:fontFamily">@font/satoshi_regular</item>
     </style>
 
     <style name="TextViewStyle" parent="android:Widget.TextView">
-        <item name="android:fontFamily">@font/oswald_regular</item>
+        <item name="android:fontFamily">@font/satoshi_regular</item>
     </style>
 
     <style name="EditTextStyle" parent="android:Widget.EditText">
-        <item name="android:fontFamily">@font/oswald_regular</item>
+        <item name="android:fontFamily">@font/satoshi_regular</item>
     </style>
 
 </resources>
