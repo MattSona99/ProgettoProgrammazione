@@ -13,7 +13,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.databinding.FragmentCreaMenuBinding
+import com.example.progettoprogrammazione.databinding.ActivityCreaMenuBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.models.Restaurant
@@ -30,14 +30,14 @@ class CreaMenu : AppCompatActivity(), ProductUtils, RestaurantUtils {
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    private lateinit var binding: FragmentCreaMenuBinding
+    private lateinit var binding: ActivityCreaMenuBinding
 
     private var pressedTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = FragmentCreaMenuBinding.inflate(layoutInflater)
+        binding = ActivityCreaMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val user = intent.getParcelableExtra("user") as User?
