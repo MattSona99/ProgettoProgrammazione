@@ -33,8 +33,10 @@ class RestaurantViewHolder(
         restaurantBinding.rating.text = restaurant.ratingR
         restaurantBinding.descrizione.text = restaurant.descrizioneR!!.substring(0, 1)
             .uppercase() + restaurant.descrizioneR!!.substring(1)
-        restaurantBinding.tipocibo.text = restaurant.tipoCiboR
-
+        if (restaurant.tipoCiboR?.length!! > 19)
+            restaurantBinding.tipocibo.text = restaurant.tipoCiboR?.substring(0, 18) + " ..."
+        else
+            restaurantBinding.tipocibo.text = restaurant.tipoCiboR
         restaurantBinding.btncard.setOnClickListener { clickListener.onClickResturant(restaurant) }
     }
 
