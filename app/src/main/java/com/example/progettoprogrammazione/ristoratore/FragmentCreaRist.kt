@@ -121,11 +121,11 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
                     binding.nomeristoranteNewR.error =
                         "Il nome non può essere lungo più di 35 caratteri."
                 }
-                if (descrizioneR.length > 250 || descrizioneR.length < 50) {
+                if (descrizioneR.length > 50 || descrizioneR.length < 10) {
                     binding.descrizioneNewR.error =
-                        "La descrizione deve essere compresa tra 50 e 250 caratteri"
+                        "La descrizione deve essere compresa tra 10 e 50 caratteri"
                 }
-                if (indirizzoR.length < 15) {
+                if (indirizzoR.length < 10) {
                     binding.indirizzoNewR.error = "Indririzzo errato o vuoto."
                 }
                 if (orariolavorativoR.length < 11)
@@ -140,8 +140,8 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
 
                 if (nomeR.isNotEmpty() && nomeR.length < 35
                     && descrizioneR.isNotEmpty()
-                    && descrizioneR.length > 50 && descrizioneR.length < 250
-                    && indirizzoR.isNotEmpty() && indirizzoR.length > 15
+                    && descrizioneR.length > 10 && descrizioneR.length < 50
+                    && indirizzoR.isNotEmpty() && indirizzoR.length > 10
                     && orariolavorativoR.isNotEmpty() && orariolavorativoR.length > 10
                     && telefonoR.isNotEmpty() && telefonoR.length > 8
                 ) {

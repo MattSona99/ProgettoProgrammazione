@@ -114,11 +114,11 @@ class FragmentModificaRist : Fragment(), ImgUtils {
                 binding.newNomeristorante.error =
                     "Il nome non può essere lungo più di 35 caratteri."
             }
-            if (newdescrizione.length > 250 || newdescrizione.length < 50) {
+            if (newdescrizione.length > 50 || newdescrizione.length < 10) {
                 binding.newDescrizione.error =
                     "La descrizione deve essere compresa tra 50 e 250 caratteri"
             }
-            if (newindirizzo.length < 15) {
+            if (newindirizzo.length < 10) {
                 binding.newIndirizzo.error = "Indririzzo errato o vuoto."
             }
             if (neworario.length < 11)
@@ -133,10 +133,10 @@ class FragmentModificaRist : Fragment(), ImgUtils {
 
             val childUpdates: HashMap<String, Any> = hashMapOf()
             if (newnome.isNotEmpty() && newnome.length < 35) childUpdates["nomeR"] = newnome
-            if (newdescrizione.isNotEmpty() && newdescrizione.length < 250
-                && newdescrizione.length > 50) childUpdates["descrizioneR"] =
+            if (newdescrizione.isNotEmpty() && newdescrizione.length < 50
+                && newdescrizione.length > 10) childUpdates["descrizioneR"] =
                 newdescrizione
-            if (newindirizzo.isNotEmpty() && newindirizzo.length > 15) childUpdates["indirizzoR"] = newindirizzo
+            if (newindirizzo.isNotEmpty() && newindirizzo.length > 10) childUpdates["indirizzoR"] = newindirizzo
             if (neworario.isNotEmpty() && neworario.length > 10) childUpdates["orariolavorativoR"] = neworario
             if (newtel.isNotEmpty() && newtel.length < 12) childUpdates["telefonoR"] = newtel
             if (newtipocibo.isNotEmpty()) childUpdates["tipoCiboR"] = newtipocibo
