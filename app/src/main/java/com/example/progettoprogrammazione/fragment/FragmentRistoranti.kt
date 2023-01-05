@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -52,6 +53,15 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
             adapter.notifyDataSetChanged()
 
         }
+
+        binding.checkpizza.typeface = ResourcesCompat.getFont(requireContext(), R.font.satoshi_regular)
+        binding.checkburger.typeface = ResourcesCompat.getFont(requireContext(), R.font.satoshi_regular)
+        binding.checkita.typeface = ResourcesCompat.getFont(requireContext(), R.font.satoshi_regular)
+        binding.checkcin.typeface = ResourcesCompat.getFont(requireContext(), R.font.satoshi_regular)
+        binding.checkgiap.typeface = ResourcesCompat.getFont(requireContext(), R.font.satoshi_regular)
+        binding.checkind.typeface = ResourcesCompat.getFont(requireContext(), R.font.satoshi_regular)
+        binding.checkgre.typeface = ResourcesCompat.getFont(requireContext(), R.font.satoshi_regular)
+        binding.checkveg.typeface = ResourcesCompat.getFont(requireContext(), R.font.satoshi_regular)
 
         binding.searchBarRistoranti.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
