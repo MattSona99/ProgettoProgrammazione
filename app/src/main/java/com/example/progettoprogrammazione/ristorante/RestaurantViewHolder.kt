@@ -19,8 +19,7 @@ class RestaurantViewHolder(
         val storageRef = FirebaseStorage.getInstance().reference.child("$imageName")
         val localfile = File.createTempFile("tempImage", "jpg")
         storageRef.getFile(localfile).addOnSuccessListener {
-            var bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
-            bitmap = getCircularBitmap(bitmap)
+            val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
             restaurantBinding.copertina.setImageBitmap(bitmap)
         }
 
@@ -43,34 +42,4 @@ class RestaurantViewHolder(
             .getIdentifier("drawable/$imageName", null, context.packageName)
     }
 
-    private fun getCircularBitmap(srcBitmap: Bitmap?): Bitmap {
-        val squareBitmapWidth = min(srcBitmap!!.width, srcBitmap.height)
-        // Initialize a new instance of Bitmap
-        // Initialize a new instance of Bitmap
-        val dstBitmap = Bitmap.createBitmap(
-            squareBitmapWidth,  // Width
-            squareBitmapWidth,  // Height
-            Bitmap.Config.ARGB_8888 // Config
-        )
-        val canvas = Canvas(dstBitmap)
-        // Initialize a new Paint instance
-        // Initialize a new Paint instance
-        val paint = Paint()
-        paint.isAntiAlias = true
-        val rect = Rect(0, 0, squareBitmapWidth, squareBitmapWidth)
-        val rectF = RectF(rect)
-        canvas.drawOval(rectF, paint)
-        paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
-        // Calculate the left and top of copied bitmap
-        // Calculate the left and top of copied bitmap
-        val left = ((squareBitmapWidth - srcBitmap.width) / 2).toFloat()
-        val top = ((squareBitmapWidth - srcBitmap.height) / 2).toFloat()
-        canvas.drawBitmap(srcBitmap, left, top, paint)
-        // Free the native object associated with this bitmap.
-        // Free the native object associated with this bitmap.
-        srcBitmap.recycle()
-        // Return the circular bitmap
-        // Return the circular bitmap
-        return dstBitmap
-    }
 }
