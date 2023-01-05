@@ -37,7 +37,7 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
     private lateinit var dolciArrayList: ArrayList<Product>
 
     private var restaurantList: ArrayList<Restaurant>? = null
-    private  var restaurant: Restaurant? = null
+    private var restaurant: Restaurant? = null
 
     private lateinit var user: FirebaseAuth
 
@@ -77,8 +77,10 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
                 Toast.makeText(context, "Caricamento immagine fallito", Toast.LENGTH_SHORT).show()
             }
 
-            binding.nomeRistoranteDetail.text = restaurant?.nomeR
-            binding.descrizioneDetail.text = restaurant?.descrizioneR
+            binding.nomeRistoranteDetail.text =
+                restaurant?.nomeR!!.substring(0, 1).uppercase() + restaurant?.nomeR!!.substring(1)
+            binding.descrizioneDetail.text = restaurant?.descrizioneR!!.substring(0, 1)
+                .uppercase() + restaurant?.descrizioneR!!.substring(1)
             binding.numeroDetail.text = restaurant?.telefonoR
             binding.indirizzodetail.text = restaurant?.indirizzoR
 
@@ -175,7 +177,7 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
 
         }
 
-        binding.modificaRistorante.setOnClickListener{
+        binding.modificaRistorante.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("restID", restaurant?.idR.toString())
             view.findNavController().navigate(R.id.DetailToModifica, bundle)

@@ -7,7 +7,6 @@ import com.example.progettoprogrammazione.databinding.RestaurantCardBinding
 import com.example.progettoprogrammazione.models.Restaurant
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
-import java.lang.Integer.min
 
 class RestaurantViewHolder(
     private val restaurantBinding: RestaurantCardBinding,
@@ -29,9 +28,11 @@ class RestaurantViewHolder(
                 restaurant.imageR!!
             )
         )
-        restaurantBinding.nomeRistorante.text = restaurant.nomeR
+        restaurantBinding.nomeRistorante.text =
+            restaurant.nomeR!!.substring(0, 1).uppercase() + restaurant.nomeR!!.substring(1)
         restaurantBinding.rating.text = restaurant.ratingR
-        restaurantBinding.descrizione.text = restaurant.descrizioneR
+        restaurantBinding.descrizione.text = restaurant.descrizioneR!!.substring(0, 1)
+            .uppercase() + restaurant.descrizioneR!!.substring(1)
         restaurantBinding.tipocibo.text = restaurant.tipoCiboR
 
         restaurantBinding.btncard.setOnClickListener { clickListener.onClickResturant(restaurant) }
