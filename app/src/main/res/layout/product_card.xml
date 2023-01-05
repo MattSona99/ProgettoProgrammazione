@@ -57,8 +57,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:gravity="center">
+                android:gravity="center"
+                android:padding="10dp">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="100dp"
@@ -79,7 +79,6 @@
             </LinearLayout>
 
 
-
         </LinearLayout>
 
         <LinearLayout
@@ -90,31 +89,19 @@
             android:orientation="vertical"
             android:padding="5dp">
 
-            <Button
+            <TextView
                 android:id="@+id/goto_cart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:background="@drawable/red_card_button_bottom"
-                android:text="AGGIUNGI" />
+                android:text="AGGIUNGI"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/cart_quantity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:orientation="vertical"
-            android:padding="5dp">
-
-            <Button
-                android:id="@+id/add_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/red_button"
-                android:text="AGGIUNGI" />
-
-        </LinearLayout>
 
     </RelativeLayout>
 
