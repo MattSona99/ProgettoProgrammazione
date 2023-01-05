@@ -112,7 +112,7 @@
     <fragment
         android:id="@+id/fragmentModificaRist"
         android:name="com.example.progettoprogrammazione.ristoratore.FragmentModificaRist"
-        android:label="FragmentModificaRist" />
+        android:label="Modifica Ristorante" />
 
 
 </navigation>

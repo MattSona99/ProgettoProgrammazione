@@ -56,7 +56,7 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
         tipocibo = binding.tipociboNewR
         val typearray =
             arrayOf("Italiano", "Cinese", "Giapponese", "Indiano", "Greco", "Pizza", "Burger")
-        val typelist = arrayListOf<String>()
+        arrayListOf<String>()
         val selected = BooleanArray(typearray.size)
 
         binding.tipociboNewR.setOnClickListener {
@@ -67,23 +67,25 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
 
             builder.setCancelable(false)
 
-            builder.setMultiChoiceItems(typearray, selected) { dialog, which, isChecked ->
+            builder.setMultiChoiceItems(typearray, selected) { _, which, isChecked ->
                 selected[which] = isChecked
-                val currentItem = selectedItems[which]
+                selectedItems[which]
             }
 
-            builder.setPositiveButton("Ok") { dialog, _ ->
+            builder.setPositiveButton("Ok") { _, _ ->
+                binding.tipociboNewR.text = ""
                 for (i in selected.indices) {
                     if (selected[i]) {
                         binding.tipociboNewR.text =
                             String.format("%s%s, ", binding.tipociboNewR.text, selectedItems[i])
                     }
                 }
+                binding.tipociboNewR.text = binding.tipociboNewR.text.substring(0, binding.tipociboNewR.text.length -2)
             }
             builder.setNegativeButton("Annulla") { dialog, _ ->
                 dialog.cancel()
             }
-            builder.setNeutralButton("Pulisci") { dialog: DialogInterface?, which: Int ->
+            builder.setNeutralButton("Pulisci") { _: DialogInterface?, _: Int ->
                 Arrays.fill(selected, false)
                 binding.tipociboNewR.text = ""
             }

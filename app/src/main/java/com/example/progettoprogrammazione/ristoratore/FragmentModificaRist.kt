@@ -1,10 +1,13 @@
 package com.example.progettoprogrammazione.ristoratore
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
@@ -26,6 +29,8 @@ class FragmentModificaRist : Fragment(), ImgUtils {
     private var imageUri: Uri? = null
     private var newimg: String? = null
 
+    private lateinit var tipocibo: TextView
+
     private val selectImageFromGalleryResult =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let {
@@ -39,6 +44,45 @@ class FragmentModificaRist : Fragment(), ImgUtils {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentModificaRistBinding.inflate(layoutInflater)
+        tipocibo = binding.newTipocibo
+        val typearray =
+            arrayOf("Italiano", "Cinese", "Giapponese", "Indiano", "Greco", "Pizza", "Burger")
+        arrayListOf<String>()
+        val selected = BooleanArray(typearray.size)
+
+        binding.newTipocibo.setOnClickListener {
+            val builder = AlertDialog.Builder(activity)
+            builder.setTitle("Seleziona il tipo di cibo")
+
+            val selectedItems = mutableListOf(*typearray)
+
+            builder.setCancelable(false)
+
+            builder.setMultiChoiceItems(typearray, selected) { _, which, isChecked ->
+                selected[which] = isChecked
+                selectedItems[which]
+            }
+
+            builder.setPositiveButton("Ok") { _, _ ->
+                binding.newTipocibo.text = ""
+                for (i in selected.indices) {
+                    if (selected[i]) {
+                        binding.newTipocibo.text =
+                            String.format("%s%s, ", binding.newTipocibo.text, selectedItems[i])
+                    }
+                }
+                binding.newTipocibo.text = binding.newTipocibo.text.substring(0, binding.newTipocibo.text.length -2)
+            }
+            builder.setNegativeButton("Annulla") { dialog, _ ->
+                dialog.cancel()
+            }
+            builder.setNeutralButton("Pulisci") { _: DialogInterface?, _: Int ->
+                Arrays.fill(selected, false)
+                binding.newTipocibo.text = ""
+            }
+            builder.show()
+        }
+
         return binding.root
     }
 

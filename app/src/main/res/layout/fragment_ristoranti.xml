@@ -61,7 +61,7 @@
                         android:textSize="15dp" />
 
                     <CheckBox
-                        android:id="@+id/checksushi"
+                        android:id="@+id/checkburger"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
@@ -69,12 +69,12 @@
                         android:button="@null"
                         app:buttonCompat="@null"
                         android:gravity="center"
-                        android:text="Sushi"
+                        android:text="Burger"
                         android:textColor="@drawable/radio_text_color"
                         android:textSize="15dp" />
 
                     <CheckBox
-                        android:id="@+id/checkhamburger"
+                        android:id="@+id/checkita"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
@@ -82,12 +82,64 @@
                         android:button="@null"
                         app:buttonCompat="@null"
                         android:gravity="center"
-                        android:text="Hamburger"
+                        android:text="Italiano"
                         android:textColor="@drawable/radio_text_color"
                         android:textSize="15dp" />
 
                     <CheckBox
-                        android:id="@+id/checkvegan"
+                        android:id="@+id/checkcin"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/radio_selector"
+                        android:button="@null"
+                        app:buttonCompat="@null"
+                        android:gravity="center"
+                        android:text="Cinese"
+                        android:textColor="@drawable/radio_text_color"
+                        android:textSize="15dp" />
+
+                    <CheckBox
+                        android:id="@+id/checkgiap"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/radio_selector"
+                        android:button="@null"
+                        app:buttonCompat="@null"
+                        android:gravity="center"
+                        android:text="Giapponese"
+                        android:textColor="@drawable/radio_text_color"
+                        android:textSize="15dp" />
+
+                    <CheckBox
+                        android:id="@+id/checkind"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/radio_selector"
+                        android:button="@null"
+                        app:buttonCompat="@null"
+                        android:gravity="center"
+                        android:text="Indiano"
+                        android:textColor="@drawable/radio_text_color"
+                        android:textSize="15dp" />
+
+                    <CheckBox
+                        android:id="@+id/checkgre"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/radio_selector"
+                        android:button="@null"
+                        app:buttonCompat="@null"
+                        android:gravity="center"
+                        android:text="Greco"
+                        android:textColor="@drawable/radio_text_color"
+                        android:textSize="15dp" />
+
+                    <CheckBox
+                        android:id="@+id/checkveg"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
