@@ -80,7 +80,9 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
                             String.format("%s%s, ", binding.tipociboNewR.text, selectedItems[i])
                     }
                 }
-                binding.tipociboNewR.text = binding.tipociboNewR.text.substring(0, binding.tipociboNewR.text.length -2)
+                if(binding.tipociboNewR.text.length > 2) {
+                    binding.tipociboNewR.text = binding.tipociboNewR.text.substring(0, binding.tipociboNewR.text.length -2)
+                }
             }
             builder.setNegativeButton("Annulla") { dialog, _ ->
                 dialog.cancel()
