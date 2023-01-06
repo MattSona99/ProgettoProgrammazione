@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Compila il form per creare il tuo ristorante!"
-                    android:textColor="@color/white"
+                    android:textColor="@color/red"
                     android:textSize="23dp"
                     android:textStyle="bold" />
 
