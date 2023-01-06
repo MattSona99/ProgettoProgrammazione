@@ -69,7 +69,7 @@ class FragmentRegister : Fragment(), UserUtils {
                 && cognome.isNotEmpty() && cognome.length < 20
                 && email.isNotEmpty() && email.length < 41
                 && password.isNotEmpty() && password.length > 5
-                && telefono.isNotEmpty() && telefono.length > 11) {
+                && telefono.isNotEmpty() && telefono.length > 9) {
                 firebaseAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {

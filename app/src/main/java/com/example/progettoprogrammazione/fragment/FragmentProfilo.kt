@@ -2,10 +2,13 @@ package com.example.progettoprogrammazione.fragment
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -14,17 +17,30 @@ import com.example.progettoprogrammazione.activity.IntroActivity
 import com.example.progettoprogrammazione.databinding.FragmentProfiloBinding
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
+import com.example.progettoprogrammazione.utils.ImgUtils
 import com.example.progettoprogrammazione.utils.ResponseUser
 import com.example.progettoprogrammazione.utils.UserUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import java.util.*
+import kotlin.collections.HashMap
 
 
-class FragmentProfilo : Fragment(), UserUtils {
+class FragmentProfilo : Fragment(), UserUtils, ImgUtils {
 
     private lateinit var binding: FragmentProfiloBinding
 
     private lateinit var user: User
+
+    private lateinit var imageUri: Uri
+    private val selectImageFromGalleryResult =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            uri?.let {
+                imageUri = uri
+            }
+        }
+    lateinit var fileName: String
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
@@ -58,6 +74,25 @@ class FragmentProfilo : Fragment(), UserUtils {
             view.findNavController().navigate(R.id.ProfiloToUpgrade, bundle)
         }
 
+        binding.imgProfiloUtente.setOnClickListener {
+            selectImageFromGallery()
+            if (this::imageUri.isInitialized) {
+                uploadImage()
+                getUserData(object : FireBaseCallbackUser {
+                    override fun onResponse(responseU: ResponseUser) {
+                        val bundleU = Bundle()
+                        bundleU.putParcelable("user", responseU.user)
+                        when (user.Livello) {
+                            "1" -> view.findNavController().navigate(R.id.ProfiloUSelf, bundleU)
+                            "2" -> view.findNavController().navigate(R.id.ProfiloDSelf, bundleU)
+                            "3" -> view.findNavController().navigate(R.id.ProfiloRSelf, bundleU)
+                        }
+
+                    }
+                }, context)
+            }else Toast.makeText(context, "Errore.", Toast.LENGTH_LONG).show()
+        }
+
         binding.salva.setOnClickListener {
 
             val newnome = binding.nomeprofilo.text.toString()
@@ -82,10 +117,12 @@ class FragmentProfilo : Fragment(), UserUtils {
 
             val childUpdates: HashMap<String, Any> = hashMapOf()
             if (newnome.isNotEmpty() && newnome.length < 21) childUpdates["Nome"] = newnome
-            if (newcognome.isNotEmpty() && newcognome.length < 21) childUpdates["Cognome"] = newcognome
+            if (newcognome.isNotEmpty() && newcognome.length < 21) childUpdates["Cognome"] =
+                newcognome
 
             if (newrpassword == newpassword && newrpassword.isEmpty() && newpassword.isEmpty()
-                        && newpassword.length > 5) {
+                && newpassword.length > 5
+            ) {
                 if (newrpassword.isNotEmpty()) {
                     updateUserPassword(context, newrpassword, user.Email.toString())
                     childUpdates["Password"] = newrpassword
@@ -125,6 +162,26 @@ class FragmentProfilo : Fragment(), UserUtils {
             }
             builder.show()
         }
+    }
+
+    override fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
+
+    override fun uploadImage() {
+        fileName = UUID.randomUUID().toString() + ".jpg"
+
+        val refStorage =
+            FirebaseStorage.getInstance().getReference("Users-images/").child(fileName)
+
+        refStorage.putFile(imageUri)
+            .addOnSuccessListener { taskSnapshot ->
+                taskSnapshot.storage.downloadUrl.addOnSuccessListener {
+                    it.toString()
+                }
+            }
+
+            .addOnFailureListener { e ->
+                print(e.message)
+            }
     }
 }
 
