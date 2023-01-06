@@ -53,16 +53,6 @@ class FragmentLogin : Fragment(), UserUtil, DipendenteUtil, RestaurantUtils ,Pro
                 firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                     if (it.isSuccessful) {
 
-                        /*
-                        FUNZIONE CHE PRENDE I DATI DI DIPENDENTE
-
-                        dipArrayList = arrayListOf()
-                        getDipendenteData(object : FireBaseCallbackDipendente {
-                            override fun onResponse(response: ResponseDipendente) {
-                                dipArrayList = response.dipendenti
-                            }
-                        }, context)
-                        */
 
                         //LOGIN
                         getUserData(object : FireBaseCallbackUser {

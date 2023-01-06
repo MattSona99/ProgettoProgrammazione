@@ -64,10 +64,7 @@ class UserActivity : AppCompatActivity() {
         val bundleU = Bundle()
         bundleU.putParcelable("user", u)
 
-
-        val r =
-            intent.getParcelableArrayListExtra<Restaurant>("ristoranti") as ArrayList<Restaurant>
-
+        val r = intent.getParcelableArrayListExtra<Restaurant>("ristoranti") as ArrayList<Restaurant>
 
         resturantDataViewModel = ViewModelProvider(this)[RestaurantViewModel::class.java]
         resturantDataViewModel.arrayListRistorantiLiveData.postValue(r)
