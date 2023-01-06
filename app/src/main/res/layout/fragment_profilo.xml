@@ -32,12 +32,13 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/img_profilo_utente"
+                    android:id="@+id/card_profilo_utente"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     app:cardCornerRadius="20dp">
 
                     <ImageView
+                        android:id="@+id/img_profilo_utente"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_centerVertical="true"
@@ -56,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="30dp"
-                    android:layout_toRightOf="@id/img_profilo_utente"
+                    android:layout_toRightOf="@id/card_profilo_utente"
                     android:text="BENVENUTO"
                     android:textColor="@color/white"
                     android:textSize="25dp"
@@ -69,7 +70,7 @@
                     android:layout_below="@id/benvenutoprofilo"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="30dp"
-                    android:layout_toRightOf="@id/img_profilo_utente"
+                    android:layout_toRightOf="@id/card_profilo_utente"
                     android:text="Nome Utente"
                     android:textColor="@color/white"
                     android:textSize="20dp"
