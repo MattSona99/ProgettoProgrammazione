@@ -19,13 +19,14 @@ import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class FragmentLogin : Fragment(), UserUtils, DipendenteUtil, RestaurantUtils ,ProductUtils{
+class FragmentLogin : Fragment(), UserUtils, DipendenteUtil, RestaurantUtils, ProductUtils {
 
     private lateinit var binding: FragmentLoginBinding
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     private var userlvl: String? = null
+    private lateinit var useremail: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -138,6 +139,14 @@ class FragmentLogin : Fragment(), UserUtils, DipendenteUtil, RestaurantUtils ,Pr
                 Toast.makeText(context, "Nessun campo può essere vuoto!", Toast.LENGTH_LONG)
                     .show()
             }
+        }
+
+        binding.recuperapassword.setOnClickListener {
+            useremail = binding.email.text.toString()
+            if(useremail.isNotEmpty()){
+                recoverUserPassword(context, useremail)
+            }else Toast.makeText(context, "Inserisci un'email.", Toast.LENGTH_SHORT).show()
+
         }
 
         binding.noaccount.setOnClickListener {

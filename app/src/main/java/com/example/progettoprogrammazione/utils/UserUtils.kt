@@ -57,6 +57,14 @@ interface UserUtils {
         firebaseAuth.currentUser!!.updatePassword(newpassword)
     }
 
+    fun recoverUserPassword(context: Context?, email: String) {
+        firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener {
+            if (it.isSuccessful) {
+                Toast.makeText(context, "Email di recupero inviata.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     fun getUserData(callBack: FireBaseCallbackUser, context: Context?) {
 
         firebaseDatabase.getReference("Utenti").child(firebaseAuth.currentUser!!.uid)
@@ -84,5 +92,4 @@ interface UserUtils {
                 }
             })
     }
-
 }
