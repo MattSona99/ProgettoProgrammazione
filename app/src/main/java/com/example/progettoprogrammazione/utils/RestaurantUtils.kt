@@ -22,7 +22,7 @@ interface RestaurantUtils {
     }
 
     fun getRating(callback: FireBaseCallbackRating, context: Context?, restaurantID : String) {
-        firebaseDatabase.getReference("Ristoranti/$restaurantID/nRatings")
+        firebaseDatabase.getReference("Ristoranti/$restaurantID/usersRatings")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val responseR = ResponseRating()
