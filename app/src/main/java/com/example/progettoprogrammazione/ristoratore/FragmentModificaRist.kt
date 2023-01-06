@@ -8,8 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.TimePicker
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.progettoprogrammazione.databinding.FragmentModificaRistBinding
 import com.example.progettoprogrammazione.databinding.FragmentProfiloBinding
@@ -71,7 +73,8 @@ class FragmentModificaRist : Fragment(), ImgUtils {
                             String.format("%s%s, ", binding.newTipocibo.text, selectedItems[i])
                     }
                 }
-                binding.newTipocibo.text = binding.newTipocibo.text.substring(0, binding.newTipocibo.text.length -2)
+                binding.newTipocibo.text =
+                    binding.newTipocibo.text.substring(0, binding.newTipocibo.text.length - 2)
             }
             builder.setNegativeButton("Annulla") { dialog, _ ->
                 dialog.cancel()
@@ -82,6 +85,12 @@ class FragmentModificaRist : Fragment(), ImgUtils {
             }
             builder.show()
         }
+
+        binding.inizioOrarioScelto.isVisible = false
+        binding.fineOrarioScelto.isVisible = false
+
+        OnClickTime(binding.inizioOrarioScelto, binding.newInizioOrarioRist)
+        OnClickTime(binding.fineOrarioScelto, binding.newFineOrarioRist)
 
         return binding.root
     }
@@ -100,7 +109,8 @@ class FragmentModificaRist : Fragment(), ImgUtils {
             val newnome = binding.newNomeristorante.text.toString()
             val newdescrizione = binding.newDescrizione.text.toString()
             val newindirizzo = binding.newIndirizzo.text.toString()
-            val neworario = binding.newOrariolavorativo.text.toString()
+            val neworarioinizio = binding.inizioOrarioScelto.text.toString()
+            val neworariofine = binding.fineOrarioScelto.text.toString()
             val newtel = binding.newTelefono.text.toString()
             val newtipocibo = binding.newTipocibo.text.toString()
             val newvegan = binding.newVegan
@@ -121,9 +131,6 @@ class FragmentModificaRist : Fragment(), ImgUtils {
             if (newindirizzo.length < 10) {
                 binding.newIndirizzo.error = "Indririzzo errato o vuoto."
             }
-            if (neworario.length < 11)
-                binding.newOrariolavorativo.error = "Formato errato. (gg: xx:xx-xx:xx)"
-
             if (newtel.length > 11) {
                 binding.newTelefono.error =
                     "Il numero di telefono deve contenere al massimo 11 cifre."
@@ -134,10 +141,15 @@ class FragmentModificaRist : Fragment(), ImgUtils {
             val childUpdates: HashMap<String, Any> = hashMapOf()
             if (newnome.isNotEmpty() && newnome.length < 35) childUpdates["nomeR"] = newnome
             if (newdescrizione.isNotEmpty() && newdescrizione.length < 50
-                && newdescrizione.length > 10) childUpdates["descrizioneR"] =
+                && newdescrizione.length > 10
+            ) childUpdates["descrizioneR"] =
                 newdescrizione
-            if (newindirizzo.isNotEmpty() && newindirizzo.length > 10) childUpdates["indirizzoR"] = newindirizzo
-            if (neworario.isNotEmpty() && neworario.length > 10) childUpdates["orariolavorativoR"] = neworario
+            if (newindirizzo.isNotEmpty() && newindirizzo.length > 10) childUpdates["indirizzoR"] =
+                newindirizzo
+            if (neworarioinizio.isNotEmpty()) childUpdates["orarioinizioR"] =
+                neworarioinizio
+            if (neworariofine.isNotEmpty()) childUpdates["orariofineR"] =
+                neworariofine
             if (newtel.isNotEmpty() && newtel.length < 12) childUpdates["telefonoR"] = newtel
             if (newtipocibo.isNotEmpty()) childUpdates["tipoCiboR"] = newtipocibo
             if (newimg != null) childUpdates["imageR"] = newimg!!
@@ -160,6 +172,34 @@ class FragmentModificaRist : Fragment(), ImgUtils {
                         .show()
                 }
 
+
+        }
+    }
+
+    private fun OnClickTime(textView: TextView, timePicker: TimePicker) {
+
+        timePicker.setOnTimeChangedListener { _, hour, minute ->
+            var hour = hour
+            var am_pm = ""
+            // AM_PM decider logic
+            when {
+                hour == 0 -> {
+                    hour += 12
+                    am_pm = "AM"
+                }
+                hour == 12 -> am_pm = "PM"
+                hour > 12 -> {
+                    hour -= 12
+                    am_pm = "PM"
+                }
+                else -> am_pm = "AM"
+            }
+
+            val ora = if (hour < 10) "0" + hour else hour
+            val min = if (minute < 10) "0" + minute else minute
+            // display format of time
+            val msg = "$ora : $min $am_pm"
+            textView.text = msg
 
         }
     }

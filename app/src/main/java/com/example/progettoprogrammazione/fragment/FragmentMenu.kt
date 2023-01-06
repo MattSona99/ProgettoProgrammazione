@@ -51,37 +51,37 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils {
         contorniArrayList = args.getParcelableArrayList<Product>("contorni") as ArrayList<Product>
         dolciArrayList = args.getParcelableArrayList<Product>("dolci") as ArrayList<Product>
 
-        val layoutManagerBev = GridLayoutManager(context, 3)
+        val layoutManagerBev = GridLayoutManager(context, 2)
         binding.recycleViewBevande.layoutManager = layoutManagerBev
         adapterBev = ProductAdapter(bevandeArrayList, this)
         binding.recycleViewBevande.adapter = adapterBev
         binding.recycleViewBevande.setHasFixedSize(true)
 
-        val layoutManagerAnt = GridLayoutManager(context, 3)
+        val layoutManagerAnt = GridLayoutManager(context, 2)
         binding.recycleViewAntipasti.layoutManager = layoutManagerAnt
         adapterAnt = ProductAdapter(antipastiArrayList, this)
         binding.recycleViewAntipasti.adapter = adapterAnt
         binding.recycleViewAntipasti.setHasFixedSize(true)
 
-        val layoutManagerPri = GridLayoutManager(context, 3)
+        val layoutManagerPri = GridLayoutManager(context, 2)
         binding.recycleViewPrimi.layoutManager = layoutManagerPri
         adapterPri = ProductAdapter(primiArrayList, this)
         binding.recycleViewPrimi.adapter = adapterPri
         binding.recycleViewPrimi.setHasFixedSize(true)
 
-        val layoutManagerSec = GridLayoutManager(context, 3)
+        val layoutManagerSec = GridLayoutManager(context, 2)
         binding.recycleViewSecondi.layoutManager = layoutManagerSec
         adapterSec = ProductAdapter(secondiArrayList, this)
         binding.recycleViewSecondi.adapter = adapterSec
         binding.recycleViewSecondi.setHasFixedSize(true)
 
-        val layoutManagerCon = GridLayoutManager(context, 3)
+        val layoutManagerCon = GridLayoutManager(context, 2)
         binding.recycleViewContorni.layoutManager = layoutManagerCon
         adapterCon = ProductAdapter(contorniArrayList, this)
         binding.recycleViewContorni.adapter = adapterCon
         binding.recycleViewContorni.setHasFixedSize(true)
 
-        val layoutManagerDol = GridLayoutManager(context, 3)
+        val layoutManagerDol = GridLayoutManager(context, 2)
         binding.recycleViewDolci.layoutManager = layoutManagerDol
         adapterDol = ProductAdapter(dolciArrayList, this)
         binding.recycleViewDolci.adapter = adapterDol

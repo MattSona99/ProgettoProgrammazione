@@ -9,7 +9,8 @@ data class Restaurant(
     var nomeR: String?,
     var descrizioneR: String?,
     var indirizzoR: String?,
-    var orariolavorativoR: String?,
+    var orarioinizioR: String?,
+    var orariofineR: String?,
     var telefonoR: String?,
     var tipoCiboR: String?,
     var veganR: Boolean,
@@ -20,6 +21,7 @@ data class Restaurant(
 
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -39,7 +41,8 @@ data class Restaurant(
         parcel.writeString(nomeR)
         parcel.writeString(descrizioneR)
         parcel.writeString(indirizzoR)
-        parcel.writeString(orariolavorativoR)
+        parcel.writeString(orarioinizioR)
+        parcel.writeString(orariofineR)
         parcel.writeString(telefonoR)
         parcel.writeString(tipoCiboR)
         parcel.writeByte(if (veganR) 1 else 0)

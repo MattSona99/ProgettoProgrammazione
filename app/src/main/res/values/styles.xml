@@ -24,4 +24,12 @@
         <item name="android:fontFamily">@font/satoshi_regular</item>
     </style>
 
+    <style name="TimePickerStyle" parent="android:Widget.Material.TimePicker">
+        <item name="android:timePickerMode">spinner</item>
+        <item name="android:numbersTextColor">@color/white</item>
+        <item name="android:numbersBackgroundColor">@color/white</item>
+        <item name="android:numbersSelectorColor">@color/white</item>
+        <item name="android:headerBackground">@color/white</item>
+    </style>
+
 </resources>

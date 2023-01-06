@@ -9,8 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.TimePicker
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.progettoprogrammazione.activity.CreaMenu
 import com.example.progettoprogrammazione.databinding.FragmentCreaRistBinding
@@ -80,8 +82,9 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
                             String.format("%s%s, ", binding.tipociboNewR.text, selectedItems[i])
                     }
                 }
-                if(binding.tipociboNewR.text.length > 2) {
-                    binding.tipociboNewR.text = binding.tipociboNewR.text.substring(0, binding.tipociboNewR.text.length -2)
+                if (binding.tipociboNewR.text.length > 2) {
+                    binding.tipociboNewR.text =
+                        binding.tipociboNewR.text.substring(0, binding.tipociboNewR.text.length - 2)
                 }
             }
             builder.setNegativeButton("Annulla") { dialog, _ ->
@@ -96,6 +99,12 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
 
         val args = this.arguments
         user = args?.getParcelable<User>("user") as User
+
+        binding.inizioOrarioSceltoR.isVisible = false
+        binding.fineOrarioSceltoR.isVisible = false
+
+        OnClickTime(binding.inizioOrarioSceltoR, binding.inizioOrariolavorativoNewR)
+        OnClickTime(binding.fineOrarioSceltoR, binding.fineOrariolavorativoNewR)
 
         return binding.root
     }
@@ -113,7 +122,8 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
                 val nomeR = binding.nomeristoranteNewR.text.toString()
                 val descrizioneR = binding.descrizioneNewR.text.toString()
                 val indirizzoR = binding.indirizzoNewR.text.toString()
-                val orariolavorativoR = binding.orariolavorativoNewR.text.toString()
+                val orarioinizioR =binding.inizioOrarioSceltoR.text.toString()
+                val orariofineR = binding.fineOrarioSceltoR.text.toString()
                 val telefonoR = binding.telefonoNewR.text.toString()
                 val tipoCiboR = binding.tipociboNewR.text.toString()
                 val veganR = binding.veganNewR
@@ -130,8 +140,6 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
                 if (indirizzoR.length < 10) {
                     binding.indirizzoNewR.error = "Indririzzo errato o vuoto."
                 }
-                if (orariolavorativoR.length < 11)
-                    binding.orariolavorativoNewR.error = "Formato errato. (gg: xx:xx-xx:xx)"
 
                 if (telefonoR.length < 9) {
                     binding.telefonoNewR.error =
@@ -144,7 +152,6 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
                     && descrizioneR.isNotEmpty()
                     && descrizioneR.length > 10 && descrizioneR.length < 50
                     && indirizzoR.isNotEmpty() && indirizzoR.length > 10
-                    && orariolavorativoR.isNotEmpty() && orariolavorativoR.length > 10
                     && telefonoR.isNotEmpty() && telefonoR.length > 8
                 ) {
                     getUserData(object : FireBaseCallbackUser {
@@ -164,7 +171,8 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
                                 nomeR,
                                 descrizioneR,
                                 indirizzoR,
-                                orariolavorativoR,
+                                orarioinizioR,
+                                orariofineR,
                                 telefonoR,
                                 tipoCiboR,
                                 vegan,
@@ -205,6 +213,36 @@ class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
 
         }
     }
+
+    private fun OnClickTime(textView: TextView, timePicker: TimePicker) {
+
+        timePicker.setOnTimeChangedListener { _, hour, minute ->
+            var hour = hour
+            var am_pm = ""
+            // AM_PM decider logic
+            when {
+                hour == 0 -> {
+                    hour += 12
+                    am_pm = "AM"
+                }
+                hour == 12 -> am_pm = "PM"
+                hour > 12 -> {
+                    hour -= 12
+                    am_pm = "PM"
+                }
+                else -> am_pm = "AM"
+            }
+
+            val ora = if (hour < 10) "0" + hour else hour
+            val min = if (minute < 10) "0" + minute else minute
+            // display format of time
+            val msg = "$ora : $min $am_pm"
+            textView.text = msg
+
+        }
+    }
+
+
 
     override fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
 
