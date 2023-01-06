@@ -176,7 +176,8 @@ class FragmentCreaRist : Fragment(), UserUtils, RestaurantUtils, ImgUtils {
                                 telefonoR,
                                 tipoCiboR,
                                 vegan,
-                                "1.0",
+                                0.0,
+                                0,
                                 UUID.randomUUID().toString(),
                                 responseU.user!!.Email
                             )

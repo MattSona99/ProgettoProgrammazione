@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RatingBar
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -22,11 +23,15 @@ import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.prodotti.ProductClickListener
 import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 
-class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, RestaurantUtils, UserUtils {
+class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, RestaurantUtils,
+    UserUtils {
 
     private lateinit var binding: FragmentRestaurantDetailBinding
 
@@ -40,6 +45,7 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
     private lateinit var contorniArrayList: ArrayList<Product>
     private lateinit var dolciArrayList: ArrayList<Product>
 
+    private lateinit var uid: String
     private var restaurantList: ArrayList<Restaurant>? = null
     private var restaurant: Restaurant? = null
 
@@ -58,6 +64,8 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
         restaurantList = args?.getParcelableArrayList("restArrayList")
 
         user = FirebaseAuth.getInstance()
+        uid = user.currentUser!!.uid
+
 
         restaurant = restaurantFromId(restaurantID.toString())
 
@@ -166,7 +174,7 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
             builder.setMessage("Sei sicuro di voler eliminare il ristorante?")
             builder.setPositiveButton("Sì") { dialog, _ ->
                 reference.child("$idR").removeValue()
-                getUserData(object : FireBaseCallbackUser{
+                getUserData(object : FireBaseCallbackUser {
                     override fun onResponse(responseU: ResponseUser) {
                         getRestaurantData(object : FireBaseCallbackRestaurant {
                             override fun onResponse(responseR: ResponseRistorante) {
@@ -187,29 +195,56 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
             builder.show()
         }
 
-        binding.modificaRistorante.setOnClickListener{
+        binding.modificaRistorante.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("restID", restaurant?.idR.toString())
             view.findNavController().navigate(R.id.DetailToModifica, bundle)
         }
 
-    }
+//        binding.ratingBarR.rating = firebaseDatabase.getReference("Utenti/$uid/ratings").child(restaurant?.nomeR!!).get().toString().toFloat()
+        binding.btnRating.setOnClickListener {
+            Toast.makeText(
+                requireContext(),
+                "La tua valutazione: " + binding.ratingBarR.rating,
+                Toast.LENGTH_SHORT
+            ).show()
+            firebaseDatabase.getReference("Utenti/$uid/ratings").child(restaurant?.nomeR!!)
+                .setValue(binding.ratingBarR.rating)
 
-    override fun onClickProduct(prodotto: Product) {
-
-        val bundle1 = Bundle()
-        bundle1.putString("prodID", prodotto.idP.toString())
-        bundle1.putParcelableArrayList("prodArrayList", bevandeArrayList)
-
-        view?.findNavController()?.navigate(R.id.productDetail, bundle1)
-    }
-
-    private fun restaurantFromId(restaurantID: String?): Restaurant? {
-        for (restaurant in restaurantList!!) {
-            if (restaurant.idR == restaurantID)
-                return restaurant
+            firebaseDatabase.getReference("Ristoranti/$restaurantID/usersRatings")
+                .child(user.currentUser?.uid!!).setValue(binding.ratingBarR.rating)
         }
-        return null
+        var rating =
+            firebaseDatabase.getReference("Utenti/$uid/ratings").child(restaurant?.nomeR!!)
+                .get()
+        if (!(rating.isSuccessful)) {
+            restaurant!!.nRatings += 1
+            firebaseDatabase.getReference("Ristoranti/$restaurantID/nRatings").setValue(restaurant!!.nRatings)
+        }
+
+        if (restaurant!!.ratingR == 0.0) {
+            restaurant!!.ratingR = binding.ratingBarR.rating.toDouble()
+        } else {
+            //MI POTETE PRENDERE TUTTI I VALORI CHE STANNO DENTRO usersRatings PORCODIO CHE SONO MONGOLOIDE?
+        }
     }
+
+
+override fun onClickProduct(prodotto: Product) {
+
+    val bundle1 = Bundle()
+    bundle1.putString("prodID", prodotto.idP.toString())
+    bundle1.putParcelableArrayList("prodArrayList", bevandeArrayList)
+
+    view?.findNavController()?.navigate(R.id.productDetail, bundle1)
+}
+
+private fun restaurantFromId(restaurantID: String?): Restaurant? {
+    for (restaurant in restaurantList!!) {
+        if (restaurant.idR == restaurantID)
+            return restaurant
+    }
+    return null
+}
 
 }

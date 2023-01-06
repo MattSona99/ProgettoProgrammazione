@@ -36,7 +36,8 @@ interface RestaurantUtils {
                             rist.child("telefonoR").value.toString(),
                             rist.child("tipoCiboR").value.toString(),
                             rist.child("veganR").value.toString().toBoolean(),
-                            rist.child("ratingR").value.toString(),
+                            rist.child("ratingR").value.toString().toDouble(),
+                            rist.child("nRatings").value.toString().toInt(),
                             rist.child("idR").value.toString(),
                             rist.child("proprietarioR").value.toString()
                         )

@@ -30,7 +30,7 @@ class RestaurantViewHolder(
         )
         restaurantBinding.nomeRistorante.text =
             restaurant.nomeR!!.substring(0, 1).uppercase() + restaurant.nomeR!!.substring(1)
-        restaurantBinding.rating.text = restaurant.ratingR
+        restaurantBinding.rating.text = restaurant.ratingR.toString()
         restaurantBinding.descrizione.text = restaurant.descrizioneR!!.substring(0, 1)
             .uppercase() + restaurant.descrizioneR!!.substring(1)
         if (restaurant.tipoCiboR?.length!! > 19)
