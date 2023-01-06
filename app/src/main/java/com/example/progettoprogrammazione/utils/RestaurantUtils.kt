@@ -2,6 +2,7 @@ package com.example.progettoprogrammazione.utils
 
 import android.content.Context
 import android.widget.Toast
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackRating
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.models.Restaurant
 import com.google.firebase.auth.FirebaseAuth
@@ -18,6 +19,27 @@ interface RestaurantUtils {
     fun createRestaurant(context: Context?, rData: Restaurant) {
         firebaseDatabase.getReference("Ristoranti").child("${rData.idR}").setValue(rData)
         Toast.makeText(context, "Ristorante creato con successo.", Toast.LENGTH_LONG).show()
+    }
+
+    fun getRating(callback: FireBaseCallbackRating, context: Context?, restaurantID : String) {
+        firebaseDatabase.getReference("Ristoranti/$restaurantID/nRatings")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val responseR = ResponseRating()
+                    for(rate : DataSnapshot in snapshot.children) {
+                        val r = rate.value.toString().toDouble()
+                        responseR.rating.add(r)
+                    }
+                    callback.onResponse(responseR)
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(
+                        context,
+                        "Errore durante il caricamento dei dati",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            })
     }
 
     fun getRestaurantData(callBack: FireBaseCallbackRestaurant, context: Context?) {

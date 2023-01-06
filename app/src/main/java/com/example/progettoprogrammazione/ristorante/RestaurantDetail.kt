@@ -2,12 +2,11 @@ package com.example.progettoprogrammazione.ristorante
 
 import android.app.AlertDialog
 import android.content.Intent
-import android.graphics.*
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RatingBar
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -16,6 +15,7 @@ import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.activity.RestaurateurActivity
 import com.example.progettoprogrammazione.databinding.FragmentRestaurantDetailBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackProdotto
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackRating
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.models.Product
@@ -23,10 +23,7 @@ import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.prodotti.ProductClickListener
 import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 
@@ -219,32 +216,38 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
                 .get()
         if (!(rating.isSuccessful)) {
             restaurant!!.nRatings += 1
-            firebaseDatabase.getReference("Ristoranti/$restaurantID/nRatings").setValue(restaurant!!.nRatings)
+            firebaseDatabase.getReference("Ristoranti/$restaurantID/nRatings")
+                .setValue(restaurant!!.nRatings)
         }
 
         if (restaurant!!.ratingR == 0.0) {
             restaurant!!.ratingR = binding.ratingBarR.rating.toDouble()
         } else {
-            //MI POTETE PRENDERE TUTTI I VALORI CHE STANNO DENTRO usersRatings PORCODIO CHE SONO MONGOLOIDE?
+            getRating(object : FireBaseCallbackRating{
+                override fun onResponse(responseR: ResponseRating) {
+                    //arraylist dei rating
+                    responseR.rating
+                }
+            }, context, restaurantID.toString())
         }
     }
 
 
-override fun onClickProduct(prodotto: Product) {
+    override fun onClickProduct(prodotto: Product) {
 
-    val bundle1 = Bundle()
-    bundle1.putString("prodID", prodotto.idP.toString())
-    bundle1.putParcelableArrayList("prodArrayList", bevandeArrayList)
+        val bundle1 = Bundle()
+        bundle1.putString("prodID", prodotto.idP.toString())
+        bundle1.putParcelableArrayList("prodArrayList", bevandeArrayList)
 
-    view?.findNavController()?.navigate(R.id.productDetail, bundle1)
-}
-
-private fun restaurantFromId(restaurantID: String?): Restaurant? {
-    for (restaurant in restaurantList!!) {
-        if (restaurant.idR == restaurantID)
-            return restaurant
+        view?.findNavController()?.navigate(R.id.productDetail, bundle1)
     }
-    return null
-}
+
+    private fun restaurantFromId(restaurantID: String?): Restaurant? {
+        for (restaurant in restaurantList!!) {
+            if (restaurant.idR == restaurantID)
+                return restaurant
+        }
+        return null
+    }
 
 }
