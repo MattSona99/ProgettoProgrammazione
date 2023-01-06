@@ -14,12 +14,12 @@ import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.models.Dipendente
 import com.example.progettoprogrammazione.utils.DipendenteUtil
 import com.example.progettoprogrammazione.utils.ResponseUser
-import com.example.progettoprogrammazione.utils.UserUtil
+import com.example.progettoprogrammazione.utils.UserUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
-class FragmentUpgradeDipendente : Fragment(), UserUtil, DipendenteUtil {
+class FragmentUpgradeDipendente : Fragment(), UserUtils, DipendenteUtil {
 
     private lateinit var binding: FragmentUpgrDipendenteBinding
 

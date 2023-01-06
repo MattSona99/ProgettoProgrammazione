@@ -13,23 +13,19 @@ import com.example.progettoprogrammazione.activity.EmployeeActivity
 import com.example.progettoprogrammazione.activity.RestaurateurActivity
 import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.databinding.FragmentLoginBinding
-import com.example.progettoprogrammazione.firebase.FireBaseCallbackProdotto
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
-import com.example.progettoprogrammazione.models.Restaurant
-import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class FragmentLogin : Fragment(), UserUtil, DipendenteUtil, RestaurantUtils ,ProductUtils{
+class FragmentLogin : Fragment(), UserUtils, DipendenteUtil, RestaurantUtils ,ProductUtils{
 
     private lateinit var binding: FragmentLoginBinding
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     private var userlvl: String? = null
-    private lateinit var user: User
 
     override fun onCreateView(
         inflater: LayoutInflater,

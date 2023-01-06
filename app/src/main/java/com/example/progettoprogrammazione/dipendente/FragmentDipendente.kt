@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.databinding.FragmentDipendenteBinding
 import com.example.progettoprogrammazione.models.Dipendente
 import com.example.progettoprogrammazione.utils.DipendenteUtil
-import com.example.progettoprogrammazione.utils.UserUtil
+import com.example.progettoprogrammazione.utils.UserUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 
-class FragmentDipendente : Fragment(), DipendenteUtil, UserUtil {
+class FragmentDipendente : Fragment(), DipendenteUtil, UserUtils {
 
     private lateinit var binding: FragmentDipendenteBinding
 

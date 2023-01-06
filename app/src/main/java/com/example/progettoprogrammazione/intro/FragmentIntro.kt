@@ -18,11 +18,11 @@ import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.utils.ResponseRistorante
 import com.example.progettoprogrammazione.utils.ResponseUser
 import com.example.progettoprogrammazione.utils.RestaurantUtils
-import com.example.progettoprogrammazione.utils.UserUtil
+import com.example.progettoprogrammazione.utils.UserUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class FragmentIntro : Fragment(), UserUtil, RestaurantUtils {
+class FragmentIntro : Fragment(), UserUtils, RestaurantUtils {
 
     private lateinit var binding: FragmentIntroBinding
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()

@@ -26,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import java.util.*
 
-class FragmentCreaRist : Fragment(), UserUtil, RestaurantUtils, ImgUtils {
+class FragmentCreaRist : Fragment(), UserUtils, RestaurantUtils, ImgUtils {
 
     private lateinit var binding: FragmentCreaRistBinding
 

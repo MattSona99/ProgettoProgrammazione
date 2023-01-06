@@ -14,13 +14,13 @@ import com.example.progettoprogrammazione.activity.IntroActivity
 import com.example.progettoprogrammazione.databinding.FragmentRegistratiBinding
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
-import com.example.progettoprogrammazione.utils.UserUtil
+import com.example.progettoprogrammazione.utils.UserUtils
 import com.example.progettoprogrammazione.utils.ResponseUser
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 
-class FragmentRegister : Fragment(), UserUtil {
+class FragmentRegister : Fragment(), UserUtils {
 
     private lateinit var binding: FragmentRegistratiBinding
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()

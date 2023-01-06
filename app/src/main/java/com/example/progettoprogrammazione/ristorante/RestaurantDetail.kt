@@ -1,6 +1,7 @@
 package com.example.progettoprogrammazione.ristorante
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.graphics.*
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,23 +12,26 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
+import com.example.progettoprogrammazione.activity.RestaurateurActivity
 import com.example.progettoprogrammazione.databinding.FragmentRestaurantDetailBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackProdotto
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.prodotti.ProductClickListener
-import com.example.progettoprogrammazione.utils.ProductUtils
-import com.example.progettoprogrammazione.utils.ResponseProdotto
+import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 
-class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
+class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, RestaurantUtils, UserUtils {
 
     private lateinit var binding: FragmentRestaurantDetailBinding
 
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
+    override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     private lateinit var bevandeArrayList: ArrayList<Product>
     private lateinit var antipastiArrayList: ArrayList<Product>
@@ -54,7 +58,6 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
         restaurantList = args?.getParcelableArrayList("restArrayList")
 
         user = FirebaseAuth.getInstance()
-        user.currentUser?.email
 
         restaurant = restaurantFromId(restaurantID.toString())
 
@@ -70,7 +73,7 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
             val storageRef = FirebaseStorage.getInstance().reference.child("$imageName")
             val localfile = File.createTempFile("tempImage", "jpg")
             storageRef.getFile(localfile).addOnSuccessListener {
-                var bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
+                val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
                 binding.imgRistoranteDetail.setImageBitmap(bitmap)
             }.addOnFailureListener {
                 Toast.makeText(context, "Caricamento immagine fallito", Toast.LENGTH_SHORT).show()
@@ -82,10 +85,7 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
                 .uppercase() + restaurant?.descrizioneR!!.substring(1)
             binding.numeroDetail.text = restaurant?.telefonoR
             binding.indirizzodetail.text = restaurant?.indirizzoR
-
         }
-
-
         return binding.root
     }
 
@@ -166,17 +166,28 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils {
             builder.setMessage("Sei sicuro di voler eliminare il ristorante?")
             builder.setPositiveButton("Sì") { dialog, _ ->
                 reference.child("$idR").removeValue()
-                view.findNavController().navigate(R.id.Ristoranti_R)
+                getUserData(object : FireBaseCallbackUser{
+                    override fun onResponse(responseU: ResponseUser) {
+                        getRestaurantData(object : FireBaseCallbackRestaurant {
+                            override fun onResponse(responseR: ResponseRistorante) {
+                                val intent = Intent(context, RestaurateurActivity::class.java)
+                                intent.putExtra("ristoranti", responseR.ristoranti)
+                                intent.putExtra("user", responseU.user)
+                                startActivity(intent)
+                                activity?.finish()
+                            }
+                        }, context)
+                    }
+                }, context)
 
             }
             builder.setNegativeButton("No") { dialog, _ ->
                 dialog.cancel()
             }
             builder.show()
-
         }
 
-        binding.modificaRistorante.setOnClickListener {
+        binding.modificaRistorante.setOnClickListener{
             val bundle = Bundle()
             bundle.putString("restID", restaurant?.idR.toString())
             view.findNavController().navigate(R.id.DetailToModifica, bundle)

@@ -15,12 +15,12 @@ import com.example.progettoprogrammazione.databinding.FragmentProfiloBinding
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.utils.ResponseUser
-import com.example.progettoprogrammazione.utils.UserUtil
+import com.example.progettoprogrammazione.utils.UserUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 
-class FragmentProfilo : Fragment(), UserUtil {
+class FragmentProfilo : Fragment(), UserUtils {
 
     private lateinit var binding: FragmentProfiloBinding
 
