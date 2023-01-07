@@ -9,12 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentGestioneRistBinding
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.ristorante.RestaurantAdapter
 import com.example.progettoprogrammazione.ristorante.RestaurantClickListener
+import com.example.progettoprogrammazione.utils.ResponseRistorante
 import com.example.progettoprogrammazione.utils.RestaurantUtils
 import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -33,6 +36,8 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
 
     private lateinit var resturantDataViewModel: RestaurantViewModel
     private lateinit var restArrayList: ArrayList<Restaurant>
+
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,6 +64,23 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
             showData()
             adapter.notifyDataSetChanged()
 
+        }
+
+        swipeRefreshLayout = binding.swipeRefreshGestione
+        swipeRefreshLayout.setOnRefreshListener {
+            getRestaurantData(object : FireBaseCallbackRestaurant {
+                override fun onResponse(responseR: ResponseRistorante) {
+                    restArrayList = responseR.ristoranti
+                    val layoutManager = GridLayoutManager(context, 1)
+                    binding.recycleViewRist.layoutManager = layoutManager
+                    adapter = RestaurantAdapter(restArrayList, this@FragmentGestione)
+                    binding.recycleViewRist.adapter = adapter
+                    binding.recycleViewRist.setHasFixedSize(true)
+                    showData()
+                    adapter.notifyDataSetChanged()
+                    swipeRefreshLayout.isRefreshing = false
+                }
+            }, context)
         }
 
         binding.searchBarGestione.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
