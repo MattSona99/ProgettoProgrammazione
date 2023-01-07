@@ -35,7 +35,6 @@ class EmployeeActivity : AppCompatActivity() {
     private lateinit var navHostFragment: NavHostFragment
 
     private lateinit var resturantDataViewModel: RestaurantViewModel
-    private lateinit var productDataViewModel: ProductViewModel
 
     private var pressedTime = 0L
 
@@ -53,6 +52,7 @@ class EmployeeActivity : AppCompatActivity() {
 
         val r =
             intent.getParcelableArrayListExtra<Restaurant>("ristoranti") as ArrayList<Restaurant>
+
 
         resturantDataViewModel = ViewModelProvider(this)[RestaurantViewModel::class.java]
         resturantDataViewModel.arrayListRistorantiLiveData.postValue(r)

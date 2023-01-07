@@ -1,7 +1,8 @@
 package com.example.progettoprogrammazione.utils
 
-import com.example.progettoprogrammazione.models.Product
+import com.example.progettoprogrammazione.models.Cart
+
 
 class ResponseShoppingCart {
-    val carrello:HashMap<String,Product> = HashMap()
+    val carrello:HashMap<String, Cart> = HashMap()
 }

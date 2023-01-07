@@ -65,32 +65,18 @@ class ProductViewHolder(
  */
     fun useShoppingCart(prodotto: Product, quantita: Int){
 
-    getShopingCartData(FirebaseAuth.getInstance().uid,object: FireBaseCallbackShoppingCart {
-            override fun onResponse(responseC: ResponseShoppingCart) {
-
-            }
-
-        },context = null)
-
-                prodottoBinding.cartQuantity.isVisible=false
-
-        prodottoBinding.gotoCart.setOnClickListener {
-            //CAMBIA VISIBILITA' BOTTONE E STARTA ACTIVITY/FRAG CARRELLO
-            prodottoBinding.cartBegin.isVisible=false
-            //SECONDO LAYOUT VISIBILE
-            prodottoBinding.cartQuantity.isVisible=true
-
-            var quantity=quantita+1
+            val quantity=quantita+1
             val prezzoSingle=prodotto.prezzoP!!.toFloat()
 
             prodottoBinding.btnAdd.setOnClickListener {
-                //addShoppingCart(null,prodotto,quantita,FirebaseAuth.getInstance().uid)
+                addShoppingCart(prodotto,quantity,FirebaseAuth.getInstance().uid)
             }
             prodottoBinding.btnRemove.setOnClickListener {
-                //removeShoppingCart(null,prodotto,FirebaseAuth.getInstance().uid)
+                removeShoppingCart(prodotto,FirebaseAuth.getInstance().uid)
             }
 
-        }
+
+            //prodottoBinding.checkout.setOnClickListener{}
 
     }
 

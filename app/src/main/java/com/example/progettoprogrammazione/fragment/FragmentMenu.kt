@@ -103,6 +103,8 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils {
         bundle.putString("prodID", prodotto.idP.toString())
         bundle.putParcelableArrayList("prodArrayList", prodotti)
 
+        //bundle.put
+
         view?.findNavController()?.navigate(R.id.productDetail, bundle)
 
     }
