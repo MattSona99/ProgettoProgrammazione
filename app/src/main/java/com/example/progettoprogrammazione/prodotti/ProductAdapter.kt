@@ -20,7 +20,7 @@ class ProductAdapter(
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         holder.bindProdotti(prodotti[position])
-        holder.createShoppingCart(prodotti[position],0)
+        holder.useShoppingCart(prodotti[position],0)
 
     }
 

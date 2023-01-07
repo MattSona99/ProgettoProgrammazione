@@ -1,14 +1,12 @@
 package com.example.progettoprogrammazione.prodotti
 
 import android.content.Context
-import android.os.Bundle
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.databinding.ProductCardBinding
-import com.example.progettoprogrammazione.models.Cart
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackShoppingCart
 import com.example.progettoprogrammazione.models.Product
-import com.example.progettoprogrammazione.models.Restaurant
+import com.example.progettoprogrammazione.utils.ResponseShoppingCart
 import com.example.progettoprogrammazione.utils.ShoppingCartUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -65,9 +63,16 @@ class ProductViewHolder(
     }
 
  */
-    fun createShoppingCart(prodotto: Product, quantita: Int){
+    fun useShoppingCart(prodotto: Product, quantita: Int){
 
-        prodottoBinding.cartQuantity.isVisible=false
+    getShopingCartData(FirebaseAuth.getInstance().uid,object: FireBaseCallbackShoppingCart {
+            override fun onResponse(responseC: ResponseShoppingCart) {
+
+            }
+
+        },context = null)
+
+                prodottoBinding.cartQuantity.isVisible=false
 
         prodottoBinding.gotoCart.setOnClickListener {
             //CAMBIA VISIBILITA' BOTTONE E STARTA ACTIVITY/FRAG CARRELLO
@@ -79,10 +84,10 @@ class ProductViewHolder(
             val prezzoSingle=prodotto.prezzoP!!.toFloat()
 
             prodottoBinding.btnAdd.setOnClickListener {
-
+                //addShoppingCart(null,prodotto,quantita,FirebaseAuth.getInstance().uid)
             }
             prodottoBinding.btnRemove.setOnClickListener {
-
+                //removeShoppingCart(null,prodotto,FirebaseAuth.getInstance().uid)
             }
 
         }
