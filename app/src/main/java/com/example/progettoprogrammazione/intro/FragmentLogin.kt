@@ -14,12 +14,13 @@ import com.example.progettoprogrammazione.activity.RestaurateurActivity
 import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.databinding.FragmentLoginBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackShoppingCart
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class FragmentLogin : Fragment(), UserUtils, DipendenteUtil, RestaurantUtils, ProductUtils {
+class FragmentLogin : Fragment(), UserUtils, DipendenteUtil, RestaurantUtils, ProductUtils,ShoppingCartUtils{
 
     private lateinit var binding: FragmentLoginBinding
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -50,7 +51,6 @@ class FragmentLogin : Fragment(), UserUtils, DipendenteUtil, RestaurantUtils, Pr
                 firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                     if (it.isSuccessful) {
 
-
                         //LOGIN
                         getUserData(object : FireBaseCallbackUser {
                             override fun onResponse(responseU: ResponseUser) {
@@ -62,6 +62,10 @@ class FragmentLogin : Fragment(), UserUtils, DipendenteUtil, RestaurantUtils, Pr
                                     Toast.LENGTH_LONG
                                 )
                                     .show()
+
+                                getShopingCartData(FirebaseAuth.getInstance().uid,object: FireBaseCallbackShoppingCart{
+                                    override fun onResponse(responseC: ResponseShoppingCart) {
+
                                 getRestaurantData(object : FireBaseCallbackRestaurant {
                                     override fun onResponse(responseR: ResponseRistorante) {
 
@@ -77,6 +81,7 @@ class FragmentLogin : Fragment(), UserUtils, DipendenteUtil, RestaurantUtils, Pr
                                                             "ristoranti",
                                                             responseR.ristoranti
                                                         )
+                                                        putExtra("carrello", responseC.carrello)
                                                     }
                                                 startActivity(intent)
                                                 activity?.finish()
@@ -94,6 +99,7 @@ class FragmentLogin : Fragment(), UserUtils, DipendenteUtil, RestaurantUtils, Pr
                                                             "ristoranti",
                                                             responseR.ristoranti
                                                         )
+                                                        putExtra("carrello", responseC.carrello)
                                                     }
                                                 startActivity(intent)
                                                 activity?.finish()
@@ -111,6 +117,7 @@ class FragmentLogin : Fragment(), UserUtils, DipendenteUtil, RestaurantUtils, Pr
                                                             "ristoranti",
                                                             responseR.ristoranti
                                                         )
+                                                        putExtra("carrello", responseC.carrello)
                                                     }
                                                 startActivity(intent)
                                                 activity?.finish()
@@ -125,7 +132,9 @@ class FragmentLogin : Fragment(), UserUtils, DipendenteUtil, RestaurantUtils, Pr
                                             }
                                         }
                                     }
-                                }, context)
+                                    }, context)
+                                        }
+                                },context)
                             }
                         }, context)
 
