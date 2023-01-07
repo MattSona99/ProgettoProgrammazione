@@ -16,7 +16,7 @@ class RestaurantAdapter(
 
     private var restaurantFiltered: ArrayList<Restaurant> = arrayListOf()
 
-    public fun setData(restaurant: ArrayList<Restaurant>) {
+    fun setData(restaurant: ArrayList<Restaurant>) {
         this.restaurant = restaurant
         this.restaurantFiltered = restaurant
         notifyDataSetChanged()
@@ -37,27 +37,59 @@ class RestaurantAdapter(
     }
 
     override fun getFilter(): Filter {
-        var filter = object : Filter() {
+        val filter = object : Filter() {
             override fun performFiltering(p0: CharSequence?): FilterResults {
-                var filterResults = FilterResults()
-                if(p0 == null || p0.isEmpty()){
+                val filterResults = FilterResults()
+                if (p0 == null || p0.isEmpty()) {
                     filterResults.values = restaurantFiltered
                     filterResults.count = restaurantFiltered.size
-                }else{
-                    var searchChar = p0.toString().lowercase()
+                } else {
+                    val searchChar = p0.toString().lowercase()
+                    val filteredResults = ArrayList<Restaurant>()
 
-                    var filteredResults = ArrayList<Restaurant>()
-
-                    for(ristorante in restaurantFiltered){
-                        if(ristorante.nomeR!!.lowercase().contains(searchChar)){
+                    for (ristorante in restaurantFiltered) {
+                        if (ristorante.nomeR!!.lowercase().contains(searchChar)) {
                             filteredResults.add(ristorante)
                         }
                     }
-
                     filterResults.values = filteredResults
                     filterResults.count = filteredResults.size
                 }
+                return filterResults
+            }
 
+            override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
+                restaurant = p1!!.values as ArrayList<Restaurant>
+                notifyDataSetChanged()
+            }
+        }
+        return filter
+    }
+
+    fun customFilter(): Filter {
+        val filter = object : Filter() {
+            override fun performFiltering(p0: CharSequence?): FilterResults {
+                val filterResults = FilterResults()
+                if (p0 == null || p0.isEmpty()) {
+                    filterResults.values = restaurantFiltered
+                    filterResults.count = restaurantFiltered.size
+                } else {
+                    val searchChar = p0.toString().lowercase()
+                    val filteredResults = ArrayList<Restaurant>()
+
+                    for (ristorante in restaurantFiltered) {
+                        if(searchChar=="vegan"){
+                            if(ristorante.veganR) {
+                                filteredResults.add(ristorante)
+                            }
+                        }
+                        if (ristorante.tipoCiboR!!.lowercase().contains(searchChar)) {
+                            filteredResults.add(ristorante)
+                        }
+                    }
+                    filterResults.values = filteredResults
+                    filterResults.count = filteredResults.size
+                }
                 return filterResults
             }
 
@@ -67,8 +99,6 @@ class RestaurantAdapter(
             }
 
         }
-
         return filter
     }
-
 }
