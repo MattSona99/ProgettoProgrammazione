@@ -59,15 +59,6 @@ class EmployeeActivity : AppCompatActivity() {
         resturantDataViewModel = ViewModelProvider(this)[RestaurantViewModel::class.java]
         resturantDataViewModel.arrayListRistorantiLiveData.postValue(r)
 
-        /*
-        val p =
-            intent.getParcelableArrayListExtra<Product>("prodotti") as ArrayList<Product>
-
-        productDataViewModel = ViewModelProvider(this)[producttDataViewModel::class.java]
-        productDataViewModel.arrayListaprodottiLiveData.postValue(p)
-
-
-         */
         val appBarConfiguration = AppBarConfiguration
             .Builder(
                 R.id.RistorantiD,
