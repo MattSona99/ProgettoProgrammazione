@@ -221,18 +221,12 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
             } else {
                 getRating(object : FireBaseCallbackRating {
                     override fun onResponse(responseR: ResponseRating) {
-
                         nRatings.setValue(responseR.rating.size)
                         var sum = responseR.rating.sum()
                         var avg = sum / responseR.rating.size
                         ratingR.setValue(avg)
-
-
-
                     }
                 }, context, restaurantID.toString())
-
-
             }
         }
     }
