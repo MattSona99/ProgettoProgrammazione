@@ -13,9 +13,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentRistorantiBinding
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.ristorante.RestaurantAdapter
 import com.example.progettoprogrammazione.ristorante.RestaurantClickListener
+import com.example.progettoprogrammazione.utils.ResponseRistorante
 import com.example.progettoprogrammazione.utils.RestaurantUtils
 import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -58,20 +60,21 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
 
         swipeRefreshLayout = binding.swipeRefreshRistoranti
         swipeRefreshLayout.setOnRefreshListener {
-            resturantDataViewModel =
-                ViewModelProvider(requireActivity())[RestaurantViewModel::class.java]
-            resturantDataViewModel.arrayListRistorantiLiveData.observe(viewLifecycleOwner) {
-                restArrayList = it
-                val layoutManager = GridLayoutManager(context, 1)
-                binding.recycleView.layoutManager = layoutManager
-                adapter = RestaurantAdapter(restArrayList, this@FragmentRistoranti)
-                binding.recycleView.adapter = adapter
-                binding.recycleView.setHasFixedSize(true)
-                showData()
-                adapter.notifyDataSetChanged()
-                swipeRefreshLayout.isRefreshing = false
-            }
+            getRestaurantData(object : FireBaseCallbackRestaurant {
+                override fun onResponse(responseR: ResponseRistorante) {
+                    restArrayList = responseR.ristoranti
+                    val layoutManager = GridLayoutManager(context, 1)
+                    binding.recycleView.layoutManager = layoutManager
+                    adapter = RestaurantAdapter(restArrayList, this@FragmentRistoranti)
+                    binding.recycleView.adapter = adapter
+                    binding.recycleView.setHasFixedSize(true)
+                    showData()
+                    adapter.notifyDataSetChanged()
+                    swipeRefreshLayout.isRefreshing = false
+                }
+            }, context)
         }
+
 
         binding.checkpizza.typeface =
             ResourcesCompat.getFont(requireContext(), R.font.satoshi_regular)
@@ -121,31 +124,31 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
         }
 
         binding.checkcin.setOnClickListener {
-            if(binding.checkcin.isChecked){
+            if (binding.checkcin.isChecked) {
                 adapter.customFilter().filter("Cinese")
             }
         }
 
         binding.checkgiap.setOnClickListener {
-            if(binding.checkgiap.isChecked){
+            if (binding.checkgiap.isChecked) {
                 adapter.customFilter().filter("Giapponese")
             }
         }
 
         binding.checkind.setOnClickListener {
-            if(binding.checkind.isChecked){
+            if (binding.checkind.isChecked) {
                 adapter.customFilter().filter("Indiano")
             }
         }
 
         binding.checkgre.setOnClickListener {
-            if(binding.checkgre.isChecked){
+            if (binding.checkgre.isChecked) {
                 adapter.customFilter().filter("Greco")
             }
         }
 
         binding.checkveg.setOnClickListener {
-            if(binding.checkveg.isChecked){
+            if (binding.checkveg.isChecked) {
                 adapter.customFilter().filter("Vegan")
             }
         }
