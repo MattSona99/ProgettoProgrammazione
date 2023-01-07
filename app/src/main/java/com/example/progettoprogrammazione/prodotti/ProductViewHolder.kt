@@ -5,6 +5,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.databinding.ProductCardBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackShoppingCart
+import com.example.progettoprogrammazione.models.Cart
 import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.utils.ResponseShoppingCart
 import com.example.progettoprogrammazione.utils.ShoppingCartUtils
@@ -14,70 +15,85 @@ import com.google.firebase.database.FirebaseDatabase
 class ProductViewHolder(
     private val prodottoBinding: ProductCardBinding,
     private val clickListener: ProductClickListener
-) :  RecyclerView.ViewHolder(prodottoBinding.root),ShoppingCartUtils {
+) : RecyclerView.ViewHolder(prodottoBinding.root), ShoppingCartUtils {
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     fun bindProdotti(prodotto: Product) {
 
-        prodottoBinding.nomeProdottoCard.text=prodotto.descrizioneP
+        prodottoBinding.nomeProdottoCard.text = prodotto.descrizioneP
 
         prodottoBinding.btncard.setOnClickListener { clickListener.onClickProduct(prodotto) }
 
     }
-/*      PRIMO PROTOTIPO
 
-    fun createShoppingCart(prodotto: Product, quantita: Int){
+    /*      PRIMO PROTOTIPO
 
-        prodottoBinding.cartQuantity.isVisible=false
+        fun createShoppingCart(prodotto: Product, quantita: Int){
 
-        prodottoBinding.gotoCart.setOnClickListener {
-            //CAMBIA VISIBILITA' BOTTONE E STARTA ACTIVITY/FRAG CARRELLO
-            prodottoBinding.cartBegin.isVisible=false
-            //SECONDO LAYOUT VISIBILE
-            prodottoBinding.cartQuantity.isVisible=true
-            
-            var quantity=quantita+1
-            val prezzoSingle=prodotto.prezzoP!!.toFloat()
+            prodottoBinding.cartQuantity.isVisible=false
 
-            val shoppingCart=
-                Cart(prodotto.nomeP.toString(),
-                    quantity,
-                    prezzoSingle,
-                    prodotto.idP.toString())
+            prodottoBinding.gotoCart.setOnClickListener {
+                //CAMBIA VISIBILITA' BOTTONE E STARTA ACTIVITY/FRAG CARRELLO
+                prodottoBinding.cartBegin.isVisible=false
+                //SECONDO LAYOUT VISIBILE
+                prodottoBinding.cartQuantity.isVisible=true
 
-            prodottoBinding.cartNumber.text= shoppingCart.quantity.toString()
+                var quantity=quantita+1
+                val prezzoSingle=prodotto.prezzoP!!.toFloat()
 
-            prodottoBinding.btnAdd.setOnClickListener {
-                quantity++;
+                val shoppingCart=
+                    Cart(prodotto.nomeP.toString(),
+                        quantity,
+                        prezzoSingle,
+                        prodotto.idP.toString())
+
+                prodottoBinding.cartNumber.text= shoppingCart.quantity.toString()
+
+                prodottoBinding.btnAdd.setOnClickListener {
+                    quantity++;
+                }
+                prodottoBinding.btnRemove.setOnClickListener {
+                    quantity--;
+                }
+
+                val Prezzotot=prodotto.prezzoP!!.toFloat() * quantity.toFloat()
+
             }
-            prodottoBinding.btnRemove.setOnClickListener {
-                quantity--;
-            }
-
-            val Prezzotot=prodotto.prezzoP!!.toFloat() * quantity.toFloat()
 
         }
 
-    }
+     */
+    fun useShoppingCart(prodotto: Product, quantita: Int) {
+        prodottoBinding.cartQuantity.isVisible = false
+        prodottoBinding.gotoCart.setOnClickListener {
+            val quantity = quantita + 1
+            val prezzoTot = prodotto.prezzoP!!.toFloat() * quantity
 
- */
-    fun useShoppingCart(prodotto: Product, quantita: Int){
+            val shoppingCart =
+                Cart(
+                    prodotto.nomeP,
+                    quantity,
+                    prezzoTot,
+                    prodotto.idP
+                )
 
-            val quantity=quantita+1
-            val prezzoSingle=prodotto.prezzoP!!.toFloat()
+            addToShoppingCart(shoppingCart, quantity, FirebaseAuth.getInstance().uid)
+
+            prodottoBinding.gotoCart.isVisible = false
+            prodottoBinding.cartQuantity.isVisible = true
 
             prodottoBinding.btnAdd.setOnClickListener {
-                addShoppingCart(prodotto,quantity,FirebaseAuth.getInstance().uid)
+                addquantityShoppingCart(shoppingCart, quantity, FirebaseAuth.getInstance().uid)
             }
             prodottoBinding.btnRemove.setOnClickListener {
-                removeShoppingCart(prodotto,FirebaseAuth.getInstance().uid)
+                removequantityShoppingCart(shoppingCart, quantity, FirebaseAuth.getInstance().uid)
             }
 
 
             //prodottoBinding.checkout.setOnClickListener{}
-
+        }
     }
 
     private fun getImageId(context: Context, imageName: String): Int {

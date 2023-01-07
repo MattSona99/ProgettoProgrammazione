@@ -83,6 +83,27 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/cartBegin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/goto_cart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/red_card_button_bottom"
+                android:text="AGGIUNGI"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/cartQuantity"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -97,7 +118,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/red_card_button_bottom"
                 android:gravity="center"
-                android:text="RIMUOVI"
+                android:text="-"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -120,7 +141,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/red_card_button_bottom"
                 android:gravity="center"
-                android:text="AGGIUNGI"
+                android:text="+"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />

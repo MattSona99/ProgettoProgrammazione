@@ -25,20 +25,13 @@ interface ShoppingCartUtils {
                     val response = ResponseShoppingCart()
                     for (prod: DataSnapshot in snapshot.children) {
                         val carrello=
-                            Cart( prod.child("pName").value.toString() ,
+                            Cart(
+                                prod.child("pName").value.toString() ,
                                 prod.child("quantity").value as Int?,
                                 prod.child("totPrice").value as Float?,
-                                prod.child("quantit").value.toString(),
-
+                                prod.child("idProd").value.toString(),
                                 )
-                            /*
-                            Product(
-                            prod.child("descrizioneP").value.toString(),
-                            prod.child("prezzoP").value.toString(),
-                            prod.child("nomeP").value.toString(),
-                            prod.child("idP").value.toString()
-                            )
-                            */
+
                         response.carrello.set(prod.child("idP").toString(),carrello)
                     }
                     callBack.onResponse(response)
@@ -55,16 +48,34 @@ interface ShoppingCartUtils {
             })
     }
 
-    fun addShoppingCart( pData: Product, quantita:Int,idU: String?) {
-        firebaseDatabase.getReference("Utenti/$idU/Carrello/${pData.nomeP}").setValue(pData)
+    fun addToShoppingCart( cart: Cart, quantita:Int,idU: String?) {
+        firebaseDatabase.getReference("Utenti/$idU/Carrello/${cart.pName}").setValue(cart)
+    }
+
+    fun addquantityShoppingCart( cart: Cart, quantita:Int,idU: String?) {
+        //SALVO VALORE QUANTITA
+        var pezzi=quantita
+        pezzi++
+    }
+
+    fun removequantityShoppingCart( cart: Cart, quantita:Int,idU: String?) {
+
+        var pezzi = quantita
+        if (pezzi <= 0) {
+            removeShoppingCart(cart, idU)
+        }else{
+            pezzi--
+        }
 
     }
 
-    fun removeShoppingCart(pData: Product,idU: String?) {
+
+    fun removeShoppingCart(cart: Cart,idU: String?) {
         firebaseDatabase.getReference("Utenti/$idU/Carrello")
-            .child("${pData.nomeP}").removeValue()
+            .child("${cart.pName}").removeValue()
 
     }
+
 
     /*
     fun modifyShoppingCart(context: Context?, pData: Product) {
