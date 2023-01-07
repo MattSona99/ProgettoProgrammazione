@@ -58,6 +58,8 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
 
         swipeRefreshLayout = binding.swipeRefreshRistoranti
         swipeRefreshLayout.setOnRefreshListener {
+            resturantDataViewModel =
+                ViewModelProvider(requireActivity())[RestaurantViewModel::class.java]
             resturantDataViewModel.arrayListRistorantiLiveData.observe(viewLifecycleOwner) {
                 restArrayList = it
                 val layoutManager = GridLayoutManager(context, 1)

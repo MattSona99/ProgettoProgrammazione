@@ -8,163 +8,163 @@
     android:background="@drawable/background_splash_2"
     tools:context=".fragment.FragmentRistoranti">
 
-    <LinearLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_ristoranti"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:id="@+id/searchlayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/search_bar_ristoranti"
+            <LinearLayout
+                android:id="@+id/searchlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/search_border"
-                android:theme="@style/TextStyle"
-                app:iconifiedByDefault="false"
-                app:queryHint="Cerca un ristorante..."
-                app:searchIcon="@drawable/ic_search_icon" />
+                android:padding="5dp">
 
-        </LinearLayout>
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/search_bar_ristoranti"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/search_border"
+                    android:theme="@style/TextStyle"
+                    app:iconifiedByDefault="false"
+                    app:queryHint="Cerca un ristorante..."
+                    app:searchIcon="@drawable/ic_search_icon" />
 
-        <LinearLayout
-            android:id="@+id/checkboxes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/search_bar">
+            </LinearLayout>
 
-            <HorizontalScrollView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/checkboxes"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp">
+                app:layout_constraintBottom_toBottomOf="@id/search_bar">
 
-                <LinearLayout
+                <HorizontalScrollView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_margin="10dp">
 
-                    <CheckBox
-                        android:id="@+id/checkpizza"
-                        android:layout_width="100dp"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:background="@drawable/radio_selector"
-                        android:button="@null"
-                        app:buttonCompat="@null"
-                        android:gravity="center"
-                        android:text="Pizza"
-                        android:textColor="@drawable/radio_text_color"
-                        android:textSize="15dp" />
+                        android:orientation="horizontal">
 
-                    <CheckBox
-                        android:id="@+id/checkburger"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:background="@drawable/radio_selector"
-                        android:button="@null"
-                        app:buttonCompat="@null"
-                        android:gravity="center"
-                        android:text="Burger"
-                        android:textColor="@drawable/radio_text_color"
-                        android:textSize="15dp" />
+                        <CheckBox
+                            android:id="@+id/checkpizza"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/radio_selector"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="Pizza"
+                            android:textColor="@drawable/radio_text_color"
+                            android:textSize="15dp"
+                            app:buttonCompat="@null" />
 
-                    <CheckBox
-                        android:id="@+id/checkita"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:background="@drawable/radio_selector"
-                        android:button="@null"
-                        app:buttonCompat="@null"
-                        android:gravity="center"
-                        android:text="Italiano"
-                        android:textColor="@drawable/radio_text_color"
-                        android:textSize="15dp" />
+                        <CheckBox
+                            android:id="@+id/checkburger"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/radio_selector"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="Burger"
+                            android:textColor="@drawable/radio_text_color"
+                            android:textSize="15dp"
+                            app:buttonCompat="@null" />
 
-                    <CheckBox
-                        android:id="@+id/checkcin"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:background="@drawable/radio_selector"
-                        android:button="@null"
-                        app:buttonCompat="@null"
-                        android:gravity="center"
-                        android:text="Cinese"
-                        android:textColor="@drawable/radio_text_color"
-                        android:textSize="15dp" />
+                        <CheckBox
+                            android:id="@+id/checkita"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/radio_selector"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="Italiano"
+                            android:textColor="@drawable/radio_text_color"
+                            android:textSize="15dp"
+                            app:buttonCompat="@null" />
 
-                    <CheckBox
-                        android:id="@+id/checkgiap"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:background="@drawable/radio_selector"
-                        android:button="@null"
-                        app:buttonCompat="@null"
-                        android:gravity="center"
-                        android:text="Giapponese"
-                        android:textColor="@drawable/radio_text_color"
-                        android:textSize="15dp" />
+                        <CheckBox
+                            android:id="@+id/checkcin"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/radio_selector"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="Cinese"
+                            android:textColor="@drawable/radio_text_color"
+                            android:textSize="15dp"
+                            app:buttonCompat="@null" />
 
-                    <CheckBox
-                        android:id="@+id/checkind"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:background="@drawable/radio_selector"
-                        android:button="@null"
-                        app:buttonCompat="@null"
-                        android:gravity="center"
-                        android:text="Indiano"
-                        android:textColor="@drawable/radio_text_color"
-                        android:textSize="15dp" />
+                        <CheckBox
+                            android:id="@+id/checkgiap"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/radio_selector"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="Giapponese"
+                            android:textColor="@drawable/radio_text_color"
+                            android:textSize="15dp"
+                            app:buttonCompat="@null" />
 
-                    <CheckBox
-                        android:id="@+id/checkgre"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:background="@drawable/radio_selector"
-                        android:button="@null"
-                        app:buttonCompat="@null"
-                        android:gravity="center"
-                        android:text="Greco"
-                        android:textColor="@drawable/radio_text_color"
-                        android:textSize="15dp" />
+                        <CheckBox
+                            android:id="@+id/checkind"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/radio_selector"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="Indiano"
+                            android:textColor="@drawable/radio_text_color"
+                            android:textSize="15dp"
+                            app:buttonCompat="@null" />
 
-                    <CheckBox
-                        android:id="@+id/checkveg"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:background="@drawable/radio_selector"
-                        android:button="@null"
-                        app:buttonCompat="@null"
-                        android:gravity="center"
-                        android:text="Vegan"
-                        android:textColor="@drawable/radio_text_color"
-                        android:textSize="15dp" />
+                        <CheckBox
+                            android:id="@+id/checkgre"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/radio_selector"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="Greco"
+                            android:textColor="@drawable/radio_text_color"
+                            android:textSize="15dp"
+                            app:buttonCompat="@null" />
+
+                        <CheckBox
+                            android:id="@+id/checkveg"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/radio_selector"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="Vegan"
+                            android:textColor="@drawable/radio_text_color"
+                            android:textSize="15dp"
+                            app:buttonCompat="@null" />
 
 
-                </LinearLayout>
+                    </LinearLayout>
 
 
-            </HorizontalScrollView>
+                </HorizontalScrollView>
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-                android:id="@+id/swipe_refresh_ristoranti"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -174,11 +174,12 @@
                     android:layout_height="wrap_content"
                     tools:listitem="@layout/restaurant_card" />
 
-            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </FrameLayout>
 
