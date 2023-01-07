@@ -43,10 +43,14 @@ class RestaurantViewHolder(
         )
         restaurantBinding.nomeRistorante.text =
             restaurant.nomeR!!.substring(0, 1).uppercase() + restaurant.nomeR!!.substring(1)
-        restaurantBinding.descrizione.text = restaurant.descrizioneR!!.substring(0, 1)
-            .uppercase() + restaurant.descrizioneR!!.substring(1)
-        if (restaurant.tipoCiboR?.length!! > 19)
-            restaurantBinding.tipocibo.text = restaurant.tipoCiboR?.substring(0, 18) + " ..."
+        if (restaurant.descrizioneR?.length!! > 40) {
+            restaurantBinding.descrizione.text = restaurant.descrizioneR!!.substring(0, 1)
+                .uppercase() + restaurant.descrizioneR!!.substring(1, 39) + "..."
+        } else
+            restaurantBinding.descrizione.text = restaurant.descrizioneR!!.substring(0, 1)
+                .uppercase() + restaurant.descrizioneR!!.substring(1)
+        if (restaurant.tipoCiboR?.length!! > 25)
+            restaurantBinding.tipocibo.text = restaurant.tipoCiboR?.substring(0, 24) + " ..."
         else
             restaurantBinding.tipocibo.text = restaurant.tipoCiboR
         restaurantBinding.btncard.setOnClickListener { clickListener.onClickResturant(restaurant) }
@@ -58,7 +62,6 @@ class RestaurantViewHolder(
         return context.resources
             .getIdentifier("drawable/$imageName", null, context.packageName)
     }
-
 
 
 }

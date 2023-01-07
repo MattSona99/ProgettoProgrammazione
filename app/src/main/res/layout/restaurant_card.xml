@@ -37,7 +37,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:gravity="center"
-                    android:text="Titolo ristorante"
+                    android:text="@string/restaurant_name"
                     android:textColor="@color/white"
                     android:textSize="25dp"
                     android:textStyle="bold" />
@@ -65,7 +65,6 @@
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:adjustViewBounds="true"
-                        android:contentDescription="@string/copertina_desc"
                         android:maxWidth="180dp"
                         android:maxHeight="180dp"
                         android:minWidth="180dp"
@@ -89,7 +88,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rating: "
+                            android:text="@string/restaurant_rating"
                             android:textColor="@color/red"
                             android:textSize="20dp"
                             android:textStyle="bold" />
@@ -104,7 +103,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            android:text="5"
+                            android:text="@string/number"
                             android:textColor="@color/red"
                             android:textSize="24dp" />
 
@@ -126,7 +125,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Cucina: "
+                            android:text="@string/restaurant_type"
                             android:textColor="@color/red"
                             android:textSize="20dp"
                             android:textStyle="bold" />
@@ -135,7 +134,7 @@
                             android:id="@+id/tipocibo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="tipo cucina..."
+                            android:text="@string/restaurant_type_value"
                             android:textColor="@color/red"
                             android:textSize="18dp" />
 
@@ -151,8 +150,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
-                        android:text="Descrizione:"
+                        android:text="@string/restaurant_desc"
                         android:textColor="@color/red"
                         android:textSize="20dp"
                         android:textStyle="bold" />
@@ -166,7 +164,7 @@
                             android:id="@+id/descrizione"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="Descrizione ristorante.."
+                            android:text="@string/restaurant_desc_value"
                             android:textColor="@color/red"
                             android:textSize="18dp" />
 

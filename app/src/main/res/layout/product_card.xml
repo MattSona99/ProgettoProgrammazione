@@ -21,7 +21,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/white_card_red_rounded" />
+        app:srcCompat="@drawable/white_card_red_rounded"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -47,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Nome prodotto"
+                    android:text="@string/product_name"
                     android:textColor="@color/white"
                     android:textSize="20dp"
                     android:textStyle="bold" />
@@ -71,7 +72,6 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:adjustViewBounds="true"
-                        android:contentDescription="@string/copertina_desc"
                         android:src="@drawable/pencil" />
 
                 </androidx.cardview.widget.CardView>
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:background="@drawable/red_card_button_bottom"
-                android:text="AGGIUNGI"
+                android:text="@string/add"
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
@@ -127,7 +127,7 @@
                 android:id="@+id/cart_number"
                 android:layout_width="20dp"
                 android:layout_height="match_parent"
-                android:hint="0"
+                android:hint="@string/number"
                 android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="20sp"

@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Benvenuto su Cookade!"
+            android:text="@string/welcome_intro"
             android:textColor="@color/red"
             android:textSize="28dp"
             android:textStyle="bold" />
@@ -54,7 +54,7 @@
                         android:id="@+id/login"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="LOGIN"
+                        android:text="@string/login_button"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="20sp"
@@ -82,8 +82,7 @@
                         android:id="@+id/registrati"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Non sei registrato?
-                        Clicca qui!"
+                        android:text="@string/not_registered"
                         android:textAlignment="center"
                         android:textColor="@color/red"
                         android:textSize="22dp"

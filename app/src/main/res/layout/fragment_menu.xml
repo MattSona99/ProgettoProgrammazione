@@ -21,8 +21,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Menù"
-                android:textColor="@color/white"
+                android:text="@string/menu"
+                android:textColor="@color/red"
                 android:textSize="30dp"
                 android:textStyle="bold" />
 
@@ -35,7 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="Bevande"
+                    android:text="@string/beverages"
                     android:textColor="@color/red"
                     android:textSize="25dp"
                     android:textStyle="bold" />
@@ -50,7 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="Antipasti"
+                    android:text="@string/appetizers"
                     android:textColor="@color/red"
                     android:textSize="25dp"
                     android:textStyle="bold" />
@@ -65,7 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="Primi"
+                    android:text="@string/firsts"
                     android:textColor="@color/red"
                     android:textSize="25dp"
                     android:textStyle="bold" />
@@ -80,7 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="Secondi"
+                    android:text="@string/seconds"
                     android:textColor="@color/red"
                     android:textSize="25dp"
                     android:textStyle="bold" />
@@ -95,7 +95,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="Contorni"
+                    android:text="@string/garnishes"
                     android:textColor="@color/red"
                     android:textSize="25dp"
                     android:textStyle="bold" />
@@ -110,7 +110,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="Dolci"
+                    android:text="@string/sweets"
                     android:textColor="@color/red"
                     android:textSize="25dp"
                     android:textStyle="bold" />
@@ -130,11 +130,11 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/chekout"
+                android:id="@+id/checkout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Chekout"
+                android:text="@string/checkout"
                 android:textColor="@color/white"
                 android:textSize="30dp"
                 android:textStyle="bold" />

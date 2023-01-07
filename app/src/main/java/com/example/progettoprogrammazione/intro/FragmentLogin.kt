@@ -43,7 +43,7 @@ class FragmentLogin : Fragment(), UserUtils, DipendenteUtil, RestaurantUtils, Pr
 
         firebaseAuth = FirebaseAuth.getInstance()
 
-        binding.ConstraintLogin.setOnClickListener() {
+        binding.ConstraintLogin.setOnClickListener {
             val email = binding.email.text.toString()
             val password = binding.password.text.toString()
 

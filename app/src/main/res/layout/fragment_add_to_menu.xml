@@ -25,7 +25,7 @@
             android:layout_margin="15dp"
             android:background="@drawable/red_button"
             android:gravity="center"
-            android:text="Aggiungi prodotto"
+            android:text="@string/add_product"
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold" />
@@ -34,7 +34,7 @@
             android:id="@+id/nome_prodotto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nome prodotto"
+            android:hint="@string/product_name"
             android:textColor="@color/red"
             android:textSize="18dp"
             android:textStyle="bold" />
@@ -43,7 +43,7 @@
             android:id="@+id/prezzo_prodotto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Prezzo prodotto (€)"
+            android:hint="@string/product_price"
             android:textColor="@color/red"
             android:textSize="18dp"
             android:textStyle="bold" />
@@ -52,7 +52,7 @@
             android:id="@+id/descrizione_prodotto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Descrizione prodotto"
+            android:hint="@string/product_desc"
             android:textColor="@color/red"
             android:textSize="18dp"
             android:textStyle="bold" />

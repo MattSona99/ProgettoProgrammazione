@@ -34,7 +34,7 @@
                         android:id="@+id/nomeRistoranteDetail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nome ristorante"
+                        android:text="@string/restaurant_name"
                         android:textColor="@color/white"
                         android:textSize="30dp"
                         android:textStyle="bold" />
@@ -62,7 +62,6 @@
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:adjustViewBounds="true"
-                            android:contentDescription="@string/copertina_desc"
                             android:maxWidth="180dp"
                             android:maxHeight="180dp"
                             android:minWidth="180dp"
@@ -92,7 +91,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
-                                android:text="4,7"
+                                android:text="@string/number"
                                 android:textColor="@color/red"
                                 android:textSize="24dp" />
 
@@ -106,7 +105,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Contatti:"
+                                android:text="@string/contacts"
                                 android:textColor="@color/red"
                                 android:textSize="20dp"
                                 android:textStyle="bold" />
@@ -116,7 +115,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
-                                android:text="Numero"
+                                android:text="@string/cellphone"
                                 android:textColor="@color/red"
                                 android:textSize="20dp" />
 
@@ -125,7 +124,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Descrizione:"
+                            android:text="@string/restaurant_desc"
                             android:textColor="@color/red"
                             android:textSize="20dp"
                             android:textStyle="bold" />
@@ -134,7 +133,7 @@
                             android:id="@+id/descrizioneDetail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Descrizione ristorante"
+                            android:text="@string/restaurant_desc_value"
                             android:textColor="@color/red"
                             android:textSize="20dp" />
 
@@ -142,7 +141,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Indirizzo:"
+                            android:text="@string/address_details"
                             android:textColor="@color/red"
                             android:textSize="20dp"
                             android:textStyle="bold" />
@@ -151,7 +150,7 @@
                             android:id="@+id/indirizzodetail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Indirizzo ristorante..."
+                            android:text="@string/address_details_value"
                             android:textColor="@color/red"
                             android:textSize="20dp" />
 
@@ -176,7 +175,7 @@
                                 android:id="@+id/visualizzaMenu"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Visualizza Menu"
+                                android:text="@string/show_menu"
                                 android:textAlignment="center"
                                 android:textColor="#FFFFFF"
                                 android:textSize="20sp"
@@ -197,7 +196,7 @@
                                 android:id="@+id/modifica_ristorante"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Modifica Ristorante"
+                                android:text="@string/edit_restaurant"
                                 android:textAlignment="center"
                                 android:textColor="#FFFFFF"
                                 android:textSize="20sp"
@@ -217,7 +216,7 @@
                                 android:id="@+id/elimina_ristorante"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Elimina Ristorante"
+                                android:text="@string/delete_restaurant"
                                 android:textAlignment="center"
                                 android:textColor="#FFFFFF"
                                 android:textSize="20sp"
@@ -248,7 +247,7 @@
                                 android:id="@+id/rating_ristorante"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Clicca per valutare"
+                                android:text="@string/rate"
                                 android:textAlignment="center"
                                 android:textColor="#FFFFFF"
                                 android:textSize="20sp"

@@ -131,7 +131,7 @@ class FragmentRegister : Fragment(), UserUtils {
                 Toast.makeText(context, "Nessun campo può essere vuoto!", Toast.LENGTH_LONG).show()
             }
         }
-        binding.already.setOnClickListener() {
+        binding.already.setOnClickListener {
             view.findNavController().navigate(R.id.RegisterToLogin)
         }
     }

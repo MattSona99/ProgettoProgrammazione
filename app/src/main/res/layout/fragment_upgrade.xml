@@ -16,8 +16,7 @@
                 android:id="@+id/info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Compila tutti i campi per
-               completare l'upgrade!"
+                android:text="@string/upgrade_compile"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="23dp"
@@ -34,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Qual è il tuo ruolo?"
+                android:text="@string/role"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="23dp"
@@ -61,7 +60,7 @@
                     android:button="@android:color/transparent"
                     android:elevation="4dp"
                     android:padding="15dp"
-                    android:text="Proprietario"
+                    android:text="@string/owner"
                     android:textColor="@drawable/radio_text_color" />
 
                 <RadioButton
@@ -73,7 +72,7 @@
                     android:button="@android:color/transparent"
                     android:elevation="4dp"
                     android:padding="15dp"
-                    android:text="Dipendente"
+                    android:text="@string/employee"
                     android:textColor="@drawable/radio_text_color" />
 
             </RadioGroup>

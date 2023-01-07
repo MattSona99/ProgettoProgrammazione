@@ -37,7 +37,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
-                        android:text="CREA UNA NUOVA ATTIVITÀ"
+                        android:text="@string/create_new"
                         android:textColor="@color/red"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -74,7 +74,7 @@
                     android:background="@drawable/search_border"
                     android:theme="@style/TextStyle"
                     app:iconifiedByDefault="false"
-                    app:queryHint="Cerca un ristorante..."
+                    app:queryHint="@string/search_restaurant"
                     app:searchIcon="@drawable/ic_search_icon" />
 
             </LinearLayout>

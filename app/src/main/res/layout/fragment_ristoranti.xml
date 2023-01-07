@@ -31,7 +31,7 @@
                     android:background="@drawable/search_border"
                     android:theme="@style/TextStyle"
                     app:iconifiedByDefault="false"
-                    app:queryHint="Cerca un ristorante..."
+                    app:queryHint="@string/search_restaurant"
                     app:searchIcon="@drawable/ic_search_icon" />
 
             </LinearLayout>
@@ -60,7 +60,7 @@
                             android:background="@drawable/radio_selector"
                             android:button="@null"
                             android:gravity="center"
-                            android:text="Pizza"
+                            android:text="@string/pizza"
                             android:textColor="@drawable/radio_text_color"
                             android:textSize="15dp"
                             app:buttonCompat="@null" />
@@ -73,7 +73,7 @@
                             android:background="@drawable/radio_selector"
                             android:button="@null"
                             android:gravity="center"
-                            android:text="Burger"
+                            android:text="@string/burger"
                             android:textColor="@drawable/radio_text_color"
                             android:textSize="15dp"
                             app:buttonCompat="@null" />
@@ -86,7 +86,7 @@
                             android:background="@drawable/radio_selector"
                             android:button="@null"
                             android:gravity="center"
-                            android:text="Italiano"
+                            android:text="@string/italian"
                             android:textColor="@drawable/radio_text_color"
                             android:textSize="15dp"
                             app:buttonCompat="@null" />
@@ -99,7 +99,7 @@
                             android:background="@drawable/radio_selector"
                             android:button="@null"
                             android:gravity="center"
-                            android:text="Cinese"
+                            android:text="@string/chinese"
                             android:textColor="@drawable/radio_text_color"
                             android:textSize="15dp"
                             app:buttonCompat="@null" />
@@ -112,7 +112,7 @@
                             android:background="@drawable/radio_selector"
                             android:button="@null"
                             android:gravity="center"
-                            android:text="Giapponese"
+                            android:text="@string/japanese"
                             android:textColor="@drawable/radio_text_color"
                             android:textSize="15dp"
                             app:buttonCompat="@null" />
@@ -125,7 +125,7 @@
                             android:background="@drawable/radio_selector"
                             android:button="@null"
                             android:gravity="center"
-                            android:text="Indiano"
+                            android:text="@string/indian"
                             android:textColor="@drawable/radio_text_color"
                             android:textSize="15dp"
                             app:buttonCompat="@null" />
@@ -138,7 +138,7 @@
                             android:background="@drawable/radio_selector"
                             android:button="@null"
                             android:gravity="center"
-                            android:text="Greco"
+                            android:text="@string/greek"
                             android:textColor="@drawable/radio_text_color"
                             android:textSize="15dp"
                             app:buttonCompat="@null" />
@@ -151,7 +151,7 @@
                             android:background="@drawable/radio_selector"
                             android:button="@null"
                             android:gravity="center"
-                            android:text="Vegan"
+                            android:text="@string/vegan"
                             android:textColor="@drawable/radio_text_color"
                             android:textSize="15dp"
                             app:buttonCompat="@null" />
