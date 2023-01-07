@@ -26,7 +26,7 @@ interface RestaurantUtils {
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val responseR = ResponseRating()
-                    for(rate : DataSnapshot in snapshot.children) {
+                        for(rate : DataSnapshot in snapshot.children) {
                         val r = rate.value.toString().toDouble()
                         responseR.rating.add(r)
                     }

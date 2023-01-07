@@ -23,6 +23,7 @@ import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.prodotti.ProductClickListener
 import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
@@ -88,6 +89,7 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
                 restaurant?.nomeR!!.substring(0, 1).uppercase() + restaurant?.nomeR!!.substring(1)
             binding.descrizioneDetail.text = restaurant?.descrizioneR!!.substring(0, 1)
                 .uppercase() + restaurant?.descrizioneR!!.substring(1)
+            binding.ratingdetail.text = restaurant?.ratingR.toString()
             binding.numeroDetail.text = restaurant?.telefonoR
             binding.indirizzodetail.text = restaurant?.indirizzoR
         }
@@ -198,40 +200,42 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
             view.findNavController().navigate(R.id.DetailToModifica, bundle)
         }
 
-//        binding.ratingBarR.rating = firebaseDatabase.getReference("Utenti/$uid/ratings").child(restaurant?.nomeR!!).get().toString().toFloat()
         binding.btnRating.setOnClickListener {
             Toast.makeText(
                 requireContext(),
                 "La tua valutazione: " + binding.ratingBarR.rating,
                 Toast.LENGTH_SHORT
             ).show()
+            var ratingR = firebaseDatabase.getReference("Ristoranti/$restaurantID/ratingR")
+            var nRatings = firebaseDatabase.getReference("Ristoranti/$restaurantID/nRatings")
+
             firebaseDatabase.getReference("Utenti/$uid/ratings").child(restaurant?.nomeR!!)
                 .setValue(binding.ratingBarR.rating)
 
             firebaseDatabase.getReference("Ristoranti/$restaurantID/usersRatings")
                 .child(user.currentUser?.uid!!).setValue(binding.ratingBarR.rating)
-        }
-        var rating =
-            firebaseDatabase.getReference("Utenti/$uid/ratings").child(restaurant?.nomeR!!)
-                .get()
-        if (!(rating.isSuccessful)) {
-            restaurant!!.nRatings += 1
-            firebaseDatabase.getReference("Ristoranti/$restaurantID/nRatings")
-                .setValue(restaurant!!.nRatings)
-        }
 
-        if (restaurant!!.ratingR == 0.0) {
-            restaurant!!.ratingR = binding.ratingBarR.rating.toDouble()
-        } else {
-            getRating(object : FireBaseCallbackRating{
-                override fun onResponse(responseR: ResponseRating) {
-                    //arraylist dei rating
-                    responseR.rating
-                }
-            }, context, restaurantID.toString())
+            if (restaurant!!.ratingR == 0.0) {
+                ratingR.setValue(binding.ratingBarR.rating.toDouble())
+                nRatings.setValue(1)
+            } else {
+                getRating(object : FireBaseCallbackRating {
+                    override fun onResponse(responseR: ResponseRating) {
+
+                        nRatings.setValue(responseR.rating.size)
+                        var sum = responseR.rating.sum()
+                        var avg = sum / responseR.rating.size
+                        ratingR.setValue(avg)
+
+
+
+                    }
+                }, context, restaurantID.toString())
+
+
+            }
         }
     }
-
 
     override fun onClickProduct(prodotto: Product) {
 
