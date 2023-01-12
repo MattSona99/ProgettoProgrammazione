@@ -15,7 +15,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -36,146 +36,290 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/checkboxes"
+            <ScrollView
+                android:id="@+id/scrollviewrist"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@id/search_bar">
+                android:layout_height="match_parent">
 
-                <HorizontalScrollView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <CheckBox
-                            android:id="@+id/checkpizza"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/radio_selector"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:text="@string/pizza"
-                            android:textColor="@drawable/radio_text_color"
-                            android:textSize="15dp"
-                            app:buttonCompat="@null" />
-
-                        <CheckBox
-                            android:id="@+id/checkburger"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/radio_selector"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:text="@string/burger"
-                            android:textColor="@drawable/radio_text_color"
-                            android:textSize="15dp"
-                            app:buttonCompat="@null" />
-
-                        <CheckBox
-                            android:id="@+id/checkita"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/radio_selector"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:text="@string/italian"
-                            android:textColor="@drawable/radio_text_color"
-                            android:textSize="15dp"
-                            app:buttonCompat="@null" />
-
-                        <CheckBox
-                            android:id="@+id/checkcin"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/radio_selector"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:text="@string/chinese"
-                            android:textColor="@drawable/radio_text_color"
-                            android:textSize="15dp"
-                            app:buttonCompat="@null" />
-
-                        <CheckBox
-                            android:id="@+id/checkgiap"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/radio_selector"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:text="@string/japanese"
-                            android:textColor="@drawable/radio_text_color"
-                            android:textSize="15dp"
-                            app:buttonCompat="@null" />
-
-                        <CheckBox
-                            android:id="@+id/checkind"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/radio_selector"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:text="@string/indian"
-                            android:textColor="@drawable/radio_text_color"
-                            android:textSize="15dp"
-                            app:buttonCompat="@null" />
-
-                        <CheckBox
-                            android:id="@+id/checkgre"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/radio_selector"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:text="@string/greek"
-                            android:textColor="@drawable/radio_text_color"
-                            android:textSize="15dp"
-                            app:buttonCompat="@null" />
-
-                        <CheckBox
-                            android:id="@+id/checkveg"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:background="@drawable/radio_selector"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:text="@string/vegan"
-                            android:textColor="@drawable/radio_text_color"
-                            android:textSize="15dp"
-                            app:buttonCompat="@null" />
-
-
-                    </LinearLayout>
-
-
-                </HorizontalScrollView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycleView"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/restaurant_card" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="3px"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/red_button" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:drawableLeft="@drawable/star"
+                        android:drawableRight="@drawable/star"
+                        android:drawablePadding="5dp"
+                        android:text="@string/toprated"
+                        android:textColor="@color/red"
+                        android:textSize="25dp"
+                        android:textStyle="bold">
+
+                    </TextView>
 
 
-            </LinearLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycleViewTopRated"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:scrollbars="horizontal"
+                        tools:listitem="@layout/restaurant_card" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="3px"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/red_button" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:drawableLeft="@drawable/pizza"
+                        android:drawableRight="@drawable/pizza"
+                        android:drawablePadding="5dp"
+                        android:text="@string/pizza"
+                        android:textColor="@color/red"
+                        android:textSize="25dp"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycleViewPizza"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:scrollbars="horizontal"
+                        tools:listitem="@layout/restaurant_card" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="3px"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/red_button" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:drawableLeft="@drawable/burger"
+                        android:drawableRight="@drawable/burger"
+                        android:drawablePadding="5dp"
+                        android:text="@string/burger"
+                        android:textColor="@color/red"
+                        android:textSize="25dp"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycleViewBurger"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:scrollbars="horizontal"
+                        tools:listitem="@layout/restaurant_card" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="3px"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/red_button" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:drawableLeft="@drawable/spaghetti"
+                        android:drawableRight="@drawable/spaghetti"
+                        android:drawablePadding="5dp"
+                        android:text="@string/italian"
+                        android:textColor="@color/red"
+                        android:textSize="25dp"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycleViewIta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:scrollbars="horizontal"
+                        tools:listitem="@layout/restaurant_card" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="3px"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/red_button" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:drawableLeft="@drawable/ramen"
+                        android:drawableRight="@drawable/ramen"
+                        android:drawablePadding="5dp"
+                        android:text="@string/chinese"
+                        android:textColor="@color/red"
+                        android:textSize="25dp"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycleViewCin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:scrollbars="horizontal"
+                        tools:listitem="@layout/restaurant_card" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="3px"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/red_button" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:drawableLeft="@drawable/sushi"
+                        android:drawableRight="@drawable/sushi"
+                        android:drawablePadding="5dp"
+                        android:text="@string/japanese"
+                        android:textColor="@color/red"
+                        android:textSize="25dp"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycleViewJap"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:scrollbars="horizontal"
+                        tools:listitem="@layout/restaurant_card" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="3px"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/red_button" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:drawableLeft="@drawable/curry"
+                        android:drawableRight="@drawable/curry"
+                        android:drawablePadding="5dp"
+                        android:text="@string/indian"
+                        android:textColor="@color/red"
+                        android:textSize="25dp"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycleViewInd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:scrollbars="horizontal"
+                        tools:listitem="@layout/restaurant_card" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="3px"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/red_button" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:drawableLeft="@drawable/greek"
+                        android:drawableRight="@drawable/greek"
+                        android:drawablePadding="5dp"
+                        android:text="@string/greek"
+                        android:textColor="@color/red"
+                        android:textSize="25dp"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycleViewGre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:scrollbars="horizontal"
+                        tools:listitem="@layout/restaurant_card" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="3px"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/red_button" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:drawableLeft="@drawable/vegan"
+                        android:drawableRight="@drawable/vegan"
+                        android:drawablePadding="5dp"
+                        android:text="@string/vegan"
+                        android:textColor="@color/red"
+                        android:textSize="25dp"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycleViewVeg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:scrollbars="horizontal"
+                        tools:listitem="@layout/restaurant_card" />
+
+
+                </LinearLayout>
+
+            </ScrollView>
 
         </LinearLayout>
 

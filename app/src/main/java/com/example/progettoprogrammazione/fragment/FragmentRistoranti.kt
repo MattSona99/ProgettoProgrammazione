@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentRistorantiBinding
@@ -48,50 +49,32 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
             ViewModelProvider(requireActivity())[RestaurantViewModel::class.java]
         resturantDataViewModel.arrayListRistorantiLiveData.observe(viewLifecycleOwner) {
             restArrayList = it
-            val layoutManager = GridLayoutManager(context, 1)
-            binding.recycleView.layoutManager = layoutManager
-            adapter = RestaurantAdapter(restArrayList, this)
-            binding.recycleView.adapter = adapter
-            binding.recycleView.setHasFixedSize(true)
-            showData()
-            adapter.notifyDataSetChanged()
-
+            bindrecyclerviews(restArrayList)
         }
+
+        //NON TOCCARE
+        binding.scrollviewrist.viewTreeObserver.addOnScrollChangedListener(object :
+            ViewTreeObserver.OnScrollChangedListener {
+            override fun onScrollChanged() {
+                if (binding.scrollviewrist.scrollY == 0) {
+                    swipeRefreshLayout.isEnabled = true
+                } else swipeRefreshLayout.isEnabled = false
+            }
+        })
 
         swipeRefreshLayout = binding.swipeRefreshRistoranti
         swipeRefreshLayout.setOnRefreshListener {
+            swipeRefreshLayout.isRefreshing = true
+            binding.searchBarRistoranti.setQuery("", false)
+
             getRestaurantData(object : FireBaseCallbackRestaurant {
                 override fun onResponse(responseR: ResponseRistorante) {
                     restArrayList = responseR.ristoranti
-                    val layoutManager = GridLayoutManager(context, 1)
-                    binding.recycleView.layoutManager = layoutManager
-                    adapter = RestaurantAdapter(restArrayList, this@FragmentRistoranti)
-                    binding.recycleView.adapter = adapter
-                    binding.recycleView.setHasFixedSize(true)
-                    showData()
-                    adapter.notifyDataSetChanged()
-                    swipeRefreshLayout.isRefreshing = false
+                    bindrecyclerviews(restArrayList)
                 }
             }, context)
+            swipeRefreshLayout.isRefreshing = false
         }
-
-
-        binding.checkpizza.typeface =
-            ResourcesCompat.getFont(requireContext(), R.font.satoshi_regular)
-        binding.checkburger.typeface =
-            ResourcesCompat.getFont(requireContext(), R.font.satoshi_regular)
-        binding.checkita.typeface =
-            ResourcesCompat.getFont(requireContext(), R.font.satoshi_regular)
-        binding.checkcin.typeface =
-            ResourcesCompat.getFont(requireContext(), R.font.satoshi_regular)
-        binding.checkgiap.typeface =
-            ResourcesCompat.getFont(requireContext(), R.font.satoshi_regular)
-        binding.checkind.typeface =
-            ResourcesCompat.getFont(requireContext(), R.font.satoshi_regular)
-        binding.checkgre.typeface =
-            ResourcesCompat.getFont(requireContext(), R.font.satoshi_regular)
-        binding.checkveg.typeface =
-            ResourcesCompat.getFont(requireContext(), R.font.satoshi_regular)
 
         binding.searchBarRistoranti.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -102,68 +85,49 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
                 adapter.filter.filter(newText)
                 return false
             }
-
         })
-
-        binding.checkpizza.setOnClickListener {
-            if (binding.checkpizza.isChecked) {
-                adapter.customFilter().filter("Pizza")
-            }
-        }
-
-        binding.checkburger.setOnClickListener {
-            if (binding.checkburger.isChecked) {
-                adapter.customFilter().filter("Burger")
-            }
-        }
-
-        binding.checkita.setOnClickListener {
-            if (binding.checkburger.isChecked) {
-                adapter.customFilter().filter("Italiano")
-            }
-        }
-
-        binding.checkcin.setOnClickListener {
-            if (binding.checkcin.isChecked) {
-                adapter.customFilter().filter("Cinese")
-            }
-        }
-
-        binding.checkgiap.setOnClickListener {
-            if (binding.checkgiap.isChecked) {
-                adapter.customFilter().filter("Giapponese")
-            }
-        }
-
-        binding.checkind.setOnClickListener {
-            if (binding.checkind.isChecked) {
-                adapter.customFilter().filter("Indiano")
-            }
-        }
-
-        binding.checkgre.setOnClickListener {
-            if (binding.checkgre.isChecked) {
-                adapter.customFilter().filter("Greco")
-            }
-        }
-
-        binding.checkveg.setOnClickListener {
-            if (binding.checkveg.isChecked) {
-                adapter.customFilter().filter("Vegan")
-            }
-        }
 
         return binding.root
     }
 
     override fun onClickResturant(restaurant: Restaurant) {
-
         val bundle = Bundle()
         bundle.putString("restID", restaurant.idR.toString())
         bundle.putParcelableArrayList("restArrayList", restArrayList)
 
         view?.findNavController()?.navigate(R.id.RistorantiToDetail, bundle)
 
+    }
+
+    private fun horizontalrecylerview(
+        recyclerView: RecyclerView,
+        ristoranti: ArrayList<Restaurant>,
+        tipo: String
+    ) {
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = layoutManager
+        adapter = RestaurantAdapter(ristoranti, this@FragmentRistoranti)
+        customFilter(adapter, tipo)
+        recyclerView.adapter = adapter
+        recyclerView.setHasFixedSize(true)
+        showData()
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun customFilter(adapter: RestaurantAdapter, tipo: String) {
+        adapter.customFilter().filter(tipo)
+    }
+
+    private fun bindrecyclerviews(ristoranti: ArrayList<Restaurant>) {
+        horizontalrecylerview(binding.recycleViewTopRated, ristoranti, "rating")
+        horizontalrecylerview(binding.recycleViewPizza, ristoranti, "pizza")
+        horizontalrecylerview(binding.recycleViewBurger, ristoranti, "burger")
+        horizontalrecylerview(binding.recycleViewIta, ristoranti, "italiano")
+        horizontalrecylerview(binding.recycleViewCin, ristoranti, "cinese")
+        horizontalrecylerview(binding.recycleViewJap, ristoranti, "giapponese")
+        horizontalrecylerview(binding.recycleViewInd, ristoranti, "indiano")
+        horizontalrecylerview(binding.recycleViewGre, ristoranti, "greco")
+        horizontalrecylerview(binding.recycleViewVeg, ristoranti, "vegan")
     }
 
     private fun showData() {

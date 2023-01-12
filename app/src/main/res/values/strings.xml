@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">COOKADE</string>
+
     <!-- INTRO -->
     <string name="welcome_intro">Benvenuto su Cookade!</string>
     <string name="login_button">LOGIN</string>
     <string name="not_registered">"Non sei registrato? Clicca qui!"</string>
+
     <!-- LOGIN -->
     <string name="log_in">Effettua il Login</string>
     <string name="email">Indirizzo e-mail</string>
@@ -11,6 +13,7 @@
     <string name="forgot_password">Password dimenticata?</string>
     <string name="enter">ENTRA</string>
     <string name="no_account">Non hai un account? Registrati!</string>
+
     <!-- REGISTER -->
     <string name="register_compile">Compila tutti i campi per completare la registrazione!</string>
     <string name="name_form">Nome</string>
@@ -19,16 +22,19 @@
     <string name="cellphone_form">Numero di telefono</string>
     <string name="register">REGISTRATI</string>
     <string name="already_registered">Già registrato? Effettua il login!</string>
+
     <!-- RESTAURANT HOME-->
     <string name="search_restaurant">Cerca un ristorante…</string>
-    <string name="pizza">Pizza</string>
-    <string name="burger">Burger</string>
-    <string name="italian">Italiano</string>
-    <string name="chinese">Cinese</string>
-    <string name="japanese">Giapponese</string>
-    <string name="indian">Indiano</string>
-    <string name="greek">Greco</string>
-    <string name="vegan">Vegan</string>
+    <string name="toprated">TOP RATED</string>
+    <string name="pizza">PIZZERIE</string>
+    <string name="burger">PUB</string>
+    <string name="italian">CUCINA ITALIANA</string>
+    <string name="chinese">CUCINA CINESE</string>
+    <string name="japanese">CUCINA GIAPPONESE</string>
+    <string name="indian">CUCINA INDIANA</string>
+    <string name="greek">CUCINA GRECA</string>
+    <string name="vegan">VEGAN</string>
+
     <!-- RESTAURANT CARD -->
     <string name="restaurant_name">Nome ristorante</string>
     <string name="restaurant_rating">Rating: </string>
@@ -37,6 +43,7 @@
     <string name="restaurant_type_value">tipo cucina…</string>
     <string name="restaurant_desc">Descrizione: </string>
     <string name="restaurant_desc_value">Descrizione ristorante…</string>
+
     <!-- PROFILE -->
     <string name="welcome_profile">BENVENUTO</string>
     <string name="username">Nome Utente</string>
@@ -47,6 +54,7 @@
     <string name="save">Salva</string>
     <string name="staff_member">Sei un membro dello staff? Clicca qui!</string>
     <string name="delete_account">Elimina account  </string>
+
     <!-- CREATE/MODIFY RESTAURANT -->
     <string name="create_compile">Compila il form per creare il tuo ristorante!</string>
     <string name="modify_compile">Modifica le info del tuo ristorante. Inserisci i nuovi dati da aggiornare</string>
@@ -60,11 +68,13 @@
     <string name="load">Carica</string>
     <string name="create">CREA</string>
     <string name="apply">APPLICA</string>
+
     <!-- UPGRADE -->
     <string name="upgrade_compile">Compila tutti i campi per completare l\'upgrade!</string>
     <string name="role">Qual è il tuo ruolo?</string>
     <string name="owner">Proprietario</string>
     <string name="employee">Dipendente</string>
+
     <!-- PRODUCT CARD -->
     <string name="product_name">Nome prodotto</string>
     <string name="add">AGGIUNGI</string>

@@ -68,6 +68,8 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
 
         swipeRefreshLayout = binding.swipeRefreshGestione
         swipeRefreshLayout.setOnRefreshListener {
+            binding.searchBarGestione.setQuery("", false)
+
             getRestaurantData(object : FireBaseCallbackRestaurant {
                 override fun onResponse(responseR: ResponseRistorante) {
                     restArrayList = responseR.ristoranti
