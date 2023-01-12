@@ -45,12 +45,12 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
 
         binding = FragmentRistorantiBinding.inflate(layoutInflater)
 
-        resturantDataViewModel =
-            ViewModelProvider(requireActivity())[RestaurantViewModel::class.java]
-        resturantDataViewModel.arrayListRistorantiLiveData.observe(viewLifecycleOwner) {
-            restArrayList = it
-            bindrecyclerviews(restArrayList)
-        }
+        getRestaurantData(object : FireBaseCallbackRestaurant {
+            override fun onResponse(responseR: ResponseRistorante) {
+                restArrayList = responseR.ristoranti
+                bindrecyclerviews(restArrayList)
+            }
+        }, context)
 
         //NON TOCCARE
         binding.scrollviewrist.viewTreeObserver.addOnScrollChangedListener(object :
