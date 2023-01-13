@@ -116,10 +116,10 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.layoutManager = layoutManager
         adapter = RestaurantAdapter(ristoranti, this@FragmentRistoranti)
+        showData()
         customFilter(adapter, tipo)
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
-        showData()
         adapter.notifyDataSetChanged()
     }
 
