@@ -41,7 +41,7 @@
         android:id="@+id/fragmentRistoranti"
         android:name="com.example.progettoprogrammazione.fragment.FragmentRistoranti"
         android:label="Ristoranti"
-        tools:layout="@layout/fragment_ristoranti" >
+        tools:layout="@layout/fragment_ristoranti">
         <action
             android:id="@+id/RistorantiToDetail"
             app:destination="@id/restaurantDetail"
@@ -49,6 +49,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/RistorantiToSearchU"
+            app:destination="@id/fragmentSearchU" />
     </fragment>
     <fragment
         android:id="@+id/fragmentUpgrade"
@@ -88,6 +91,15 @@
         <action
             android:id="@+id/action_productDetail_to_fragmentMenu"
             app:destination="@id/fragmentMenu" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSearchU"
+        android:name="com.example.progettoprogrammazione.fragment.FragmentSearch"
+        android:label="Cerca Ristoranti"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/SearchToDetailU"
+            app:destination="@id/restaurantDetail" />
     </fragment>
 
 </navigation>

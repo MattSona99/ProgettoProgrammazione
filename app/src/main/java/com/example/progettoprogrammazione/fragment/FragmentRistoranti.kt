@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -65,7 +63,6 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
         swipeRefreshLayout = binding.swipeRefreshRistoranti
         swipeRefreshLayout.setOnRefreshListener {
             swipeRefreshLayout.isRefreshing = true
-            binding.searchBarRistoranti.setQuery("", false)
 
             getRestaurantData(object : FireBaseCallbackRestaurant {
                 override fun onResponse(responseR: ResponseRistorante) {
@@ -76,17 +73,11 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
             swipeRefreshLayout.isRefreshing = false
         }
 
-        binding.searchBarRistoranti.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                adapter.filter.filter(newText)
-                return false
+        binding.searchBarLayout.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(p0: View?) {
+                view?.findNavController()?.navigate(R.id.RistorantiToSearchR)
             }
         })
-
         return binding.root
     }
 

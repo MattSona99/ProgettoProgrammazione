@@ -15,24 +15,30 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="5dp">
 
             <LinearLayout
-                android:id="@+id/searchlayout"
+                android:id="@+id/search_bar_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp">
+                android:layout_height="50dp"
+                android:background="@drawable/search_border"
+                android:orientation="horizontal">
 
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/search_bar_ristoranti"
+                <ImageView
+                    android:layout_width="47dp"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:src="@drawable/ic_search_icon" />
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/search_border"
-                    android:theme="@style/TextStyle"
-                    app:iconifiedByDefault="false"
-                    app:queryHint="@string/search_restaurant"
-                    app:searchIcon="@drawable/ic_search_icon" />
+                    android:layout_gravity="center"
+                    android:paddingLeft="8dp"
+                    android:text="@string/search_restaurant"
+                    android:theme="@style/TextStyle" />
 
             </LinearLayout>
 

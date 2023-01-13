@@ -54,6 +54,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/RistorantiToSearchR"
+            app:destination="@id/fragmentSearchR" />
     </fragment>
 
     <fragment
@@ -113,6 +116,15 @@
         android:id="@+id/fragmentModificaRist"
         android:name="com.example.progettoprogrammazione.ristoratore.FragmentModificaRist"
         android:label="Modifica Ristorante" />
+    <fragment
+        android:id="@+id/fragmentSearchR"
+        android:name="com.example.progettoprogrammazione.fragment.FragmentSearch"
+        android:label="Cerca Ristoranti"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/SearchToDetailR"
+            app:destination="@id/restaurantDetail" />
+    </fragment>
 
 
 </navigation>

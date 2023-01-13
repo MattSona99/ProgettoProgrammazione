@@ -33,7 +33,7 @@
         android:id="@+id/fragmentProfiloD"
         android:name="com.example.progettoprogrammazione.fragment.FragmentProfilo"
         android:label="Profilo"
-        tools:layout="@layout/fragment_profilo" >
+        tools:layout="@layout/fragment_profilo">
         <action
             android:id="@+id/ProfiloDSelf"
             app:destination="@id/fragmentProfiloD" />
@@ -47,13 +47,16 @@
         <action
             android:id="@+id/RistorantiToDetail"
             app:destination="@id/restaurantDetailD" />
+        <action
+            android:id="@+id/RistorantiToSearchD"
+            app:destination="@id/fragmentSearchD" />
     </fragment>
 
     <fragment
         android:id="@+id/restaurantDetailD"
         android:name="com.example.progettoprogrammazione.ristorante.RestaurantDetail"
         android:label="Dettagli ristorante"
-        tools:layout="@layout/fragment_restaurant_detail" >
+        tools:layout="@layout/fragment_restaurant_detail">
         <action
             android:id="@+id/DetailToMenu"
             app:destination="@id/fragmentMenu" />
@@ -68,7 +71,7 @@
         android:id="@+id/fragmentMenuD"
         android:name="com.example.progettoprogrammazione.fragment.FragmentMenu"
         android:label="Menù"
-        tools:layout="@layout/fragment_menu" >
+        tools:layout="@layout/fragment_menu">
         <action
             android:id="@+id/action_fragmentMenu_to_productDetail3"
             app:destination="@id/productDetail" />
@@ -77,7 +80,16 @@
         android:id="@+id/productDetailD"
         android:name="com.example.progettoprogrammazione.prodotti.ProductDetail"
         android:label="Dettagli prodotto"
-        tools:layout="@layout/fragment_menuproduct_detail"/>
+        tools:layout="@layout/fragment_menuproduct_detail" />
+    <fragment
+        android:id="@+id/fragmentSearchD"
+        android:name="com.example.progettoprogrammazione.fragment.FragmentSearch"
+        android:label="Cerca Ristoranti"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/SearchToDetailD"
+            app:destination="@id/restaurantDetailD" />
+    </fragment>
 
 
 </navigation>
