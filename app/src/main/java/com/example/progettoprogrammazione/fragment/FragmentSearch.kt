@@ -13,6 +13,7 @@ import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentSearchBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.models.Restaurant
+import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.ristorante.RestaurantAdapter
 import com.example.progettoprogrammazione.ristorante.RestaurantClickListener
 import com.example.progettoprogrammazione.utils.ResponseRistorante
@@ -29,6 +30,7 @@ class FragmentSearch : Fragment(), RestaurantClickListener, RestaurantUtils {
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     private lateinit var restArrayList: ArrayList<Restaurant>
+    private lateinit var lvl : String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,6 +38,9 @@ class FragmentSearch : Fragment(), RestaurantClickListener, RestaurantUtils {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSearchBinding.inflate(layoutInflater)
+
+        val args = this.arguments
+        lvl = args?.getString("lvl") as String
 
         restArrayList = arrayListOf()
 
@@ -71,11 +76,16 @@ class FragmentSearch : Fragment(), RestaurantClickListener, RestaurantUtils {
     }
 
     override fun onClickResturant(restaurant: Restaurant) {
+        binding.searchBarRistoranti.setQuery("", false)
         val bundle = Bundle()
         bundle.putString("restID", restaurant.idR.toString())
         bundle.putParcelableArrayList("restArrayList", restArrayList)
+        when(lvl){
+            "1" -> view?.findNavController()?.navigate(R.id.SearchToDetailU, bundle)
+            "2" -> view?.findNavController()?.navigate(R.id.SearchToDetailD, bundle)
+            "3" -> view?.findNavController()?.navigate(R.id.SearchToDetailR, bundle)
+        }
 
-        view?.findNavController()?.navigate(R.id.SearchToDetailR, bundle)
     }
 
     private fun showData() {

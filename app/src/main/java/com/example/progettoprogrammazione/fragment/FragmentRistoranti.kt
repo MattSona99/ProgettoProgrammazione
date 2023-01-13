@@ -13,17 +13,20 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentRistorantiBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.ristorante.RestaurantAdapter
 import com.example.progettoprogrammazione.ristorante.RestaurantClickListener
 import com.example.progettoprogrammazione.utils.ResponseRistorante
+import com.example.progettoprogrammazione.utils.ResponseUser
 import com.example.progettoprogrammazione.utils.RestaurantUtils
+import com.example.progettoprogrammazione.utils.UserUtils
 import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 
-class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils {
+class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils, UserUtils {
 
     private lateinit var binding: FragmentRistorantiBinding
     private lateinit var adapter: RestaurantAdapter
@@ -33,6 +36,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
 
     private lateinit var resturantDataViewModel: RestaurantViewModel
     private lateinit var restArrayList: ArrayList<Restaurant>
+    private lateinit var userlvl: String
 
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
@@ -42,6 +46,12 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
     ): View {
 
         binding = FragmentRistorantiBinding.inflate(layoutInflater)
+
+        getUserData(object : FireBaseCallbackUser {
+            override fun onResponse(responseU: ResponseUser) {
+                userlvl = responseU.user!!.Livello.toString()
+            }
+        }, context)
 
         getRestaurantData(object : FireBaseCallbackRestaurant {
             override fun onResponse(responseR: ResponseRistorante) {
@@ -75,7 +85,13 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils 
 
         binding.searchBarLayout.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
-                view?.findNavController()?.navigate(R.id.RistorantiToSearchR)
+                val bundle = Bundle()
+                bundle.putString("lvl", userlvl)
+                when (userlvl) {
+                    "1" -> view?.findNavController()?.navigate(R.id.RistorantiToSearchU, bundle)
+                    "2" -> view?.findNavController()?.navigate(R.id.RistorantiToSearchD, bundle)
+                    "3" -> view?.findNavController()?.navigate(R.id.RistorantiToSearchR, bundle)
+                }
             }
         })
         return binding.root
