@@ -15,7 +15,6 @@ data class Restaurant(
     var tipoCiboR: String?,
     var veganR: Boolean,
     var ratingR: Double,
-    var nRatings: Int,
     var idR: String?,
     var proprietarioR: String?,
 //    var menus: List<Menu?>?
@@ -32,7 +31,6 @@ data class Restaurant(
         parcel.readString(),
         parcel.readByte() != 0.toByte(),
         parcel.readDouble(),
-        parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
 //        parcel.createTypedArrayList(Menu)
@@ -49,7 +47,6 @@ data class Restaurant(
         parcel.writeString(tipoCiboR)
         parcel.writeByte(if (veganR) 1 else 0)
         parcel.writeDouble(ratingR)
-        parcel.writeInt(nRatings)
         parcel.writeString(idR)
         parcel.writeString(proprietarioR)
 //        parcel.writeTypedList(menus)

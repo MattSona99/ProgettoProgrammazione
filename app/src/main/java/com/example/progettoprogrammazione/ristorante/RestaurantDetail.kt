@@ -207,7 +207,6 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
                 Toast.LENGTH_SHORT
             ).show()
             var ratingR = firebaseDatabase.getReference("Ristoranti/$restaurantID/ratingR")
-            var nRatings = firebaseDatabase.getReference("Ristoranti/$restaurantID/nRatings")
 
             firebaseDatabase.getReference("Utenti/$uid/ratings").child(restaurant?.nomeR!!)
                 .setValue(binding.ratingBarR.rating)
@@ -215,19 +214,16 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
             firebaseDatabase.getReference("Ristoranti/$restaurantID/usersRatings")
                 .child(user.currentUser?.uid!!).setValue(binding.ratingBarR.rating)
 
-            if (restaurant!!.ratingR == 0.0) {
-                ratingR.setValue(binding.ratingBarR.rating.toDouble())
-                nRatings.setValue(1)
-            } else {
-                getRating(object : FireBaseCallbackRating {
-                    override fun onResponse(responseR: ResponseRating) {
-                        nRatings.setValue(responseR.rating.size)
-                        var sum = responseR.rating.sum()
-                        var avg = sum / responseR.rating.size
-                        ratingR.setValue(avg)
-                    }
-                }, context, restaurantID.toString())
-            }
+
+            getRating(object : FireBaseCallbackRating {
+                override fun onResponse(responseR: ResponseRating) {
+
+                    var sum = responseR.rating.sum()
+                    var avg = sum / responseR.rating.size
+                    ratingR.setValue(avg)
+                }
+            }, context, restaurantID.toString())
+
         }
     }
 
