@@ -47,6 +47,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
 
         binding = FragmentRistorantiBinding.inflate(layoutInflater)
 
+        restArrayList = arrayListOf()
         getUserData(object : FireBaseCallbackUser {
             override fun onResponse(responseU: ResponseUser) {
                 userlvl = responseU.user!!.Livello.toString()
@@ -94,6 +95,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
                 }
             }
         })
+
         return binding.root
     }
 

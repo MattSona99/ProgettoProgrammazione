@@ -77,21 +77,22 @@ class RestaurantAdapter(
                     val searchChar = p0.toString().lowercase()
                     val filteredResults = ArrayList<Restaurant>()
 
-                    for (ristorante in restaurantFiltered) {
-                        if (searchChar == "rating") {
-                            if (ristorante.ratingR > 3.5) {
+                    if (searchChar == "rating") {
+                        for (ristorante in restaurantFiltered) {
+                            if (ristorante.ratingR > 3.5) filteredResults.add(ristorante)
+                        }
+                    } else if (searchChar == "vegan") {
+                        for (ristorante in restaurantFiltered) {
+                            if (ristorante.veganR) filteredResults.add(ristorante)
+                        }
+                    } else {
+                        for (ristorante in restaurantFiltered) {
+                            if (ristorante.tipoCiboR!!.lowercase().contains(searchChar)) {
                                 filteredResults.add(ristorante)
                             }
-                        }
-                        if (searchChar == "vegan") {
-                            if (ristorante.veganR) {
-                                filteredResults.add(ristorante)
-                            }
-                        }
-                        if (ristorante.tipoCiboR!!.lowercase().contains(searchChar)) {
-                            filteredResults.add(ristorante)
                         }
                     }
+
                     filteredResults.sortedByDescending { it.ratingR }
                     filterResults.values = filteredResults
                     filterResults.count = filteredResults.size
