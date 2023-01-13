@@ -34,8 +34,10 @@
             android:id="@+id/nome_prodotto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/red"
             android:hint="@string/product_name"
             android:textColor="@color/red"
+            android:textColorHint="@color/red"
             android:textSize="18dp"
             android:textStyle="bold" />
 
@@ -43,8 +45,10 @@
             android:id="@+id/prezzo_prodotto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/red"
             android:hint="@string/product_price"
             android:textColor="@color/red"
+            android:textColorHint="@color/red"
             android:textSize="18dp"
             android:textStyle="bold" />
 
@@ -52,8 +56,10 @@
             android:id="@+id/descrizione_prodotto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/red"
             android:hint="@string/product_desc"
             android:textColor="@color/red"
+            android:textColorHint="@color/red"
             android:textSize="18dp"
             android:textStyle="bold" />
 

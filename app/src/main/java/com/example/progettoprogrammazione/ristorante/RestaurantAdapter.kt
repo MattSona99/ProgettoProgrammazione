@@ -92,9 +92,7 @@ class RestaurantAdapter(
                             filteredResults.add(ristorante)
                         }
                     }
-                    if (searchChar == "rating") {
-                        filteredResults.sortedByDescending { it.ratingR }
-                    } else filteredResults.sortedBy { it.nomeR }
+                    filteredResults.sortedByDescending { it.ratingR }
                     filterResults.values = filteredResults
                     filterResults.count = filteredResults.size
                 }
