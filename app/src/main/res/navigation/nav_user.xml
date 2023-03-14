@@ -6,6 +6,14 @@
     app:startDestination="@id/fragmentRistoranti">
 
     <action
+        android:id="@id/fragmentCarrello_U"
+        app:destination="@id/fragmentCarrello_U"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    <action
         android:id="@+id/Profilo_U"
         app:destination="@+id/fragmentProfilo"
         app:enterAnim="@anim/nav_default_enter_anim"
@@ -101,5 +109,9 @@
             android:id="@+id/SearchToDetailU"
             app:destination="@id/restaurantDetail" />
     </fragment>
+    <fragment
+        android:id="@+id/fragmentCarrello_U"
+        android:name="com.example.progettoprogrammazione.fragment.FragmentCarrello"
+        android:label="Carrello" />
 
 </navigation>
