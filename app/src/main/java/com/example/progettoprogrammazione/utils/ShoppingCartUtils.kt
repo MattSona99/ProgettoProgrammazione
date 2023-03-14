@@ -31,12 +31,12 @@ interface ShoppingCartUtils {
                         val carrello =
                             Cart(
                                 prod.child("pName").value.toString(),
-                                prod.child("quantity").value as Int?,
-                                prod.child("totPrice").value as Float?,
+                                prod.child("quantity").value.toString().toInt(),
+                                prod.child("totPrice").value.toString().toFloat(),
                                 prod.child("idProd").value.toString()
                             )
 
-                        response.carrello.set(prod.child("idP").toString(), carrello)
+                        response.carrello[prod.child("idP").toString()] = carrello
                     }
                     callBack.onResponse(response)
                 }
