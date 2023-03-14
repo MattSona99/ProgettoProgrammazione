@@ -20,7 +20,8 @@ import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class FragmentLogin : Fragment(), UserUtils, DipendenteUtil, RestaurantUtils, ProductUtils,ShoppingCartUtils{
+class FragmentLogin : Fragment(), UserUtils, DipendenteUtil, RestaurantUtils, ProductUtils,
+    ShoppingCartUtils {
 
     private lateinit var binding: FragmentLoginBinding
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -63,78 +64,91 @@ class FragmentLogin : Fragment(), UserUtils, DipendenteUtil, RestaurantUtils, Pr
                                 )
                                     .show()
 
-                                getShopingCartData(FirebaseAuth.getInstance().uid,object: FireBaseCallbackShoppingCart{
-                                    override fun onResponse(responseC: ResponseShoppingCart) {
+                                getShoppingCartData(
+                                    FirebaseAuth.getInstance().uid,
+                                    object : FireBaseCallbackShoppingCart {
+                                        override fun onResponse(responseC: ResponseShoppingCart) {
 
-                                getRestaurantData(object : FireBaseCallbackRestaurant {
-                                    override fun onResponse(responseR: ResponseRistorante) {
+                                            getRestaurantData(object : FireBaseCallbackRestaurant {
+                                                override fun onResponse(responseR: ResponseRistorante) {
 
-                                        when (userlvl) {
-                                            "1" -> {
-                                                val intent =
-                                                    Intent(
-                                                        context,
-                                                        UserActivity::class.java
-                                                    ).apply {
-                                                        putExtra("user", responseU.user)
-                                                        putParcelableArrayListExtra(
-                                                            "ristoranti",
-                                                            responseR.ristoranti
-                                                        )
-                                                        putExtra("carrello", responseC.carrello)
+                                                    when (userlvl) {
+                                                        "1" -> {
+                                                            val intent =
+                                                                Intent(
+                                                                    context,
+                                                                    UserActivity::class.java
+                                                                ).apply {
+                                                                    putExtra("user", responseU.user)
+                                                                    putParcelableArrayListExtra(
+                                                                        "ristoranti",
+                                                                        responseR.ristoranti
+                                                                    )
+                                                                    putExtra(
+                                                                        "carrello",
+                                                                        responseC.carrello
+                                                                    )
+                                                                }
+                                                            startActivity(intent)
+                                                            activity?.finish()
+                                                        }
+
+                                                        "2" -> {
+
+                                                            val intent =
+                                                                Intent(
+                                                                    context,
+                                                                    EmployeeActivity::class.java
+                                                                ).apply {
+                                                                    putExtra("user", responseU.user)
+                                                                    putParcelableArrayListExtra(
+                                                                        "ristoranti",
+                                                                        responseR.ristoranti
+                                                                    )
+                                                                    putExtra(
+                                                                        "carrello",
+                                                                        responseC.carrello
+                                                                    )
+                                                                }
+                                                            startActivity(intent)
+                                                            activity?.finish()
+                                                        }
+
+                                                        "3" -> {
+
+                                                            val intent =
+                                                                Intent(
+                                                                    context,
+                                                                    RestaurateurActivity::class.java
+                                                                ).apply {
+                                                                    putExtra("user", responseU.user)
+                                                                    putParcelableArrayListExtra(
+                                                                        "ristoranti",
+                                                                        responseR.ristoranti
+                                                                    )
+                                                                    putExtra(
+                                                                        "carrello",
+                                                                        responseC.carrello
+                                                                    )
+                                                                }
+                                                            startActivity(intent)
+                                                            activity?.finish()
+
+                                                        }
+                                                        else -> {
+                                                            Toast.makeText(
+                                                                context,
+                                                                "Errore durante il caricamento.",
+                                                                Toast.LENGTH_LONG
+                                                            ).show()
+                                                        }
                                                     }
-                                                startActivity(intent)
-                                                activity?.finish()
-                                            }
-
-                                            "2" -> {
-
-                                                val intent =
-                                                    Intent(
-                                                        context,
-                                                        EmployeeActivity::class.java
-                                                    ).apply {
-                                                        putExtra("user", responseU.user)
-                                                        putParcelableArrayListExtra(
-                                                            "ristoranti",
-                                                            responseR.ristoranti
-                                                        )
-                                                        putExtra("carrello", responseC.carrello)
-                                                    }
-                                                startActivity(intent)
-                                                activity?.finish()
-                                            }
-
-                                            "3" -> {
-
-                                                val intent =
-                                                    Intent(
-                                                        context,
-                                                        RestaurateurActivity::class.java
-                                                    ).apply {
-                                                        putExtra("user", responseU.user)
-                                                        putParcelableArrayListExtra(
-                                                            "ristoranti",
-                                                            responseR.ristoranti
-                                                        )
-                                                        putExtra("carrello", responseC.carrello)
-                                                    }
-                                                startActivity(intent)
-                                                activity?.finish()
-
-                                            }
-                                            else -> {
-                                                Toast.makeText(
-                                                    context,
-                                                    "Errore durante il caricamento.",
-                                                    Toast.LENGTH_LONG
-                                                ).show()
-                                            }
+                                                }
+                                            }, context)
                                         }
-                                    }
-                                    }, context)
-                                        }
-                                },context)
+                                    },
+                                    context
+                                )
                             }
                         }, context)
 
@@ -152,9 +166,9 @@ class FragmentLogin : Fragment(), UserUtils, DipendenteUtil, RestaurantUtils, Pr
 
         binding.recuperapassword.setOnClickListener {
             useremail = binding.email.text.toString()
-            if(useremail.isNotEmpty()){
+            if (useremail.isNotEmpty()) {
                 recoverUserPassword(context, useremail)
-            }else Toast.makeText(context, "Inserisci un'email.", Toast.LENGTH_SHORT).show()
+            } else Toast.makeText(context, "Inserisci un'email.", Toast.LENGTH_SHORT).show()
 
         }
 
