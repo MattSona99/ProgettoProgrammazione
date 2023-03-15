@@ -87,6 +87,7 @@
 
     <!-- MANAGEMENT -->
     <string name="create_new">CREA UNA NUOVA ATTIVITÀ</string>
+    <string name="modify_menu">Modifica</string>
 
     <!-- MENU -->
     <string name="menu">Menù</string>

@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.progettoprogrammazione.databinding.FragmentMenuproductDetailBinding
+import com.example.progettoprogrammazione.databinding.FragmentMenuProductDetailBinding
 import com.example.progettoprogrammazione.models.Product
 
 class ProductDetail : Fragment() {
 
-    private lateinit var binding: FragmentMenuproductDetailBinding
+    private lateinit var binding: FragmentMenuProductDetailBinding
 
     private var productList: ArrayList<Product>? = null
 
@@ -21,7 +21,7 @@ class ProductDetail : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         super.onCreate(savedInstanceState)
-        binding = FragmentMenuproductDetailBinding.inflate(layoutInflater)
+        binding = FragmentMenuProductDetailBinding.inflate(layoutInflater)
 
         val args = this.arguments
         val productID = args?.get("prodID")

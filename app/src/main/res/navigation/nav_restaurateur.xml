@@ -91,7 +91,7 @@
         android:id="@+id/productDetail"
         android:name="com.example.progettoprogrammazione.prodotti.ProductDetail"
         android:label="Dettagli prodotto"
-        tools:layout="@layout/fragment_menuproduct_detail" />
+        tools:layout="@layout/fragment_menu_product_detail" />
     <fragment
         android:id="@+id/fragmentMenu"
         android:name="com.example.progettoprogrammazione.fragment.FragmentMenu"

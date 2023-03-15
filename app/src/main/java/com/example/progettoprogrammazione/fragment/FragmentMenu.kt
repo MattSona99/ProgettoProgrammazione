@@ -1,21 +1,32 @@
 package com.example.progettoprogrammazione.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentMenuBinding
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.models.Product
+import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.prodotti.ProductAdapter
 import com.example.progettoprogrammazione.prodotti.ProductClickListener
 import com.example.progettoprogrammazione.utils.ProductUtils
+import com.example.progettoprogrammazione.utils.ResponseUser
+import com.example.progettoprogrammazione.utils.UserUtils
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
-class FragmentMenu : Fragment(), ProductClickListener, ProductUtils {
+class FragmentMenu : Fragment(), ProductClickListener, ProductUtils, UserUtils {
 
     private lateinit var binding: FragmentMenuBinding
     private lateinit var adapterBev: ProductAdapter
@@ -26,6 +37,7 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils {
     private lateinit var adapterDol: ProductAdapter
 
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
+    override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     private lateinit var bevandeArrayList: ArrayList<Product>
     private lateinit var antipastiArrayList: ArrayList<Product>
@@ -34,6 +46,7 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils {
     private lateinit var contorniArrayList: ArrayList<Product>
     private lateinit var dolciArrayList: ArrayList<Product>
 
+    private lateinit var userlvl: String
     private var prodotti = arrayListOf<Product>()
 
     override fun onCreateView(
@@ -41,8 +54,17 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMenuBinding.inflate(layoutInflater)
-
         val args = this.arguments
+
+        getUserData(object : FireBaseCallbackUser {
+            override fun onResponse(responseU: ResponseUser) {
+                userlvl = responseU.user!!.Livello.toString()
+                if(userlvl=="3")
+                    binding.btnModifica.isVisible = true
+            }
+        }, context)
+
+
 
         bevandeArrayList = args?.getParcelableArrayList<Product>("bevande") as ArrayList<Product>
         antipastiArrayList = args.getParcelableArrayList<Product>("antipasti") as ArrayList<Product>
@@ -108,5 +130,6 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils {
         view?.findNavController()?.navigate(R.id.productDetail, bundle)
 
     }
+
 
 }
