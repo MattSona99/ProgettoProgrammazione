@@ -237,14 +237,12 @@
 
                         </TextView>
 
-
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recycleViewPizza"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:scrollbars="horizontal"
                             tools:listitem="@layout/restaurant_card" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -275,13 +273,10 @@
 
                         </TextView>
 
-
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recycleViewBurger"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:scrollbars="horizontal"
                             tools:listitem="@layout/restaurant_card" />
 
                     </LinearLayout>
@@ -313,14 +308,11 @@
                             android:textStyle="bold">
 
                         </TextView>
-
-
+                        
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recycleViewIta"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:scrollbars="horizontal"
                             tools:listitem="@layout/restaurant_card" />
 
                     </LinearLayout>
@@ -353,13 +345,10 @@
 
                         </TextView>
 
-
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recycleViewCin"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:scrollbars="horizontal"
                             tools:listitem="@layout/restaurant_card" />
 
                     </LinearLayout>
@@ -392,13 +381,10 @@
 
                         </TextView>
 
-
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recycleViewJap"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:scrollbars="horizontal"
                             tools:listitem="@layout/restaurant_card" />
 
                     </LinearLayout>
@@ -431,13 +417,10 @@
 
                         </TextView>
 
-
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recycleViewInd"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:scrollbars="horizontal"
                             tools:listitem="@layout/restaurant_card" />
 
                     </LinearLayout>
@@ -470,13 +453,10 @@
 
                         </TextView>
 
-
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recycleViewGre"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:scrollbars="horizontal"
                             tools:listitem="@layout/restaurant_card" />
 
                     </LinearLayout>
@@ -509,13 +489,10 @@
 
                         </TextView>
 
-
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recycleViewVeg"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:scrollbars="horizontal"
                             tools:listitem="@layout/restaurant_card" />
 
                     </LinearLayout>

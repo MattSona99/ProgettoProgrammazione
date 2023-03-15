@@ -124,12 +124,33 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
         adapter.notifyDataSetChanged()
     }
 
+    private fun verticalrecylerview(
+        recyclerView: RecyclerView,
+        ristoranti: ArrayList<Restaurant>,
+        tipo: String
+    ) {
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager = layoutManager
+        adapter = RestaurantAdapter(ristoranti, this@FragmentRistoranti)
+        showData()
+        customFilter(adapter, tipo)
+        recyclerView.adapter = adapter
+        recyclerView.setHasFixedSize(true)
+        adapter.notifyDataSetChanged()
+    }
+
     private fun customFilter(adapter: RestaurantAdapter, tipo: String) {
         adapter.customFilter().filter(tipo)
     }
 
-    private fun bindrecyclerviews(ristoranti: ArrayList<Restaurant>, tipo: String, recyclerView: RecyclerView) {
-        horizontalrecylerview(recyclerView, ristoranti, tipo)
+    private fun bindrecyclerviews(
+        ristoranti: ArrayList<Restaurant>,
+        tipo: String,
+        recyclerView: RecyclerView
+    ) {
+        if (tipo == "rating") {
+            horizontalrecylerview(recyclerView, ristoranti, tipo)
+        } else verticalrecylerview(recyclerView, ristoranti, tipo)
     }
 
     private fun showData() {
