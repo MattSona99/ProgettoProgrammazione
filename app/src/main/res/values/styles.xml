@@ -32,4 +32,8 @@
         <item name="android:headerBackground">@color/white</item>
     </style>
 
+    <style name="NegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
 </resources>

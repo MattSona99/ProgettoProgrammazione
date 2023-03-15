@@ -65,7 +65,7 @@ class FragmentProfilo : Fragment(), UserUtils, ImgUtils {
         }
 
         val imageName = user.Uri
-        val storageRef =  FirebaseStorage.getInstance().reference.child("$imageName")
+        val storageRef = FirebaseStorage.getInstance().reference.child("$imageName")
         val localfile = File.createTempFile("tempImage", "jpg")
         storageRef.getFile(localfile).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
@@ -95,36 +95,42 @@ class FragmentProfilo : Fragment(), UserUtils, ImgUtils {
 
         binding.imgProfiloUtente.setOnClickListener {
             selectImageFromGallery()
-            val builder = AlertDialog.Builder(activity)
-            builder.setMessage("Sei sicuro di voler caricare questa immagine?")
-            builder.setPositiveButton("Sì") { dialog, _ ->
-                if (imageUri != null) {
-                    uploadImage()
-                    newimg = "Users-images/" + fileName
-                    val childUpdates: HashMap<String, Any> = hashMapOf()
-                    childUpdates["Uri"] = newimg!!
-                    updateUserData(context, childUpdates)
-                    getUserData(object : FireBaseCallbackUser {
-                        override fun onResponse(responseU: ResponseUser) {
-                            val bundleU = Bundle()
-                            bundleU.putParcelable("user", responseU.user)
-                            when (user.Livello) {
-                                "1" -> view.findNavController().navigate(R.id.ProfiloUSelf, bundleU)
-                                "2" -> view.findNavController().navigate(R.id.ProfiloDSelf, bundleU)
-                                "3" -> view.findNavController().navigate(R.id.ProfiloRSelf, bundleU)
+            if (selectImageFromGalleryResult != null && imageUri != null) {
+                val builder = AlertDialog.Builder(activity)
+                builder.setMessage("Sei sicuro di voler caricare questa immagine?")
+                builder.setPositiveButton("Sì") { dialog, _ ->
+                    if (imageUri != null) {
+                        uploadImage()
+                        newimg = "Users-images/" + fileName
+                        val childUpdates: HashMap<String, Any> = hashMapOf()
+                        childUpdates["Uri"] = newimg!!
+                        updateUserData(context, childUpdates)
+                        getUserData(object : FireBaseCallbackUser {
+                            override fun onResponse(responseU: ResponseUser) {
+                                val bundleU = Bundle()
+                                bundleU.putParcelable("user", responseU.user)
+                                when (user.Livello) {
+                                    "1" -> view.findNavController()
+                                        .navigate(R.id.ProfiloUSelf, bundleU)
+                                    "2" -> view.findNavController()
+                                        .navigate(R.id.ProfiloDSelf, bundleU)
+                                    "3" -> view.findNavController()
+                                        .navigate(R.id.ProfiloRSelf, bundleU)
+                                }
+
                             }
+                        }, context)
+                    }
 
-                        }
-                    }, context)
+
                 }
-
+                builder.setNegativeButton("No") { dialog, _ ->
+                    dialog.cancel()
+                }
+                Handler().postDelayed({
+                    builder.show()
+                }, 2000)
             }
-            builder.setNegativeButton("No") { dialog, _ ->
-                dialog.cancel()
-            }
-            Handler().postDelayed({
-                builder.show()
-            }, 2000)
         }
 
         binding.salva.setOnClickListener {
