@@ -25,6 +25,7 @@
 
     <!-- RESTAURANT HOME-->
     <string name="search_restaurant">Cerca un ristorante…</string>
+    <string name="search_tipo">CERCA PER TIPOLOGIA</string>
     <string name="toprated">TOP RATED</string>
     <string name="pizza">PIZZERIE</string>
     <string name="burger">PUB</string>

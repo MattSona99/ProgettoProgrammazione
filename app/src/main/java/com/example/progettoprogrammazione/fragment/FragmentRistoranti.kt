@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -57,7 +58,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
         getRestaurantData(object : FireBaseCallbackRestaurant {
             override fun onResponse(responseR: ResponseRistorante) {
                 restArrayList = responseR.ristoranti
-                bindrecyclerviews(restArrayList)
+                bindrecyclerviews(restArrayList, "rating", binding.recycleViewTopRated)
             }
         }, context)
 
@@ -78,7 +79,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
             getRestaurantData(object : FireBaseCallbackRestaurant {
                 override fun onResponse(responseR: ResponseRistorante) {
                     restArrayList = responseR.ristoranti
-                    bindrecyclerviews(restArrayList)
+                    bindrecyclerviews(restArrayList, "rating", binding.recycleViewTopRated)
                 }
             }, context)
             swipeRefreshLayout.isRefreshing = false
@@ -127,20 +128,68 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
         adapter.customFilter().filter(tipo)
     }
 
-    private fun bindrecyclerviews(ristoranti: ArrayList<Restaurant>) {
-        horizontalrecylerview(binding.recycleViewTopRated, ristoranti, "rating")
-        horizontalrecylerview(binding.recycleViewPizza, ristoranti, "pizza")
-        horizontalrecylerview(binding.recycleViewBurger, ristoranti, "burger")
-        horizontalrecylerview(binding.recycleViewIta, ristoranti, "italiano")
-        horizontalrecylerview(binding.recycleViewCin, ristoranti, "cinese")
-        horizontalrecylerview(binding.recycleViewJap, ristoranti, "giapponese")
-        horizontalrecylerview(binding.recycleViewInd, ristoranti, "indiano")
-        horizontalrecylerview(binding.recycleViewGre, ristoranti, "greco")
-        horizontalrecylerview(binding.recycleViewVeg, ristoranti, "vegan")
+    private fun bindrecyclerviews(ristoranti: ArrayList<Restaurant>, tipo: String, recyclerView: RecyclerView) {
+        horizontalrecylerview(recyclerView, ristoranti, tipo)
     }
 
     private fun showData() {
         adapter.setData(restArrayList)
+    }
+
+    private fun invisible() {
+        binding.pizzerie.isVisible = false
+        binding.pub.isVisible = false
+        binding.italiana.isVisible = false
+        binding.cinese.isVisible = false
+        binding.giapponese.isVisible = false
+        binding.indiana.isVisible = false
+        binding.greco.isVisible = false
+        binding.vegano.isVisible = false
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnPizza.setOnClickListener {
+            invisible()
+            bindrecyclerviews(restArrayList, "pizza", binding.recycleViewPizza)
+            binding.pizzerie.isVisible = true
+        }
+        binding.btnBurger.setOnClickListener {
+            invisible()
+            bindrecyclerviews(restArrayList, "burger", binding.recycleViewBurger)
+            binding.pub.isVisible = true
+        }
+        binding.btnIta.setOnClickListener {
+            invisible()
+            bindrecyclerviews(restArrayList, "italiano", binding.recycleViewIta)
+            binding.italiana.isVisible = true
+        }
+        binding.btnChi.setOnClickListener {
+            invisible()
+            bindrecyclerviews(restArrayList, "cinese", binding.recycleViewCin)
+            binding.cinese.isVisible = true
+        }
+        binding.btnJap.setOnClickListener {
+            invisible()
+            bindrecyclerviews(restArrayList, "giapponese", binding.recycleViewJap)
+            binding.giapponese.isVisible = true
+        }
+        binding.btnInd.setOnClickListener {
+            invisible()
+            bindrecyclerviews(restArrayList, "indiano", binding.recycleViewInd)
+            binding.indiana.isVisible = true
+        }
+        binding.btnGre.setOnClickListener {
+            invisible()
+            bindrecyclerviews(restArrayList, "greco", binding.recycleViewGre)
+            binding.greco.isVisible = true
+        }
+        binding.btnVeg.setOnClickListener {
+            invisible()
+            bindrecyclerviews(restArrayList, "pizza", binding.recycleViewVeg)
+            binding.vegano.isVisible = true
+        }
     }
 }
 

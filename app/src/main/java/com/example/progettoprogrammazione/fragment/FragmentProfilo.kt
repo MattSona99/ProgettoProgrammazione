@@ -79,8 +79,8 @@ class FragmentProfilo : Fragment(), UserUtils, ImgUtils {
         )
 
         binding.nicknameprofilo.text = user.Nome + " " + user.Cognome
-        binding.nomeprofilo.hint = "Nome: " + user.Nome
-        binding.cognomeprofilo.hint = "Cognome: " + user.Cognome
+        binding.nomeprofilo.hint = user.Nome
+        binding.cognomeprofilo.hint = user.Cognome
         return binding.root
     }
 
