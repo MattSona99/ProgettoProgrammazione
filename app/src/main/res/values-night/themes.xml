@@ -18,5 +18,7 @@
         <item name="android:textViewStyle">@style/TextViewStyle</item>
         <item name="android:editTextStyle">@style/EditTextStyle</item>
         <item name="android:timePickerMode">@style/TimePickerStyle</item>
+        <item name="alertDialogButtonGroupStyle">@style/NegativeButtonStyle</item>
     </style>
+
 </resources>

@@ -37,7 +37,8 @@
             android:backgroundTint="@color/red"
             android:hint="@string/product_name"
             android:textColor="@color/red"
-            android:textColorHint="@color/red"
+            android:textColorHint="@color/pink"
+            android:textCursorDrawable="@color/red"
             android:textSize="18dp"
             android:textStyle="bold" />
 
@@ -48,7 +49,8 @@
             android:backgroundTint="@color/red"
             android:hint="@string/product_price"
             android:textColor="@color/red"
-            android:textColorHint="@color/red"
+            android:textColorHint="@color/pink"
+            android:textCursorDrawable="@color/red"
             android:textSize="18dp"
             android:textStyle="bold" />
 
@@ -59,7 +61,8 @@
             android:backgroundTint="@color/red"
             android:hint="@string/product_desc"
             android:textColor="@color/red"
-            android:textColorHint="@color/red"
+            android:textColorHint="@color/pink"
+            android:textCursorDrawable="@color/red"
             android:textSize="18dp"
             android:textStyle="bold" />
 

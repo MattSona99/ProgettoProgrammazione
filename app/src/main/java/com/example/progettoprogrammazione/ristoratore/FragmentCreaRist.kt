@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.activity.CreaMenu
 import com.example.progettoprogrammazione.databinding.FragmentCreaRistBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant

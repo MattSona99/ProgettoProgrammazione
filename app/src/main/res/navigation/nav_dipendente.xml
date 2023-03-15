@@ -90,6 +90,10 @@
             android:id="@+id/SearchToDetailD"
             app:destination="@id/restaurantDetailD" />
     </fragment>
+    <fragment
+        android:id="@+id/fragmentCarrello_D"
+        android:name="com.example.progettoprogrammazione.fragment.FragmentCarrello"
+        android:label="Carrello" />
 
 
 </navigation>
