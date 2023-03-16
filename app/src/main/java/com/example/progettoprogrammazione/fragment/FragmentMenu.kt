@@ -1,6 +1,7 @@
 package com.example.progettoprogrammazione.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,22 +12,23 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.progettoprogrammazione.R
+import com.example.progettoprogrammazione.activity.CreaMenu
 import com.example.progettoprogrammazione.databinding.FragmentMenuBinding
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.models.Product
+import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.prodotti.ProductAdapter
 import com.example.progettoprogrammazione.prodotti.ProductClickListener
-import com.example.progettoprogrammazione.utils.ProductUtils
-import com.example.progettoprogrammazione.utils.ResponseUser
-import com.example.progettoprogrammazione.utils.UserUtils
+import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class FragmentMenu : Fragment(), ProductClickListener, ProductUtils, UserUtils {
+class FragmentMenu : Fragment(), ProductClickListener, ProductUtils, UserUtils, RestaurantUtils {
 
     private lateinit var binding: FragmentMenuBinding
     private lateinit var adapterBev: ProductAdapter
@@ -55,15 +57,15 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils, UserUtils {
     ): View {
         binding = FragmentMenuBinding.inflate(layoutInflater)
         val args = this.arguments
+        val proprietarioR = args?.get("proprietarioR")
 
         getUserData(object : FireBaseCallbackUser {
             override fun onResponse(responseU: ResponseUser) {
                 userlvl = responseU.user!!.Livello.toString()
-                if(userlvl=="3")
+                if (userlvl == "3" && proprietarioR==responseU.user!!.Email)
                     binding.btnModifica.isVisible = true
             }
         }, context)
-
 
 
         bevandeArrayList = args?.getParcelableArrayList<Product>("bevande") as ArrayList<Product>
@@ -119,6 +121,17 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils, UserUtils {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.btnModifica.setOnClickListener() {
+            val intent = Intent( context, CreaMenu::class.java )
+            startActivity(intent)
+            activity?.finish()
+        }
+
+
+    }
+
     override fun onClickProduct(prodotto: Product) {
 
         val bundle = Bundle()
@@ -130,6 +143,5 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils, UserUtils {
         view?.findNavController()?.navigate(R.id.productDetail, bundle)
 
     }
-
 
 }
