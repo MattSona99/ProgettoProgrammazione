@@ -104,6 +104,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/MenuToModifica"
+            app:destination="@id/fragmentModificaMenu" />
     </fragment>
     <fragment
         android:id="@+id/fragmentCreaRist"
@@ -129,5 +132,9 @@
         android:id="@+id/fragmentCarrello_R"
         android:name="com.example.progettoprogrammazione.fragment.FragmentCarrello"
         android:label="Carrello" />
+    <fragment
+        android:id="@+id/fragmentModificaMenu"
+        android:name="com.example.progettoprogrammazione.ristoratore.FragmentModificaMenu"
+        android:label="FragmentModificaMenu" />
 
 </navigation>

@@ -123,13 +123,19 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils, UserUtils, 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.btnModifica.setOnClickListener() {
-            val intent = Intent( context, CreaMenu::class.java )
-            startActivity(intent)
-            activity?.finish()
+
+            val bundle = Bundle()
+            bundle.putParcelableArrayList("bevande", bevandeArrayList)
+            bundle.putParcelableArrayList("antipasti", antipastiArrayList)
+            bundle.putParcelableArrayList("primi", primiArrayList)
+            bundle.putParcelableArrayList("secondi", secondiArrayList)
+            bundle.putParcelableArrayList("contorni", contorniArrayList)
+            bundle.putParcelableArrayList("dolci", dolciArrayList)
+
+            view?.findNavController()?.navigate(R.id.MenuToModifica)
         }
-
-
     }
 
     override fun onClickProduct(prodotto: Product) {
