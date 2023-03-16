@@ -148,9 +148,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
         tipo: String,
         recyclerView: RecyclerView
     ) {
-        if (tipo == "rating") {
-            horizontalrecylerview(recyclerView, ristoranti, tipo)
-        } else verticalrecylerview(recyclerView, ristoranti, tipo)
+        horizontalrecylerview(recyclerView, ristoranti, tipo)
     }
 
     private fun showData() {
