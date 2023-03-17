@@ -8,6 +8,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentSearchBinding
@@ -47,7 +48,7 @@ class FragmentSearch : Fragment(), RestaurantClickListener, RestaurantUtils {
         getRestaurantData(object : FireBaseCallbackRestaurant {
             override fun onResponse(responseR: ResponseRistorante) {
                 restArrayList = responseR.ristoranti
-                val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                val layoutManager = GridLayoutManager(context, 2)
                 binding.recycleViewSearch.layoutManager = layoutManager
                 adapter = RestaurantAdapter(restArrayList, this@FragmentSearch)
                 binding.recycleViewSearch.adapter = adapter

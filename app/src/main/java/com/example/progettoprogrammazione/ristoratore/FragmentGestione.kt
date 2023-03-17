@@ -56,7 +56,7 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
             for(restaurant : Restaurant in it) {
                 if(restaurant.proprietarioR == user.Email) restArrayList.add(restaurant)
             }
-            val layoutManager = GridLayoutManager(context, 1)
+            val layoutManager = GridLayoutManager(context, 2)
             binding.recycleViewRist.layoutManager = layoutManager
             adapter = RestaurantAdapter(restArrayList, this)
             binding.recycleViewRist.adapter = adapter
@@ -73,7 +73,7 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
             getRestaurantData(object : FireBaseCallbackRestaurant {
                 override fun onResponse(responseR: ResponseRistorante) {
                     restArrayList = responseR.ristoranti
-                    val layoutManager = GridLayoutManager(context, 1)
+                    val layoutManager = GridLayoutManager(context, 2)
                     binding.recycleViewRist.layoutManager = layoutManager
                     adapter = RestaurantAdapter(restArrayList, this@FragmentGestione)
                     binding.recycleViewRist.adapter = adapter

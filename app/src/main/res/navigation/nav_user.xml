@@ -35,8 +35,8 @@
         android:label="Profilo"
         tools:layout="@layout/fragment_profilo">
         <action
-            android:id="@+id/ProfiloToUpgrade"
-            app:destination="@id/fragmentUpgrade"
+            android:id="@+id/Profilo_U_to_Settings"
+            app:destination="@id/fragmentSettingsU"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -65,7 +65,8 @@
         android:id="@+id/fragmentUpgrade"
         android:name="com.example.progettoprogrammazione.utente.FragmentUpgrade"
         android:label="Upgrade profilo"
-        tools:layout="@layout/fragment_upgrade" />
+        tools:layout="@layout/fragment_upgrade" >
+    </fragment>
     <fragment
         android:id="@+id/restaurantDetail"
         android:name="com.example.progettoprogrammazione.ristorante.RestaurantDetail"
@@ -113,5 +114,21 @@
         android:id="@+id/fragmentCarrello_U"
         android:name="com.example.progettoprogrammazione.fragment.FragmentCarrello"
         android:label="Carrello" />
+    <fragment
+        android:id="@+id/fragmentSettingsU"
+        android:name="com.example.progettoprogrammazione.fragment.FragmentSettings"
+        android:label="Impostazioni account"
+        tools:layout="@layout/profile_settings">
+        <action
+            android:id="@+id/SettingsToUpdate"
+            app:destination="@id/fragmentUpgrade"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/SettingsToProfileU"
+            app:destination="@id/fragmentProfilo" />
+    </fragment>
 
 </navigation>

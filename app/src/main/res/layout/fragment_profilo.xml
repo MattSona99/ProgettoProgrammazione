@@ -8,259 +8,169 @@
     android:orientation="vertical"
     tools:context=".fragment.FragmentProfilo">
 
-    <ScrollView
-        android:id="@+id/scrollprop"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="130dp"
+            android:padding="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <RelativeLayout
-                android:id="@+id/relativeLayout"
-                android:layout_width="match_parent"
-                android:layout_height="130dp"
-                android:padding="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_profilo_utente"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="20dp">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_profilo_utente"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    app:cardCornerRadius="20dp">
-
-                    <ImageView
-                        android:id="@+id/img_profilo_utente"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_centerVertical="true"
-                        android:maxWidth="100dp"
-                        android:maxHeight="100dp"
-                        android:minWidth="100dp"
-                        android:minHeight="100dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/defaultuserimg" />
-
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/benvenutoprofilo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ImageView
+                    android:id="@+id/img_profilo_utente"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="30dp"
-                    android:layout_toRightOf="@id/card_profilo_utente"
-                    android:text="@string/welcome_profile"
-                    android:textColor="@color/white"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
+                    android:maxWidth="100dp"
+                    android:maxHeight="100dp"
+                    android:minWidth="100dp"
+                    android:minHeight="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/defaultuserimg" />
 
-                <TextView
-                    android:id="@+id/nicknameprofilo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/benvenutoprofilo"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="30dp"
-                    android:layout_toRightOf="@id/card_profilo_utente"
-                    android:text="@string/username"
-                    android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
 
-            </RelativeLayout>
-
-            <LinearLayout
-                android:id="@+id/form_modifica"
+            <TextView
+                android:id="@+id/benvenutoprofilo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/user_form"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@id/card_profilo_utente"
+                android:text="@string/welcome_profile"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/settings"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="45dp"
+                android:layout_toRightOf="@+id/benvenutoprofilo"
+                app:srcCompat="@drawable/car_ui_icon_settings" />
+
+            <TextView
+                android:id="@+id/nicknameprofilo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/benvenutoprofilo"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@id/card_profilo_utente"
+                android:text="@string/username"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/form_modifica"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/user_form"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+            <TextView
+                android:id="@+id/t_nomeprofilo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                android:textColor="@color/red"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nomeprofilo"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/custom_input"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="30dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+                android:hint="@string/name"
+                android:textColorHint="@color/white"
+                android:textSize="15dp" />
 
-                <TextView
-                    android:id="@+id/t_nomeprofilo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/name"
-                    android:textColor="@color/red"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/t_cognomeprofilo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/surname"
+                android:textColor="@color/red"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/nomeprofilo"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/custom_input"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="@string/name"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/white"
-                    android:textColorHighlight="#E91E63"
-                    android:textColorHint="@color/pink"
-                    android:textColorLink="#E91E63" />
-
-                <TextView
-                    android:id="@+id/t_cognomeprofilo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/surname"
-                    android:textColor="@color/red"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/cognomeprofilo"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/custom_input"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="@string/surname"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/white"
-                    android:textColorHighlight="#E91E63"
-                    android:textColorHint="@color/pink"
-                    android:textColorLink="#E91E63" />
-
-                <TextView
-                    android:id="@+id/t_passwordprofilo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/new_password"
-                    android:textColor="@color/red"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/passwordprofilo"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/custom_input"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="@string/new_password"
-                    android:inputType="textPassword"
-                    android:textColor="@color/white"
-                    android:textColorHighlight="#E91E63"
-                    android:textColorHint="@color/pink"
-                    android:textColorLink="#E91E63" />
-
-                <TextView
-                    android:id="@+id/t_rpasswordprofilo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/repeat_password"
-                    android:textColor="@color/red"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/rpasswordprofilo"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/custom_input"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="@string/repeat_password"
-                    android:inputType="textPassword"
-                    android:textColor="@color/white"
-                    android:textColorHighlight="#E91E63"
-                    android:textColorHint="@color/pink"
-                    android:textColorLink="#E91E63" />
-
-            </LinearLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintmembrostaff"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/cognomeprofilo"
+                android:layout_width="250dp"
                 android:layout_height="50dp"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintsalva">
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/custom_input"
+                android:gravity="center"
+                android:hint="@string/surname"
+                android:textColorHint="@color/white"
+                android:textSize="15dp" />
 
-                <TextView
-                    android:id="@+id/membrostaff"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/staff_member"
-                    android:textColor="@color/red"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/t_telefono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cellphone"
+                android:textColor="@color/red"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/telefonoprofilo"
+                android:layout_width="250dp"
                 android:layout_height="50dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/constraintmembrostaff">
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/custom_input"
+                android:gravity="center"
+                android:hint="@string/cellphone"
+                android:textColorHint="@color/white"
+                android:textSize="15dp" />
 
-                <TextView
-                    android:id="@+id/elimina_account"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/garbage"
-                    android:paddingVertical="10dp"
-                    android:text="@string/delete_account"
-                    android:textColor="@color/red"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/t_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/email"
+                android:textColor="@color/red"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintsalva"
-                android:layout_width="200dp"
+            <TextView
+                android:id="@+id/emailprofilo"
+                android:layout_width="250dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/red_button"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/form_modifica">
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/custom_input"
+                android:gravity="center"
+                android:hint="@string/email_form"
+                android:textColorHint="@color/white"
+                android:textSize="15dp" />
 
-                <TextView
-                    android:id="@+id/salva"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/save"
-                    android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 </FrameLayout>

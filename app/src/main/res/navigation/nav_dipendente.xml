@@ -35,6 +35,13 @@
         android:label="Profilo"
         tools:layout="@layout/fragment_profilo">
         <action
+            android:id="@+id/Profilo_D_to_Settings"
+            app:destination="@id/fragmentSettingsR"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
             android:id="@+id/ProfiloDSelf"
             app:destination="@id/fragmentProfiloD" />
     </fragment>
@@ -94,6 +101,14 @@
         android:id="@+id/fragmentCarrello_D"
         android:name="com.example.progettoprogrammazione.fragment.FragmentCarrello"
         android:label="Carrello" />
-
+    <fragment
+        android:id="@+id/fragmentSettingsR"
+        android:name="com.example.progettoprogrammazione.fragment.FragmentSettings"
+        android:label="Impostazioni account"
+        tools:layout="@layout/profile_settings" >
+        <action
+            android:id="@+id/SettingsToProfileD"
+            app:destination="@id/fragmentProfiloD" />
+    </fragment>
 
 </navigation>

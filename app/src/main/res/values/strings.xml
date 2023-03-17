@@ -41,7 +41,7 @@
     <string name="restaurant_rating">Rating: </string>
     <string name="number">1</string>
     <string name="restaurant_type">Cucina: </string>
-    <string name="restaurant_type_value">tipo cucina…</string>
+    <string name="restaurant_type_value">Tipo cucina…</string>
     <string name="restaurant_desc">Descrizione: </string>
     <string name="restaurant_desc_value">Descrizione ristorante…</string>
 
