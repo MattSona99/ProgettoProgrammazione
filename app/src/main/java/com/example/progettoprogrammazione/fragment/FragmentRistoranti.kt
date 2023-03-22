@@ -81,6 +81,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
                 override fun onResponse(responseR: ResponseRistorante) {
                     restArrayList = responseR.ristoranti
                     bindrecyclerviews(restArrayList, "rating", binding.recycleViewTopRated)
+                    binding.tutte.isGone = true
                 }
             }, context)
             swipeRefreshLayout.isRefreshing = false
@@ -158,6 +159,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
     }
 
     private fun invisible() {
+        binding.tutte.isGone = false
         binding.pizzerie.isGone = true
         binding.pub.isGone = true
         binding.italiana.isGone = true
