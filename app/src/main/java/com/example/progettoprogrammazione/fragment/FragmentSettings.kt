@@ -103,7 +103,6 @@ class FragmentSettings : Fragment(), UserUtils {
                             "2" -> view.findNavController().navigate(R.id.SettingsToProfileD, bundleU)
                             "3" -> view.findNavController().navigate(R.id.SettingsToProfileR, bundleU)
                         }
-
                     }
                 }, context)
             }

@@ -101,6 +101,9 @@ class FragmentCreaRist : Fragment(), UserUtils, RestaurantUtils, ImgUtils {
         val args = this.arguments
         user = args?.getParcelable<User>("user") as User
 
+        if(user.Livello == "3") {
+            binding.textFormProp.setTextColor(resources.getColor(R.color.white))
+        }
         binding.inizioOrarioSceltoR.isVisible = false
         binding.fineOrarioSceltoR.isVisible = false
 

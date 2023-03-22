@@ -55,6 +55,7 @@
     <string name="save">Salva</string>
     <string name="staff_member">Sei un membro dello staff? Clicca qui!</string>
     <string name="delete_account">Elimina account  </string>
+    <string name="modifica_profilo">Qui puoi modificare i tuoi dati</string>
 
     <!-- CREATE/MODIFY RESTAURANT -->
     <string name="create_compile">Compila il form per creare il tuo ristorante!</string>

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/background_splash_2"
     tools:context=".fragment.FragmentRistoranti">
 
@@ -15,7 +14,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="5dp">
 
@@ -45,7 +44,7 @@
             <ScrollView
                 android:id="@+id/scrollviewrist"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -208,277 +207,283 @@
                     </HorizontalScrollView>
 
                     <LinearLayout
-                        android:id="@+id/pizzerie"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="invisible">
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="3px"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/red_button" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:drawablePadding="5dp"
-                            android:text="@string/pizza"
-                            android:textColor="@color/red"
-                            android:textSize="25dp"
-                            android:textStyle="bold">
-
-                        </TextView>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recycleViewPizza"
+                        <LinearLayout
+                            android:id="@+id/pizzerie"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            tools:listitem="@layout/restaurant_card" />
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="3px"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/red_button" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawablePadding="5dp"
+                                android:text="@string/pizza"
+                                android:textColor="@color/red"
+                                android:textSize="25dp"
+                                android:textStyle="bold">
+
+                            </TextView>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycleViewPizza"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:listitem="@layout/restaurant_card" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/pub"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="3px"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/red_button" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawablePadding="5dp"
+                                android:text="@string/burger"
+                                android:textColor="@color/red"
+                                android:textSize="25dp"
+                                android:textStyle="bold">
+
+                            </TextView>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycleViewBurger"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:listitem="@layout/restaurant_card" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/italiana"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="3px"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/red_button" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawablePadding="5dp"
+                                android:text="@string/italian"
+                                android:textColor="@color/red"
+                                android:textSize="25dp"
+                                android:textStyle="bold">
+
+                            </TextView>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycleViewIta"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:listitem="@layout/restaurant_card" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/cinese"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="3px"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/red_button" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawablePadding="5dp"
+                                android:text="@string/chinese"
+                                android:textColor="@color/red"
+                                android:textSize="25dp"
+                                android:textStyle="bold">
+
+                            </TextView>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycleViewCin"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:listitem="@layout/restaurant_card" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/giapponese"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="3px"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/red_button" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawablePadding="5dp"
+                                android:text="@string/japanese"
+                                android:textColor="@color/red"
+                                android:textSize="25dp"
+                                android:textStyle="bold">
+
+                            </TextView>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycleViewJap"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:listitem="@layout/restaurant_card" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/indiana"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="3px"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/red_button" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawablePadding="5dp"
+                                android:text="@string/indian"
+                                android:textColor="@color/red"
+                                android:textSize="25dp"
+                                android:textStyle="bold">
+
+                            </TextView>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycleViewInd"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:listitem="@layout/restaurant_card" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/greco"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="3px"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/red_button" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawablePadding="5dp"
+                                android:text="@string/greek"
+                                android:textColor="@color/red"
+                                android:textSize="25dp"
+                                android:textStyle="bold">
+
+                            </TextView>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycleViewGre"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:listitem="@layout/restaurant_card" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/vegano"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="3px"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/red_button" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawablePadding="5dp"
+                                android:text="@string/vegan"
+                                android:textColor="@color/red"
+                                android:textSize="25dp"
+                                android:textStyle="bold">
+
+                            </TextView>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycleViewVeg"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:listitem="@layout/restaurant_card" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/pub"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="invisible">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="3px"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/red_button" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:drawablePadding="5dp"
-                            android:text="@string/burger"
-                            android:textColor="@color/red"
-                            android:textSize="25dp"
-                            android:textStyle="bold">
-
-                        </TextView>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recycleViewBurger"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            tools:listitem="@layout/restaurant_card" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/italiana"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="invisible">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="3px"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/red_button" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:drawablePadding="5dp"
-                            android:text="@string/italian"
-                            android:textColor="@color/red"
-                            android:textSize="25dp"
-                            android:textStyle="bold">
-
-                        </TextView>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recycleViewIta"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            tools:listitem="@layout/restaurant_card" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/cinese"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="invisible">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="3px"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/red_button" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:drawablePadding="5dp"
-                            android:text="@string/chinese"
-                            android:textColor="@color/red"
-                            android:textSize="25dp"
-                            android:textStyle="bold">
-
-                        </TextView>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recycleViewCin"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            tools:listitem="@layout/restaurant_card" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/giapponese"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="invisible">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="3px"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/red_button" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:drawablePadding="5dp"
-                            android:text="@string/japanese"
-                            android:textColor="@color/red"
-                            android:textSize="25dp"
-                            android:textStyle="bold">
-
-                        </TextView>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recycleViewJap"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            tools:listitem="@layout/restaurant_card" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/indiana"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="invisible">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="3px"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/red_button" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:drawablePadding="5dp"
-                            android:text="@string/indian"
-                            android:textColor="@color/red"
-                            android:textSize="25dp"
-                            android:textStyle="bold">
-
-                        </TextView>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recycleViewInd"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            tools:listitem="@layout/restaurant_card" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/greco"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="invisible">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="3px"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/red_button" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:drawablePadding="5dp"
-                            android:text="@string/greek"
-                            android:textColor="@color/red"
-                            android:textSize="25dp"
-                            android:textStyle="bold">
-
-                        </TextView>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recycleViewGre"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            tools:listitem="@layout/restaurant_card" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/vegano"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="invisible">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="3px"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/red_button" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:drawablePadding="5dp"
-                            android:text="@string/vegan"
-                            android:textColor="@color/red"
-                            android:textSize="25dp"
-                            android:textStyle="bold">
-
-                        </TextView>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recycleViewVeg"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            tools:listitem="@layout/restaurant_card" />
-
-                    </LinearLayout>
-
 
                 </LinearLayout>
 
