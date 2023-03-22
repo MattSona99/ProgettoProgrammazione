@@ -82,6 +82,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
                     restArrayList = responseR.ristoranti
                     bindrecyclerviews(restArrayList, "rating", binding.recycleViewTopRated)
                     binding.tutte.isGone = true
+                    binding.radioGroup.clearCheck()
                 }
             }, context)
             swipeRefreshLayout.isRefreshing = false
