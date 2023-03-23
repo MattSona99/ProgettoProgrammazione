@@ -57,7 +57,6 @@ class FragmentModificaMenu : Fragment(), ProductClickListener, UserUtils {
         val args = this.arguments
         val restID = args?.get("idR")
 
-
         bevandeArrayList = args?.getParcelableArrayList<Product>("bevande") as ArrayList<Product>
         antipastiArrayList = args.getParcelableArrayList<Product>("antipasti") as ArrayList<Product>
         primiArrayList = args.getParcelableArrayList<Product>("primi") as ArrayList<Product>
