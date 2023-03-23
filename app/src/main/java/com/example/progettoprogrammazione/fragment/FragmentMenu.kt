@@ -58,6 +58,7 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils, UserUtils, 
         binding = FragmentMenuBinding.inflate(layoutInflater)
         val args = this.arguments
         val proprietarioR = args?.get("proprietarioR")
+        val restaurantID = args?.get("idR")
 
         getUserData(object : FireBaseCallbackUser {
             override fun onResponse(responseU: ResponseUser) {
@@ -118,13 +119,7 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils, UserUtils, 
         prodotti.addAll(contorniArrayList)
         prodotti.addAll(dolciArrayList)
 
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.btnModifica.setOnClickListener() {
+        binding.btnModifica.setOnClickListener {
 
             val bundle = Bundle()
             bundle.putParcelableArrayList("bevande", bevandeArrayList)
@@ -133,10 +128,14 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils, UserUtils, 
             bundle.putParcelableArrayList("secondi", secondiArrayList)
             bundle.putParcelableArrayList("contorni", contorniArrayList)
             bundle.putParcelableArrayList("dolci", dolciArrayList)
+            bundle.putString("idR", restaurantID.toString())
 
-            view?.findNavController()?.navigate(R.id.MenuToModifica)
+            view?.findNavController()?.navigate(R.id.MenuToModifica, bundle)
         }
+
+        return binding.root
     }
+
 
     override fun onClickProduct(prodotto: Product) {
 

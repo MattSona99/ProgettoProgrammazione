@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.databinding.ProductCardBinding
+import com.example.progettoprogrammazione.databinding.ProductCardModificaEliminaBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackShoppingCart
 import com.example.progettoprogrammazione.models.Cart
 import com.example.progettoprogrammazione.models.Product
@@ -15,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase
 class ProductViewHolder(
     private val prodottoBinding: ProductCardBinding,
     private val clickListener: ProductClickListener
+
 ) : RecyclerView.ViewHolder(prodottoBinding.root), ShoppingCartUtils {
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -22,7 +24,7 @@ class ProductViewHolder(
 
     fun bindProdotti(prodotto: Product) {
 
-        prodottoBinding.nomeProdottoCard.text = prodotto.descrizioneP
+        prodottoBinding.nomeProdottoCard.text = prodotto.nomeP
 
         prodottoBinding.btncard.setOnClickListener { clickListener.onClickProduct(prodotto) }
 
@@ -64,7 +66,8 @@ class ProductViewHolder(
 
         }
 
-     */
+*/
+
     fun useShoppingCart(prodotto: Product, quantita: Int) {
         prodottoBinding.cartQuantity.isVisible = false
         prodottoBinding.gotoCart.setOnClickListener {
@@ -87,14 +90,20 @@ class ProductViewHolder(
             prodottoBinding.btnAdd.setOnClickListener {
                 addquantityShoppingCart(shoppingCart, quantity, FirebaseAuth.getInstance().uid)
             }
-            prodottoBinding.btnRemove.setOnClickListener {
-                removequantityShoppingCart(shoppingCart, quantity, FirebaseAuth.getInstance().uid)
-            }
 
+            prodottoBinding.btnRemove.setOnClickListener {
+                removequantityShoppingCart(
+                    shoppingCart,
+                    quantity,
+                    FirebaseAuth.getInstance().uid
+                )
+
+            }
 
             //prodottoBinding.checkout.setOnClickListener{}
         }
     }
+
 
     private fun getImageId(context: Context, imageName: String): Int {
         return context.resources

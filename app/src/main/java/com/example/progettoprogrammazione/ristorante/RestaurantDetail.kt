@@ -163,6 +163,7 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
             bundle.putParcelableArrayList("dolci", dolciArrayList)
             bundle.putString("proprietarioR",restaurant?.proprietarioR.toString())
             bundle.putParcelableArrayList("restArrayList", restaurantList)
+            bundle.putString("idR", restaurantID.toString())
 
             view.findNavController().navigate(R.id.DetailToMenu, bundle)
         }
