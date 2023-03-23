@@ -13,7 +13,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -22,9 +22,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:gravity="center"
-            android:text="Inserisci i prodotti nel menù"
+            android:text="@string/inserisci_prodotti"
             android:textColor="@color/red"
-            android:textSize="30dp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -42,11 +42,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:paddingLeft="5dp"
-                    android:text="Aggiungi una bevanda"
+                    android:paddingStart="5dp"
+                    android:text="@string/aggiungi_bevanda"
                     android:textColor="@color/red"
-                    android:textSize="24dp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlSymmetry" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -57,7 +58,7 @@
                         android:id="@+id/btn_bevanda"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="20dp"
                         android:background="@drawable/red_button"
                         android:gravity="center"
@@ -74,7 +75,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="2px"
+                android:layout_height="1dp"
                 android:background="@drawable/red_button" />
 
             <LinearLayout
@@ -86,11 +87,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:paddingLeft="5dp"
-                    android:text="Aggiungi un antipasto"
+                    android:paddingStart="5dp"
+                    android:text="@string/aggiungi_antipasto"
                     android:textColor="@color/red"
-                    android:textSize="24dp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlSymmetry" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -101,7 +103,7 @@
                         android:id="@+id/btn_antipasto"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="20dp"
                         android:background="@drawable/red_button"
                         android:gravity="center"
@@ -118,7 +120,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="2px"
+                android:layout_height="1dp"
                 android:background="@drawable/red_button" />
 
             <LinearLayout
@@ -130,11 +132,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:paddingLeft="5dp"
-                    android:text="Aggiungi un primo"
+                    android:paddingStart="5dp"
+                    android:text="@string/aggiungi_primo"
                     android:textColor="@color/red"
-                    android:textSize="24dp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlSymmetry" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -145,7 +148,7 @@
                         android:id="@+id/btn_primo"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="20dp"
                         android:background="@drawable/red_button"
                         android:gravity="center"
@@ -162,7 +165,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="2px"
+                android:layout_height="1dp"
                 android:background="@drawable/red_button" />
 
             <LinearLayout
@@ -174,11 +177,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:paddingLeft="5dp"
-                    android:text="Aggiungi un secondo"
+                    android:paddingStart="5dp"
+                    android:text="@string/aggiungi_secondo"
                     android:textColor="@color/red"
-                    android:textSize="24dp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlSymmetry" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -189,7 +193,7 @@
                         android:id="@+id/btn_secondo"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="20dp"
                         android:background="@drawable/red_button"
                         android:gravity="center"
@@ -206,7 +210,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="2px"
+                android:layout_height="1dp"
                 android:background="@drawable/red_button" />
 
             <LinearLayout
@@ -218,11 +222,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:paddingLeft="5dp"
-                    android:text="Aggiungi un contorno"
+                    android:paddingStart="5dp"
+                    android:text="@string/aggiungi_contorno"
                     android:textColor="@color/red"
-                    android:textSize="24dp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlSymmetry" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -233,7 +238,7 @@
                         android:id="@+id/btn_contorno"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="20dp"
                         android:background="@drawable/red_button"
                         android:gravity="center"
@@ -250,7 +255,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="2px"
+                android:layout_height="1dp"
                 android:background="@drawable/red_button" />
 
             <LinearLayout
@@ -262,11 +267,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:paddingLeft="5dp"
-                    android:text="Aggiungi un dolce"
+                    android:paddingStart="5dp"
+                    android:text="@string/aggiungi_dolce"
                     android:textColor="@color/red"
-                    android:textSize="24dp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlSymmetry" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -277,7 +283,7 @@
                         android:id="@+id/btn_dolce"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="20dp"
                         android:background="@drawable/red_button"
                         android:gravity="center"
@@ -312,10 +318,10 @@
                     android:id="@+id/fine"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fine"
+                    android:text="@string/fine"
                     android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    android:textSize="25sp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -351,7 +357,7 @@
                                 android:gravity="center"
                                 android:text="@string/menu"
                                 android:textColor="@color/red"
-                                android:textSize="30dp"
+                                android:textSize="20sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -365,7 +371,7 @@
                                 android:gravity="center"
                                 android:text="@string/modify_menu"
                                 android:textColor="@color/white"
-                                android:textSize="15dp"
+                                android:textSize="16sp"
                                 android:textStyle="bold"
                                 android:visibility="invisible" />
 
@@ -381,10 +387,10 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
+                                android:layout_marginStart="10dp"
                                 android:text="@string/beverages"
                                 android:textColor="@color/red"
-                                android:textSize="25dp"
+                                android:textSize="16sp"
                                 android:textStyle="bold" />
 
                             <androidx.recyclerview.widget.RecyclerView
@@ -396,10 +402,10 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
+                                android:layout_marginStart="10dp"
                                 android:text="@string/appetizers"
                                 android:textColor="@color/red"
-                                android:textSize="25dp"
+                                android:textSize="16sp"
                                 android:textStyle="bold" />
 
                             <androidx.recyclerview.widget.RecyclerView
@@ -411,10 +417,10 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
+                                android:layout_marginStart="10dp"
                                 android:text="@string/firsts"
                                 android:textColor="@color/red"
-                                android:textSize="25dp"
+                                android:textSize="16sp"
                                 android:textStyle="bold" />
 
                             <androidx.recyclerview.widget.RecyclerView
@@ -426,10 +432,10 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
+                                android:layout_marginStart="10dp"
                                 android:text="@string/seconds"
                                 android:textColor="@color/red"
-                                android:textSize="25dp"
+                                android:textSize="16sp"
                                 android:textStyle="bold" />
 
                             <androidx.recyclerview.widget.RecyclerView
@@ -441,10 +447,10 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
+                                android:layout_marginStart="10dp"
                                 android:text="@string/garnishes"
                                 android:textColor="@color/red"
-                                android:textSize="25dp"
+                                android:textSize="16sp"
                                 android:textStyle="bold" />
 
                             <androidx.recyclerview.widget.RecyclerView
@@ -456,10 +462,10 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
+                                android:layout_marginStart="10dp"
                                 android:text="@string/sweets"
                                 android:textColor="@color/red"
-                                android:textSize="25dp"
+                                android:textSize="16sp"
                                 android:textStyle="bold" />
 
                             <androidx.recyclerview.widget.RecyclerView
@@ -483,7 +489,7 @@
                                 android:gravity="center"
                                 android:text="@string/checkout"
                                 android:textColor="@color/white"
-                                android:textSize="30dp"
+                                android:textSize="20sp"
                                 android:textStyle="bold" />
 
                         </LinearLayout>

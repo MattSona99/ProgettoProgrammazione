@@ -28,16 +28,18 @@
                 <ImageView
                     android:layout_width="47dp"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:src="@drawable/ic_search_icon" />
+                    android:paddingStart="15dp"
+                    android:src="@drawable/ic_search_icon"
+                    tools:ignore="RtlSymmetry" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:paddingLeft="8dp"
+                    android:paddingStart="8dp"
                     android:text="@string/search_restaurant"
-                    android:theme="@style/TextStyle" />
+                    android:theme="@style/TextStyle"
+                    tools:ignore="RtlSymmetry" />
 
             </LinearLayout>
 
@@ -53,7 +55,7 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="3px"
+                        android:layout_height="1dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/red_button" />
@@ -65,7 +67,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="@string/toprated"
                         android:textColor="@color/red"
-                        android:textSize="25dp"
+                        android:textSize="20sp"
                         android:textStyle="bold">
 
                     </TextView>
@@ -81,7 +83,7 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="3px"
+                        android:layout_height="1dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/red_button" />
@@ -93,7 +95,7 @@
                         android:drawablePadding="5dp"
                         android:text="@string/search_tipo"
                         android:textColor="@color/red"
-                        android:textSize="25dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <HorizontalScrollView
@@ -102,7 +104,7 @@
 
                         <RadioGroup
                             android:id="@+id/radioGroup"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
@@ -221,7 +223,7 @@
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:layout_height="3px"
+                                android:layout_height="1dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:background="@drawable/red_button" />
@@ -233,7 +235,7 @@
                                 android:drawablePadding="5dp"
                                 android:text="@string/pizza"
                                 android:textColor="@color/red"
-                                android:textSize="25dp"
+                                android:textSize="20sp"
                                 android:textStyle="bold">
 
                             </TextView>
@@ -255,7 +257,7 @@
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:layout_height="3px"
+                                android:layout_height="1dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:background="@drawable/red_button" />
@@ -267,7 +269,7 @@
                                 android:drawablePadding="5dp"
                                 android:text="@string/burger"
                                 android:textColor="@color/red"
-                                android:textSize="25dp"
+                                android:textSize="20sp"
                                 android:textStyle="bold">
 
                             </TextView>
@@ -289,7 +291,7 @@
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:layout_height="3px"
+                                android:layout_height="1dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:background="@drawable/red_button" />
@@ -301,7 +303,7 @@
                                 android:drawablePadding="5dp"
                                 android:text="@string/italian"
                                 android:textColor="@color/red"
-                                android:textSize="25dp"
+                                android:textSize="20sp"
                                 android:textStyle="bold">
 
                             </TextView>
@@ -323,7 +325,7 @@
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:layout_height="3px"
+                                android:layout_height="1dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:background="@drawable/red_button" />
@@ -335,7 +337,7 @@
                                 android:drawablePadding="5dp"
                                 android:text="@string/chinese"
                                 android:textColor="@color/red"
-                                android:textSize="25dp"
+                                android:textSize="20sp"
                                 android:textStyle="bold">
 
                             </TextView>
@@ -357,7 +359,7 @@
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:layout_height="3px"
+                                android:layout_height="1dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:background="@drawable/red_button" />
@@ -369,7 +371,7 @@
                                 android:drawablePadding="5dp"
                                 android:text="@string/japanese"
                                 android:textColor="@color/red"
-                                android:textSize="25dp"
+                                android:textSize="20sp"
                                 android:textStyle="bold">
 
                             </TextView>
@@ -391,7 +393,7 @@
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:layout_height="3px"
+                                android:layout_height="1dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:background="@drawable/red_button" />
@@ -403,7 +405,7 @@
                                 android:drawablePadding="5dp"
                                 android:text="@string/indian"
                                 android:textColor="@color/red"
-                                android:textSize="25dp"
+                                android:textSize="20sp"
                                 android:textStyle="bold">
 
                             </TextView>
@@ -425,7 +427,7 @@
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:layout_height="3px"
+                                android:layout_height="1dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:background="@drawable/red_button" />
@@ -437,7 +439,7 @@
                                 android:drawablePadding="5dp"
                                 android:text="@string/greek"
                                 android:textColor="@color/red"
-                                android:textSize="25dp"
+                                android:textSize="20sp"
                                 android:textStyle="bold">
 
                             </TextView>
@@ -459,7 +461,7 @@
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:layout_height="3px"
+                                android:layout_height="1dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:background="@drawable/red_button" />
@@ -471,7 +473,7 @@
                                 android:drawablePadding="5dp"
                                 android:text="@string/vegan"
                                 android:textColor="@color/red"
-                                android:textSize="25dp"
+                                android:textSize="20sp"
                                 android:textStyle="bold">
 
                             </TextView>

@@ -5,7 +5,7 @@
     android:id="@+id/linearLayout"
     android:layout_width="160dp"
     android:layout_height="260dp"
-    android:layout_marginRight="20dp"
+    android:layout_marginEnd="20dp"
     android:orientation="horizontal">
 
     <ImageButton
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:text="@string/restaurant_name"
             android:textColor="@color/red"
-            android:textSize="15dp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:text="@string/restaurant_type_value"
             android:textColor="@color/red"
-            android:textSize="13dp" />
+            android:textSize="14sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,10 +74,10 @@
                 android:id="@+id/rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:text="@string/number"
                 android:textColor="@color/red"
-                android:textSize="13dp" />
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -87,7 +87,7 @@
             android:layout_height="match_parent"
             android:text="@string/restaurant_desc_value"
             android:textColor="@color/red"
-            android:textSize="13dp" />
+            android:textSize="14sp" />
 
 
     </LinearLayout>

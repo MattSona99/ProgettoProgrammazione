@@ -13,7 +13,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
 
@@ -36,7 +36,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/restaurant_name"
                         android:textColor="@color/white"
-                        android:textSize="30dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -54,8 +54,8 @@
                         android:orientation="horizontal">
 
                         <androidx.cardview.widget.CardView
-                            android:layout_width="200dp"
-                            android:layout_height="200dp"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
                             android:padding="10dp"
                             app:cardCornerRadius="8dp">
 
@@ -63,7 +63,7 @@
                                 android:id="@+id/imgRistoranteDetail"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
                                 android:adjustViewBounds="true"
                                 android:maxWidth="180dp"
@@ -78,7 +78,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
-                            android:paddingLeft="10dp">
+                            android:paddingStart="10dp"
+                            tools:ignore="RtlSymmetry">
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -94,10 +95,10 @@
                                     android:id="@+id/ratingdetail"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginStart="5dp"
                                     android:text="@string/number"
                                     android:textColor="@color/red"
-                                    android:textSize="24dp" />
+                                    android:textSize="16sp" />
 
                             </LinearLayout>
 
@@ -111,17 +112,17 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/contacts"
                                     android:textColor="@color/red"
-                                    android:textSize="15dp"
+                                    android:textSize="16sp"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/numeroDetail"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginStart="5dp"
                                     android:text="@string/cellphone"
                                     android:textColor="@color/red"
-                                    android:textSize="12dp" />
+                                    android:textSize="14sp" />
 
                             </LinearLayout>
 
@@ -135,17 +136,17 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/address_details"
                                     android:textColor="@color/red"
-                                    android:textSize="15dp"
+                                    android:textSize="16sp"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/indirizzodetail"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:paddingLeft="5dp"
+                                    android:paddingStart="5dp"
                                     android:text="@string/address_details_value"
                                     android:textColor="@color/red"
-                                    android:textSize="12dp" />
+                                    android:textSize="14sp" />
 
                             </LinearLayout>
 
@@ -159,16 +160,16 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/restaurant_type"
                                     android:textColor="@color/red"
-                                    android:textSize="15dp"
+                                    android:textSize="16sp"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:paddingLeft="5dp"
+                                    android:paddingStart="5dp"
                                     android:text="@string/restaurant_type_value"
                                     android:textColor="@color/red"
-                                    android:textSize="12dp" />
+                                    android:textSize="14sp" />
 
                             </LinearLayout>
 
@@ -178,7 +179,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/restaurant_desc"
                                 android:textColor="@color/red"
-                                android:textSize="15dp"
+                                android:textSize="16sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -187,7 +188,7 @@
                                 android:layout_height="match_parent"
                                 android:text="@string/restaurant_desc_value"
                                 android:textColor="@color/red"
-                                android:textSize="12dp" />
+                                android:textSize="14sp" />
 
 
                         </LinearLayout>
@@ -196,7 +197,7 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="3px"
+                        android:layout_height="1dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/red_button" />
@@ -214,26 +215,30 @@
                         android:orientation="vertical"
                         android:padding="10dp">
 
-                        <RatingBar
-                            android:id="@+id/ratingBarR"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:numStars="5"
-                            style="@style/Widget.AppCompat.RatingBar.Small"
-                            android:progressBackgroundTint="@color/pink"
-                            android:progressTint="@color/red" />
-
                         <TextView
                             android:id="@+id/rating_ristorante"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
+                            android:paddingStart="5dp"
                             android:text="@string/rate"
                             android:textColor="@color/red"
                             android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            tools:ignore="RtlSymmetry" />
 
+                        <RatingBar
+                            android:id="@+id/ratingBarR"
+                            style="@android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:isIndicator="true"
+                            android:max="5"
+                            android:progressBackgroundTint="@color/pink"
+                            android:progressTint="@color/red"
+                            android:scaleX=".5"
+                            android:scaleY=".5"
+                            android:transformPivotX="0dp"
+                            android:transformPivotY="0dp" />
 
                     </LinearLayout>
 
@@ -296,12 +301,10 @@
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
+                    </LinearLayout>
+
+
                 </LinearLayout>
-
-
-
-                </LinearLayout>
-
 
 
             </LinearLayout>

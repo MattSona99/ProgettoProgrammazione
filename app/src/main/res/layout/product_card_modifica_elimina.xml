@@ -50,7 +50,7 @@
                     android:gravity="center"
                     android:text="@string/product_name"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -112,7 +112,8 @@
                 android:text="Modifica"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="RtlHardcoded" />
 
             <TextView
                 android:id="@+id/btn_elimina"
@@ -125,7 +126,8 @@
                 android:text="Elimina"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="RtlHardcoded" />
 
 
         </LinearLayout>

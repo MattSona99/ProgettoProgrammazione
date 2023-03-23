@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/log_in"
                 android:textColor="@color/white"
-                android:textSize="30dp"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -74,7 +74,7 @@
                     android:textColorHint="@color/pink"
                     android:textColorLink="@color/white"
                     android:textCursorDrawable="@color/white"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -103,7 +103,7 @@
                     android:textColorHint="@color/pink"
                     android:textColorLink="@color/white"
                     android:textCursorDrawable="@color/white"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -112,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/forgot_password"
                 android:textColor="@color/red"
-                android:textSize="18dp" />
+                android:textSize="16sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ConstraintLogin"
@@ -135,8 +135,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/enter"
                     android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -147,7 +147,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="3px"
+                android:layout_height="3dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/red_button" />
 
@@ -159,7 +159,7 @@
                 android:text="@string/no_account"
                 android:textAlignment="center"
                 android:textColor="@color/red"
-                android:textSize="23dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>

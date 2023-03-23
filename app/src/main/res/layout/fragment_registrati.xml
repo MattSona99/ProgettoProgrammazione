@@ -23,7 +23,7 @@
                 android:gravity="center"
                 android:text="@string/register_compile"
                 android:textColor="@color/white"
-                android:textSize="25dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -52,7 +52,7 @@
 
             <TextView
                 android:layout_width="100dp"
-                android:layout_height="3px"
+                android:layout_height="1dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/red_button" />
@@ -74,7 +74,7 @@
 
             <TextView
                 android:layout_width="100dp"
-                android:layout_height="3px"
+                android:layout_height="1dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/red_button" />
@@ -96,7 +96,7 @@
 
             <TextView
                 android:layout_width="100dp"
-                android:layout_height="3px"
+                android:layout_height="1dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/red_button" />
@@ -126,12 +126,13 @@
                     android:textColorHint="@color/pink"
                     android:textColorLink="@color/white"
                     android:textCursorDrawable="@color/white"
-                    android:textSize="18dp" />
+                    android:textSize="18sp"
+                    tools:ignore="RtlSymmetry" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:layout_width="100dp"
-                android:layout_height="3px"
+                android:layout_height="1dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/red_button" />
@@ -153,7 +154,7 @@
 
             <TextView
                 android:layout_width="100dp"
-                android:layout_height="3px"
+                android:layout_height="1dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/red_button" />
@@ -173,7 +174,7 @@
                     android:text="@string/register"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -184,7 +185,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="3px"
+                android:layout_height="1dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/red_button" />
@@ -196,7 +197,7 @@
                 android:text="@string/already_registered"
                 android:textAlignment="center"
                 android:textColor="@color/red"
-                android:textSize="23dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
         </LinearLayout>

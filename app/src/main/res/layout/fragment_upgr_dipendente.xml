@@ -18,7 +18,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="15dp">
 
 
@@ -28,10 +28,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Compila il form per confermare
-                 il tuo ruolo!"
+                android:text="@string/upgrade_compile"
                 android:textColor="@color/red"
-                android:textSize="23dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -53,9 +52,9 @@
                     android:id="@+id/text_nome_dipd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nome"
+                    android:text="@string/name"
                     android:textColor="@color/red"
-                    android:textSize="15dp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <EditText
@@ -66,7 +65,7 @@
                     android:background="@drawable/custom_input"
                     android:ems="10"
                     android:gravity="center"
-                    android:hint="Nome "
+                    android:hint="@string/name"
                     android:inputType="textPersonName"
                     android:textColor="@color/white"
                     android:textColorHighlight="#E91E63"
@@ -77,9 +76,9 @@
                     android:id="@+id/text_cognome_dipd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cognome"
+                    android:text="@string/surname"
                     android:textColor="@color/red"
-                    android:textSize="15dp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <EditText
@@ -90,7 +89,7 @@
                     android:background="@drawable/custom_input"
                     android:ems="10"
                     android:gravity="center"
-                    android:hint="Cognome"
+                    android:hint="@string/surname"
                     android:inputType="textPersonName"
                     android:textColor="@color/white"
                     android:textColorHighlight="#E91E63"
@@ -101,9 +100,9 @@
                     android:id="@+id/text_bemail_dipD"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Indirizzo"
+                    android:text="@string/email_form"
                     android:textColor="@color/red"
-                    android:textSize="15dp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <EditText
@@ -125,9 +124,9 @@
                     android:id="@+id/text_telefonod_dipD"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Numero Telefono"
+                    android:text="@string/cellphone"
                     android:textColor="@color/red"
-                    android:textSize="15dp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <EditText
@@ -138,7 +137,7 @@
                     android:background="@drawable/custom_input"
                     android:ems="10"
                     android:gravity="center"
-                    android:hint="Numero Telefono"
+                    android:hint="@string/cellphone"
                     android:inputType="textPersonName"
                     android:textColor="@color/white"
                     android:textColorHighlight="#E91E63"
@@ -151,7 +150,7 @@
                     android:layout_height="wrap_content"
                     android:text="PartTime"
                     android:textColor="@color/red"
-                    android:textSize="15dp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <CheckBox
@@ -174,9 +173,9 @@
                     android:id="@+id/upgrade_dip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="UPGRADE"
+                    android:text="Upgrade"
                     android:textAlignment="center"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"

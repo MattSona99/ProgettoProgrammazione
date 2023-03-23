@@ -46,20 +46,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="30dp"
-                android:layout_toRightOf="@id/card_profilo_utente"
+                android:layout_marginStart="30dp"
+                android:layout_toEndOf="@id/card_profilo_utente"
                 android:text="@string/welcome_profile"
                 android:textColor="@color/white"
-                android:textSize="25dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/settings"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="30dp"
+                android:layout_marginStart="60dp"
                 android:layout_marginTop="45dp"
-                android:layout_toRightOf="@+id/benvenutoprofilo"
+                android:layout_toEndOf="@+id/benvenutoprofilo"
                 app:srcCompat="@drawable/car_ui_icon_settings" />
 
             <TextView
@@ -68,11 +68,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/benvenutoprofilo"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="30dp"
-                android:layout_toRightOf="@id/card_profilo_utente"
+                android:layout_marginStart="30dp"
+                android:layout_toEndOf="@id/card_profilo_utente"
                 android:text="@string/username"
                 android:textColor="@color/white"
-                android:textSize="20dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/name"
                 android:textColor="@color/red"
-                android:textSize="15dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -107,7 +107,7 @@
                 android:gravity="center"
                 android:hint="@string/name"
                 android:textColorHint="@color/white"
-                android:textSize="15dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/t_cognomeprofilo"
@@ -115,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/surname"
                 android:textColor="@color/red"
-                android:textSize="15dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -127,7 +127,7 @@
                 android:gravity="center"
                 android:hint="@string/surname"
                 android:textColorHint="@color/white"
-                android:textSize="15dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/t_telefono"
@@ -135,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/cellphone"
                 android:textColor="@color/red"
-                android:textSize="15dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -147,7 +147,7 @@
                 android:gravity="center"
                 android:hint="@string/cellphone"
                 android:textColorHint="@color/white"
-                android:textSize="15dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/t_email"
@@ -155,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/email"
                 android:textColor="@color/red"
-                android:textSize="15dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -167,7 +167,7 @@
                 android:gravity="center"
                 android:hint="@string/email_form"
                 android:textColorHint="@color/white"
-                android:textSize="15dp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 

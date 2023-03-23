@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp">
 
@@ -30,10 +30,10 @@
                     android:id="@+id/text_form_prop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:layout_gravity="center"
                     android:text="@string/create_compile"
                     android:textColor="@color/red"
-                    android:textSize="23dp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -51,7 +51,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/name"
                         android:textColor="@color/red"
-                        android:textSize="15dp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <EditText
@@ -74,7 +74,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/desc"
                         android:textColor="@color/red"
-                        android:textSize="15dp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <EditText
@@ -97,7 +97,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/address"
                         android:textColor="@color/red"
-                        android:textSize="15dp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <EditText
@@ -120,7 +120,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/start_time"
                         android:textColor="@color/red"
-                        android:textSize="15dp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TimePicker
@@ -138,8 +138,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/red"
-                        android:textSize="15dp"
-                        android:textStyle="bold"></TextView>
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/text_fine_orario_lavorativo_rist"
@@ -147,7 +147,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/end_time"
                         android:textColor="@color/red"
-                        android:textSize="15dp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TimePicker
@@ -165,8 +165,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/red"
-                        android:textSize="15dp"
-                        android:textStyle="bold"></TextView>
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/text_telefono_rist"
@@ -174,7 +174,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/cellphone"
                         android:textColor="@color/red"
-                        android:textSize="15dp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <EditText
@@ -197,7 +197,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/food_type"
                         android:textColor="@color/red"
-                        android:textSize="15dp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -206,14 +206,14 @@
                         android:layout_height="50dp"
                         android:layout_marginBottom="20dp"
                         android:background="@drawable/custom_input"
-                        android:drawableEnd="@drawable/car_ui_icon_down"
                         android:gravity="center"
                         android:hint="@string/food_type"
-                        android:inputType="textPersonName"
+                        android:textSize="16sp"
                         android:textColor="@color/white"
                         android:textColorHighlight="@color/white"
                         android:textColorHint="@color/pink"
-                        android:textColorLink="@color/white" />
+                        android:textColorLink="@color/white"
+                        app:drawableEndCompat="@drawable/car_ui_icon_down" />
 
                     <RelativeLayout
                         android:id="@+id/relativeLayout"
@@ -228,10 +228,10 @@
                             android:id="@+id/text_select_img"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
+                            android:layout_marginStart="20dp"
                             android:text="@string/load_image"
                             android:textColor="@color/red"
-                            android:textSize="15dp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <Button
@@ -251,11 +251,11 @@
                             android:id="@+id/text_vegan_rist"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="80dp"
-                            android:layout_toRightOf="@id/text_select_img"
+                            android:layout_marginStart="80dp"
+                            android:layout_toEndOf="@id/text_select_img"
                             android:text="@string/vegan"
                             android:textColor="@color/red"
-                            android:textSize="15dp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <CheckBox
@@ -263,8 +263,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/text_vegan_rist"
-                            android:layout_marginLeft="60dp"
-                            android:layout_toRightOf="@id/select_img_new_R"
+                            android:layout_marginStart="70dp"
+                            android:layout_toEndOf="@id/select_img_new_R"
                             android:buttonTint="@color/red" />
 
                     </RelativeLayout>
@@ -285,8 +285,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/create"
                         android:textAlignment="center"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20sp"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

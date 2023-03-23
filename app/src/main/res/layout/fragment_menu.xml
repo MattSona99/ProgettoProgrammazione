@@ -29,7 +29,7 @@
                     android:gravity="center"
                     android:text="@string/menu"
                     android:textColor="@color/red"
-                    android:textSize="30dp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -43,7 +43,7 @@
                     android:gravity="center"
                     android:text="@string/modify_menu"
                     android:textColor="@color/white"
-                    android:textSize="15dp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     android:visibility="invisible"/>
 
@@ -59,10 +59,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:text="@string/beverages"
                     android:textColor="@color/red"
-                    android:textSize="25dp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -74,10 +74,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:text="@string/appetizers"
                     android:textColor="@color/red"
-                    android:textSize="25dp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -89,10 +89,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:text="@string/firsts"
                     android:textColor="@color/red"
-                    android:textSize="25dp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -104,10 +104,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+
+                    android:layout_marginStart="10dp"
                     android:text="@string/seconds"
                     android:textColor="@color/red"
-                    android:textSize="25dp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -119,10 +120,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:text="@string/garnishes"
                     android:textColor="@color/red"
-                    android:textSize="25dp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -134,10 +135,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:text="@string/sweets"
                     android:textColor="@color/red"
-                    android:textSize="25dp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -161,7 +162,7 @@
                     android:gravity="center"
                     android:text="@string/checkout"
                     android:textColor="@color/white"
-                    android:textSize="30dp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
             </LinearLayout>

@@ -83,6 +83,15 @@
     <string name="product_name">Nome prodotto</string>
     <string name="add">AGGIUNGI</string>
 
+    <!-- CREA MENU -->
+    <string name="inserisci_prodotti">Inserisci i prodotti nel menù</string>
+    <string name="aggiungi_bevanda">Aggiungi una bevanda</string>
+    <string name="aggiungi_antipasto">Aggiungi un antipasto</string>
+    <string name="aggiungi_primo">Aggiungi un primo</string>
+    <string name="aggiungi_secondo">Aggiungi un secondo</string>
+    <string name="aggiungi_contorno">Aggiungi un contorno</string>
+    <string name="aggiungi_dolce">Aggiungi un dolce</string>
+
     <!-- ADD TO MENU -->
     <string name="add_product">Aggiungi prodotto</string>
     <string name="product_price">Prezzo prodotto (€)</string>
@@ -101,6 +110,7 @@
     <string name="garnishes">Contorni</string>
     <string name="sweets">Dolci</string>
     <string name="checkout">Checkout</string>
+    <string name="fine">Fine</string>
 
     <!-- RESTAURANT DETAILS -->
     <string name="contacts">Contatti:</string>
