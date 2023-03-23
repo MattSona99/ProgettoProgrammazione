@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -44,9 +45,6 @@ class FragmentSettings : Fragment(), UserUtils {
             else -> binding.constraintmembrostaff.isVisible = false
         }
 
-        binding.nomesettings.hint = user.Nome
-        binding.cognomesettings.hint = user.Cognome
-
         return binding.root
     }
 
@@ -59,7 +57,7 @@ class FragmentSettings : Fragment(), UserUtils {
             view.findNavController().navigate(R.id.SettingsToUpdate, bundle)
         }
 
-        binding.salva.setOnClickListener {
+        binding.constraintsalva.setOnClickListener {
 
             val newnome = binding.nomesettings.text.toString()
             val newcognome = binding.cognomesettings.text.toString()
@@ -86,10 +84,9 @@ class FragmentSettings : Fragment(), UserUtils {
             if (newcognome.isNotEmpty() && newcognome.length < 21) childUpdates["Cognome"] =
                 newcognome
 
-            if (newrpassword == newpassword && newrpassword.isEmpty() && newpassword.isEmpty()
-                && newpassword.length > 5
-            ) {
-                if (newrpassword.isNotEmpty()) {
+            if (childUpdates.isNotEmpty()) {
+
+                if (newrpassword.isNotEmpty() && newrpassword.length > 5) {
                     updateUserPassword(context, newrpassword, user.Email.toString())
                     childUpdates["Password"] = newrpassword
                 }
@@ -99,15 +96,18 @@ class FragmentSettings : Fragment(), UserUtils {
                         val bundleU = Bundle()
                         bundleU.putParcelable("user", responseU.user)
                         when (user.Livello) {
-                            "1" -> view.findNavController().navigate(R.id.SettingsToProfileU, bundleU)
-                            "2" -> view.findNavController().navigate(R.id.SettingsToProfileD, bundleU)
-                            "3" -> view.findNavController().navigate(R.id.SettingsToProfileR, bundleU)
+                            "1" -> view.findNavController()
+                                .navigate(R.id.SettingsToProfileU, bundleU)
+                            "2" -> view.findNavController()
+                                .navigate(R.id.SettingsToProfileD, bundleU)
+                            "3" -> view.findNavController()
+                                .navigate(R.id.SettingsToProfileR, bundleU)
                         }
-
                     }
                 }, context)
+            } else {
+                Toast.makeText(context, "Applica delle modifiche per poter continuare.", Toast.LENGTH_SHORT).show()
             }
-
         }
 
         binding.eliminaAccount.setOnClickListener {

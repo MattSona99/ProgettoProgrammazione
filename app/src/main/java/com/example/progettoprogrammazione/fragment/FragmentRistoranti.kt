@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -80,10 +81,13 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
                 override fun onResponse(responseR: ResponseRistorante) {
                     restArrayList = responseR.ristoranti
                     bindrecyclerviews(restArrayList, "rating", binding.recycleViewTopRated)
+                    binding.tutte.isGone = true
+                    binding.radioGroup.clearCheck()
                 }
             }, context)
             swipeRefreshLayout.isRefreshing = false
         }
+
 
         binding.searchBarLayout.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
@@ -156,14 +160,15 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
     }
 
     private fun invisible() {
-        binding.pizzerie.isVisible = false
-        binding.pub.isVisible = false
-        binding.italiana.isVisible = false
-        binding.cinese.isVisible = false
-        binding.giapponese.isVisible = false
-        binding.indiana.isVisible = false
-        binding.greco.isVisible = false
-        binding.vegano.isVisible = false
+        binding.tutte.isGone = false
+        binding.pizzerie.isGone = true
+        binding.pub.isGone = true
+        binding.italiana.isGone = true
+        binding.cinese.isGone = true
+        binding.giapponese.isGone = true
+        binding.indiana.isGone = true
+        binding.greco.isGone = true
+        binding.vegano.isGone = true
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

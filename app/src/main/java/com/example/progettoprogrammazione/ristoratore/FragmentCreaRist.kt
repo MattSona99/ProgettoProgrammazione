@@ -101,6 +101,9 @@ class FragmentCreaRist : Fragment(), UserUtils, RestaurantUtils, ImgUtils {
         val args = this.arguments
         user = args?.getParcelable<User>("user") as User
 
+        if(user.Livello == "3") {
+            binding.textFormProp.setTextColor(resources.getColor(R.color.white))
+        }
         binding.inizioOrarioSceltoR.isVisible = false
         binding.fineOrarioSceltoR.isVisible = false
 
@@ -128,7 +131,7 @@ class FragmentCreaRist : Fragment(), UserUtils, RestaurantUtils, ImgUtils {
                 val telefonoR = binding.telefonoNewR.text.toString()
                 val tipoCiboR = binding.tipociboNewR.text.toString()
                 val veganR = binding.veganNewR
-                uploadImage()
+                fileName = uploadImage(imageUri)
 
                 if (nomeR.length > 35) {
                     binding.nomeristoranteNewR.error =
@@ -243,27 +246,8 @@ class FragmentCreaRist : Fragment(), UserUtils, RestaurantUtils, ImgUtils {
         }
     }
 
-
-
     override fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
 
-    override fun uploadImage() {
-        fileName = UUID.randomUUID().toString() + ".jpg"
-
-        val refStorage =
-            FirebaseStorage.getInstance().getReference("Restaurants-images/").child(fileName)
-
-        refStorage.putFile(imageUri)
-            .addOnSuccessListener { taskSnapshot ->
-                taskSnapshot.storage.downloadUrl.addOnSuccessListener {
-                    it.toString()
-                }
-            }
-
-            .addOnFailureListener { e ->
-                print(e.message)
-            }
-    }
 }
 
 

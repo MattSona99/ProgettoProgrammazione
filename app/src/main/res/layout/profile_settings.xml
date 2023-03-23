@@ -14,21 +14,28 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:orientation="vertical"
             android:padding="20dp">
 
             <LinearLayout
                 android:id="@+id/form_modifica"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/user_form"
-                android:gravity="center"
                 android:orientation="vertical"
                 android:padding="30dp"
                 android:paddingTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:text="@string/modifica_profilo"
+                    android:textColor="@color/red"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/t_nomesettings"
@@ -41,12 +48,12 @@
 
                 <EditText
                     android:id="@+id/nomesettings"
-                    android:layout_width="250dp"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/custom_input"
                     android:gravity="center"
-                    android:hint="@string/name"
+                    android:hint="@string/vuoto"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:textSize="15dp" />
@@ -62,12 +69,12 @@
 
                 <EditText
                     android:id="@+id/cognomesettings"
-                    android:layout_width="250dp"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/custom_input"
                     android:gravity="center"
-                    android:hint="@string/surname"
+                    android:hint="@string/vuoto"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:textSize="15dp" />
@@ -83,12 +90,12 @@
 
                 <EditText
                     android:id="@+id/passwordsettings"
-                    android:layout_width="250dp"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/custom_input"
                     android:gravity="center"
-                    android:hint="@string/password"
+                    android:hint="@string/vuoto"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:textSize="15dp" />
@@ -104,12 +111,12 @@
 
                 <EditText
                     android:id="@+id/ripetipasswordsettings"
-                    android:layout_width="250dp"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/custom_input"
                     android:gravity="center"
-                    android:hint="@string/repeat_password"
+                    android:hint="@string/vuoto"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:textSize="15dp" />
@@ -145,6 +152,7 @@
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
+                android:layout_gravity="center"
                 android:background="@drawable/red_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

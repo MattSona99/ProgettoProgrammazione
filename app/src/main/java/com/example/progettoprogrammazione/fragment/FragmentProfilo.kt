@@ -2,20 +2,16 @@ package com.example.progettoprogrammazione.fragment
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.activity.IntroActivity
 import com.example.progettoprogrammazione.databinding.FragmentProfiloBinding
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
@@ -26,7 +22,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
-import java.util.*
 import kotlin.collections.HashMap
 
 
@@ -43,6 +38,38 @@ class FragmentProfilo : Fragment(), UserUtils, ImgUtils {
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let {
                 imageUri = uri
+                if (this::imageUri.isInitialized) {
+                    val builder = AlertDialog.Builder(activity)
+                    builder.setMessage("Sei sicuro di voler caricare questa immagine?")
+                    builder.setPositiveButton("Sì") { dialog, _ ->
+                        if (imageUri != null) {
+                            fileName = uploadImage(imageUri)
+                            newimg = "Users-images/" + fileName
+                            val childUpdates: HashMap<String, Any> = hashMapOf()
+                            childUpdates["Uri"] = newimg!!
+                            updateUserData(context, childUpdates)
+                            getUserData(object : FireBaseCallbackUser {
+                                override fun onResponse(responseU: ResponseUser) {
+                                    val bundleU = Bundle()
+                                    bundleU.putParcelable("user", responseU.user)
+                                    when (user.Livello) {
+                                        "1" -> view!!.findNavController()
+                                            .navigate(R.id.ProfiloUSelf, bundleU)
+                                        "2" -> view!!.findNavController()
+                                            .navigate(R.id.ProfiloDSelf, bundleU)
+                                        "3" -> view!!.findNavController()
+                                            .navigate(R.id.ProfiloRSelf, bundleU)
+                                    }
+                                }
+                            }, context)
+                        }
+
+                    }
+                    builder.setNegativeButton("No") { dialog, _ ->
+                        dialog.cancel()
+                    }
+                    builder.show()
+                }
             }
         }
     lateinit var fileName: String
@@ -86,42 +113,6 @@ class FragmentProfilo : Fragment(), UserUtils, ImgUtils {
 
         binding.imgProfiloUtente.setOnClickListener {
             selectImageFromGallery()
-            if (selectImageFromGalleryResult != null && imageUri != null) {
-                val builder = AlertDialog.Builder(activity)
-                builder.setMessage("Sei sicuro di voler caricare questa immagine?")
-                builder.setPositiveButton("Sì") { dialog, _ ->
-                    if (imageUri != null) {
-                        uploadImage()
-                        newimg = "Users-images/" + fileName
-                        val childUpdates: HashMap<String, Any> = hashMapOf()
-                        childUpdates["Uri"] = newimg!!
-                        updateUserData(context, childUpdates)
-                        getUserData(object : FireBaseCallbackUser {
-                            override fun onResponse(responseU: ResponseUser) {
-                                val bundleU = Bundle()
-                                bundleU.putParcelable("user", responseU.user)
-                                when (user.Livello) {
-                                    "1" -> view.findNavController()
-                                        .navigate(R.id.ProfiloUSelf, bundleU)
-                                    "2" -> view.findNavController()
-                                        .navigate(R.id.ProfiloDSelf, bundleU)
-                                    "3" -> view.findNavController()
-                                        .navigate(R.id.ProfiloRSelf, bundleU)
-                                }
-
-                            }
-                        }, context)
-                    }
-
-
-                }
-                builder.setNegativeButton("No") { dialog, _ ->
-                    dialog.cancel()
-                }
-                Handler().postDelayed({
-                    builder.show()
-                }, 2000)
-            }
         }
 
         binding.settings.setOnClickListener {
@@ -137,7 +128,6 @@ class FragmentProfilo : Fragment(), UserUtils, ImgUtils {
                         "3" -> view.findNavController()
                             .navigate(R.id.Profilo_R_to_Settings, bundleU)
                     }
-
                 }
             }, context)
         }
@@ -145,24 +135,6 @@ class FragmentProfilo : Fragment(), UserUtils, ImgUtils {
     }
 
     override fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
-
-    override fun uploadImage() {
-        fileName = UUID.randomUUID().toString() + ".jpg"
-
-        val refStorage =
-            FirebaseStorage.getInstance().getReference("Users-images/").child(fileName)
-
-        refStorage.putFile(imageUri)
-            .addOnSuccessListener { taskSnapshot ->
-                taskSnapshot.storage.downloadUrl.addOnSuccessListener {
-                    it.toString()
-                }
-            }
-
-            .addOnFailureListener { e ->
-                print(e.message)
-            }
-    }
 
     private fun getImageId(context: Context, imageName: String): Int {
         return context.resources

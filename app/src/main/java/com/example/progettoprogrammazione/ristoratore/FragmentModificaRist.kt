@@ -115,7 +115,7 @@ class FragmentModificaRist : Fragment(), ImgUtils {
             val newtipocibo = binding.newTipocibo.text.toString()
             val newvegan = binding.newVegan
             if (imageUri != null) {
-                uploadImage()
+                uploadImage(imageUri!!)
                 newimg = "Restaurants-images/" + fileName
             }
 
@@ -205,25 +205,5 @@ class FragmentModificaRist : Fragment(), ImgUtils {
     }
 
     override fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
-
-    override fun uploadImage() {
-        fileName = UUID.randomUUID().toString() + ".jpg"
-
-        val refStorage =
-            FirebaseStorage.getInstance().getReference("Restaurants-images/").child(fileName)
-
-        imageUri?.let {
-            refStorage.putFile(it)
-                .addOnSuccessListener { taskSnapshot ->
-                    taskSnapshot.storage.downloadUrl.addOnSuccessListener {
-                        it.toString()
-                    }
-                }
-
-                .addOnFailureListener { e ->
-                    print(e.message)
-                }
-        }
-    }
 
 }
