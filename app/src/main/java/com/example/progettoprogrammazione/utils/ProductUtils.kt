@@ -229,9 +229,7 @@ interface ProductUtils {
     }
 
     fun deleteProd(prodotto: Product, idR: String?, tipo: String?, context: Context?) {
-        println(prodotto.nomeP)
-        println("$idR $tipo")
-        firebaseDatabase.getReference("Ristoranti/$idR/Menu/$tipo").child(prodotto.nomeP!!)
+        firebaseDatabase.getReference("Ristoranti/$idR/Menu/$tipo").child(prodotto.descrizioneP!!)
             .removeValue().addOnCompleteListener {
                 if (it.isSuccessful) {
                     Toast.makeText(
