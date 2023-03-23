@@ -203,7 +203,7 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
             view.findNavController().navigate(R.id.DetailToModifica, bundle)
         }
 
-        binding.btnRating.setOnClickListener {
+        binding.ratingRistorante.setOnClickListener {
             Toast.makeText(
                 requireContext(),
                 "La tua valutazione: " + binding.ratingBarR.rating,

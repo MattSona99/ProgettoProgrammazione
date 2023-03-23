@@ -55,7 +55,8 @@
     <string name="save">Salva</string>
     <string name="staff_member">Sei un membro dello staff? Clicca qui!</string>
     <string name="delete_account">Elimina account  </string>
-    <string name="modifica_profilo">Qui puoi modificare i tuoi dati</string>
+    <string name="modifica_profilo">Modifica i tuoi dati</string>
+    <string name="modifica_password">Modifica la tua password</string>
     <string name="vuoto">_ _ _ _ _</string>
 
     <!-- CREATE/MODIFY RESTAURANT -->
@@ -108,7 +109,7 @@
     <string name="show_menu">Visualizza Menu</string>
     <string name="edit_restaurant">Modifica Ristorante</string>
     <string name="delete_restaurant">Elimina Ristorante</string>
-    <string name="rate">Valuta!</string>
+    <string name="rate">Valutaci!</string>
 
     <!-- CART MENU -->
     <string name="cart">Carrello</string>
