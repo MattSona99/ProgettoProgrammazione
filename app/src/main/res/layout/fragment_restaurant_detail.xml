@@ -95,10 +95,11 @@
                                     android:id="@+id/ratingdetail"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginVertical="5dp"
                                     android:layout_marginStart="5dp"
                                     android:text="@string/number"
                                     android:textColor="@color/red"
-                                    android:textSize="16sp" />
+                                    android:textSize="20sp" />
 
                             </LinearLayout>
 
@@ -202,113 +203,144 @@
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/red_button" />
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:padding="10dp">
+                        android:padding="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:id="@+id/btn_visualizza_menu"
+                                    android:layout_width="120sp"
+                                    android:layout_height="50dp"
+                                    android:background="@drawable/white_card_red_rounded"
+                                    android:gravity="center">
+
+                                    <TextView
+                                        android:id="@+id/visualizzaMenu"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/show_menu"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/red"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <RatingBar
+                                    android:id="@+id/ratingBarR"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:max="5"
+                                    android:progressBackgroundTint="@color/pink"
+                                    android:progressTint="@color/red"
+                                    android:scaleX=".7"
+                                    android:scaleY=".7" />
+
+                                <TextView
+                                    android:id="@+id/rating_ristorante"
+                                    android:layout_width="100sp"
+                                    android:layout_height="22sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:text="@string/rate"
+                                    android:textColor="@color/white"
+                                    android:background="@drawable/red_button"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"
+                                    tools:ignore="RtlSymmetry" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
 
                         <TextView
-                            android:id="@+id/rating_ristorante"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="5dp"
-                            android:text="@string/rate"
-                            android:textColor="@color/red"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            tools:ignore="RtlSymmetry" />
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/red_button" />
 
-                        <RatingBar
-                            android:id="@+id/ratingBarR"
-                            style="@android:attr/ratingBarStyleSmall"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:isIndicator="true"
-                            android:max="5"
-                            android:progressBackgroundTint="@color/pink"
-                            android:progressTint="@color/red"
-                            android:scaleX=".5"
-                            android:scaleY=".5"
-                            android:transformPivotX="0dp"
-                            android:transformPivotY="0dp" />
+                            android:orientation="horizontal"
+                            android:padding="5dp">
+
+                            <LinearLayout
+                                android:id="@+id/btn_modifica_ristorante"
+                                android:layout_width="150dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="start"
+                                android:layout_marginBottom="20dp"
+                                android:background="@drawable/white_card_red_rounded"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:id="@+id/modifica_ristorante"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/edit_restaurant"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/red"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="50sp"
+                                android:layout_height="match_parent"/>
+
+                            <LinearLayout
+                                android:id="@+id/btn_elimina_ristorante"
+                                android:layout_width="150dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="end"
+                                android:layout_marginBottom="20dp"
+                                android:background="@drawable/white_card_red_rounded"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:id="@+id/elimina_ristorante"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/delete_restaurant"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/red"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
 
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/btn_modifica_ristorante"
-                        android:layout_width="200dp"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="20dp"
-                        android:background="@drawable/red_button"
-                        android:gravity="center">
-
-                        <TextView
-                            android:id="@+id/modifica_ristorante"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/edit_restaurant"
-                            android:textAlignment="center"
-                            android:textColor="#FFFFFF"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/btn_elimina_ristorante"
-                        android:layout_width="200dp"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="20dp"
-                        android:background="@drawable/red_button"
-                        android:gravity="center">
-
-                        <TextView
-                            android:id="@+id/elimina_ristorante"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/delete_restaurant"
-                            android:textAlignment="center"
-                            android:textColor="#FFFFFF"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/btn_visualizza_menu"
-                        android:layout_width="200dp"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="20dp"
-                        android:background="@drawable/red_button"
-                        android:gravity="center">
-
-                        <TextView
-                            android:id="@+id/visualizzaMenu"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/show_menu"
-                            android:textAlignment="center"
-                            android:textColor="#FFFFFF"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
 
                 </LinearLayout>
-
 
             </LinearLayout>
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
