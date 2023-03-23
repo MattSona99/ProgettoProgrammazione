@@ -2,6 +2,7 @@ package com.example.progettoprogrammazione.prodotti
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
+import com.example.progettoprogrammazione.databinding.FragmentAddToMenuBinding
 import com.example.progettoprogrammazione.databinding.ProductCardModificaEliminaBinding
 import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.utils.ProductUtils
@@ -14,6 +15,7 @@ class ProductEMViewHolder(
 
 ) : RecyclerView.ViewHolder(prodottoBinding.root), ProductUtils {
 
+
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
@@ -25,7 +27,7 @@ class ProductEMViewHolder(
             deleteProd(prodotto, idR, tipo, context)
         }
         prodottoBinding.btnModifica.setOnClickListener{
-            modifyProd(prodotto, idR, tipo)
+            modifyProd(prodotto, idR, tipo,context)
         }
 
     }

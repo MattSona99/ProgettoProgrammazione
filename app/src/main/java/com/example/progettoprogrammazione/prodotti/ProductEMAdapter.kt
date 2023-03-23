@@ -14,7 +14,6 @@ class ProductEMAdapter(
     private val restID: String,
     private val tipo: String,
     private val context: Context
-
 ) :
     RecyclerView.Adapter<ProductEMViewHolder>() {
 
