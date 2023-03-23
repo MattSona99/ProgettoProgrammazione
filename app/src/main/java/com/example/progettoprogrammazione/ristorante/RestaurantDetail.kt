@@ -153,7 +153,7 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
             }, context
         )
 
-        binding.visualizzaMenu.setOnClickListener {
+        binding.btnVisualizzaMenu.setOnClickListener {
             val bundle = Bundle()
             bundle.putParcelableArrayList("bevande", bevandeArrayList)
             bundle.putParcelableArrayList("antipasti", antipastiArrayList)
@@ -174,7 +174,7 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
             val idR = restaurant?.idR
             builder.setTitle("Conferma l'eliminazione del ristorante")
             builder.setMessage("Sei sicuro di voler eliminare il ristorante?")
-            builder.setPositiveButton("Sì") { dialog, _ ->
+            builder.setPositiveButton("Sì") { _, _ ->
                 reference.child("$idR").removeValue()
                 getUserData(object : FireBaseCallbackUser {
                     override fun onResponse(responseU: ResponseUser) {
@@ -209,7 +209,7 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
                 "La tua valutazione: " + binding.ratingBarR.rating,
                 Toast.LENGTH_SHORT
             ).show()
-            var ratingR = firebaseDatabase.getReference("Ristoranti/$restaurantID/ratingR")
+            val ratingR = firebaseDatabase.getReference("Ristoranti/$restaurantID/ratingR")
 
             firebaseDatabase.getReference("Utenti/$uid/ratings").child(restaurant?.nomeR!!)
                 .setValue(binding.ratingBarR.rating)
@@ -221,8 +221,8 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
             getRating(object : FireBaseCallbackRating {
                 override fun onResponse(responseR: ResponseRating) {
 
-                    var sum = responseR.rating.sum()
-                    var avg = sum / responseR.rating.size
+                    val sum = responseR.rating.sum()
+                    val avg = sum / responseR.rating.size
                     ratingR.setValue(avg)
                 }
             }, context, restaurantID.toString())

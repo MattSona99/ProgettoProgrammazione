@@ -1,24 +1,18 @@
 package com.example.progettoprogrammazione.ristoratore
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.databinding.FragmentMenuBinding
 import com.example.progettoprogrammazione.databinding.FragmentModificaMenuBinding
-import com.example.progettoprogrammazione.databinding.ProductCardBinding
 import com.example.progettoprogrammazione.databinding.ProductCardModificaEliminaBinding
-import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.models.Product
-import com.example.progettoprogrammazione.prodotti.ProductAdapter
 import com.example.progettoprogrammazione.prodotti.ProductClickListener
 import com.example.progettoprogrammazione.prodotti.ProductEMAdapter
-import com.example.progettoprogrammazione.utils.ResponseUser
 import com.example.progettoprogrammazione.utils.UserUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
