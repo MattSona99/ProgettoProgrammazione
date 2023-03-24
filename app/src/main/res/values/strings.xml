@@ -117,8 +117,8 @@
     <string name="address_details">Indirizzo:</string>
     <string name="address_details_value">Indirizzo ristorante…</string>
     <string name="show_menu">Visualizza Menu</string>
-    <string name="edit_restaurant">Modifica Ristorante</string>
-    <string name="delete_restaurant">Elimina Ristorante</string>
+    <string name="edit_restaurant">Modifica</string>
+    <string name="delete_restaurant">Elimina</string>
     <string name="rate">Valutaci!</string>
 
     <!-- CART MENU -->

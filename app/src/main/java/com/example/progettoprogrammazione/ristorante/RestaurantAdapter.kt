@@ -79,7 +79,7 @@ class RestaurantAdapter(
 
                     if (searchChar == "rating") {
                         for (ristorante in restaurantFiltered) {
-                            if (ristorante.ratingR > 3.5) filteredResults.add(ristorante)
+                            if (ristorante.ratingR > 3) filteredResults.add(ristorante)
                         }
                     } else if (searchChar == "vegan") {
                         for (ristorante in restaurantFiltered) {

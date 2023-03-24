@@ -92,6 +92,7 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
             binding.ratingdetail.text = restaurant?.ratingR.toString()
             binding.numeroDetail.text = restaurant?.telefonoR
             binding.indirizzodetail.text = restaurant?.indirizzoR
+            binding.cucinadetail.text = restaurant?.tipoCiboR
         }
         return binding.root
     }

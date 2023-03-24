@@ -44,14 +44,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/white_button"
                     android:orientation="vertical"
-                    android:padding="20dp">
+                    android:padding="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:background="@drawable/white_card_red_rounded">
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="150dp"
@@ -165,6 +165,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/cucinadetail"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingStart="5dp"
@@ -203,16 +204,11 @@
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/red_button" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="5dp">
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
+                            android:gravity="center"
                             android:padding="5dp">
 
                             <LinearLayout
@@ -281,15 +277,25 @@
                             android:layout_marginBottom="10dp"
                             android:background="@drawable/red_button" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Opzioni ristoratore"
+                        android:textSize="20sp"
+                        android:textColor="@color/red"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
+                            android:gravity="center"
                             android:padding="5dp">
 
                             <LinearLayout
                                 android:id="@+id/btn_modifica_ristorante"
-                                android:layout_width="150dp"
+                                android:layout_width="100sp"
                                 android:layout_height="50dp"
                                 android:layout_gravity="start"
                                 android:layout_marginBottom="20dp"
@@ -314,7 +320,7 @@
 
                             <LinearLayout
                                 android:id="@+id/btn_elimina_ristorante"
-                                android:layout_width="150dp"
+                                android:layout_width="100sp"
                                 android:layout_height="50dp"
                                 android:layout_gravity="end"
                                 android:layout_marginBottom="20dp"
@@ -339,8 +345,6 @@
                     </LinearLayout>
 
                 </LinearLayout>
-
-            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
