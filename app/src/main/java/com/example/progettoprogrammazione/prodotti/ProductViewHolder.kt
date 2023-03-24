@@ -86,7 +86,7 @@ class ProductViewHolder(
         })
 
         prodottoBinding.addProduct.setOnClickListener {
-            val quantity = prodottoBinding.quantity.toString().toInt()
+            val quantity = prodottoBinding.quantity.text.toString().toInt()
 
             val prezzoTot = prodotto.prezzoP!!.toFloat() * quantity
 
@@ -97,7 +97,7 @@ class ProductViewHolder(
                     prezzoTot,
                     prodotto.idP
                 )
-            addquantityShoppingCart(shoppingCart, quantity, FirebaseAuth.getInstance().uid)
+            addToShoppingCart(shoppingCart, quantity, FirebaseAuth.getInstance().uid)
 
             /*prodottoBinding.btnRemove.setOnClickListener {
                 removequantityShoppingCart(
