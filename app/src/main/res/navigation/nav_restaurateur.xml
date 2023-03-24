@@ -148,8 +148,7 @@
         android:id="@+id/fragmentQR_R"
         android:name="com.example.progettoprogrammazione.fragment.FragmentQR"
         android:label="I tuoi QRCodes"
-        tools:layout="@layout/fragment_QR"/>
-
+        tools:layout="@layout/fragment_qr"/>
 
     <fragment
         android:id="@+id/fragmentModificaMenu"

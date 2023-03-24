@@ -53,23 +53,6 @@ interface ShoppingCartUtils {
         firebaseDatabase.getReference("Utenti/$idU/Carrello/${cart.pName}").setValue(cart)
     }
 
-    fun addquantityShoppingCart(cart: Cart, quantita: Int, idU: String?) {
-        //SALVO VALORE QUANTITA
-        var pezzi = quantita
-        pezzi++
-    }
-
-    fun removequantityShoppingCart(cart: Cart, quantita: Int, idU: String?) {
-
-        var pezzi = quantita
-        if (pezzi <= 0) {
-            removeShoppingCart(cart, idU)
-        } else {
-            pezzi--
-        }
-
-    }
-
 
     fun removeShoppingCart(cart: Cart, idU: String?) {
         firebaseDatabase.getReference("Utenti/$idU/Carrello")
