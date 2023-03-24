@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityCreaMenuBinding
+import com.example.progettoprogrammazione.databinding.FragmentAddToMenuBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.models.Restaurant

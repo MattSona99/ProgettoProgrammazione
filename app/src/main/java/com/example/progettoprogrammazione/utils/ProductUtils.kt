@@ -1,8 +1,13 @@
 package com.example.progettoprogrammazione.utils
 
 
+import android.app.AlertDialog
 import android.content.Context
+import android.view.LayoutInflater
+import android.widget.EditText
 import android.widget.Toast
+import com.example.progettoprogrammazione.R
+import com.example.progettoprogrammazione.databinding.FragmentAddToMenuBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackProdotto
 import com.example.progettoprogrammazione.models.Product
 import com.google.firebase.auth.FirebaseAuth
@@ -10,6 +15,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.util.*
 
 interface ProductUtils {
 
@@ -23,9 +29,9 @@ interface ProductUtils {
                     val response = ResponseProdotto()
                     for (prod: DataSnapshot in snapshot.children) {
                         val prodotto = Product(
-                            prod.child("descrizioneP").value.toString(),
-                            prod.child("prezzoP").value.toString(),
                             prod.child("nomeP").value.toString(),
+                            prod.child("prezzoP").value.toString(),
+                            prod.child("descrizioneP").value.toString(),
                             prod.child("idP").value.toString()
                         )
                         response.prodotto.add(prodotto)
@@ -51,9 +57,9 @@ interface ProductUtils {
                     val response = ResponseProdotto()
                     for (prod: DataSnapshot in snapshot.children) {
                         val prodotto = Product(
-                            prod.child("descrizioneP").value.toString(),
-                            prod.child("prezzoP").value.toString(),
                             prod.child("nomeP").value.toString(),
+                            prod.child("prezzoP").value.toString(),
+                            prod.child("descrizioneP").value.toString(),
                             prod.child("idP").value.toString()
                         )
                         response.prodotto.add(prodotto)
@@ -79,9 +85,9 @@ interface ProductUtils {
                     val response = ResponseProdotto()
                     for (prod: DataSnapshot in snapshot.children) {
                         val prodotto = Product(
-                            prod.child("descrizioneP").value.toString(),
-                            prod.child("prezzoP").value.toString(),
                             prod.child("nomeP").value.toString(),
+                            prod.child("prezzoP").value.toString(),
+                            prod.child("descrizioneP").value.toString(),
                             prod.child("idP").value.toString()
                         )
                         response.prodotto.add(prodotto)
@@ -107,9 +113,9 @@ interface ProductUtils {
                     val response = ResponseProdotto()
                     for (prod: DataSnapshot in snapshot.children) {
                         val prodotto = Product(
-                            prod.child("descrizioneP").value.toString(),
-                            prod.child("prezzoP").value.toString(),
                             prod.child("nomeP").value.toString(),
+                            prod.child("prezzoP").value.toString(),
+                            prod.child("descrizioneP").value.toString(),
                             prod.child("idP").value.toString()
                         )
                         response.prodotto.add(prodotto)
@@ -135,9 +141,9 @@ interface ProductUtils {
                     val response = ResponseProdotto()
                     for (prod: DataSnapshot in snapshot.children) {
                         val prodotto = Product(
-                            prod.child("descrizioneP").value.toString(),
-                            prod.child("prezzoP").value.toString(),
                             prod.child("nomeP").value.toString(),
+                            prod.child("prezzoP").value.toString(),
+                            prod.child("descrizioneP").value.toString(),
                             prod.child("idP").value.toString()
                         )
                         response.prodotto.add(prodotto)
@@ -163,9 +169,9 @@ interface ProductUtils {
                     val response = ResponseProdotto()
                     for (prod: DataSnapshot in snapshot.children) {
                         val prodotto = Product(
-                            prod.child("descrizioneP").value.toString(),
-                            prod.child("prezzoP").value.toString(),
                             prod.child("nomeP").value.toString(),
+                            prod.child("prezzoP").value.toString(),
+                            prod.child("descrizioneP").value.toString(),
                             prod.child("idP").value.toString()
                         )
                         response.prodotto.add(prodotto)
@@ -229,7 +235,7 @@ interface ProductUtils {
     }
 
     fun deleteProd(prodotto: Product, idR: String?, tipo: String?, context: Context?) {
-        firebaseDatabase.getReference("Ristoranti/$idR/Menu/$tipo").child(prodotto.descrizioneP!!)
+        firebaseDatabase.getReference("Ristoranti/$idR/Menu/$tipo").child(prodotto.nomeP!!)
             .removeValue().addOnCompleteListener {
                 if (it.isSuccessful) {
                     Toast.makeText(
@@ -247,8 +253,32 @@ interface ProductUtils {
     }
 
 
-    fun modifyProd(prodotto: Product, idR: String?, tipo: String?) {
+    fun modifyProd(prodotto: Product, idR: String?, tipo: String?, context: Context?) {
+
+        val inflater = LayoutInflater.from(context)
+        val v = inflater.inflate(R.layout.fragment_add_to_menu, null)
+        val addDialog = AlertDialog.Builder(context)
+        val nomeP = v.findViewById<EditText>(R.id.nome_prodotto)
+        nomeP.setText(prodotto.nomeP)
+        val prezzoP = v.findViewById<EditText>(R.id.prezzo_prodotto)
+        prezzoP.setText(prodotto.prezzoP)
+        val descrizioneP = v.findViewById<EditText>(R.id.descrizione_prodotto)
+        descrizioneP.setText(prodotto.descrizioneP)
+        val nomepath = prodotto.nomeP
+        addDialog.setView(v)
+        addDialog.setPositiveButton("OK") { _, _ ->
+
+            firebaseDatabase.getReference("Ristoranti/$idR/Menu/$tipo/$nomepath").child("nomeP").setValue(nomeP.text.toString())
+            firebaseDatabase.getReference("Ristoranti/$idR/Menu/$tipo/$nomepath").child("prezzoP").setValue(prezzoP.text.toString())
+            firebaseDatabase.getReference("Ristoranti/$idR/Menu/$tipo/$nomepath").child("descrizioneP").setValue(descrizioneP.text.toString())
+           // firebaseDatabase.getReference("Ristoranti/$idR/Menu/$tipo").child(prodotto.nomeP!!).setValue()
+        }
+        addDialog.setNegativeButton("Cancel") { dialog, _ ->
+            dialog.cancel()
+        }
+        addDialog.create()
+        addDialog.show()
+    }
 
     }
 
-}

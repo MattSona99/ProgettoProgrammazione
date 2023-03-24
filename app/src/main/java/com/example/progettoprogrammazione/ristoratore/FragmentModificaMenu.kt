@@ -46,6 +46,7 @@ class FragmentModificaMenu : Fragment(), ProductClickListener, UserUtils {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentModificaMenuBinding.inflate(layoutInflater)
+
         prodottoBinding = ProductCardModificaEliminaBinding.inflate(layoutInflater)
 
         val args = this.arguments
