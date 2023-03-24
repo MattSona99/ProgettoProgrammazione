@@ -14,18 +14,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityRestaurateurBinding
-import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
-import com.example.progettoprogrammazione.viewmodels.ProductViewModel
 import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 
@@ -134,13 +130,14 @@ class RestaurateurActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.cart_menu, menu)
+        menuInflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.ic_cart -> navController.navigate(R.id.fragmentCarrello_R)
+            R.id.ic_qrcode -> navController.navigate(R.id.fragmentQR_R)
         }
         return super.onOptionsItemSelected(item)
     }

@@ -120,9 +120,15 @@
     <string name="edit_restaurant">Modifica</string>
     <string name="delete_restaurant">Elimina</string>
     <string name="rate">Valutaci!</string>
+    <string name="opzioni">Opzioni ristoratore</string>
 
     <!-- CART MENU -->
     <string name="cart">Carrello</string>
+    <string name="riepilogo">Riepilogo ordine</string>
+    <string name="genera">Genera QRCode</string>
+
+    <!-- QR MENU -->
+    <string name="qrcode">QRCode</string>
 
     <!-- NAVBARS -->
     <string name="home">Home</string>

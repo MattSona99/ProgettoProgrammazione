@@ -138,7 +138,19 @@
     <fragment
         android:id="@+id/fragmentCarrello_R"
         android:name="com.example.progettoprogrammazione.fragment.FragmentCarrello"
-        android:label="Carrello" />
+        android:label="Carrello"
+        tools:layout="@layout/shopping_cart">
+        <action
+            android:id="@+id/CarrelloToQR_R"
+            app:destination="@id/fragmentQR_R" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentQR_R"
+        android:name="com.example.progettoprogrammazione.fragment.FragmentQR"
+        android:label="I tuoi QRCodes"
+        tools:layout="@layout/fragment_QR"/>
+
+
     <fragment
         android:id="@+id/fragmentModificaMenu"
         android:name="com.example.progettoprogrammazione.ristoratore.FragmentModificaMenu"

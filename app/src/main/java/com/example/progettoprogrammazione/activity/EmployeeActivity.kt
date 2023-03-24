@@ -22,7 +22,6 @@ import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityEmployeeBinding
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
-import com.example.progettoprogrammazione.viewmodels.ProductViewModel
 import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 
@@ -131,7 +130,7 @@ class EmployeeActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.cart_menu, menu)
+        menuInflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
