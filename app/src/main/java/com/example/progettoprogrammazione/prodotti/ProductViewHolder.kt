@@ -1,6 +1,7 @@
 package com.example.progettoprogrammazione.prodotti
 
 import android.content.Context
+import android.widget.SeekBar
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.databinding.ProductCardBinding
@@ -68,10 +69,25 @@ class ProductViewHolder(
 
 */
 
-    fun useShoppingCart(prodotto: Product, quantita: Int) {
+    fun createShoppingCart(prodotto: Product) {
         prodottoBinding.cartQuantity.isVisible = false
-        prodottoBinding.gotoCart.setOnClickListener {
-            val quantity = quantita + 1
+
+        prodottoBinding.seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                prodottoBinding.quantity.text = p1.toString()
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+            }
+
+        })
+
+        prodottoBinding.addProduct.setOnClickListener {
+            val quantity = prodottoBinding.quantity.toString().toInt()
+
             val prezzoTot = prodotto.prezzoP!!.toFloat() * quantity
 
             val shoppingCart =
@@ -81,24 +97,16 @@ class ProductViewHolder(
                     prezzoTot,
                     prodotto.idP
                 )
+            addquantityShoppingCart(shoppingCart, quantity, FirebaseAuth.getInstance().uid)
 
-            addToShoppingCart(shoppingCart, quantity, FirebaseAuth.getInstance().uid)
-
-            prodottoBinding.gotoCart.isVisible = false
-            prodottoBinding.cartQuantity.isVisible = true
-
-            prodottoBinding.btnAdd.setOnClickListener {
-                addquantityShoppingCart(shoppingCart, quantity, FirebaseAuth.getInstance().uid)
-            }
-
-            prodottoBinding.btnRemove.setOnClickListener {
+            /*prodottoBinding.btnRemove.setOnClickListener {
                 removequantityShoppingCart(
                     shoppingCart,
                     quantity,
                     FirebaseAuth.getInstance().uid
                 )
 
-            }
+            }*/
 
             //prodottoBinding.checkout.setOnClickListener{}
         }
