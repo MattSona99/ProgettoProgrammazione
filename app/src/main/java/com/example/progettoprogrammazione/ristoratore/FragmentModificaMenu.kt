@@ -13,12 +13,13 @@ import com.example.progettoprogrammazione.databinding.ProductCardModificaElimina
 import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.prodotti.ProductClickListener
 import com.example.progettoprogrammazione.prodotti.ProductEMAdapter
+import com.example.progettoprogrammazione.utils.ProductUtils
 import com.example.progettoprogrammazione.utils.UserUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 
-class FragmentModificaMenu : Fragment(), ProductClickListener, UserUtils {
+class FragmentModificaMenu : Fragment(), ProductClickListener, UserUtils, ProductUtils {
 
     private lateinit var binding: FragmentModificaMenuBinding
     private lateinit var adapterBev: ProductEMAdapter
@@ -103,18 +104,6 @@ class FragmentModificaMenu : Fragment(), ProductClickListener, UserUtils {
         prodotti.addAll(dolciArrayList)
 
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        prodottoBinding.btnElimina.setOnClickListener {
-
-        }
-
-        prodottoBinding.btnModifica.setOnClickListener {
-
-        }
     }
 
     override fun onClickProduct(prodotto: Product) {

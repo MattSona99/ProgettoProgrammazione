@@ -102,12 +102,12 @@ class CreaMenu : AppCompatActivity(), ProductUtils, RestaurantUtils {
                 UUID.randomUUID().toString()
             )
             when (add) {
-                "bevanda" -> addBevanda(restName, pData, this)
-                "antipasto" -> addAntipasto(restName, pData, this)
-                "primo" -> addPrimo(restName, pData, this)
-                "secondo" -> addSecondo(restName, pData, this)
-                "contorno" -> addContorno(restName, pData, this)
-                "dolce" -> addDolce(restName, pData, this)
+                "bevanda" -> addProdotto(restName, pData, "Bevande", this)
+                "antipasto" -> addProdotto(restName, pData, "Antipasti", this)
+                "primo" -> addProdotto(restName, pData, "Primi", this)
+                "secondo" -> addProdotto(restName, pData, "Secondi", this)
+                "contorno" -> addProdotto(restName, pData, "Contorni", this)
+                "dolce" -> addProdotto(restName, pData, "Dolci",  this)
             }
         }
         addDialog.setNegativeButton("Cancel") { dialog, _ ->

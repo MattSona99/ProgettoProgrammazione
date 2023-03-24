@@ -8,13 +8,13 @@ import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.utils.ProductUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.NonDisposableHandle.parent
 
 class ProductEMViewHolder(
     private val prodottoBinding: ProductCardModificaEliminaBinding,
     private val clickListener: ProductClickListener
 
 ) : RecyclerView.ViewHolder(prodottoBinding.root), ProductUtils {
-
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
