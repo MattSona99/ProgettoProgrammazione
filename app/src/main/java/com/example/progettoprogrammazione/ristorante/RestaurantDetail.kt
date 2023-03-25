@@ -105,53 +105,53 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
         restaurantList = args?.getParcelableArrayList("restArrayList")
 
 
-        getBevanda(
+        getProdotti(
             restaurantID.toString(),
             object : FireBaseCallbackProdotto {
                 override fun onResponse(responseP: ResponseProdotto) {
                     bevandeArrayList = responseP.prodotto
                 }
-            }, context
+            }, "Bevande", context
         )
-        getAntipasto(
+        getProdotti(
             restaurantID.toString(),
             object : FireBaseCallbackProdotto {
                 override fun onResponse(responseP: ResponseProdotto) {
                     antipastiArrayList = responseP.prodotto
                 }
-            }, context
+            }, "Antipasti", context
         )
-        getPrimo(
+        getProdotti(
             restaurantID.toString(),
             object : FireBaseCallbackProdotto {
                 override fun onResponse(responseP: ResponseProdotto) {
                     primiArrayList = responseP.prodotto
                 }
-            }, context
+            }, "Primi", context
         )
-        getSecondo(
+        getProdotti(
             restaurantID.toString(),
             object : FireBaseCallbackProdotto {
                 override fun onResponse(responseP: ResponseProdotto) {
                     secondiArrayList = responseP.prodotto
                 }
-            }, context
+            }, "Secondi", context
         )
-        getContorno(
+        getProdotti(
             restaurantID.toString(),
             object : FireBaseCallbackProdotto {
                 override fun onResponse(responseP: ResponseProdotto) {
                     contorniArrayList = responseP.prodotto
                 }
-            }, context
+            }, "Contorni", context
         )
-        getDolce(
+        getProdotti(
             restaurantID.toString(),
             object : FireBaseCallbackProdotto {
                 override fun onResponse(responseP: ResponseProdotto) {
                     dolciArrayList = responseP.prodotto
                 }
-            }, context
+            }, "Dolci", context
         )
 
         binding.btnVisualizzaMenu.setOnClickListener {
