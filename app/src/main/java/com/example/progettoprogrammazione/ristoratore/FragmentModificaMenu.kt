@@ -1,33 +1,36 @@
 package com.example.progettoprogrammazione.ristoratore
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentModificaMenuBinding
 import com.example.progettoprogrammazione.databinding.ProductCardModificaEliminaBinding
 import com.example.progettoprogrammazione.models.Product
+import com.example.progettoprogrammazione.prodotti.ProductAdapter
 import com.example.progettoprogrammazione.prodotti.ProductClickListener
 import com.example.progettoprogrammazione.prodotti.ProductEMAdapter
 import com.example.progettoprogrammazione.utils.ProductUtils
 import com.example.progettoprogrammazione.utils.UserUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class FragmentModificaMenu : Fragment(), ProductClickListener, UserUtils, ProductUtils {
 
     private lateinit var binding: FragmentModificaMenuBinding
-    private lateinit var adapterBev: ProductEMAdapter
-    private lateinit var adapterAnt: ProductEMAdapter
-    private lateinit var adapterPri: ProductEMAdapter
-    private lateinit var adapterSec: ProductEMAdapter
-    private lateinit var adapterCon: ProductEMAdapter
-    private lateinit var adapterDol: ProductEMAdapter
+    private lateinit var adapter: ProductEMAdapter
 
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -47,11 +50,35 @@ class FragmentModificaMenu : Fragment(), ProductClickListener, UserUtils, Produc
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentModificaMenuBinding.inflate(layoutInflater)
-
         prodottoBinding = ProductCardModificaEliminaBinding.inflate(layoutInflater)
 
         val args = this.arguments
-        val restID = args?.get("idR")
+        val restID = args?.get("idR") as String
+
+        binding.btnBevanda.setOnClickListener {
+            showDialog("bevanda", restID)
+        }
+
+        binding.btnAntipasto.setOnClickListener {
+            showDialog("antipasto", restID)
+        }
+
+        binding.btnPrimo.setOnClickListener {
+            showDialog("primo", restID)
+        }
+
+        binding.btnSecondo.setOnClickListener {
+            showDialog("secondo", restID)
+        }
+
+        binding.btnContorno.setOnClickListener {
+            showDialog("contorno", restID)
+        }
+
+        binding.btnDolce.setOnClickListener {
+            showDialog("dolce", restID)
+        }
+
 
         bevandeArrayList = args?.getParcelableArrayList<Product>("bevande") as ArrayList<Product>
         antipastiArrayList = args.getParcelableArrayList<Product>("antipasti") as ArrayList<Product>
@@ -60,41 +87,7 @@ class FragmentModificaMenu : Fragment(), ProductClickListener, UserUtils, Produc
         contorniArrayList = args.getParcelableArrayList<Product>("contorni") as ArrayList<Product>
         dolciArrayList = args.getParcelableArrayList<Product>("dolci") as ArrayList<Product>
 
-        val layoutManagerBev = GridLayoutManager(context, 2)
-        binding.recycleViewBevande.layoutManager = layoutManagerBev
-        adapterBev = ProductEMAdapter(bevandeArrayList, this, restID.toString(), "Bevande", requireContext())
-        binding.recycleViewBevande.adapter = adapterBev
-        binding.recycleViewBevande.setHasFixedSize(true)
 
-        val layoutManagerAnt = GridLayoutManager(context, 2)
-        binding.recycleViewAntipasti.layoutManager = layoutManagerAnt
-        adapterAnt = ProductEMAdapter(antipastiArrayList, this, restID.toString(), "Antipasti", requireContext())
-        binding.recycleViewAntipasti.adapter = adapterAnt
-        binding.recycleViewAntipasti.setHasFixedSize(true)
-
-        val layoutManagerPri = GridLayoutManager(context, 2)
-        binding.recycleViewPrimi.layoutManager = layoutManagerPri
-        adapterPri = ProductEMAdapter(primiArrayList, this, restID.toString(), "Primi", requireContext())
-        binding.recycleViewPrimi.adapter = adapterPri
-        binding.recycleViewPrimi.setHasFixedSize(true)
-
-        val layoutManagerSec = GridLayoutManager(context, 2)
-        binding.recycleViewSecondi.layoutManager = layoutManagerSec
-        adapterSec = ProductEMAdapter(secondiArrayList, this, restID.toString(), "Secondi", requireContext())
-        binding.recycleViewSecondi.adapter = adapterSec
-        binding.recycleViewSecondi.setHasFixedSize(true)
-
-        val layoutManagerCon = GridLayoutManager(context, 2)
-        binding.recycleViewContorni.layoutManager = layoutManagerCon
-        adapterCon = ProductEMAdapter(contorniArrayList, this, restID.toString(), "Contorni", requireContext())
-        binding.recycleViewContorni.adapter = adapterCon
-        binding.recycleViewContorni.setHasFixedSize(true)
-
-        val layoutManagerDol = GridLayoutManager(context, 2)
-        binding.recycleViewDolci.layoutManager = layoutManagerDol
-        adapterDol = ProductEMAdapter(dolciArrayList, this, restID.toString(), "Dolci", requireContext())
-        binding.recycleViewDolci.adapter = adapterDol
-        binding.recycleViewDolci.setHasFixedSize(true)
 
         prodotti.addAll(bevandeArrayList)
         prodotti.addAll(antipastiArrayList)
@@ -106,14 +99,136 @@ class FragmentModificaMenu : Fragment(), ProductClickListener, UserUtils, Produc
         return binding.root
     }
 
-    override fun onClickProduct(prodotto: Product) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        val args = this.arguments
+        val restaurantID = args?.get("idR") as String
+
+        binding.svuotamenu.setOnClickListener {
+            binding.radioGroupMenu.clearCheck()
+            invisible()
+        }
+
+        binding.btnBevande.setOnClickListener {
+            invisible()
+            bindrecyclerviews(bevandeArrayList,  binding.recycleViewBevande, restaurantID, "Bevande")
+            binding.bevandeMenu.isVisible = true
+        }
+
+        binding.btnAntipasti.setOnClickListener {
+            invisible()
+            bindrecyclerviews(antipastiArrayList, binding.recycleViewAntipasti, restaurantID,"Antipasti")
+            binding.antipastiMenu.isVisible = true
+        }
+
+        binding.btnPrimi.setOnClickListener {
+            invisible()
+            bindrecyclerviews(primiArrayList, binding.recycleViewPrimi, restaurantID,"Primi")
+            binding.primiMenu.isVisible = true
+        }
+
+        binding.btnSecondi.setOnClickListener {
+            invisible()
+            bindrecyclerviews(secondiArrayList, binding.recycleViewSecondi, restaurantID,"Secondi")
+            binding.secondiMenu.isVisible = true
+        }
+
+        binding.btnContorni.setOnClickListener {
+            invisible()
+            bindrecyclerviews(contorniArrayList, binding.recycleViewContorni, restaurantID,"Contorni")
+            binding.contorniMenu.isVisible = true
+        }
+
+        binding.btnDolci.setOnClickListener {
+            invisible()
+            bindrecyclerviews(dolciArrayList, binding.recycleViewDolci, restaurantID,"Dolci")
+            binding.dolciMenu.isVisible = true
+        }
+
+    }
+
+
+    override fun onClickProduct(prodotto: Product) {
         val bundle = Bundle()
         bundle.putString("prodID", prodotto.idP.toString())
         bundle.putParcelableArrayList("prodArrayList", prodotti)
-
         view?.findNavController()?.navigate(R.id.productDetail, bundle)
+    }
 
+    private fun invisible() {
+        binding.tutteMenu.isGone = false
+        binding.bevandeMenu.isGone = true
+        binding.antipastiMenu.isGone = true
+        binding.primiMenu.isGone = true
+        binding.secondiMenu.isGone = true
+        binding.contorniMenu.isGone = true
+        binding.dolciMenu.isGone = true
+    }
+
+    private fun verticalrecylerview(
+        recyclerView: RecyclerView,
+        prodotti: ArrayList<Product>,
+        restID: String,
+        tipo: String
+    ) {
+        val layoutManager = GridLayoutManager(context, 2)
+        recyclerView.layoutManager = layoutManager
+        adapter = ProductEMAdapter(prodotti, this, restID, tipo, requireContext())
+        showData(prodotti)
+        recyclerView.adapter = adapter
+        recyclerView.setHasFixedSize(true)
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun bindrecyclerviews(
+        prodotti: ArrayList<Product>,
+        recyclerView: RecyclerView,
+        restID: String,
+        tipo: String
+    ) {
+        verticalrecylerview(recyclerView, prodotti, restID, tipo)
+    }
+
+    private fun showData(arrayList: ArrayList<Product>) {
+        adapter.setData(arrayList)
+    }
+
+
+
+    private fun showDialog(add: String, restName: String?) {
+        val inflater = LayoutInflater.from(context)
+        val v = inflater.inflate(R.layout.fragment_add_to_menu, null)
+        val addDialog = AlertDialog.Builder(context)
+        val nomeP = v.findViewById<EditText>(R.id.nome_prodotto)
+        val prezzoP = v.findViewById<EditText>(R.id.prezzo_prodotto)
+        val descrizioneP = v.findViewById<EditText>(R.id.descrizione_prodotto)
+
+        addDialog.setView(v)
+        addDialog.setPositiveButton("OK") { _, _ ->
+            val nomePbind = nomeP.text.toString()
+            val prezzoPbind = prezzoP.text.toString()
+            val descrizionePbind = descrizioneP.text.toString()
+            val pData = Product(
+                nomePbind,
+                prezzoPbind,
+                descrizionePbind,
+                UUID.randomUUID().toString()
+            )
+            when (add) {
+                "bevanda" -> addProdotto(restName, pData, "Bevande", context)
+                "antipasto" -> addProdotto(restName, pData, "Antipasti", context)
+                "primo" -> addProdotto(restName, pData, "Primi", context)
+                "secondo" -> addProdotto(restName, pData, "Secondi", context)
+                "contorno" -> addProdotto(restName, pData, "Contorni", context)
+                "dolce" -> addProdotto(restName, pData, "Dolci",  context)
+            }
+        }
+        addDialog.setNegativeButton("Cancel") { dialog, _ ->
+            dialog.cancel()
+        }
+        addDialog.create()
+        addDialog.show()
     }
 
 }

@@ -9,13 +9,18 @@ import com.example.progettoprogrammazione.models.Product
 
 
 class ProductEMAdapter(
-    private val prodotti: ArrayList<Product>,
+    private var prodotti: ArrayList<Product>,
     private val clickListener: ProductClickListener,
     private val restID: String,
     private val tipo: String,
     private val context: Context
 ) :
     RecyclerView.Adapter<ProductEMViewHolder>() {
+
+    fun setData(productList: ArrayList<Product>) {
+        this.prodotti = productList
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductEMViewHolder {
         val itemView = LayoutInflater.from(parent.context)
