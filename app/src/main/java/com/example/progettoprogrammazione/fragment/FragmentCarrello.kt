@@ -13,9 +13,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ShoppingCartBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackShoppingCart
+import com.example.progettoprogrammazione.models.Cart
 import com.example.progettoprogrammazione.models.Product
-import com.example.progettoprogrammazione.prodotti.ProductAdapter
 import com.example.progettoprogrammazione.prodotti.ProductClickListener
+import com.example.progettoprogrammazione.shoppingcart.ShoppingCartAdapter
 import com.example.progettoprogrammazione.utils.ProductUtils
 import com.example.progettoprogrammazione.utils.ResponseShoppingCart
 import com.example.progettoprogrammazione.utils.ShoppingCartUtils
@@ -24,15 +25,15 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 
-class FragmentCarrello: Fragment(),ShoppingCartUtils,ProductClickListener,ProductUtils {
-
-    override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
-    override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+class FragmentCarrello(
+    override var firebaseAuth: FirebaseAuth,
+    override var firebaseDatabase: FirebaseDatabase
+) : Fragment(),ShoppingCartUtils,ProductClickListener,ProductUtils {
 
     private lateinit var binding: ShoppingCartBinding
 
-    private lateinit var carrello: ArrayList<Product>
-    private lateinit var adapter: ProductAdapter
+    private lateinit var cart: HashMap<String, Cart>
+    private lateinit var adapter: ShoppingCartAdapter
     private var prodotti = arrayListOf<Product>()
 
     override fun onCreateView(
@@ -41,26 +42,28 @@ class FragmentCarrello: Fragment(),ShoppingCartUtils,ProductClickListener,Produc
         savedInstanceState: Bundle?
     ): View {
         binding = ShoppingCartBinding.inflate(layoutInflater)
-        setHasOptionsMenu(true)
+        setHasOptionsMenu(true);
 
         getShoppingCartData(FirebaseAuth.getInstance().uid, object : FireBaseCallbackShoppingCart {
             override fun onResponse(responseC: ResponseShoppingCart) {
-                carrello = ArrayList(responseC.carrello.values) as ArrayList<Product>
-                val layoutManager = GridLayoutManager(context, 2)
-                binding.recylerOrder.layoutManager = layoutManager
-                adapter = ProductAdapter(carrello, this@FragmentCarrello)
-                showData(carrello)
-                binding.recylerOrder.adapter = adapter
-                binding.recylerOrder.setHasFixedSize(true)
-                adapter.notifyDataSetChanged()
+                cart = responseC.carrello
+
             }
         }, context)
+
+        val layoutManager = GridLayoutManager(context, 2)
+        binding.recylerOrder.layoutManager = layoutManager
+        adapter = ShoppingCartAdapter(cart, this@FragmentCarrello)
+        showData(cart)
+        binding.recylerOrder.adapter = adapter
+        binding.recylerOrder.setHasFixedSize(true)
+        adapter.notifyDataSetChanged()
 
         return binding.root
     }
 
-    private fun showData(arrayList: ArrayList<Product>) {
-        adapter.setData(arrayList)
+    private fun showData(cart: HashMap<String,Cart>) {
+        adapter.setData(this.cart)
     }
 
 
