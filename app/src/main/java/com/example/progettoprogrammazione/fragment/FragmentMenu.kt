@@ -156,7 +156,7 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils, UserUtils, 
 
     private fun verticalrecylerview(
         recyclerView: RecyclerView,
-        prodotti: ArrayList<Product>,
+        prodotti: ArrayList<Product>
     ) {
         val layoutManager = GridLayoutManager(context, 2)
         recyclerView.layoutManager = layoutManager

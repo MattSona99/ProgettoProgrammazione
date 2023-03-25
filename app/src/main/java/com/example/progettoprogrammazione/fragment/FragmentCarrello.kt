@@ -10,11 +10,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ShoppingCartBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackShoppingCart
-import com.example.progettoprogrammazione.models.Cart
 import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.prodotti.ProductAdapter
 import com.example.progettoprogrammazione.prodotti.ProductClickListener
@@ -26,14 +24,13 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 
-class FragmentCarrello(
-    override var firebaseAuth: FirebaseAuth,
-    override var firebaseDatabase: FirebaseDatabase
-) : Fragment(),ShoppingCartUtils,ProductClickListener,ProductUtils {
+class FragmentCarrello: Fragment(),ShoppingCartUtils,ProductClickListener,ProductUtils {
+
+    override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
+    override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     private lateinit var binding: ShoppingCartBinding
 
-    private lateinit var tmp: HashMap<String, Cart>
     private lateinit var carrello: ArrayList<Product>
     private lateinit var adapter: ProductAdapter
     private var prodotti = arrayListOf<Product>()
@@ -44,24 +41,20 @@ class FragmentCarrello(
         savedInstanceState: Bundle?
     ): View {
         binding = ShoppingCartBinding.inflate(layoutInflater)
-        setHasOptionsMenu(true);
+        setHasOptionsMenu(true)
 
         getShoppingCartData(FirebaseAuth.getInstance().uid, object : FireBaseCallbackShoppingCart {
             override fun onResponse(responseC: ResponseShoppingCart) {
-                tmp = responseC.carrello
-
                 carrello = ArrayList(responseC.carrello.values) as ArrayList<Product>
-
+                val layoutManager = GridLayoutManager(context, 2)
+                binding.recylerOrder.layoutManager = layoutManager
+                adapter = ProductAdapter(carrello, this@FragmentCarrello)
+                showData(carrello)
+                binding.recylerOrder.adapter = adapter
+                binding.recylerOrder.setHasFixedSize(true)
+                adapter.notifyDataSetChanged()
             }
         }, context)
-
-        val layoutManager = GridLayoutManager(context, 2)
-        binding.recylerOrder.layoutManager = layoutManager
-        adapter = ProductAdapter(carrello, this@FragmentCarrello)
-        showData(carrello)
-        binding.recylerOrder.adapter = adapter
-        binding.recylerOrder.setHasFixedSize(true)
-        adapter.notifyDataSetChanged()
 
         return binding.root
     }
