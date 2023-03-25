@@ -75,7 +75,7 @@ class FragmentCarrello: Fragment(),ShoppingCartUtils,ProductClickListener,Produc
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.qrcode.setOnClickListener {
+        binding.constraintQR.setOnClickListener {
 
             val qrcodecontent = "ciao"
             val multiFormatWriter = MultiFormatWriter()

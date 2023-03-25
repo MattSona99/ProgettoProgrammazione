@@ -126,6 +126,7 @@
     <string name="cart">Carrello</string>
     <string name="riepilogo">Riepilogo ordine</string>
     <string name="genera">Genera QRCode</string>
+    <string name="totale">Totale:</string>
 
     <!-- QR MENU -->
     <string name="qrcode">QRCode</string>
