@@ -71,6 +71,7 @@ class FragmentSettings : Fragment(), UserUtils {
                 binding.cognomesettings.error =
                     "Il cognome non può essere lungo più di 20 caratteri."
             }
+
             if (newpassword.length < 6 && newpassword.isNotEmpty()) {
                 binding.passwordsettings.error = "La password deve essere lunga almeno 6 caratteri."
             }
@@ -81,8 +82,7 @@ class FragmentSettings : Fragment(), UserUtils {
 
             val childUpdates: HashMap<String, Any> = hashMapOf()
             if (newnome.isNotEmpty() && newnome.length < 21) childUpdates["Nome"] = newnome
-            if (newcognome.isNotEmpty() && newcognome.length < 21) childUpdates["Cognome"] =
-                newcognome
+            if (newcognome.isNotEmpty() && newcognome.length < 21) childUpdates["Cognome"] = newcognome
 
             if (childUpdates.isNotEmpty()) {
 
