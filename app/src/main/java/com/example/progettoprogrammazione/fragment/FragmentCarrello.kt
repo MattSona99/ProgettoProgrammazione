@@ -25,10 +25,10 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 
-class FragmentCarrello(
-    override var firebaseAuth: FirebaseAuth,
-    override var firebaseDatabase: FirebaseDatabase
-) : Fragment(),ShoppingCartUtils,ProductClickListener,ProductUtils {
+class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, ProductUtils {
+
+    override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
+    override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     private lateinit var binding: ShoppingCartBinding
 
@@ -47,22 +47,20 @@ class FragmentCarrello(
         getShoppingCartData(FirebaseAuth.getInstance().uid, object : FireBaseCallbackShoppingCart {
             override fun onResponse(responseC: ResponseShoppingCart) {
                 cart = responseC.carrello
-
+                val layoutManager = GridLayoutManager(context, 2)
+                binding.recylerOrder.layoutManager = layoutManager
+                adapter = ShoppingCartAdapter(cart, this@FragmentCarrello)
+                showData(cart)
+                binding.recylerOrder.adapter = adapter
+                binding.recylerOrder.setHasFixedSize(true)
+                adapter.notifyDataSetChanged()
             }
         }, context)
-
-        val layoutManager = GridLayoutManager(context, 2)
-        binding.recylerOrder.layoutManager = layoutManager
-        adapter = ShoppingCartAdapter(cart, this@FragmentCarrello)
-        showData(cart)
-        binding.recylerOrder.adapter = adapter
-        binding.recylerOrder.setHasFixedSize(true)
-        adapter.notifyDataSetChanged()
 
         return binding.root
     }
 
-    private fun showData(cart: HashMap<String,Cart>) {
+    private fun showData(cart: HashMap<String, Cart>) {
         adapter.setData(this.cart)
     }
 

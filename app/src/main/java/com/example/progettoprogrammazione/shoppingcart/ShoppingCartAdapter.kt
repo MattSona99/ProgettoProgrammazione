@@ -21,7 +21,7 @@ class ShoppingCartAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoppingCartViewHolder {
         val itemView = LayoutInflater.from(parent.context)
         val binding = ProductCardBinding.inflate(itemView, parent, false)
-        return ShoppingCartViewHolder(binding, clickListener)
+        return ShoppingCartViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ShoppingCartViewHolder, position: Int) {
