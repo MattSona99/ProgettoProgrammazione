@@ -9,14 +9,34 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ShoppingCartBinding
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackShoppingCart
+import com.example.progettoprogrammazione.models.Cart
+import com.example.progettoprogrammazione.models.Product
+import com.example.progettoprogrammazione.prodotti.ProductAdapter
+import com.example.progettoprogrammazione.prodotti.ProductClickListener
+import com.example.progettoprogrammazione.utils.ProductUtils
+import com.example.progettoprogrammazione.utils.ResponseShoppingCart
+import com.example.progettoprogrammazione.utils.ShoppingCartUtils
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 
-class FragmentCarrello : Fragment() {
+class FragmentCarrello(
+    override var firebaseAuth: FirebaseAuth,
+    override var firebaseDatabase: FirebaseDatabase
+) : Fragment(),ShoppingCartUtils,ProductClickListener,ProductUtils {
 
     private lateinit var binding: ShoppingCartBinding
+
+    private lateinit var tmp: HashMap<String, Cart>
+    private lateinit var carrello: ArrayList<Product>
+    private lateinit var adapter: ProductAdapter
+    private var prodotti = arrayListOf<Product>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,8 +45,31 @@ class FragmentCarrello : Fragment() {
     ): View {
         binding = ShoppingCartBinding.inflate(layoutInflater)
         setHasOptionsMenu(true);
+
+        getShoppingCartData(FirebaseAuth.getInstance().uid, object : FireBaseCallbackShoppingCart {
+            override fun onResponse(responseC: ResponseShoppingCart) {
+                tmp = responseC.carrello
+
+                carrello = ArrayList(responseC.carrello.values) as ArrayList<Product>
+
+            }
+        }, context)
+
+        val layoutManager = GridLayoutManager(context, 2)
+        binding.recylerOrder.layoutManager = layoutManager
+        adapter = ProductAdapter(carrello, this@FragmentCarrello)
+        showData(carrello)
+        binding.recylerOrder.adapter = adapter
+        binding.recylerOrder.setHasFixedSize(true)
+        adapter.notifyDataSetChanged()
+
         return binding.root
     }
+
+    private fun showData(arrayList: ArrayList<Product>) {
+        adapter.setData(arrayList)
+    }
+
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         val menuItem = menu.findItem(R.id.ic_cart)
@@ -57,4 +100,12 @@ class FragmentCarrello : Fragment() {
             view.findNavController().navigate(R.id.CarrelloToQR_R, bundle)
         }
     }
+
+    override fun onClickProduct(prodotto: Product) {
+        val bundle = Bundle()
+        bundle.putString("prodID", prodotto.idP.toString())
+        bundle.putParcelableArrayList("prodArrayList", prodotti)
+        view?.findNavController()?.navigate(R.id.productDetail, bundle)
+    }
+
 }

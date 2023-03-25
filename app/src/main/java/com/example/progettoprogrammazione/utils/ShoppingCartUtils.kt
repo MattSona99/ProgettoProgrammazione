@@ -53,17 +53,10 @@ interface ShoppingCartUtils {
         firebaseDatabase.getReference("Utenti/$idU/Carrello/${cart.pName}").setValue(cart)
     }
 
-
     fun removeShoppingCart(cart: Cart, idU: String?) {
         firebaseDatabase.getReference("Utenti/$idU/Carrello")
             .child("${cart.pName}").removeValue()
 
     }
 
-
-    /*
-    fun modifyShoppingCart(context: Context?, pData: Product) {
-        firebaseDatabase.getReference("Utenti").child("Carrello").setValue(pData)
-    }
-    */
 }
