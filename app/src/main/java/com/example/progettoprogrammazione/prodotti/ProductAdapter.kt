@@ -29,7 +29,6 @@ class ProductAdapter(
         holder.createShoppingCart(prodotti[position])
 
     }
-
     override fun getItemCount(): Int {
         return prodotti.size
     }

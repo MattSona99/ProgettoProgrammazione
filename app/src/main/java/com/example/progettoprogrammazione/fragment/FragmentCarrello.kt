@@ -42,7 +42,7 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
         savedInstanceState: Bundle?
     ): View {
         binding = ShoppingCartBinding.inflate(layoutInflater)
-        setHasOptionsMenu(true);
+        setHasOptionsMenu(true)
 
         getShoppingCartData(FirebaseAuth.getInstance().uid, object : FireBaseCallbackShoppingCart {
             override fun onResponse(responseC: ResponseShoppingCart) {
@@ -50,7 +50,7 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
                 val layoutManager = GridLayoutManager(context, 2)
                 binding.recylerOrder.layoutManager = layoutManager
                 adapter = ShoppingCartAdapter(cart, this@FragmentCarrello)
-                showData(cart)
+                showData()
                 binding.recylerOrder.adapter = adapter
                 binding.recylerOrder.setHasFixedSize(true)
                 adapter.notifyDataSetChanged()
@@ -60,7 +60,7 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
         return binding.root
     }
 
-    private fun showData(cart: HashMap<String, Cart>) {
+    private fun showData() {
         adapter.setData(this.cart)
     }
 
@@ -78,7 +78,7 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
 
         binding.constraintQR.setOnClickListener {
 
-            val qrcodecontent = "ciao"
+            val qrcodecontent = this.cart.toString()
             val multiFormatWriter = MultiFormatWriter()
             val bitMatrix = multiFormatWriter.encode(qrcodecontent, BarcodeFormat.QR_CODE, 200, 200)
             val width = bitMatrix.width

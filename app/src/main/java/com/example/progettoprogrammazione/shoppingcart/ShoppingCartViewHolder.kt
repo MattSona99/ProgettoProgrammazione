@@ -15,7 +15,6 @@ class ShoppingCartViewHolder(
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     fun bindCarrello(cart: String) {
-
         binding.nomeProdottoCard.text = cart
 
     }

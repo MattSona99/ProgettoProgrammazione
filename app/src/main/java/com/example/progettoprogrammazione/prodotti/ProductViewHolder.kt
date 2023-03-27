@@ -26,48 +26,9 @@ class ProductViewHolder(
     fun bindProdotti(prodotto: Product) {
 
         prodottoBinding.nomeProdottoCard.text = prodotto.nomeP
-
         prodottoBinding.btncard.setOnClickListener { clickListener.onClickProduct(prodotto) }
 
     }
-
-    /*      PRIMO PROTOTIPO
-
-        fun createShoppingCart(prodotto: Product, quantita: Int){
-
-            prodottoBinding.cartQuantity.isVisible=false
-
-            prodottoBinding.gotoCart.setOnClickListener {
-                //CAMBIA VISIBILITA' BOTTONE E STARTA ACTIVITY/FRAG CARRELLO
-                prodottoBinding.cartBegin.isVisible=false
-                //SECONDO LAYOUT VISIBILE
-                prodottoBinding.cartQuantity.isVisible=true
-
-                var quantity=quantita+1
-                val prezzoSingle=prodotto.prezzoP!!.toFloat()
-
-                val shoppingCart=
-                    Cart(prodotto.nomeP.toString(),
-                        quantity,
-                        prezzoSingle,
-                        prodotto.idP.toString())
-
-                prodottoBinding.cartNumber.text= shoppingCart.quantity.toString()
-
-                prodottoBinding.btnAdd.setOnClickListener {
-                    quantity++;
-                }
-                prodottoBinding.btnRemove.setOnClickListener {
-                    quantity--;
-                }
-
-                val Prezzotot=prodotto.prezzoP!!.toFloat() * quantity.toFloat()
-
-            }
-
-        }
-
-*/
 
     fun createShoppingCart(prodotto: Product) {
         prodottoBinding.cartQuantity.isVisible = false
