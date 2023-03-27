@@ -122,6 +122,7 @@ class FragmentCreaRist : Fragment(), UserUtils, RestaurantUtils, ImgUtils {
 
         binding.ConstraintCreaRist.setOnClickListener {
             if (this::imageUri.isInitialized) {
+                //prima riga???
                 binding.nomeristoranteNewR.text.toString()
                 val nomeR = binding.nomeristoranteNewR.text.toString()
                 val descrizioneR = binding.descrizioneNewR.text.toString()
@@ -131,7 +132,7 @@ class FragmentCreaRist : Fragment(), UserUtils, RestaurantUtils, ImgUtils {
                 val telefonoR = binding.telefonoNewR.text.toString()
                 val tipoCiboR = binding.tipociboNewR.text.toString()
                 val veganR = binding.veganNewR
-                fileName = uploadImage(imageUri)
+                fileName = uploadImage(imageUri, "Restaurants")
 
                 if (nomeR.length > 35) {
                     binding.nomeristoranteNewR.error =

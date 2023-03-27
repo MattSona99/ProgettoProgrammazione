@@ -115,7 +115,7 @@ class FragmentModificaRist : Fragment(), ImgUtils {
             val newtipocibo = binding.newTipocibo.text.toString()
             val newvegan = binding.newVegan
             if (imageUri != null) {
-                uploadImage(imageUri!!)
+                fileName = uploadImage(imageUri!!, "Restaurants")
                 newimg = "Restaurants-images/" + fileName
             }
 

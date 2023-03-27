@@ -43,7 +43,7 @@ class FragmentProfilo : Fragment(), UserUtils, ImgUtils {
                     builder.setMessage("Sei sicuro di voler caricare questa immagine?")
                     builder.setPositiveButton("Sì") { dialog, _ ->
                         if (imageUri != null) {
-                            fileName = uploadImage(imageUri)
+                            fileName = uploadImage(imageUri, "Users")
                             newimg = "Users-images/" + fileName
                             val childUpdates: HashMap<String, Any> = hashMapOf()
                             childUpdates["Uri"] = newimg!!

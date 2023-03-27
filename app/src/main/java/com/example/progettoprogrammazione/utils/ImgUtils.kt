@@ -7,11 +7,9 @@ import java.util.*
 interface ImgUtils {
     fun selectImageFromGallery()
 
-    fun uploadImage(imageUri: Uri): String {
+    fun uploadImage(imageUri: Uri, tipo: String): String {
         val fileName = UUID.randomUUID().toString() + ".jpg"
-
-        val refStorage =
-            FirebaseStorage.getInstance().getReference("Users-images/").child(fileName)
+        val refStorage = FirebaseStorage.getInstance().getReference("$tipo-images/").child(fileName)
 
         refStorage.putFile(imageUri)
             .addOnSuccessListener { taskSnapshot ->
@@ -21,7 +19,7 @@ interface ImgUtils {
             }
 
             .addOnFailureListener { e ->
-                print(e.message)
+                print("Immagine non caricata nel database")
             }
         return fileName
     }
