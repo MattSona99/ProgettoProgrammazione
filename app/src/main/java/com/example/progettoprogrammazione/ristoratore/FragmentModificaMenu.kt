@@ -194,8 +194,6 @@ class FragmentModificaMenu : Fragment(), ProductClickListener, UserUtils, Produc
         adapter.setData(arrayList)
     }
 
-
-
     private fun showDialog(add: String, restName: String?) {
         val inflater = LayoutInflater.from(context)
         val v = inflater.inflate(R.layout.fragment_add_to_menu, null)
