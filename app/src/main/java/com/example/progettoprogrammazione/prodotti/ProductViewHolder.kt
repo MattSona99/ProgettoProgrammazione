@@ -5,18 +5,15 @@ import android.widget.SeekBar
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.databinding.ProductCardBinding
-import com.example.progettoprogrammazione.databinding.ProductCardModificaEliminaBinding
-import com.example.progettoprogrammazione.firebase.FireBaseCallbackShoppingCart
 import com.example.progettoprogrammazione.models.Cart
 import com.example.progettoprogrammazione.models.Product
-import com.example.progettoprogrammazione.utils.ResponseShoppingCart
 import com.example.progettoprogrammazione.utils.ShoppingCartUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class ProductViewHolder(
     private val prodottoBinding: ProductCardBinding,
-    private val clickListener: ProductClickListener
+    private val clickListener: ProductClickListener,
 
 ) : RecyclerView.ViewHolder(prodottoBinding.root), ShoppingCartUtils {
 
@@ -30,7 +27,7 @@ class ProductViewHolder(
 
     }
 
-    fun createShoppingCart(prodotto: Product) {
+    fun createShoppingCart(prodotto: Product, context: Context) {
         prodottoBinding.cartQuantity.isVisible = false
 
         prodottoBinding.seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
@@ -48,17 +45,15 @@ class ProductViewHolder(
 
         prodottoBinding.addProduct.setOnClickListener {
             val quantity = prodottoBinding.quantity.text.toString().toInt()
-
             val prezzoTot = prodotto.prezzoP!!.toFloat() * quantity
-
             val shoppingCart =
                 Cart(
                     prodotto.nomeP,
                     quantity,
                     prezzoTot,
-                    prodotto.idP
+                    prodotto.idP,
                 )
-            addToShoppingCart(shoppingCart, quantity, FirebaseAuth.getInstance().uid)
+            addToShoppingCart(shoppingCart, quantity, FirebaseAuth.getInstance().uid, context)
 
             /*prodottoBinding.btnRemove.setOnClickListener {
                 removequantityShoppingCart(

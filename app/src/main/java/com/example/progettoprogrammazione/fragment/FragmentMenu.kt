@@ -160,7 +160,7 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils, UserUtils, 
     ) {
         val layoutManager = GridLayoutManager(context, 2)
         recyclerView.layoutManager = layoutManager
-        adapter = ProductAdapter(prodotti, this@FragmentMenu)
+        adapter = ProductAdapter(prodotti, this@FragmentMenu, requireContext())
         showData(prodotti)
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)

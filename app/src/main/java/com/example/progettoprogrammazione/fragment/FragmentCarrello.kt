@@ -11,12 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.databinding.ShoppingCartBinding
+import com.example.progettoprogrammazione.carrello.CartAdapter
+import com.example.progettoprogrammazione.databinding.FragmentoCarrelloBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackShoppingCart
 import com.example.progettoprogrammazione.models.Cart
 import com.example.progettoprogrammazione.models.Product
+import com.example.progettoprogrammazione.prodotti.ProductAdapter
 import com.example.progettoprogrammazione.prodotti.ProductClickListener
-import com.example.progettoprogrammazione.shoppingcart.ShoppingCartAdapter
 import com.example.progettoprogrammazione.utils.ProductUtils
 import com.example.progettoprogrammazione.utils.ResponseShoppingCart
 import com.example.progettoprogrammazione.utils.ShoppingCartUtils
@@ -30,27 +31,35 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    private lateinit var binding: ShoppingCartBinding
+    private lateinit var binding: FragmentoCarrelloBinding
 
-    private lateinit var cart: HashMap<String, Cart>
-    private lateinit var adapter: ShoppingCartAdapter
+    private var cart = arrayListOf<Cart>()
     private var prodotti = arrayListOf<Product>()
+    private lateinit var adapter: CartAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = ShoppingCartBinding.inflate(layoutInflater)
+        binding = FragmentoCarrelloBinding.inflate(layoutInflater)
         setHasOptionsMenu(true)
 
         getShoppingCartData(FirebaseAuth.getInstance().uid, object : FireBaseCallbackShoppingCart {
             override fun onResponse(responseC: ResponseShoppingCart) {
                 cart = responseC.carrello
+                var totale : Float? = 0f
+
+                for(c in cart){
+                    totale = totale?.plus(c.totPrice!!)
+                }
+
+                binding.totaleCarrello.text = totale.toString() + " €"
+
                 val layoutManager = GridLayoutManager(context, 2)
                 binding.recylerOrder.layoutManager = layoutManager
-                adapter = ShoppingCartAdapter(cart, this@FragmentCarrello)
-                showData()
+                adapter = CartAdapter(cart, requireContext())
+                adapter.setData(cart)
                 binding.recylerOrder.adapter = adapter
                 binding.recylerOrder.setHasFixedSize(true)
                 adapter.notifyDataSetChanged()
@@ -59,11 +68,6 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
 
         return binding.root
     }
-
-    private fun showData() {
-        adapter.setData(this.cart)
-    }
-
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         val menuItem = menu.findItem(R.id.ic_cart)

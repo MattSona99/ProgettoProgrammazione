@@ -139,7 +139,7 @@
         android:id="@+id/fragmentCarrello_R"
         android:name="com.example.progettoprogrammazione.fragment.FragmentCarrello"
         android:label="Carrello"
-        tools:layout="@layout/shopping_cart">
+        tools:layout="@layout/fragmento_carrello">
         <action
             android:id="@+id/CarrelloToQR_R"
             app:destination="@id/fragmentQR_R" />

@@ -1,5 +1,6 @@
 package com.example.progettoprogrammazione.prodotti
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,7 +10,8 @@ import com.example.progettoprogrammazione.models.Restaurant
 
 class ProductAdapter(
     private var prodotti: ArrayList<Product>,
-    private val clickListener: ProductClickListener
+    private val clickListener: ProductClickListener,
+    private val context : Context
 ) :
     RecyclerView.Adapter<ProductViewHolder>() {
 
@@ -26,7 +28,7 @@ class ProductAdapter(
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         holder.bindProdotti(prodotti[position])
-        holder.createShoppingCart(prodotti[position])
+        holder.createShoppingCart(prodotti[position], context)
 
     }
     override fun getItemCount(): Int {
