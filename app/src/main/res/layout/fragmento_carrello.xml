@@ -60,6 +60,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
+                    android:id="@+id/totale_carrello"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"

@@ -7,7 +7,7 @@ class Cart(
     var pName: String?,
     var quantity: Int? = 0,
     var totPrice: Float? = 0f,
-    var uidOrder: String?
+    var pID: String?
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -20,7 +20,7 @@ class Cart(
         parcel.writeString(pName)
         parcel.writeInt(quantity!!)
         parcel.writeFloat(totPrice!!)
-        parcel.writeString(uidOrder)
+        parcel.writeString(pID)
 
     }
 

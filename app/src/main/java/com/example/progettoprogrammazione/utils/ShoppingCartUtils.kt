@@ -27,13 +27,13 @@ interface ShoppingCartUtils {
                     for (prod: DataSnapshot in snapshot.children) {
                         val carrello =
                             Cart(
-                                prod.child("pName").value.toString(),
+                                prod.child("pname").value.toString(),
                                 prod.child("quantity").value.toString().toInt(),
                                 prod.child("totPrice").value.toString().toFloat(),
-                                prod.child("idProd").value.toString()
+                                prod.child("pid").value.toString()
                             )
 
-                        response.carrello[prod.child("idP").toString()] = carrello
+                        response.carrello.add(carrello)
                     }
                     callBack.onResponse(response)
                 }
@@ -49,8 +49,9 @@ interface ShoppingCartUtils {
             })
     }
 
-    fun addToShoppingCart(cart: Cart, quantita: Int, idU: String?) {
+    fun addToShoppingCart(cart: Cart, quantita: Int, idU: String?, context: Context?) {
         firebaseDatabase.getReference("Utenti/$idU/Carrello/${cart.pName}").setValue(cart)
+        Toast.makeText(context, "Prodotto aggiunto con successo al carrello.", Toast.LENGTH_LONG).show()
     }
 
     fun removeShoppingCart(cart: Cart, idU: String?) {
