@@ -57,7 +57,6 @@ interface ShoppingCartUtils {
     fun removeShoppingCart(cart: Cart, idU: String?) {
         firebaseDatabase.getReference("Utenti/$idU/Carrello")
             .child("${cart.pName}").removeValue()
-
     }
 
 }

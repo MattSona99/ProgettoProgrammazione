@@ -29,7 +29,7 @@ class RestaurantAdapter(
     }
 
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
-        holder.bindRestaurants(restaurant[position])
+        holder.bindRestaurants(this.restaurantFiltered[position])
     }
 
     override fun getItemCount(): Int {
