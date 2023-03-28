@@ -113,7 +113,6 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
 
         adapter = RestaurantAdapter(ristoranti, this@FragmentRistoranti)
         adapter.customFilter().filter(tipo)
-        adapter.setData(restArrayList)
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
         adapter.notifyDataSetChanged()

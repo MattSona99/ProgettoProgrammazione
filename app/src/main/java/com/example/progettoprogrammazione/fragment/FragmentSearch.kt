@@ -53,7 +53,6 @@ class FragmentSearch : Fragment(), RestaurantClickListener, RestaurantUtils {
                 adapter = RestaurantAdapter(restArrayList, this@FragmentSearch)
                 binding.recycleViewSearch.adapter = adapter
                 binding.recycleViewSearch.setHasFixedSize(true)
-                showData()
                 binding.recycleViewSearch.isVisible = false
                 adapter.notifyDataSetChanged()
             }
@@ -89,7 +88,4 @@ class FragmentSearch : Fragment(), RestaurantClickListener, RestaurantUtils {
 
     }
 
-    private fun showData() {
-        adapter.setData(restArrayList)
-    }
 }

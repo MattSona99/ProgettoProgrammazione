@@ -61,7 +61,6 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
             adapter = RestaurantAdapter(restArrayList, this)
             binding.recycleViewRist.adapter = adapter
             binding.recycleViewRist.setHasFixedSize(true)
-            showData()
             adapter.notifyDataSetChanged()
 
         }
@@ -78,7 +77,6 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
                     adapter = RestaurantAdapter(restArrayList, this@FragmentGestione)
                     binding.recycleViewRist.adapter = adapter
                     binding.recycleViewRist.setHasFixedSize(true)
-                    showData()
                     adapter.notifyDataSetChanged()
                     swipeRefreshLayout.isRefreshing = false
                 }
@@ -122,8 +120,5 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
 
     }
 
-    private fun showData() {
-        adapter.setData(restArrayList)
-    }
 
 }

@@ -14,13 +14,7 @@ class RestaurantAdapter(
 ) :
     RecyclerView.Adapter<RestaurantViewHolder>(), Filterable {
 
-    private var restaurantFiltered: ArrayList<Restaurant> = arrayListOf()
-
-    fun setData(restaurant: ArrayList<Restaurant>) {
-        this.restaurant = restaurant
-        this.restaurantFiltered = restaurant
-        notifyDataSetChanged()
-    }
+    private var restaurantFiltered: ArrayList<Restaurant> = restaurant
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -29,11 +23,11 @@ class RestaurantAdapter(
     }
 
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
-        holder.bindRestaurants(this.restaurantFiltered[position])
+        holder.bindRestaurants(restaurantFiltered[position])
     }
 
     override fun getItemCount(): Int {
-        return restaurant.size
+        return restaurantFiltered.size
     }
 
     override fun getFilter(): Filter {
@@ -59,7 +53,7 @@ class RestaurantAdapter(
             }
 
             override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
-                restaurant = p1!!.values as ArrayList<Restaurant>
+                restaurantFiltered = p1!!.values as ArrayList<Restaurant>
                 notifyDataSetChanged()
             }
         }
@@ -101,7 +95,7 @@ class RestaurantAdapter(
             }
 
             override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
-                restaurant = p1!!.values as ArrayList<Restaurant>
+                restaurantFiltered = p1!!.values as ArrayList<Restaurant>
                 notifyDataSetChanged()
             }
 
