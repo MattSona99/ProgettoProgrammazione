@@ -80,7 +80,7 @@ class FragmentModificaMenu : Fragment(), ProductClickListener, UserUtils, Produc
         }
 
 
-        bevandeArrayList = args?.getParcelableArrayList<Product>("bevande") as ArrayList<Product>
+        bevandeArrayList = args.getParcelableArrayList<Product>("bevande") as ArrayList<Product>
         antipastiArrayList = args.getParcelableArrayList<Product>("antipasti") as ArrayList<Product>
         primiArrayList = args.getParcelableArrayList<Product>("primi") as ArrayList<Product>
         secondiArrayList = args.getParcelableArrayList<Product>("secondi") as ArrayList<Product>
@@ -112,37 +112,37 @@ class FragmentModificaMenu : Fragment(), ProductClickListener, UserUtils, Produc
 
         binding.btnBevande.setOnClickListener {
             invisible()
-            bindrecyclerviews(bevandeArrayList,  binding.recycleViewBevande, restaurantID, "Bevande")
+            verticalrecylerview(bevandeArrayList,  binding.recycleViewBevande, restaurantID, "Bevande")
             binding.bevandeMenu.isVisible = true
         }
 
         binding.btnAntipasti.setOnClickListener {
             invisible()
-            bindrecyclerviews(antipastiArrayList, binding.recycleViewAntipasti, restaurantID,"Antipasti")
+            verticalrecylerview(antipastiArrayList, binding.recycleViewAntipasti, restaurantID,"Antipasti")
             binding.antipastiMenu.isVisible = true
         }
 
         binding.btnPrimi.setOnClickListener {
             invisible()
-            bindrecyclerviews(primiArrayList, binding.recycleViewPrimi, restaurantID,"Primi")
+            verticalrecylerview(primiArrayList, binding.recycleViewPrimi, restaurantID,"Primi")
             binding.primiMenu.isVisible = true
         }
 
         binding.btnSecondi.setOnClickListener {
             invisible()
-            bindrecyclerviews(secondiArrayList, binding.recycleViewSecondi, restaurantID,"Secondi")
+            verticalrecylerview(secondiArrayList, binding.recycleViewSecondi, restaurantID,"Secondi")
             binding.secondiMenu.isVisible = true
         }
 
         binding.btnContorni.setOnClickListener {
             invisible()
-            bindrecyclerviews(contorniArrayList, binding.recycleViewContorni, restaurantID,"Contorni")
+            verticalrecylerview(contorniArrayList, binding.recycleViewContorni, restaurantID,"Contorni")
             binding.contorniMenu.isVisible = true
         }
 
         binding.btnDolci.setOnClickListener {
             invisible()
-            bindrecyclerviews(dolciArrayList, binding.recycleViewDolci, restaurantID,"Dolci")
+            verticalrecylerview(dolciArrayList, binding.recycleViewDolci, restaurantID,"Dolci")
             binding.dolciMenu.isVisible = true
         }
 
@@ -167,8 +167,8 @@ class FragmentModificaMenu : Fragment(), ProductClickListener, UserUtils, Produc
     }
 
     private fun verticalrecylerview(
-        recyclerView: RecyclerView,
         prodotti: ArrayList<Product>,
+        recyclerView: RecyclerView,
         restID: String,
         tipo: String
     ) {
@@ -179,15 +179,6 @@ class FragmentModificaMenu : Fragment(), ProductClickListener, UserUtils, Produc
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
         adapter.notifyDataSetChanged()
-    }
-
-    private fun bindrecyclerviews(
-        prodotti: ArrayList<Product>,
-        recyclerView: RecyclerView,
-        restID: String,
-        tipo: String
-    ) {
-        verticalrecylerview(recyclerView, prodotti, restID, tipo)
     }
 
     private fun showData(arrayList: ArrayList<Product>) {

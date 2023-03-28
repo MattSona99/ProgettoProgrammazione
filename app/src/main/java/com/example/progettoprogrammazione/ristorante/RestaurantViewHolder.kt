@@ -27,6 +27,7 @@ class RestaurantViewHolder(
 ) : RecyclerView.ViewHolder(restaurantBinding.root), RestaurantUtils {
 
     fun bindRestaurants(restaurant: Restaurant) {
+
         val imageName = restaurant.imageR
         val storageRef = FirebaseStorage.getInstance().reference.child("$imageName")
         val localfile = File.createTempFile("tempImage", "jpg")
@@ -34,13 +35,14 @@ class RestaurantViewHolder(
             val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
             restaurantBinding.copertina.setImageBitmap(bitmap)
         }
-
+/*  SECONDO ME è INUTILE
         restaurantBinding.copertina.setImageResource(
             getImageId(
                 restaurantBinding.root.context,
                 restaurant.imageR!!
             )
         )
+*/
         restaurantBinding.nomeRistorante.text =
             restaurant.nomeR!!.substring(0, 1).uppercase() + restaurant.nomeR!!.substring(1)
         if (restaurant.descrizioneR?.length!! > 40) {
@@ -60,7 +62,7 @@ class RestaurantViewHolder(
 
     private fun getImageId(context: Context, imageName: String): Int {
         return context.resources
-            .getIdentifier("drawable/$imageName", null, context.packageName)
+            .getIdentifier("Restaurants-Utils/$imageName", null, context.packageName)
     }
 
 

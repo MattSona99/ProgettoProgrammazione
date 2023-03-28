@@ -36,7 +36,6 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
-    private lateinit var resturantDataViewModel: RestaurantViewModel
     private lateinit var restArrayList: ArrayList<Restaurant>
     private lateinit var userlvl: String
 
@@ -59,19 +58,14 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
         getRestaurantData(object : FireBaseCallbackRestaurant {
             override fun onResponse(responseR: ResponseRistorante) {
                 restArrayList = responseR.ristoranti
-                bindrecyclerviews(restArrayList, "rating", binding.recycleViewTopRated)
+                horizontalrecylerview(restArrayList, "rating", binding.recycleViewTopRated)
             }
         }, context)
 
         //NON TOCCARE
-        binding.scrollviewrist.viewTreeObserver.addOnScrollChangedListener(object :
-            ViewTreeObserver.OnScrollChangedListener {
-            override fun onScrollChanged() {
-                if (binding.scrollviewrist.scrollY == 0) {
-                    swipeRefreshLayout.isEnabled = true
-                } else swipeRefreshLayout.isEnabled = false
-            }
-        })
+        binding.scrollviewrist.viewTreeObserver.addOnScrollChangedListener {
+            swipeRefreshLayout.isEnabled = binding.scrollviewrist.scrollY == 0
+        }
 
         swipeRefreshLayout = binding.swipeRefreshRistoranti
         swipeRefreshLayout.setOnRefreshListener {
@@ -80,7 +74,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
             getRestaurantData(object : FireBaseCallbackRestaurant {
                 override fun onResponse(responseR: ResponseRistorante) {
                     restArrayList = responseR.ristoranti
-                    bindrecyclerviews(restArrayList, "rating", binding.recycleViewTopRated)
+                    horizontalrecylerview(restArrayList, "rating", binding.recycleViewTopRated)
                     binding.tutte.isGone = true
                     binding.radioGroup.clearCheck()
                 }
@@ -110,53 +104,22 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
         bundle.putParcelableArrayList("restArrayList", restArrayList)
 
         view?.findNavController()?.navigate(R.id.RistorantiToDetail, bundle)
-
     }
 
     private fun horizontalrecylerview(
-        recyclerView: RecyclerView,
-        ristoranti: ArrayList<Restaurant>,
-        tipo: String
-    ) {
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.layoutManager = layoutManager
-        adapter = RestaurantAdapter(ristoranti, this@FragmentRistoranti)
-        showData()
-        customFilter(adapter, tipo)
-        recyclerView.adapter = adapter
-        recyclerView.setHasFixedSize(true)
-        adapter.notifyDataSetChanged()
-    }
-
-    private fun verticalrecylerview(
-        recyclerView: RecyclerView,
-        ristoranti: ArrayList<Restaurant>,
-        tipo: String
-    ) {
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        recyclerView.layoutManager = layoutManager
-        adapter = RestaurantAdapter(ristoranti, this@FragmentRistoranti)
-        showData()
-        customFilter(adapter, tipo)
-        recyclerView.adapter = adapter
-        recyclerView.setHasFixedSize(true)
-        adapter.notifyDataSetChanged()
-    }
-
-    private fun customFilter(adapter: RestaurantAdapter, tipo: String) {
-        adapter.customFilter().filter(tipo)
-    }
-
-    private fun bindrecyclerviews(
         ristoranti: ArrayList<Restaurant>,
         tipo: String,
         recyclerView: RecyclerView
     ) {
-        horizontalrecylerview(recyclerView, ristoranti, tipo)
-    }
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = layoutManager
 
-    private fun showData() {
+        adapter = RestaurantAdapter(ristoranti, this@FragmentRistoranti)
+        adapter.customFilter().filter(tipo)
         adapter.setData(restArrayList)
+        recyclerView.adapter = adapter
+        recyclerView.setHasFixedSize(true)
+        adapter.notifyDataSetChanged()
     }
 
     private fun invisible() {
@@ -176,42 +139,42 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
 
         binding.btnPizza.setOnClickListener {
             invisible()
-            bindrecyclerviews(restArrayList, "pizza", binding.recycleViewPizza)
+            horizontalrecylerview(restArrayList, "pizza", binding.recycleViewPizza)
             binding.pizzerie.isVisible = true
         }
         binding.btnBurger.setOnClickListener {
             invisible()
-            bindrecyclerviews(restArrayList, "burger", binding.recycleViewBurger)
+            horizontalrecylerview(restArrayList, "burger", binding.recycleViewBurger)
             binding.pub.isVisible = true
         }
         binding.btnIta.setOnClickListener {
             invisible()
-            bindrecyclerviews(restArrayList, "italiano", binding.recycleViewIta)
+            horizontalrecylerview(restArrayList, "italiano", binding.recycleViewIta)
             binding.italiana.isVisible = true
         }
         binding.btnChi.setOnClickListener {
             invisible()
-            bindrecyclerviews(restArrayList, "cinese", binding.recycleViewCin)
+            horizontalrecylerview(restArrayList, "cinese", binding.recycleViewCin)
             binding.cinese.isVisible = true
         }
         binding.btnJap.setOnClickListener {
             invisible()
-            bindrecyclerviews(restArrayList, "giapponese", binding.recycleViewJap)
+            horizontalrecylerview(restArrayList, "giapponese", binding.recycleViewJap)
             binding.giapponese.isVisible = true
         }
         binding.btnInd.setOnClickListener {
             invisible()
-            bindrecyclerviews(restArrayList, "indiano", binding.recycleViewInd)
+            horizontalrecylerview(restArrayList, "indiano", binding.recycleViewInd)
             binding.indiana.isVisible = true
         }
         binding.btnGre.setOnClickListener {
             invisible()
-            bindrecyclerviews(restArrayList, "greco", binding.recycleViewGre)
+            horizontalrecylerview(restArrayList, "greco", binding.recycleViewGre)
             binding.greco.isVisible = true
         }
         binding.btnVeg.setOnClickListener {
             invisible()
-            bindrecyclerviews(restArrayList, "pizza", binding.recycleViewVeg)
+            horizontalrecylerview(restArrayList, "vegan", binding.recycleViewVeg)
             binding.vegano.isVisible = true
         }
     }
