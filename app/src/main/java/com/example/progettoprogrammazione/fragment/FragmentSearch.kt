@@ -9,12 +9,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentSearchBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.models.Restaurant
-import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.ristorante.RestaurantAdapter
 import com.example.progettoprogrammazione.ristorante.RestaurantClickListener
 import com.example.progettoprogrammazione.utils.FiltriUtils
@@ -46,29 +44,23 @@ class FragmentSearch : Fragment(), RestaurantClickListener, RestaurantUtils, Fil
 
         restArrayList = arrayListOf()
 
-        getRestaurantData(object : FireBaseCallbackRestaurant {
-            override fun onResponse(responseR: ResponseRistorante) {
-                restArrayList = responseR.ristoranti
-                val layoutManager = GridLayoutManager(context, 2)
-                binding.recycleViewSearch.layoutManager = layoutManager
-                adapter = RestaurantAdapter(restArrayList, this@FragmentSearch)
-                binding.recycleViewSearch.adapter = adapter
-                binding.recycleViewSearch.setHasFixedSize(true)
-                binding.recycleViewSearch.isVisible = false
-                adapter.notifyDataSetChanged()
-            }
-        }, context)
-
         binding.searchBarRistoranti.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                adapter = RestaurantAdapter(searchFilter(restArrayList, newText), this@FragmentSearch)
-                if(newText!!.isEmpty()){
-                    binding.recycleViewSearch.isVisible = false
-                } else  binding.recycleViewSearch.isVisible = true
+                getRestaurantData(object : FireBaseCallbackRestaurant {
+                    override fun onResponse(responseR: ResponseRistorante) {
+                        restArrayList = responseR.ristoranti
+                        val layoutManager = GridLayoutManager(context, 2)
+                        binding.recycleViewSearch.layoutManager = layoutManager
+                        adapter = RestaurantAdapter(searchFilter(restArrayList, newText), this@FragmentSearch)
+                        binding.recycleViewSearch.adapter = adapter
+                        binding.recycleViewSearch.setHasFixedSize(true)
+                        adapter.notifyDataSetChanged()
+                    }
+                }, context)
                 return false
             }
         })

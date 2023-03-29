@@ -90,7 +90,12 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils, F
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                val layoutManager = GridLayoutManager(context, 2)
+                binding.recycleViewRist.layoutManager = layoutManager
                 adapter = RestaurantAdapter(searchFilter(restArrayList, newText), this@FragmentGestione)
+                binding.recycleViewRist.adapter = adapter
+                binding.recycleViewRist.setHasFixedSize(true)
+                adapter.notifyDataSetChanged()
                 return false
             }
 
