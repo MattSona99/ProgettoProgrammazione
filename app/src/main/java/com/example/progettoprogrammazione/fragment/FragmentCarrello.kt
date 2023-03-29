@@ -56,6 +56,7 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
 
                 binding.totaleCarrello.text = totale.toString() + " €"
 
+
                 val layoutManager = GridLayoutManager(context, 2)
                 binding.recylerOrder.layoutManager = layoutManager
                 adapter = CartAdapter(cart, requireContext())

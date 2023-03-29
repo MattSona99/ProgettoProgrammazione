@@ -82,6 +82,7 @@
     <!-- PRODUCT CARD -->
     <string name="product_name">Nome prodotto</string>
     <string name="add">AGGIUNGI</string>
+    <string name="remove">Rimuovi</string>
 
     <!-- CREA MENU -->
     <string name="inserisci_prodotti">Inserisci i prodotti nel menù</string>
@@ -127,6 +128,7 @@
     <string name="riepilogo">Riepilogo ordine</string>
     <string name="genera">Genera QRCode</string>
     <string name="totale">Totale:</string>
+    <string name="confirm_quantity">Inserisci la quantita</string>
 
     <!-- QR MENU -->
     <string name="qrcode">QRCode</string>
@@ -139,5 +141,7 @@
     <string name="logout">Logout</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="product_quantity">0</string>
 
 </resources>

@@ -24,7 +24,7 @@ class CartAdapter(
     }
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
-        holder.bindCart(carts[position])
+        holder.bindCart(carts[position],context)
 
     }
 
