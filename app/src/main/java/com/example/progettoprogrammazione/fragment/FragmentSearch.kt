@@ -17,12 +17,13 @@ import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.ristorante.RestaurantAdapter
 import com.example.progettoprogrammazione.ristorante.RestaurantClickListener
+import com.example.progettoprogrammazione.utils.FiltriUtils
 import com.example.progettoprogrammazione.utils.ResponseRistorante
 import com.example.progettoprogrammazione.utils.RestaurantUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class FragmentSearch : Fragment(), RestaurantClickListener, RestaurantUtils {
+class FragmentSearch : Fragment(), RestaurantClickListener, RestaurantUtils, FiltriUtils {
 
     private lateinit var binding: FragmentSearchBinding
     private lateinit var adapter: RestaurantAdapter
@@ -53,7 +54,6 @@ class FragmentSearch : Fragment(), RestaurantClickListener, RestaurantUtils {
                 adapter = RestaurantAdapter(restArrayList, this@FragmentSearch)
                 binding.recycleViewSearch.adapter = adapter
                 binding.recycleViewSearch.setHasFixedSize(true)
-                showData()
                 binding.recycleViewSearch.isVisible = false
                 adapter.notifyDataSetChanged()
             }
@@ -65,7 +65,7 @@ class FragmentSearch : Fragment(), RestaurantClickListener, RestaurantUtils {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                adapter.filter.filter(newText)
+                adapter = RestaurantAdapter(searchFilter(restArrayList, newText), this@FragmentSearch)
                 if(newText!!.isEmpty()){
                     binding.recycleViewSearch.isVisible = false
                 } else  binding.recycleViewSearch.isVisible = true
@@ -87,9 +87,5 @@ class FragmentSearch : Fragment(), RestaurantClickListener, RestaurantUtils {
             "3" -> view?.findNavController()?.navigate(R.id.SearchToDetailR, bundle)
         }
 
-    }
-
-    private fun showData() {
-        adapter.setData(restArrayList)
     }
 }
