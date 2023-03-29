@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -18,15 +19,13 @@ import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.ristorante.RestaurantAdapter
 import com.example.progettoprogrammazione.ristorante.RestaurantClickListener
-import com.example.progettoprogrammazione.utils.ResponseRistorante
-import com.example.progettoprogrammazione.utils.ResponseUser
-import com.example.progettoprogrammazione.utils.RestaurantUtils
-import com.example.progettoprogrammazione.utils.UserUtils
+import com.example.progettoprogrammazione.utils.*
+import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 
-class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils, UserUtils {
+class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils, UserUtils, FiltriUtils {
 
     private lateinit var binding: FragmentRistorantiBinding
     private lateinit var adapter: RestaurantAdapter
@@ -56,10 +55,12 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
         getRestaurantData(object : FireBaseCallbackRestaurant {
             override fun onResponse(responseR: ResponseRistorante) {
                 restArrayList = responseR.ristoranti
-                horizontalrecylerview(restArrayList, "rating", binding.recycleViewTopRated)
+
+                horizontalrecylerview(typeFilter(restArrayList, "rating"), binding.recycleViewTopRated)
             }
         }, context)
 
+        //NON TOCCARE
         binding.scrollviewrist.viewTreeObserver.addOnScrollChangedListener {
             swipeRefreshLayout.isEnabled = binding.scrollviewrist.scrollY == 0
         }
@@ -71,7 +72,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
             getRestaurantData(object : FireBaseCallbackRestaurant {
                 override fun onResponse(responseR: ResponseRistorante) {
                     restArrayList = responseR.ristoranti
-                    horizontalrecylerview(restArrayList, "rating", binding.recycleViewTopRated)
+                    horizontalrecylerview(typeFilter(restArrayList, "rating"), binding.recycleViewTopRated)
                     binding.tutte.isGone = true
                     binding.radioGroup.clearCheck()
                 }
@@ -105,14 +106,12 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
 
     private fun horizontalrecylerview(
         ristoranti: ArrayList<Restaurant>,
-        tipo: String,
         recyclerView: RecyclerView
     ) {
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.layoutManager = layoutManager
 
         adapter = RestaurantAdapter(ristoranti, this@FragmentRistoranti)
-        adapter.customFilter().filter(tipo)
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
         adapter.notifyDataSetChanged()
@@ -135,42 +134,42 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
 
         binding.btnPizza.setOnClickListener {
             invisible()
-            horizontalrecylerview(restArrayList, "pizza", binding.recycleViewPizza)
+            horizontalrecylerview(typeFilter(restArrayList, "pizza"), binding.recycleViewPizza)
             binding.pizzerie.isVisible = true
         }
         binding.btnBurger.setOnClickListener {
             invisible()
-            horizontalrecylerview(restArrayList, "burger", binding.recycleViewBurger)
+            horizontalrecylerview(typeFilter(restArrayList, "burger"), binding.recycleViewBurger)
             binding.pub.isVisible = true
         }
         binding.btnIta.setOnClickListener {
             invisible()
-            horizontalrecylerview(restArrayList, "italiano", binding.recycleViewIta)
+            horizontalrecylerview(typeFilter(restArrayList, "italiano"), binding.recycleViewIta)
             binding.italiana.isVisible = true
         }
         binding.btnChi.setOnClickListener {
             invisible()
-            horizontalrecylerview(restArrayList, "cinese", binding.recycleViewCin)
+            horizontalrecylerview(typeFilter(restArrayList, "cinese"), binding.recycleViewCin)
             binding.cinese.isVisible = true
         }
         binding.btnJap.setOnClickListener {
             invisible()
-            horizontalrecylerview(restArrayList, "giapponese", binding.recycleViewJap)
+            horizontalrecylerview(typeFilter(restArrayList, "giapponese"), binding.recycleViewJap)
             binding.giapponese.isVisible = true
         }
         binding.btnInd.setOnClickListener {
             invisible()
-            horizontalrecylerview(restArrayList, "indiano", binding.recycleViewInd)
+            horizontalrecylerview(typeFilter(restArrayList, "indiano"), binding.recycleViewInd)
             binding.indiana.isVisible = true
         }
         binding.btnGre.setOnClickListener {
             invisible()
-            horizontalrecylerview(restArrayList, "greco", binding.recycleViewGre)
+            horizontalrecylerview(typeFilter(restArrayList, "greco"), binding.recycleViewGre)
             binding.greco.isVisible = true
         }
         binding.btnVeg.setOnClickListener {
             invisible()
-            horizontalrecylerview(restArrayList, "vegan", binding.recycleViewVeg)
+            horizontalrecylerview(typeFilter(restArrayList, "vegan"), binding.recycleViewVeg)
             binding.vegano.isVisible = true
         }
     }

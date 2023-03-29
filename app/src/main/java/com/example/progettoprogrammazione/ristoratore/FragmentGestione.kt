@@ -17,18 +17,19 @@ import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.ristorante.RestaurantAdapter
 import com.example.progettoprogrammazione.ristorante.RestaurantClickListener
+import com.example.progettoprogrammazione.utils.FiltriUtils
 import com.example.progettoprogrammazione.utils.ResponseRistorante
 import com.example.progettoprogrammazione.utils.RestaurantUtils
 import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
+class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils, FiltriUtils {
 
     private lateinit var binding: FragmentGestioneRistBinding
     private lateinit var adapter: RestaurantAdapter
 
-    private lateinit var user : User
+    private lateinit var user: User
 
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -53,8 +54,8 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
         resturantDataViewModel =
             ViewModelProvider(requireActivity())[RestaurantViewModel::class.java]
         resturantDataViewModel.arrayListRistorantiLiveData.observe(viewLifecycleOwner) {
-            for(restaurant : Restaurant in it) {
-                if(restaurant.proprietarioR == user.Email) restArrayList.add(restaurant)
+            for (restaurant: Restaurant in it) {
+                if (restaurant.proprietarioR == user.Email) restArrayList.add(restaurant)
             }
             val layoutManager = GridLayoutManager(context, 2)
             binding.recycleViewRist.layoutManager = layoutManager
@@ -89,7 +90,12 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                adapter.filter.filter(newText)
+                val layoutManager = GridLayoutManager(context, 2)
+                binding.recycleViewRist.layoutManager = layoutManager
+                adapter = RestaurantAdapter(searchFilter(restArrayList, newText), this@FragmentGestione)
+                binding.recycleViewRist.adapter = adapter
+                binding.recycleViewRist.setHasFixedSize(true)
+                adapter.notifyDataSetChanged()
                 return false
             }
 
@@ -119,6 +125,5 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils {
         view?.findNavController()?.navigate(R.id.GestioneToDetail, bundle)
 
     }
-
 
 }
