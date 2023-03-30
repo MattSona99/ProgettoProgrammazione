@@ -148,17 +148,18 @@
         android:id="@+id/fragmentQR_R"
         android:name="com.example.progettoprogrammazione.fragment.FragmentQR"
         android:label="I tuoi QRCodes"
-        tools:layout="@layout/fragment_qr"/>
+        tools:layout="@layout/fragment_qr" />
 
     <fragment
         android:id="@+id/fragmentModificaMenu"
         android:name="com.example.progettoprogrammazione.ristoratore.FragmentModificaMenu"
-        android:label="FragmentModificaMenu" />
+        android:label="Modifica Menù"
+        tools:layout="@layout/fragment_modifica_menu" />
     <fragment
         android:id="@+id/fragmentSettingsR"
         android:name="com.example.progettoprogrammazione.fragment.FragmentSettings"
         android:label="Impostazioni account"
-        tools:layout="@layout/profile_settings" >
+        tools:layout="@layout/profile_settings">
         <action
             android:id="@+id/SettingsToProfileR"
             app:destination="@id/fragmentProfilo" />

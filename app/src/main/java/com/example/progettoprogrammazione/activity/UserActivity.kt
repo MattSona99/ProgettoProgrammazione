@@ -33,6 +33,7 @@ class UserActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
     private lateinit var navHostFragment: NavHostFragment
+    private lateinit var bundle : Bundle
 
     private lateinit var resturantDataViewModel: RestaurantViewModel
 
@@ -61,8 +62,8 @@ class UserActivity : AppCompatActivity() {
         user = FirebaseAuth.getInstance()
 
         val u = intent.getParcelableExtra("user") as User?
-        val bundleU = Bundle()
-        bundleU.putParcelable("user", u)
+        bundle = Bundle()
+        bundle.putParcelable("user", u)
 
         val r = intent.getParcelableArrayListExtra<Restaurant>("ristoranti") as ArrayList<Restaurant>
 
@@ -75,7 +76,7 @@ class UserActivity : AppCompatActivity() {
                     navController.navigate(R.id.Ristoranti_U)
                 }
                 R.id.ic_profileU -> {
-                    navController.navigate(R.id.Profilo_U, bundleU)
+                    navController.navigate(R.id.Profilo_U, bundle)
                 }
                 R.id.ic_logoutU -> {
                     user.signOut()
@@ -132,7 +133,8 @@ class UserActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.ic_cart -> navController.navigate(R.id.fragmentCarrello_U)
+            R.id.ic_cart -> navController.navigate(R.id.fragmentCarrello_U, bundle)
+            R.id.ic_qrcode -> navController.navigate(R.id.fragmentQR_U, bundle)
         }
         return super.onOptionsItemSelected(item)
     }

@@ -84,6 +84,11 @@
             app:destination="@id/productDetail" />
     </fragment>
     <fragment
+        android:id="@+id/fragmentQR_D"
+        android:name="com.example.progettoprogrammazione.fragment.FragmentQR"
+        android:label="I tuoi QRCodes"
+        tools:layout="@layout/fragment_qr" />
+    <fragment
         android:id="@+id/productDetailD"
         android:name="com.example.progettoprogrammazione.prodotti.ProductDetail"
         android:label="Dettagli prodotto"
@@ -100,12 +105,16 @@
     <fragment
         android:id="@+id/fragmentCarrello_D"
         android:name="com.example.progettoprogrammazione.fragment.FragmentCarrello"
-        android:label="Carrello" />
+        android:label="Carrello"
+        tools:layout="@layout/fragmento_carrello" />
+    <action
+        android:id="@+id/CarrelloToQR_D"
+        app:destination="@id/fragmentQR_D" />
     <fragment
         android:id="@+id/fragmentSettingsR"
         android:name="com.example.progettoprogrammazione.fragment.FragmentSettings"
         android:label="Impostazioni account"
-        tools:layout="@layout/profile_settings" >
+        tools:layout="@layout/profile_settings">
         <action
             android:id="@+id/SettingsToProfileD"
             app:destination="@id/fragmentProfiloD" />

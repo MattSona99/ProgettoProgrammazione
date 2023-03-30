@@ -16,6 +16,7 @@ import com.example.progettoprogrammazione.databinding.FragmentoCarrelloBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackShoppingCart
 import com.example.progettoprogrammazione.models.Cart
 import com.example.progettoprogrammazione.models.Product
+import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.prodotti.ProductAdapter
 import com.example.progettoprogrammazione.prodotti.ProductClickListener
 import com.example.progettoprogrammazione.utils.ProductUtils
@@ -32,6 +33,8 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     private lateinit var binding: FragmentoCarrelloBinding
+    private lateinit var user: User
+
 
     private var cart = arrayListOf<Cart>()
     private var prodotti = arrayListOf<Product>()
@@ -44,6 +47,9 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
     ): View {
         binding = FragmentoCarrelloBinding.inflate(layoutInflater)
         setHasOptionsMenu(true)
+
+        val args = this.arguments
+        user = args?.getParcelable<User>("user") as User
 
         getShoppingCartData(FirebaseAuth.getInstance().uid, object : FireBaseCallbackShoppingCart {
             override fun onResponse(responseC: ResponseShoppingCart) {
@@ -96,7 +102,12 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
             }
             val bundle = Bundle()
             bundle.putParcelable("qrcode", bitmap)
-            view.findNavController().navigate(R.id.CarrelloToQR_R, bundle)
+            when(user.Livello) {
+                "1" -> view.findNavController().navigate(R.id.CarrelloToQR_U, bundle)
+                "2" -> view.findNavController().navigate(R.id.CarrelloToQR_D, bundle)
+                "3" -> view.findNavController().navigate(R.id.CarrelloToQR_R, bundle)
+            }
+
         }
     }
 

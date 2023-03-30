@@ -35,6 +35,7 @@ class RestaurateurActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
     private lateinit var navHostFragment: NavHostFragment
+    private lateinit var bundle: Bundle
 
     private var pressedTime = 0L
 
@@ -48,7 +49,7 @@ class RestaurateurActivity : AppCompatActivity() {
         user = FirebaseAuth.getInstance()
 
         val u = intent.getParcelableExtra("user") as User?
-        val bundle = Bundle()
+        bundle = Bundle()
         bundle.putParcelable("user", u)
 
         val r =
@@ -136,8 +137,8 @@ class RestaurateurActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.ic_cart -> navController.navigate(R.id.fragmentCarrello_R)
-            R.id.ic_qrcode -> navController.navigate(R.id.fragmentQR_R)
+            R.id.ic_cart -> navController.navigate(R.id.fragmentCarrello_R, bundle)
+            R.id.ic_qrcode -> navController.navigate(R.id.fragmentQR_R, bundle)
         }
         return super.onOptionsItemSelected(item)
     }

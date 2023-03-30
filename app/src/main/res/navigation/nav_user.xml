@@ -65,8 +65,7 @@
         android:id="@+id/fragmentUpgrade"
         android:name="com.example.progettoprogrammazione.utente.FragmentUpgrade"
         android:label="Upgrade profilo"
-        tools:layout="@layout/fragment_upgrade" >
-    </fragment>
+        tools:layout="@layout/fragment_upgrade"></fragment>
     <fragment
         android:id="@+id/restaurantDetail"
         android:name="com.example.progettoprogrammazione.ristorante.RestaurantDetail"
@@ -93,6 +92,11 @@
             app:destination="@id/productDetail" />
     </fragment>
     <fragment
+        android:id="@+id/fragmentQR_U"
+        android:name="com.example.progettoprogrammazione.fragment.FragmentQR"
+        android:label="I tuoi QRCodes"
+        tools:layout="@layout/fragment_qr" />
+    <fragment
         android:id="@+id/productDetail"
         android:name="com.example.progettoprogrammazione.prodotti.ProductDetail"
         android:label="Dettagli prodotto"
@@ -113,7 +117,11 @@
     <fragment
         android:id="@+id/fragmentCarrello_U"
         android:name="com.example.progettoprogrammazione.fragment.FragmentCarrello"
-        android:label="Carrello" />
+        android:label="Carrello"
+        tools:layout="@layout/fragmento_carrello" />
+    <action
+        android:id="@+id/CarrelloToQR_U"
+        app:destination="@id/fragmentQR_U" />
     <fragment
         android:id="@+id/fragmentSettingsU"
         android:name="com.example.progettoprogrammazione.fragment.FragmentSettings"
