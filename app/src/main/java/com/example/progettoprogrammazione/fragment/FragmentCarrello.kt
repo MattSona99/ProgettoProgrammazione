@@ -12,12 +12,11 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.carrello.CartAdapter
-import com.example.progettoprogrammazione.databinding.FragmentoCarrelloBinding
+import com.example.progettoprogrammazione.databinding.FragmentCarrelloBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackShoppingCart
 import com.example.progettoprogrammazione.models.Cart
 import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.models.User
-import com.example.progettoprogrammazione.prodotti.ProductAdapter
 import com.example.progettoprogrammazione.prodotti.ProductClickListener
 import com.example.progettoprogrammazione.utils.ProductUtils
 import com.example.progettoprogrammazione.utils.ResponseShoppingCart
@@ -32,7 +31,7 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    private lateinit var binding: FragmentoCarrelloBinding
+    private lateinit var binding: FragmentCarrelloBinding
     private lateinit var user: User
 
 
@@ -45,7 +44,7 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentoCarrelloBinding.inflate(layoutInflater)
+        binding = FragmentCarrelloBinding.inflate(layoutInflater)
         setHasOptionsMenu(true)
 
         val args = this.arguments
@@ -54,9 +53,9 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
         getShoppingCartData(FirebaseAuth.getInstance().uid, object : FireBaseCallbackShoppingCart {
             override fun onResponse(responseC: ResponseShoppingCart) {
                 cart = responseC.carrello
-                var totale : Float? = 0f
+                var totale: Float? = 0f
 
-                for(c in cart){
+                for (c in cart) {
                     totale = totale?.plus(c.totPrice!!)
                 }
 
@@ -102,7 +101,7 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
             }
             val bundle = Bundle()
             bundle.putParcelable("qrcode", bitmap)
-            when(user.Livello) {
+            when (user.Livello) {
                 "1" -> view.findNavController().navigate(R.id.CarrelloToQR_U, bundle)
                 "2" -> view.findNavController().navigate(R.id.CarrelloToQR_D, bundle)
                 "3" -> view.findNavController().navigate(R.id.CarrelloToQR_R, bundle)

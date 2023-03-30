@@ -5,8 +5,7 @@
     android:id="@+id/prodCardLayout"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:orientation="horizontal"
-    app:layout_constraintVertical_bias="0.20">
+    android:orientation="horizontal">
 
     <ImageButton
         android:id="@+id/btncard"
@@ -97,7 +96,7 @@
         <LinearLayout
             android:id="@+id/cartQuantity"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:padding="5dp">
 

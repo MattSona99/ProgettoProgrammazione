@@ -17,7 +17,6 @@ data class Restaurant(
     var ratingR: Double,
     var idR: String?,
     var proprietarioR: String?,
-//    var menus: List<Menu?>?
 
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
@@ -33,7 +32,6 @@ data class Restaurant(
         parcel.readDouble(),
         parcel.readString(),
         parcel.readString(),
-//        parcel.createTypedArrayList(Menu)
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -49,7 +47,6 @@ data class Restaurant(
         parcel.writeDouble(ratingR)
         parcel.writeString(idR)
         parcel.writeString(proprietarioR)
-//        parcel.writeTypedList(menus)
     }
 
     override fun describeContents(): Int {
@@ -68,38 +65,38 @@ data class Restaurant(
 }
 
 data class Menu(
-        val name: String?,
-        val price: Float,
-        val uri: String?,
-        var totInCart: Int
-    ) : Parcelable {
-        constructor(parcel: Parcel) : this(
-            parcel.readString(),
-            parcel.readFloat(),
-            parcel.readString(),
-            parcel.readInt()
-        ) {
+    val name: String?,
+    val price: Float,
+    val uri: String?,
+    var totInCart: Int
+) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readFloat(),
+        parcel.readString(),
+        parcel.readInt()
+    ) {
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(name)
+        parcel.writeFloat(price)
+        parcel.writeString(uri)
+        parcel.writeInt(totInCart)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Menu> {
+        override fun createFromParcel(parcel: Parcel): Menu {
+            return Menu(parcel)
         }
 
-        override fun writeToParcel(parcel: Parcel, flags: Int) {
-            parcel.writeString(name)
-            parcel.writeFloat(price)
-            parcel.writeString(uri)
-            parcel.writeInt(totInCart)
-        }
-
-        override fun describeContents(): Int {
-            return 0
-        }
-
-        companion object CREATOR : Parcelable.Creator<Menu> {
-            override fun createFromParcel(parcel: Parcel): Menu {
-                return Menu(parcel)
-            }
-
-            override fun newArray(size: Int): Array<Menu?> {
-                return arrayOfNulls(size)
-            }
+        override fun newArray(size: Int): Array<Menu?> {
+            return arrayOfNulls(size)
         }
     }
+}
 

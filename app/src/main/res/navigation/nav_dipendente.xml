@@ -106,7 +106,7 @@
         android:id="@+id/fragmentCarrello_D"
         android:name="com.example.progettoprogrammazione.fragment.FragmentCarrello"
         android:label="Carrello"
-        tools:layout="@layout/fragmento_carrello" />
+        tools:layout="@layout/fragment_carrello" />
     <action
         android:id="@+id/CarrelloToQR_D"
         app:destination="@id/fragmentQR_D" />
