@@ -20,8 +20,11 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityEmployeeBinding
+import com.example.progettoprogrammazione.fragment.FragmentCarrello
+import com.example.progettoprogrammazione.fragment.FragmentMenu
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
+import com.example.progettoprogrammazione.viewmodels.CartViewModel
 import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 
@@ -35,6 +38,8 @@ class EmployeeActivity : AppCompatActivity() {
     private lateinit var navHostFragment: NavHostFragment
 
     private lateinit var resturantDataViewModel: RestaurantViewModel
+    private lateinit var cartViewModel: CartViewModel
+
     private lateinit var bundle : Bundle
 
     private var pressedTime = 0L
@@ -57,6 +62,9 @@ class EmployeeActivity : AppCompatActivity() {
 
         resturantDataViewModel = ViewModelProvider(this)[RestaurantViewModel::class.java]
         resturantDataViewModel.arrayListRistorantiLiveData.postValue(r)
+
+        cartViewModel = ViewModelProvider(this)[CartViewModel::class.java]
+
 
         val appBarConfiguration = AppBarConfiguration
             .Builder(

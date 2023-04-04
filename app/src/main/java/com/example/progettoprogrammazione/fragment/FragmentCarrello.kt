@@ -9,18 +9,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.carrello.CartAdapter
 import com.example.progettoprogrammazione.databinding.FragmentCarrelloBinding
-import com.example.progettoprogrammazione.firebase.FireBaseCallbackShoppingCart
-import com.example.progettoprogrammazione.models.Cart
+import com.example.progettoprogrammazione.models.CartProduct
 import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.prodotti.ProductClickListener
 import com.example.progettoprogrammazione.utils.ProductUtils
-import com.example.progettoprogrammazione.utils.ResponseShoppingCart
 import com.example.progettoprogrammazione.utils.ShoppingCartUtils
+import com.example.progettoprogrammazione.viewmodels.CartViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.zxing.BarcodeFormat
@@ -34,8 +34,10 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
     private lateinit var binding: FragmentCarrelloBinding
     private lateinit var user: User
 
+    private val cartViewModel : CartViewModel by navGraphViewModels(R.id.nav_restaurateur)
 
-    private var cart = arrayListOf<Cart>()
+
+    private var cartProduct = arrayListOf<CartProduct>()
     private var prodotti = arrayListOf<Product>()
     private lateinit var adapter: CartAdapter
 
@@ -49,28 +51,6 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
 
         val args = this.arguments
         user = args?.getParcelable<User>("user") as User
-
-        getShoppingCartData(FirebaseAuth.getInstance().uid, object : FireBaseCallbackShoppingCart {
-            override fun onResponse(responseC: ResponseShoppingCart) {
-                cart = responseC.carrello
-                var totale: Float? = 0f
-
-                for (c in cart) {
-                    totale = totale?.plus(c.totPrice!!)
-                }
-
-                binding.totaleCarrello.text = totale.toString() + " €"
-
-
-                val layoutManager = GridLayoutManager(context, 2)
-                binding.recylerOrder.layoutManager = layoutManager
-                adapter = CartAdapter(cart, requireContext())
-                adapter.setData(cart)
-                binding.recylerOrder.adapter = adapter
-                binding.recylerOrder.setHasFixedSize(true)
-                adapter.notifyDataSetChanged()
-            }
-        }, context)
 
         return binding.root
     }
@@ -86,9 +66,24 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        cartViewModel.getcartItems().observe(viewLifecycleOwner) { cartItems ->
+            var totale: Float? = 0f
+            for (c in cartItems) {
+                totale = totale?.plus(c.totPrice!!)
+            }
+            binding.totaleCarrello.text = totale.toString() + " €"
+            val layoutManager = GridLayoutManager(context, 2)
+            binding.recylerOrder.layoutManager = layoutManager
+            adapter = CartAdapter(cartItems, requireContext())
+            adapter.setData(cartItems)
+            binding.recylerOrder.adapter = adapter
+            binding.recylerOrder.setHasFixedSize(true)
+            adapter.notifyDataSetChanged()
+        }
+
         binding.constraintQR.setOnClickListener {
 
-            val qrcodecontent = this.cart.toString()
+            val qrcodecontent = this.cartProduct.toString()
             val multiFormatWriter = MultiFormatWriter()
             val bitMatrix = multiFormatWriter.encode(qrcodecontent, BarcodeFormat.QR_CODE, 200, 200)
             val width = bitMatrix.width
@@ -116,5 +111,4 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
         bundle.putParcelableArrayList("prodArrayList", prodotti)
         view?.findNavController()?.navigate(R.id.productDetail, bundle)
     }
-
 }

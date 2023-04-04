@@ -166,7 +166,7 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
             bundle.putParcelableArrayList("restArrayList", restaurantList)
             bundle.putString("idR", restaurantID.toString())
 
-            view.findNavController().navigate(R.id.DetailToMenu, bundle)
+            view.findNavController().navigate(R.id.DetailToMenu_R, bundle)
         }
 
         binding.eliminaRistorante.setOnClickListener {

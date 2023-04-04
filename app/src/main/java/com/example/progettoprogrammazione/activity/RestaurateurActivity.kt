@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -22,6 +23,7 @@ import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityRestaurateurBinding
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
+import com.example.progettoprogrammazione.viewmodels.CartViewModel
 import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 
@@ -32,6 +34,7 @@ class RestaurateurActivity : AppCompatActivity() {
     private lateinit var user: FirebaseAuth
 
     private lateinit var resturantDataViewModel: RestaurantViewModel
+    private lateinit var cartViewModel: CartViewModel
 
     private lateinit var navController: NavController
     private lateinit var navHostFragment: NavHostFragment
@@ -73,6 +76,17 @@ class RestaurateurActivity : AppCompatActivity() {
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
 
+        cartViewModel = ViewModelProvider(this)[CartViewModel::class.java]
+
+        val fragmentCarrello = navController.graph.findNode(R.id.fragmentCarrello_R)
+        fragmentCarrello?.arguments.let {
+            bundleOf("cartViewModel" to cartViewModel)
+        }
+
+        val fragmentMenu = navController.graph.findNode(R.id.fragmentMenuR)
+        fragmentMenu?.arguments.let {
+            bundleOf("cartViewModel" to cartViewModel)
+        }
 
         binding.navbarRestaurateur.setOnNavigationItemSelectedListener {
             when (it.itemId) {
@@ -136,7 +150,7 @@ class RestaurateurActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
+        when (item.itemId) {
             R.id.ic_cart -> navController.navigate(R.id.fragmentCarrello_R, bundle)
             R.id.ic_qrcode -> navController.navigate(R.id.fragmentQR_R, bundle)
         }

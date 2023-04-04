@@ -115,6 +115,10 @@
                 tools:ignore="RtlHardcoded" />
 
             <TextView
+                android:layout_width="2px"
+                android:layout_height="wrap_content"/>
+
+            <TextView
                 android:id="@+id/btn_elimina"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"

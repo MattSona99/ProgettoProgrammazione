@@ -3,7 +3,7 @@ package com.example.progettoprogrammazione.models
 import android.os.Parcel
 import android.os.Parcelable
 
-class Cart(
+class CartProduct(
     var pName: String?,
     var quantity: Int? = 0,
     var totPrice: Float? = 0f,
@@ -28,12 +28,12 @@ class Cart(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<Cart> {
-        override fun createFromParcel(parcel: Parcel): Cart {
-            return Cart(parcel)
+    companion object CREATOR : Parcelable.Creator<CartProduct> {
+        override fun createFromParcel(parcel: Parcel): CartProduct {
+            return CartProduct(parcel)
         }
 
-        override fun newArray(size: Int): Array<Cart?> {
+        override fun newArray(size: Int): Array<CartProduct?> {
             return arrayOfNulls(size)
         }
     }

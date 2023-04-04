@@ -5,13 +5,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.databinding.ProductCardBinding
+import com.example.progettoprogrammazione.models.CartProduct
 import com.example.progettoprogrammazione.models.Product
-import com.example.progettoprogrammazione.models.Restaurant
+import com.example.progettoprogrammazione.viewmodels.CartViewModel
 
 class ProductAdapter(
     private var prodotti: ArrayList<Product>,
     private val clickListener: ProductClickListener,
-    private val context : Context
+    private val context: Context,
+    private val cartViewModel: CartViewModel
 ) :
     RecyclerView.Adapter<ProductViewHolder>() {
 
@@ -23,7 +25,7 @@ class ProductAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val itemView = LayoutInflater.from(parent.context)
         val binding = ProductCardBinding.inflate(itemView, parent, false)
-        return ProductViewHolder(binding, clickListener)
+        return ProductViewHolder(binding, clickListener, cartViewModel)
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
@@ -31,6 +33,7 @@ class ProductAdapter(
         holder.createShoppingCart(prodotti[position], context)
 
     }
+
     override fun getItemCount(): Int {
         return prodotti.size
     }

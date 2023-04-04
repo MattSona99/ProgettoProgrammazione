@@ -2,35 +2,40 @@ package com.example.progettoprogrammazione.prodotti
 
 import android.content.Context
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.RecyclerView
+import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ProductCardBinding
-import com.example.progettoprogrammazione.models.Cart
+import com.example.progettoprogrammazione.models.CartProduct
 import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.utils.ShoppingCartUtils
+import com.example.progettoprogrammazione.viewmodels.CartViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class ProductViewHolder(
     private val prodottoBinding: ProductCardBinding,
     private val clickListener: ProductClickListener,
+    private val cartViewModel: CartViewModel
 
-) : RecyclerView.ViewHolder(prodottoBinding.root), ShoppingCartUtils {
+    ) : RecyclerView.ViewHolder(prodottoBinding.root), ShoppingCartUtils {
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     fun bindProdotti(prodotto: Product) {
-
         prodottoBinding.nomeProdottoCard.text = prodotto.nomeP
         prodottoBinding.btncard.setOnClickListener { clickListener.onClickProduct(prodotto) }
-
     }
 
     fun createShoppingCart(prodotto: Product, context: Context) {
         prodottoBinding.cartQuantity.isVisible = false
 
-        prodottoBinding.seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+        prodottoBinding.seekbar.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 prodottoBinding.quantity.text = p1.toString()
             }
@@ -46,33 +51,20 @@ class ProductViewHolder(
         prodottoBinding.addProduct.setOnClickListener {
             val quantity = prodottoBinding.quantity.text.toString().toInt()
             val prezzoTot = prodotto.prezzoP!!.toFloat() * quantity
-            val shoppingCart =
-                Cart(
+            val shoppingCartProduct =
+                CartProduct(
                     prodotto.nomeP,
                     quantity,
                     prezzoTot,
                     prodotto.idP,
                 )
-            addToShoppingCart(shoppingCart, quantity, FirebaseAuth.getInstance().uid, context)
-
-            /*prodottoBinding.btnRemove.setOnClickListener {
-                removequantityShoppingCart(
-                    shoppingCart,
-                    quantity,
-                    FirebaseAuth.getInstance().uid
-                )
-
-            }*/
-
-            //prodottoBinding.checkout.setOnClickListener{}
+            if (quantity != 0) {
+                cartViewModel.addcartItems(shoppingCartProduct)
+                Toast.makeText(context, "Prodotto aggiunto al carrello.", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Seleziona una quantità maggiore di 0.", Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
     }
-
-
-    private fun getImageId(context: Context, imageName: String): Int {
-        return context.resources
-            .getIdentifier("drawable/$imageName", null, context.packageName)
-    }
-
-
 }

@@ -8,6 +8,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.R
@@ -20,6 +21,7 @@ import com.example.progettoprogrammazione.utils.ProductUtils
 import com.example.progettoprogrammazione.utils.ResponseUser
 import com.example.progettoprogrammazione.utils.RestaurantUtils
 import com.example.progettoprogrammazione.utils.UserUtils
+import com.example.progettoprogrammazione.viewmodels.CartViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -30,6 +32,8 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils, UserUtils, 
 
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+
+    private val cartViewModel : CartViewModel by navGraphViewModels(R.id.nav_restaurateur)
 
     private lateinit var bevandeArrayList: ArrayList<Product>
     private lateinit var antipastiArrayList: ArrayList<Product>
@@ -160,7 +164,7 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils, UserUtils, 
     ) {
         val layoutManager = GridLayoutManager(context, 2)
         recyclerView.layoutManager = layoutManager
-        adapter = ProductAdapter(prodotti, this@FragmentMenu, requireContext())
+        adapter = ProductAdapter(prodotti, this@FragmentMenu, requireContext(), cartViewModel)
         showData(prodotti)
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
@@ -177,5 +181,4 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils, UserUtils, 
     private fun showData(arrayList: ArrayList<Product>) {
         adapter.setData(arrayList)
     }
-
 }
