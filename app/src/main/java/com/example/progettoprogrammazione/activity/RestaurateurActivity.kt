@@ -21,10 +21,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityRestaurateurBinding
-import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.viewmodels.CartViewModel
-import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 class RestaurateurActivity : AppCompatActivity() {
@@ -33,7 +31,6 @@ class RestaurateurActivity : AppCompatActivity() {
 
     private lateinit var user: FirebaseAuth
 
-    private lateinit var resturantDataViewModel: RestaurantViewModel
     private lateinit var cartViewModel: CartViewModel
 
     private lateinit var navController: NavController
@@ -54,12 +51,7 @@ class RestaurateurActivity : AppCompatActivity() {
         val u = intent.getParcelableExtra("user") as User?
         bundle = Bundle()
         bundle.putParcelable("user", u)
-
-        val r =
-            intent.getParcelableArrayListExtra<Restaurant>("ristoranti") as ArrayList<Restaurant>
-
-        resturantDataViewModel = ViewModelProvider(this)[RestaurantViewModel::class.java]
-        resturantDataViewModel.arrayListRistorantiLiveData.postValue(r)
+        bundle.putString("userlvl", u?.Livello)
 
         val appBarConfiguration = AppBarConfiguration
             .Builder(

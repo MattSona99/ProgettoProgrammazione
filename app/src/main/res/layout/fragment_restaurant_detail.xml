@@ -278,6 +278,7 @@
                         android:background="@drawable/red_button" />
 
                     <TextView
+                        android:id="@+id/options_rest"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

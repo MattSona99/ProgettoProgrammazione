@@ -6,14 +6,6 @@
     app:startDestination="@id/fragmentRistoranti">
 
     <action
-        android:id="@id/fragmentCarrello_U"
-        app:destination="@id/fragmentCarrello_U"
-        app:enterAnim="@anim/nav_default_enter_anim"
-        app:exitAnim="@anim/nav_default_exit_anim"
-        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-
-    <action
         android:id="@+id/Profilo_U"
         app:destination="@+id/fragmentProfilo"
         app:enterAnim="@anim/nav_default_enter_anim"
@@ -72,39 +64,31 @@
         android:label="Dettagli ristorante"
         tools:layout="@layout/fragment_restaurant_detail">
         <action
-            android:id="@+id/DetailToMenu"
-            app:destination="@id/fragmentMenu" />
+            android:id="@+id/DetailToMenu_U"
+            app:destination="@id/fragmentMenuU"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_restaurantDetail_to_fragmentRistoranti"
             app:destination="@id/fragmentRistoranti" />
     </fragment>
 
     <fragment
-        android:id="@+id/fragmentMenu"
+        android:id="@+id/fragmentMenuU"
         android:name="com.example.progettoprogrammazione.fragment.FragmentMenu"
         android:label="Menù"
         tools:layout="@layout/fragment_menu">
         <action
             android:id="@+id/action_fragmentMenu_to_restaurantDetail"
             app:destination="@id/restaurantDetail" />
-        <action
-            android:id="@+id/action_fragmentMenu_to_productDetail"
-            app:destination="@id/productDetail" />
     </fragment>
     <fragment
         android:id="@+id/fragmentQR_U"
         android:name="com.example.progettoprogrammazione.fragment.FragmentQR"
         android:label="I tuoi QRCodes"
         tools:layout="@layout/fragment_qr" />
-    <fragment
-        android:id="@+id/productDetail"
-        android:name="com.example.progettoprogrammazione.prodotti.ProductDetail"
-        android:label="Dettagli prodotto"
-        tools:layout="@layout/fragment_menu_product_detail">
-        <action
-            android:id="@+id/action_productDetail_to_fragmentMenu"
-            app:destination="@id/fragmentMenu" />
-    </fragment>
     <fragment
         android:id="@+id/fragmentSearchU"
         android:name="com.example.progettoprogrammazione.fragment.FragmentSearch"
@@ -118,10 +102,11 @@
         android:id="@+id/fragmentCarrello_U"
         android:name="com.example.progettoprogrammazione.fragment.FragmentCarrello"
         android:label="Carrello"
-        tools:layout="@layout/fragment_carrello" />
-    <action
-        android:id="@+id/CarrelloToQR_U"
-        app:destination="@id/fragmentQR_U" />
+        tools:layout="@layout/fragment_carrello">
+        <action
+            android:id="@+id/CarrelloToQR_U"
+            app:destination="@id/fragmentQR_U" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentSettingsU"
         android:name="com.example.progettoprogrammazione.fragment.FragmentSettings"

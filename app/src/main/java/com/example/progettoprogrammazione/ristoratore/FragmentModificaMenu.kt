@@ -16,8 +16,6 @@ import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentModificaMenuBinding
 import com.example.progettoprogrammazione.databinding.ProductCardModificaEliminaBinding
 import com.example.progettoprogrammazione.models.Product
-import com.example.progettoprogrammazione.prodotti.ProductAdapter
-import com.example.progettoprogrammazione.prodotti.ProductClickListener
 import com.example.progettoprogrammazione.prodotti.ProductEMAdapter
 import com.example.progettoprogrammazione.utils.ProductUtils
 import com.example.progettoprogrammazione.utils.UserUtils
@@ -27,7 +25,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class FragmentModificaMenu : Fragment(), ProductClickListener, UserUtils, ProductUtils {
+class FragmentModificaMenu : Fragment(), UserUtils, ProductUtils {
 
     private lateinit var binding: FragmentModificaMenuBinding
     private lateinit var adapter: ProductEMAdapter
@@ -148,14 +146,6 @@ class FragmentModificaMenu : Fragment(), ProductClickListener, UserUtils, Produc
 
     }
 
-
-    override fun onClickProduct(prodotto: Product) {
-        val bundle = Bundle()
-        bundle.putString("prodID", prodotto.idP.toString())
-        bundle.putParcelableArrayList("prodArrayList", prodotti)
-        view?.findNavController()?.navigate(R.id.productDetail, bundle)
-    }
-
     private fun invisible() {
         binding.tutteMenu.isGone = false
         binding.bevandeMenu.isGone = true
@@ -174,7 +164,7 @@ class FragmentModificaMenu : Fragment(), ProductClickListener, UserUtils, Produc
     ) {
         val layoutManager = GridLayoutManager(context, 2)
         recyclerView.layoutManager = layoutManager
-        adapter = ProductEMAdapter(prodotti, this, restID, tipo, requireContext())
+        adapter = ProductEMAdapter(prodotti, restID, tipo, requireContext())
         showData(prodotti)
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)

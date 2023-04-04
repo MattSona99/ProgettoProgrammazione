@@ -65,8 +65,12 @@
         android:label="Dettagli ristorante"
         tools:layout="@layout/fragment_restaurant_detail">
         <action
-            android:id="@+id/DetailToMenu"
-            app:destination="@id/fragmentMenu" />
+            android:id="@+id/DetailToMenu_D"
+            app:destination="@id/fragmentMenuD"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
@@ -79,20 +83,12 @@
         android:name="com.example.progettoprogrammazione.fragment.FragmentMenu"
         android:label="Menù"
         tools:layout="@layout/fragment_menu">
-        <action
-            android:id="@+id/action_fragmentMenu_to_productDetail3"
-            app:destination="@id/productDetail" />
     </fragment>
     <fragment
         android:id="@+id/fragmentQR_D"
         android:name="com.example.progettoprogrammazione.fragment.FragmentQR"
         android:label="I tuoi QRCodes"
         tools:layout="@layout/fragment_qr" />
-    <fragment
-        android:id="@+id/productDetailD"
-        android:name="com.example.progettoprogrammazione.prodotti.ProductDetail"
-        android:label="Dettagli prodotto"
-        tools:layout="@layout/fragment_menu_product_detail" />
     <fragment
         android:id="@+id/fragmentSearchD"
         android:name="com.example.progettoprogrammazione.fragment.FragmentSearch"
@@ -106,10 +102,12 @@
         android:id="@+id/fragmentCarrello_D"
         android:name="com.example.progettoprogrammazione.fragment.FragmentCarrello"
         android:label="Carrello"
-        tools:layout="@layout/fragment_carrello" />
-    <action
-        android:id="@+id/CarrelloToQR_D"
-        app:destination="@id/fragmentQR_D" />
+        tools:layout="@layout/fragment_carrello" >
+        <action
+            android:id="@+id/CarrelloToQR_D"
+            app:destination="@id/fragmentQR_D" />
+    </fragment>
+
     <fragment
         android:id="@+id/fragmentSettingsR"
         android:name="com.example.progettoprogrammazione.fragment.FragmentSettings"

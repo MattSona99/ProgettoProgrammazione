@@ -12,7 +12,6 @@ import kotlinx.coroutines.NonDisposableHandle.parent
 
 class ProductEMViewHolder(
     private val prodottoBinding: ProductCardModificaEliminaBinding,
-    private val clickListener: ProductClickListener
 
 ) : RecyclerView.ViewHolder(prodottoBinding.root), ProductUtils {
 
@@ -21,7 +20,6 @@ class ProductEMViewHolder(
 
     fun bindProdotti(prodotto: Product, idR: String?, tipo: String?, context: Context) {
         prodottoBinding.nomeProdottoCard.text = prodotto.nomeP
-        prodottoBinding.clickDetail.setOnClickListener { clickListener.onClickProduct(prodotto) }
 
         prodottoBinding.btnElimina.setOnClickListener{
             deleteProd(prodotto, idR, tipo, context)

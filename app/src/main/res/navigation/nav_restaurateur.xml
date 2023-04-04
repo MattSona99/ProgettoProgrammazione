@@ -72,8 +72,8 @@
         android:label="Dettagli ristorante"
         tools:layout="@layout/fragment_restaurant_detail">
         <action
-            android:id="@+id/DetailToMenu"
-            app:destination="@id/fragmentMenu"
+            android:id="@+id/DetailToMenu_R"
+            app:destination="@id/fragmentMenuR"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -81,9 +81,6 @@
         <action
             android:id="@+id/DetailToModifica"
             app:destination="@id/fragmentModificaRist" />
-        <action
-            android:id="@+id/DetailToMenu_R"
-            app:destination="@id/fragmentMenuR" />
     </fragment>
     <fragment
         android:id="@+id/fragmentGestione"
@@ -98,22 +95,10 @@
             app:destination="@id/fragmentCreaRist" />
     </fragment>
     <fragment
-        android:id="@+id/productDetail"
-        android:name="com.example.progettoprogrammazione.prodotti.ProductDetail"
-        android:label="Dettagli prodotto"
-        tools:layout="@layout/fragment_menu_product_detail" />
-    <fragment
         android:id="@+id/fragmentMenuR"
         android:name="com.example.progettoprogrammazione.fragment.FragmentMenu"
         android:label="Menù"
         tools:layout="@layout/fragment_menu">
-        <action
-            android:id="@+id/action_fragmentMenu_to_productDetail2"
-            app:destination="@id/productDetail"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/MenuToModifica"
             app:destination="@id/fragmentModificaMenu" />
@@ -128,7 +113,8 @@
     <fragment
         android:id="@+id/fragmentModificaRist"
         android:name="com.example.progettoprogrammazione.ristoratore.FragmentModificaRist"
-        android:label="Modifica Ristorante" />
+        android:label="Modifica Ristorante"
+        tools:layout="@layout/fragment_modifica_rist"/>
     <fragment
         android:id="@+id/fragmentSearchR"
         android:name="com.example.progettoprogrammazione.fragment.FragmentSearch"

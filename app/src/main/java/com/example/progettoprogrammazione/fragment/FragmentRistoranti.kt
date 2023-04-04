@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -20,7 +19,6 @@ import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.ristorante.RestaurantAdapter
 import com.example.progettoprogrammazione.ristorante.RestaurantClickListener
 import com.example.progettoprogrammazione.utils.*
-import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -60,7 +58,6 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
             }
         }, context)
 
-        //NON TOCCARE
         binding.scrollviewrist.viewTreeObserver.addOnScrollChangedListener {
             swipeRefreshLayout.isEnabled = binding.scrollviewrist.scrollY == 0
         }
@@ -100,6 +97,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
         val bundle = Bundle()
         bundle.putString("restID", restaurant.idR.toString())
         bundle.putParcelableArrayList("restArrayList", restArrayList)
+        bundle.putString("userlvl", userlvl)
 
         view?.findNavController()?.navigate(R.id.RistorantiToDetail, bundle)
     }

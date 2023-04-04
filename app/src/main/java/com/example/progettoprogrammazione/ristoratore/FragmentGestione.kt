@@ -20,7 +20,6 @@ import com.example.progettoprogrammazione.ristorante.RestaurantClickListener
 import com.example.progettoprogrammazione.utils.FiltriUtils
 import com.example.progettoprogrammazione.utils.ResponseRistorante
 import com.example.progettoprogrammazione.utils.RestaurantUtils
-import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -30,12 +29,12 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils, F
     private lateinit var adapter: RestaurantAdapter
 
     private lateinit var user: User
-
+    private lateinit var userlvl: String
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
-    private lateinit var resturantDataViewModel: RestaurantViewModel
+    private lateinit var restArrayListR: ArrayList<Restaurant>
     private lateinit var restArrayList: ArrayList<Restaurant>
 
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
@@ -48,34 +47,42 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils, F
 
         val args = this.arguments
         user = args?.getParcelable<User>("user") as User
+        userlvl = args.get("userlvl") as String
 
+        restArrayListR = arrayListOf()
         restArrayList = arrayListOf()
 
-        resturantDataViewModel =
-            ViewModelProvider(requireActivity())[RestaurantViewModel::class.java]
-        resturantDataViewModel.arrayListRistorantiLiveData.observe(viewLifecycleOwner) {
-            for (restaurant: Restaurant in it) {
-                if (restaurant.proprietarioR == user.Email) restArrayList.add(restaurant)
+        getRestaurantData(object : FireBaseCallbackRestaurant {
+            override fun onResponse(responseR: ResponseRistorante) {
+                restArrayList = responseR.ristoranti
+                for (restaurant in restArrayList) {
+                    if (restaurant.proprietarioR == user.Email) restArrayListR.add(restaurant)
+                }
+                val layoutManager = GridLayoutManager(context, 2)
+                binding.recycleViewRist.layoutManager = layoutManager
+                adapter = RestaurantAdapter(restArrayListR, this@FragmentGestione)
+                binding.recycleViewRist.adapter = adapter
+                binding.recycleViewRist.setHasFixedSize(true)
+                adapter.notifyDataSetChanged()
+                swipeRefreshLayout.isRefreshing = false
             }
-            val layoutManager = GridLayoutManager(context, 2)
-            binding.recycleViewRist.layoutManager = layoutManager
-            adapter = RestaurantAdapter(restArrayList, this)
-            binding.recycleViewRist.adapter = adapter
-            binding.recycleViewRist.setHasFixedSize(true)
-            adapter.notifyDataSetChanged()
+        }, context)
 
-        }
 
         swipeRefreshLayout = binding.swipeRefreshGestione
         swipeRefreshLayout.setOnRefreshListener {
+            swipeRefreshLayout.isRefreshing = true
+            restArrayListR.clear()
             binding.searchBarGestione.setQuery("", false)
-
             getRestaurantData(object : FireBaseCallbackRestaurant {
                 override fun onResponse(responseR: ResponseRistorante) {
                     restArrayList = responseR.ristoranti
+                    for (restaurant in restArrayList) {
+                        if (restaurant.proprietarioR == user.Email) restArrayListR.add(restaurant)
+                    }
                     val layoutManager = GridLayoutManager(context, 2)
                     binding.recycleViewRist.layoutManager = layoutManager
-                    adapter = RestaurantAdapter(restArrayList, this@FragmentGestione)
+                    adapter = RestaurantAdapter(restArrayListR, this@FragmentGestione)
                     binding.recycleViewRist.adapter = adapter
                     binding.recycleViewRist.setHasFixedSize(true)
                     adapter.notifyDataSetChanged()
@@ -92,7 +99,8 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils, F
             override fun onQueryTextChange(newText: String?): Boolean {
                 val layoutManager = GridLayoutManager(context, 2)
                 binding.recycleViewRist.layoutManager = layoutManager
-                adapter = RestaurantAdapter(searchFilter(restArrayList, newText), this@FragmentGestione)
+                adapter =
+                    RestaurantAdapter(searchFilter(restArrayList, newText), this@FragmentGestione)
                 binding.recycleViewRist.adapter = adapter
                 binding.recycleViewRist.setHasFixedSize(true)
                 adapter.notifyDataSetChanged()
@@ -121,6 +129,7 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils, F
         bundle.putString("restID", restaurant.idR.toString())
         bundle.putParcelable("user", user)
         bundle.putParcelableArrayList("restArrayList", restArrayList)
+        bundle.putString("userlvl", userlvl)
 
         view?.findNavController()?.navigate(R.id.GestioneToDetail, bundle)
 

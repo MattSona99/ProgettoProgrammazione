@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -20,12 +21,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityEmployeeBinding
-import com.example.progettoprogrammazione.fragment.FragmentCarrello
-import com.example.progettoprogrammazione.fragment.FragmentMenu
-import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.viewmodels.CartViewModel
-import com.example.progettoprogrammazione.viewmodels.RestaurantViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 class EmployeeActivity : AppCompatActivity() {
@@ -37,7 +34,6 @@ class EmployeeActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var navHostFragment: NavHostFragment
 
-    private lateinit var resturantDataViewModel: RestaurantViewModel
     private lateinit var cartViewModel: CartViewModel
 
     private lateinit var bundle : Bundle
@@ -56,13 +52,6 @@ class EmployeeActivity : AppCompatActivity() {
         bundle = Bundle()
         bundle.putParcelable("user", u)
 
-        val r =
-            intent.getParcelableArrayListExtra<Restaurant>("ristoranti") as ArrayList<Restaurant>
-
-
-        resturantDataViewModel = ViewModelProvider(this)[RestaurantViewModel::class.java]
-        resturantDataViewModel.arrayListRistorantiLiveData.postValue(r)
-
         cartViewModel = ViewModelProvider(this)[CartViewModel::class.java]
 
 
@@ -80,6 +69,18 @@ class EmployeeActivity : AppCompatActivity() {
         navController = navHostFragment.findNavController()
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
+
+        cartViewModel = ViewModelProvider(this)[CartViewModel::class.java]
+
+        val fragmentCarrello = navController.graph.findNode(R.id.fragmentCarrello_D)
+        fragmentCarrello?.arguments.let {
+            bundleOf("cartViewModel" to cartViewModel)
+        }
+
+        val fragmentMenu = navController.graph.findNode(R.id.fragmentMenuD)
+        fragmentMenu?.arguments.let {
+            bundleOf("cartViewModel" to cartViewModel)
+        }
 
         binding.navbarEmployee.setOnNavigationItemSelectedListener {
             when (it.itemId) {

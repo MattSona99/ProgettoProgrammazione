@@ -24,7 +24,12 @@ interface ProductUtils {
     var firebaseAuth: FirebaseAuth
     var firebaseDatabase: FirebaseDatabase
 
-    fun getProdotti(idR: String?, callBack: FireBaseCallbackProdotto,tipo: String, context: Context?) {
+    fun getProdotti(
+        idR: String?,
+        callBack: FireBaseCallbackProdotto,
+        tipo: String,
+        context: Context?
+    ) {
         firebaseDatabase.getReference("Ristoranti/$idR/Menu/$tipo")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -93,9 +98,12 @@ interface ProductUtils {
         addDialog.setView(v)
         addDialog.setPositiveButton("OK") { _, _ ->
 
-            firebaseDatabase.getReference("Ristoranti/$idR/Menu/$tipo/${prodotto.idP}").child("nomeP").setValue(nomeP.text.toString())
-            firebaseDatabase.getReference("Ristoranti/$idR/Menu/$tipo/${prodotto.idP}").child("prezzoP").setValue(prezzoP.text.toString())
-            firebaseDatabase.getReference("Ristoranti/$idR/Menu/$tipo/${prodotto.idP}").child("descrizioneP").setValue(descrizioneP.text.toString())
+            firebaseDatabase.getReference("Ristoranti/$idR/Menu/$tipo/${prodotto.idP}")
+                .child("nomeP").setValue(nomeP.text.toString())
+            firebaseDatabase.getReference("Ristoranti/$idR/Menu/$tipo/${prodotto.idP}")
+                .child("prezzoP").setValue(prezzoP.text.toString())
+            firebaseDatabase.getReference("Ristoranti/$idR/Menu/$tipo/${prodotto.idP}")
+                .child("descrizioneP").setValue(descrizioneP.text.toString())
 
         }
         addDialog.setNegativeButton("Cancel") { dialog, _ ->
@@ -105,5 +113,5 @@ interface ProductUtils {
         addDialog.show()
     }
 
-    }
+}
 

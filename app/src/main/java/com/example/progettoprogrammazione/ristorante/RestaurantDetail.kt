@@ -20,15 +20,13 @@ import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.models.Restaurant
-import com.example.progettoprogrammazione.prodotti.ProductClickListener
 import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 
-class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, RestaurantUtils,
+class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
     UserUtils {
 
     private lateinit var binding: FragmentRestaurantDetailBinding
@@ -48,6 +46,7 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
     private var restaurant: Restaurant? = null
 
     private lateinit var user: FirebaseAuth
+    private lateinit var userlvl : String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,10 +59,14 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
         val args = this.arguments
         val restaurantID = args?.get("restID")
         restaurantList = args?.getParcelableArrayList("restArrayList")
+        userlvl = args?.get("userlvl") as String
 
         user = FirebaseAuth.getInstance()
         uid = user.currentUser!!.uid
 
+        if(userlvl!="3") {
+            binding.optionsRest.isVisible = false
+        }
 
         restaurant = restaurantFromId(restaurantID.toString())
 
@@ -166,10 +169,15 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
             bundle.putParcelableArrayList("restArrayList", restaurantList)
             bundle.putString("idR", restaurantID.toString())
 
-            view.findNavController().navigate(R.id.DetailToMenu_R, bundle)
+            when(userlvl) {
+                "1" -> view.findNavController().navigate(R.id.DetailToMenu_U, bundle)
+                "2" -> view.findNavController().navigate(R.id.DetailToMenu_D, bundle)
+                "3" -> view.findNavController().navigate(R.id.DetailToMenu_R, bundle)
+            }
+
         }
 
-        binding.eliminaRistorante.setOnClickListener {
+        binding.btnEliminaRistorante.setOnClickListener {
             val builder = AlertDialog.Builder(activity)
             val reference = firebaseDatabase.getReference("Ristoranti")
             val idR = restaurant?.idR
@@ -198,7 +206,7 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
             builder.show()
         }
 
-        binding.modificaRistorante.setOnClickListener {
+        binding.btnModificaRistorante.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("restID", restaurant?.idR.toString())
             view.findNavController().navigate(R.id.DetailToModifica, bundle)
@@ -229,15 +237,6 @@ class RestaurantDetail : Fragment(), ProductClickListener, ProductUtils, Restaur
             }, context, restaurantID.toString())
 
         }
-    }
-
-    override fun onClickProduct(prodotto: Product) {
-
-        val bundle1 = Bundle()
-        bundle1.putString("prodID", prodotto.idP.toString())
-        bundle1.putParcelableArrayList("prodArrayList", bevandeArrayList)
-
-        view?.findNavController()?.navigate(R.id.productDetail, bundle1)
     }
 
     private fun restaurantFromId(restaurantID: String?): Restaurant? {

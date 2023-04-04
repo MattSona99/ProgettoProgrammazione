@@ -4,10 +4,7 @@ import android.content.Context
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.RecyclerView
-import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ProductCardBinding
 import com.example.progettoprogrammazione.models.CartProduct
 import com.example.progettoprogrammazione.models.Product
@@ -18,17 +15,15 @@ import com.google.firebase.database.FirebaseDatabase
 
 class ProductViewHolder(
     private val prodottoBinding: ProductCardBinding,
-    private val clickListener: ProductClickListener,
     private val cartViewModel: CartViewModel
 
-    ) : RecyclerView.ViewHolder(prodottoBinding.root), ShoppingCartUtils {
+) : RecyclerView.ViewHolder(prodottoBinding.root), ShoppingCartUtils {
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     fun bindProdotti(prodotto: Product) {
         prodottoBinding.nomeProdottoCard.text = prodotto.nomeP
-        prodottoBinding.btncard.setOnClickListener { clickListener.onClickProduct(prodotto) }
     }
 
     fun createShoppingCart(prodotto: Product, context: Context) {

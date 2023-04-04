@@ -17,7 +17,6 @@ import com.example.progettoprogrammazione.databinding.FragmentCarrelloBinding
 import com.example.progettoprogrammazione.models.CartProduct
 import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.models.User
-import com.example.progettoprogrammazione.prodotti.ProductClickListener
 import com.example.progettoprogrammazione.utils.ProductUtils
 import com.example.progettoprogrammazione.utils.ShoppingCartUtils
 import com.example.progettoprogrammazione.viewmodels.CartViewModel
@@ -26,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 
-class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, ProductUtils {
+class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductUtils {
 
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -34,8 +33,10 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
     private lateinit var binding: FragmentCarrelloBinding
     private lateinit var user: User
 
-    private val cartViewModel : CartViewModel by navGraphViewModels(R.id.nav_restaurateur)
-
+    private lateinit var cartViewModel: CartViewModel
+    private val cartViewModelR : CartViewModel by navGraphViewModels(R.id.nav_restaurateur)
+    private val cartViewModelU : CartViewModel by navGraphViewModels(R.id.nav_user)
+    private val cartViewModelD : CartViewModel by navGraphViewModels(R.id.nav_dipendente)
 
     private var cartProduct = arrayListOf<CartProduct>()
     private var prodotti = arrayListOf<Product>()
@@ -51,6 +52,11 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
 
         val args = this.arguments
         user = args?.getParcelable<User>("user") as User
+        when(user.Livello){
+            "1" ->cartViewModel = cartViewModelU
+            "2" ->cartViewModel = cartViewModelD
+            "3" ->cartViewModel = cartViewModelR
+        }
 
         return binding.root
     }
@@ -103,12 +109,5 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductClickListener, Pr
             }
 
         }
-    }
-
-    override fun onClickProduct(prodotto: Product) {
-        val bundle = Bundle()
-        bundle.putString("prodID", prodotto.idP.toString())
-        bundle.putParcelableArrayList("prodArrayList", prodotti)
-        view?.findNavController()?.navigate(R.id.productDetail, bundle)
     }
 }

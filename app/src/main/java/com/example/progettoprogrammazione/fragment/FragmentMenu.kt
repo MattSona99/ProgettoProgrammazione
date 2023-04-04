@@ -16,7 +16,6 @@ import com.example.progettoprogrammazione.databinding.FragmentMenuBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.prodotti.ProductAdapter
-import com.example.progettoprogrammazione.prodotti.ProductClickListener
 import com.example.progettoprogrammazione.utils.ProductUtils
 import com.example.progettoprogrammazione.utils.ResponseUser
 import com.example.progettoprogrammazione.utils.RestaurantUtils
@@ -25,7 +24,7 @@ import com.example.progettoprogrammazione.viewmodels.CartViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class FragmentMenu : Fragment(), ProductClickListener, ProductUtils, UserUtils, RestaurantUtils {
+class FragmentMenu : Fragment(), ProductUtils, UserUtils, RestaurantUtils {
 
     private lateinit var binding: FragmentMenuBinding
     private lateinit var adapter: ProductAdapter
@@ -33,7 +32,10 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils, UserUtils, 
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    private val cartViewModel : CartViewModel by navGraphViewModels(R.id.nav_restaurateur)
+    private lateinit var cartViewModel: CartViewModel
+    private val cartViewModelR : CartViewModel by navGraphViewModels(R.id.nav_restaurateur)
+    private val cartViewModelU : CartViewModel by navGraphViewModels(R.id.nav_user)
+    private val cartViewModelD : CartViewModel by navGraphViewModels(R.id.nav_dipendente)
 
     private lateinit var bevandeArrayList: ArrayList<Product>
     private lateinit var antipastiArrayList: ArrayList<Product>
@@ -58,6 +60,11 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils, UserUtils, 
                 userlvl = responseU.user!!.Livello.toString()
                 if (userlvl == "3" && proprietarioR==responseU.user!!.Email)
                     binding.btnModifica.isVisible = true
+                when(userlvl){
+                    "1" ->cartViewModel = cartViewModelU
+                    "2" ->cartViewModel = cartViewModelD
+                    "3" ->cartViewModel = cartViewModelR
+                }
             }
         }, context)
 
@@ -140,14 +147,6 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils, UserUtils, 
 
     }
 
-
-    override fun onClickProduct(prodotto: Product) {
-        val bundle = Bundle()
-        bundle.putString("prodID", prodotto.idP.toString())
-        bundle.putParcelableArrayList("prodArrayList", prodotti)
-        view?.findNavController()?.navigate(R.id.productDetail, bundle)
-    }
-
     private fun invisible() {
         binding.tutteMenu.isGone = false
         binding.bevandeMenu.isGone = true
@@ -164,7 +163,7 @@ class FragmentMenu : Fragment(), ProductClickListener, ProductUtils, UserUtils, 
     ) {
         val layoutManager = GridLayoutManager(context, 2)
         recyclerView.layoutManager = layoutManager
-        adapter = ProductAdapter(prodotti, this@FragmentMenu, requireContext(), cartViewModel)
+        adapter = ProductAdapter(prodotti, requireContext(), cartViewModel)
         showData(prodotti)
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)

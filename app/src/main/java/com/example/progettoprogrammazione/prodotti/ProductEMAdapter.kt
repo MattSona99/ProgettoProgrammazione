@@ -10,7 +10,6 @@ import com.example.progettoprogrammazione.models.Product
 
 class ProductEMAdapter(
     private var prodotti: ArrayList<Product>,
-    private val clickListener: ProductClickListener,
     private val restID: String,
     private val tipo: String,
     private val context: Context
@@ -26,7 +25,7 @@ class ProductEMAdapter(
         val itemView = LayoutInflater.from(parent.context)
         val binding = ProductCardModificaEliminaBinding.inflate(itemView, parent, false)
 
-        return ProductEMViewHolder(binding, clickListener)
+        return ProductEMViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ProductEMViewHolder, position: Int) {
