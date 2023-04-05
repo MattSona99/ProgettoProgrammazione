@@ -104,11 +104,6 @@ class FragmentMenu : Fragment(), ProductUtils, UserUtils, RestaurantUtils {
             view.findNavController().navigate(R.id.MenuToModifica, bundle)
         }
 
-        binding.svuotamenu.setOnClickListener {
-            binding.radioGroupMenu.clearCheck()
-            invisible()
-        }
-
         binding.btnBevande.setOnClickListener {
             invisible()
             bindrecyclerviews(bevandeArrayList, binding.recycleViewBevande)
@@ -157,9 +152,9 @@ class FragmentMenu : Fragment(), ProductUtils, UserUtils, RestaurantUtils {
         binding.dolciMenu.isGone = true
     }
 
-    private fun verticalrecylerview(
-        recyclerView: RecyclerView,
-        prodotti: ArrayList<Product>
+    private fun bindrecyclerviews(
+        prodotti: ArrayList<Product>,
+        recyclerView: RecyclerView
     ) {
         val layoutManager = GridLayoutManager(context, 2)
         recyclerView.layoutManager = layoutManager
@@ -168,13 +163,6 @@ class FragmentMenu : Fragment(), ProductUtils, UserUtils, RestaurantUtils {
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
         adapter.notifyDataSetChanged()
-    }
-
-    private fun bindrecyclerviews(
-        prodotti: ArrayList<Product>,
-        recyclerView: RecyclerView
-    ) {
-        verticalrecylerview(recyclerView, prodotti)
     }
 
     private fun showData(arrayList: ArrayList<Product>) {

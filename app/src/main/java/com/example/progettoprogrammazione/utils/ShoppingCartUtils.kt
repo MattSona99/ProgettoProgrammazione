@@ -32,6 +32,7 @@ interface ShoppingCartUtils {
                         val carrello =
                             CartProduct(
                                 prod.child("pname").value.toString(),
+                                prod.child("pdesc").value.toString(),
                                 prod.child("quantity").value.toString().toInt(),
                                 prod.child("totPrice").value.toString().toFloat(),
                                 prod.child("pid").value.toString()
@@ -53,15 +54,23 @@ interface ShoppingCartUtils {
             })
     }
 
-    fun addToShoppingCart(cartProduct: CartProduct, quantita: Int, idU: String?, context: Context?) {
-        firebaseDatabase.getReference("Utenti/$idU/Carrello/${cartProduct.pName}").setValue(cartProduct)
-        Toast.makeText(context, "Prodotto aggiunto con successo al carrello.", Toast.LENGTH_LONG).show()
+    fun addToShoppingCart(
+        cartProduct: CartProduct,
+        quantita: Int,
+        idU: String?,
+        context: Context?
+    ) {
+        firebaseDatabase.getReference("Utenti/$idU/Carrello/${cartProduct.pName}")
+            .setValue(cartProduct)
+        Toast.makeText(context, "Prodotto aggiunto con successo al carrello.", Toast.LENGTH_LONG)
+            .show()
     }
 
     fun removeShoppingCart(cartProduct: CartProduct, idU: String?, context: Context?) {
         firebaseDatabase.getReference("Utenti/$idU/Carrello")
             .child("${cartProduct.pName}").removeValue()
-        Toast.makeText(context, "Prodotto rimosso con successo dal carrello.", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "Prodotto rimosso con successo dal carrello.", Toast.LENGTH_LONG)
+            .show()
     }
 
     fun modifyProdC(cartProduct: CartProduct, idU: String?, context: Context?) {
@@ -75,7 +84,8 @@ interface ShoppingCartUtils {
         addDialog.setView(v)
         addDialog.setPositiveButton("OK") { _, _ ->
 
-            firebaseDatabase.getReference("Utenti/$idU/Carrello/${cartProduct.pName}").child("quantity").setValue(quantityC.text.toString())
+            firebaseDatabase.getReference("Utenti/$idU/Carrello/${cartProduct.pName}")
+                .child("quantity").setValue(quantityC.text.toString())
             Toast.makeText(context, "Quantita modificata con successo", Toast.LENGTH_LONG).show()
 
         }

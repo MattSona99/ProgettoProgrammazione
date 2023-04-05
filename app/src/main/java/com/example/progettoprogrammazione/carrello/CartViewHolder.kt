@@ -1,6 +1,7 @@
 package com.example.progettoprogrammazione.carrello
 
 import android.content.Context
+import android.widget.SeekBar
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.databinding.CartCardBinding
 import com.example.progettoprogrammazione.models.CartProduct
@@ -16,19 +17,28 @@ class CartViewHolder(
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     fun bindCart(cartProduct: CartProduct, context: Context) {
-        /*
-        cartBinding.seekbarC.progress = cart.quantity.toString().toInt()
-        cartBinding.quantityC.text = cart.quantity.toString()
-         */
 
-        cartBinding.nomeProdottoCardCart.text = cartProduct.pName
+        cartBinding.seekbarC.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                cartBinding.quantityC.text = p1.toString()
+            }
 
-        cartBinding.btnElimina.setOnClickListener{
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+            }
+
+        })
+
+        cartBinding.nomeProdottoCardC.text = cartProduct.pName
+        cartBinding.cardDescC.text = cartProduct.pDesc
+
+        cartBinding.deleteProductC.setOnClickListener{
             removeShoppingCart(cartProduct,FirebaseAuth.getInstance().uid,context)
         }
-        cartBinding.btnModifica.setOnClickListener{
-            modifyProdC(cartProduct,FirebaseAuth.getInstance().uid,context )
-        }
+
 
 
 

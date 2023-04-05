@@ -53,7 +53,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
         getRestaurantData(object : FireBaseCallbackRestaurant {
             override fun onResponse(responseR: ResponseRistorante) {
                 restArrayList = responseR.ristoranti
-
+                binding.radioGroup.clearCheck()
                 horizontalrecylerview(typeFilter(restArrayList, "rating"), binding.recycleViewTopRated)
             }
         }, context)

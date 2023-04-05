@@ -19,21 +19,16 @@ class ProductEMViewHolder(
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     fun bindProdotti(prodotto: Product, idR: String?, tipo: String?, context: Context) {
-        prodottoBinding.nomeProdottoCard.text = prodotto.nomeP
+        prodottoBinding.nomeProdottoCardM.text = prodotto.nomeP
+        prodottoBinding.cardDescM.text = prodotto.descrizioneP
 
-        prodottoBinding.btnElimina.setOnClickListener{
+        prodottoBinding.btnEliminaM.setOnClickListener{
             deleteProd(prodotto, idR, tipo, context)
         }
-        prodottoBinding.btnModifica.setOnClickListener{
+        prodottoBinding.btnModificaM.setOnClickListener{
             modifyProd(prodotto, idR, tipo,context)
         }
 
     }
-
-    private fun getImageId(context: Context, imageName: String): Int {
-        return context.resources
-            .getIdentifier("drawable/$imageName", null, context.packageName)
-    }
-
 
 }

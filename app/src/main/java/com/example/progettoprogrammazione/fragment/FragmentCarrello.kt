@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.navGraphViewModels
@@ -39,7 +41,6 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductUtils {
     private val cartViewModelD : CartViewModel by navGraphViewModels(R.id.nav_dipendente)
 
     private var cartProduct = arrayListOf<CartProduct>()
-    private var prodotti = arrayListOf<Product>()
     private lateinit var adapter: CartAdapter
 
     override fun onCreateView(
@@ -56,6 +57,15 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductUtils {
             "1" ->cartViewModel = cartViewModelU
             "2" ->cartViewModel = cartViewModelD
             "3" ->cartViewModel = cartViewModelR
+        }
+        if(cartViewModel.getcartItems().value!!.isEmpty()) {
+            binding.totCarrelloLayout.isGone = true
+            binding.noProduct.isVisible = true
+            binding.constraintQR.isGone = true
+        } else {
+            binding.totCarrelloLayout.isVisible = true
+            binding.noProduct.isGone = true
+            binding.constraintQR.isVisible = true
         }
 
         return binding.root

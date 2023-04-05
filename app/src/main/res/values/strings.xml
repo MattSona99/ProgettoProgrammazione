@@ -39,7 +39,7 @@
     <!-- RESTAURANT CARD -->
     <string name="restaurant_name">Nome ristorante</string>
     <string name="restaurant_rating">Rating: </string>
-    <string name="number">1</string>
+    <string name="number">0</string>
     <string name="restaurant_type">Cucina: </string>
     <string name="restaurant_type_value">Tipo cucina…</string>
     <string name="restaurant_desc">Descrizione: </string>
@@ -129,6 +129,8 @@
     <string name="genera">Genera QRCode</string>
     <string name="totale">Totale:</string>
     <string name="confirm_quantity">Inserisci la quantita</string>
+    <string name="elimina">ELIMINA</string>
+    <string name="noproduct">Non c\'è ancora nessun prodotto nel tuo carrello.</string>
 
     <!-- QR MENU -->
     <string name="qrcode">QRCode</string>

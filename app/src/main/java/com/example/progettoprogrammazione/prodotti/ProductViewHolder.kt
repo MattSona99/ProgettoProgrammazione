@@ -24,10 +24,10 @@ class ProductViewHolder(
 
     fun bindProdotti(prodotto: Product) {
         prodottoBinding.nomeProdottoCard.text = prodotto.nomeP
+        prodottoBinding.cardDesc.text = prodotto.descrizioneP
     }
 
     fun createShoppingCart(prodotto: Product, context: Context) {
-        prodottoBinding.cartQuantity.isVisible = false
 
         prodottoBinding.seekbar.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
@@ -49,6 +49,7 @@ class ProductViewHolder(
             val shoppingCartProduct =
                 CartProduct(
                     prodotto.nomeP,
+                    prodotto.descrizioneP,
                     quantity,
                     prezzoTot,
                     prodotto.idP,

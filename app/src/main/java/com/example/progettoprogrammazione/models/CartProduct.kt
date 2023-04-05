@@ -5,11 +5,13 @@ import android.os.Parcelable
 
 class CartProduct(
     var pName: String?,
+    var pDesc: String?,
     var quantity: Int? = 0,
     var totPrice: Float? = 0f,
     var pID: String?
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString(),
         parcel.readString(),
         parcel.readInt(),
         parcel.readFloat(),
@@ -18,6 +20,7 @@ class CartProduct(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(pName)
+        parcel.writeString(pDesc)
         parcel.writeInt(quantity!!)
         parcel.writeFloat(totPrice!!)
         parcel.writeString(pID)

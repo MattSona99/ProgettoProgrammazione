@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/prodCardLayout"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="wrap_content"
     android:orientation="horizontal">
 
     <ImageButton
-        android:id="@+id/btncard"
+        android:id="@+id/btncardC"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="5dp"
@@ -23,15 +23,13 @@
         app:srcCompat="@drawable/white_card_red_rounded"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/prodDetail"
+            android:id="@+id/cartDetailC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -39,13 +37,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60sp"
                 android:background="@drawable/red_card_button_top">
 
                 <TextView
-                    android:id="@+id/nome_prodotto_card_cart"
+                    android:id="@+id/nome_prodotto_cardC"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:gravity="center"
                     android:text="@string/product_name"
                     android:textColor="@color/white"
@@ -54,91 +53,58 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/click_detail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="10dp">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:padding="10dp"
-                    app:cardCornerRadius="8dp">
-
-                    <ImageView
-                        android:id="@+id/copertinaprod"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/pencil" />
-
-                </androidx.cardview.widget.CardView>
-
-
-            </LinearLayout>
-
-
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/cartBegin"
+            android:id="@+id/cartBeginC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:orientation="vertical"
             android:padding="5dp">
 
+            <TextView
+                android:id="@+id/card_descC"
+                android:layout_width="match_parent"
+                android:layout_height="70sp"
+                android:padding="5dp"
+                android:text="@string/desc"
+                android:textColor="@color/red"
+                android:textSize="16sp" />
+
+            <SeekBar
+                android:id="@+id/seekbarC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/red"
+                android:max="20"
+                android:thumbTint="@color/red"
+                android:progress="0"
+                android:progressTint="@color/red" />
+
+            <TextView
+                android:id="@+id/quantityC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="5dp"
+                android:text="@string/number"
+                android:textColor="@color/red"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/delete_productC"
+                android:layout_width="match_parent"
+                android:layout_height="30sp"
+                android:background="@drawable/red_card_button_bottom"
+                android:gravity="center"
+                android:text="@string/elimina"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/cartQuantity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:padding="5dp">
-
-            <TextView
-                android:id="@+id/btn_modifica"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_weight="1"
-                android:background="@drawable/red_card_button_bottom"
-                android:gravity="center"
-                android:text="Modifica"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:ignore="RtlHardcoded" />
-
-            <TextView
-                android:layout_width="2px"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/btn_elimina"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_weight="1"
-                android:background="@drawable/red_card_button_bottom"
-                android:gravity="center"
-                android:text="@string/remove"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:ignore="RtlHardcoded" />
-
-
-        </LinearLayout>
-
-
-    </RelativeLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
