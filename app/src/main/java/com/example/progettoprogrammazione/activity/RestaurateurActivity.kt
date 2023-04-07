@@ -49,9 +49,11 @@ class RestaurateurActivity : AppCompatActivity() {
         user = FirebaseAuth.getInstance()
 
         val u = intent.getParcelableExtra("user") as User?
+        val qrcode = intent.getByteArrayExtra("qrcode") as BooleanArray?
         bundle = Bundle()
         bundle.putParcelable("user", u)
         bundle.putString("userlvl", u?.Livello)
+        bundle.putBooleanArray("qrcode", qrcode)
 
         val appBarConfiguration = AppBarConfiguration
             .Builder(

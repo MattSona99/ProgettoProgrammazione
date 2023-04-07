@@ -36,7 +36,7 @@ class CartViewHolder(
         cartBinding.cardDescC.text = cartProduct.pDesc
 
         cartBinding.deleteProductC.setOnClickListener{
-            removeShoppingCart(cartProduct,FirebaseAuth.getInstance().uid,context)
+            removeQRData(FirebaseAuth.getInstance().uid,context)
         }
 
 

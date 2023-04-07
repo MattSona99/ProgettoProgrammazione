@@ -51,10 +51,9 @@ class FragmentIntro : Fragment(), UserUtils, RestaurantUtils, ProductUtils, Shop
                             Toast.LENGTH_LONG
                         )
                             .show()
-                        getShoppingCartData(FirebaseAuth.getInstance().uid, object :
+                        getQRData(FirebaseAuth.getInstance().uid, object :
                             FireBaseCallbackShoppingCart {
                             override fun onResponse(responseC: ResponseShoppingCart) {
-
                                 getRestaurantData(object : FireBaseCallbackRestaurant {
                                     override fun onResponse(responseR: ResponseRistorante) {
 
@@ -70,7 +69,7 @@ class FragmentIntro : Fragment(), UserUtils, RestaurantUtils, ProductUtils, Shop
                                                             "ristoranti",
                                                             responseR.ristoranti
                                                         )
-                                                        putExtra("carrello", responseC.carrello)
+                                                        putExtra("qrcode", responseC.qrcode)
                                                     }
                                                 startActivity(intent)
                                                 activity?.finish()
@@ -88,7 +87,7 @@ class FragmentIntro : Fragment(), UserUtils, RestaurantUtils, ProductUtils, Shop
                                                             "ristoranti",
                                                             responseR.ristoranti
                                                         )
-                                                        putExtra("carrello", responseC.carrello)
+                                                        putExtra("qrcode", responseC.qrcode)
                                                     }
                                                 startActivity(intent)
                                                 activity?.finish()
@@ -106,7 +105,7 @@ class FragmentIntro : Fragment(), UserUtils, RestaurantUtils, ProductUtils, Shop
                                                             "ristoranti",
                                                             responseR.ristoranti
                                                         )
-                                                        putExtra("carrello", responseC.carrello)
+                                                        putExtra("qrcode", responseC.qrcode)
                                                     }
                                                 startActivity(intent)
                                                 activity?.finish()

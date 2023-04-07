@@ -1,11 +1,7 @@
 package com.example.progettoprogrammazione.utils
 
-import android.app.AlertDialog
 import android.content.Context
-import android.view.LayoutInflater
-import android.widget.EditText
 import android.widget.Toast
-import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackShoppingCart
 import com.example.progettoprogrammazione.models.CartProduct
 import com.google.firebase.auth.FirebaseAuth
@@ -19,82 +15,52 @@ interface ShoppingCartUtils {
     var firebaseAuth: FirebaseAuth
     var firebaseDatabase: FirebaseDatabase
 
-    fun getShoppingCartData(
+    fun getQRData(
         idU: String?,
-        callBack: FireBaseCallbackShoppingCart,
+        callback: FireBaseCallbackShoppingCart,
         context: Context?
     ) {
-        firebaseDatabase.getReference("Utenti/$idU/Carrello")
+        firebaseDatabase.getReference("Utenti/$idU/QRCode")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val response = ResponseShoppingCart()
-                    for (prod: DataSnapshot in snapshot.children) {
-                        val carrello =
-                            CartProduct(
-                                prod.child("pname").value.toString(),
-                                prod.child("pdesc").value.toString(),
-                                prod.child("quantity").value.toString().toInt(),
-                                prod.child("totPrice").value.toString().toFloat(),
-                                prod.child("pid").value.toString()
-                            )
-
-                        response.carrello.add(carrello)
-                    }
-                    callBack.onResponse(response)
+                    val responseQR = ResponseShoppingCart()
+                    responseQR.qrcode = snapshot.value.toString()
+                    callback.onResponse(responseQR)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
                     Toast.makeText(
                         context,
-                        "Errore durante il caricamento dei dati",
+                        "Errore durante il caricamento dei dati.",
                         Toast.LENGTH_LONG
-                    ).show()
+                    )
+                        .show()
                 }
-
             })
     }
 
-    fun addToShoppingCart(
-        cartProduct: CartProduct,
-        quantita: Int,
+    fun addQRData(
+        cartItems: ArrayList<CartProduct>,
         idU: String?,
         context: Context?
     ) {
-        firebaseDatabase.getReference("Utenti/$idU/Carrello/${cartProduct.pName}")
-            .setValue(cartProduct)
-        Toast.makeText(context, "Prodotto aggiunto con successo al carrello.", Toast.LENGTH_LONG)
+        firebaseDatabase.getReference("Utenti/$idU/QRCode")
+            .setValue(cartItems).addOnSuccessListener {
+                Toast.makeText(context, "QRCode creato con successo.", Toast.LENGTH_LONG)
+                    .show()
+            }.addOnFailureListener {
+                Toast.makeText(
+                    context,
+                    "Errore durante il caricamento dei dati.",
+                    Toast.LENGTH_LONG
+                )
+                    .show()
+            }
+    }
+
+    fun removeQRData(idU: String?, context: Context?) {
+        firebaseDatabase.getReference("Utenti/$idU/QRCode").removeValue()
+        Toast.makeText(context, "QRCode eliminato con successo.", Toast.LENGTH_LONG)
             .show()
     }
-
-    fun removeShoppingCart(cartProduct: CartProduct, idU: String?, context: Context?) {
-        firebaseDatabase.getReference("Utenti/$idU/Carrello")
-            .child("${cartProduct.pName}").removeValue()
-        Toast.makeText(context, "Prodotto rimosso con successo dal carrello.", Toast.LENGTH_LONG)
-            .show()
-    }
-
-    fun modifyProdC(cartProduct: CartProduct, idU: String?, context: Context?) {
-
-        val inflater = LayoutInflater.from(context)
-        val v = inflater.inflate(R.layout.fragment_modify_quantity_cart, null)
-        val addDialog = AlertDialog.Builder(context)
-
-        val quantityC = v.findViewById<EditText>(R.id.quantita_prodotto)
-        quantityC.setText(cartProduct.quantity!!.toString())
-        addDialog.setView(v)
-        addDialog.setPositiveButton("OK") { _, _ ->
-
-            firebaseDatabase.getReference("Utenti/$idU/Carrello/${cartProduct.pName}")
-                .child("quantity").setValue(quantityC.text.toString())
-            Toast.makeText(context, "Quantita modificata con successo", Toast.LENGTH_LONG).show()
-
-        }
-        addDialog.setNegativeButton("Cancel") { dialog, _ ->
-            dialog.cancel()
-        }
-        addDialog.create()
-        addDialog.show()
-    }
-
-
 }
