@@ -49,8 +49,11 @@ class EmployeeActivity : AppCompatActivity() {
         user = FirebaseAuth.getInstance()
 
         val u = intent.getParcelableExtra("user") as User?
+        val qrcode = intent.getByteArrayExtra("qrcode") as BooleanArray?
         bundle = Bundle()
         bundle.putParcelable("user", u)
+        bundle.putString("userlvl", u?.Livello)
+        bundle.putBooleanArray("qrcode", qrcode)
 
         cartViewModel = ViewModelProvider(this)[CartViewModel::class.java]
 
@@ -74,6 +77,11 @@ class EmployeeActivity : AppCompatActivity() {
 
         val fragmentCarrello = navController.graph.findNode(R.id.fragmentCarrello_D)
         fragmentCarrello?.arguments.let {
+            bundleOf("cartViewModel" to cartViewModel)
+        }
+
+        val fragmentQR = navController.graph.findNode(R.id.fragmentQR_D)
+        fragmentQR?.arguments.let {
             bundleOf("cartViewModel" to cartViewModel)
         }
 

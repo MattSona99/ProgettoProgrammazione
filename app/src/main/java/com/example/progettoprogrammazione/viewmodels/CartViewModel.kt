@@ -18,4 +18,8 @@ class CartViewModel : ViewModel() , java.io.Serializable {
         cartProductItems.value = carts
     }
 
+    fun deleteCartItems() {
+        cartProductItems.value?.clear()
+    }
+
 }

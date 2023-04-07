@@ -14,13 +14,13 @@ import com.example.progettoprogrammazione.activity.RestaurateurActivity
 import com.example.progettoprogrammazione.activity.UserActivity
 import com.example.progettoprogrammazione.databinding.FragmentIntroBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
-import com.example.progettoprogrammazione.firebase.FireBaseCallbackShoppingCart
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackQRCode
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class FragmentIntro : Fragment(), UserUtils, RestaurantUtils, ProductUtils, ShoppingCartUtils {
+class FragmentIntro : Fragment(), UserUtils, RestaurantUtils, ProductUtils, QRCodeUtils {
 
     private lateinit var binding: FragmentIntroBinding
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -52,8 +52,8 @@ class FragmentIntro : Fragment(), UserUtils, RestaurantUtils, ProductUtils, Shop
                         )
                             .show()
                         getQRData(FirebaseAuth.getInstance().uid, object :
-                            FireBaseCallbackShoppingCart {
-                            override fun onResponse(responseC: ResponseShoppingCart) {
+                            FireBaseCallbackQRCode {
+                            override fun onResponse(responseC: ResponseQRCode) {
                                 getRestaurantData(object : FireBaseCallbackRestaurant {
                                     override fun onResponse(responseR: ResponseRistorante) {
 

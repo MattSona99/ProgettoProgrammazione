@@ -77,6 +77,11 @@ class RestaurateurActivity : AppCompatActivity() {
             bundleOf("cartViewModel" to cartViewModel)
         }
 
+        val fragmentQR = navController.graph.findNode(R.id.fragmentQR_R)
+        fragmentQR?.arguments.let {
+            bundleOf("cartViewModel" to cartViewModel)
+        }
+
         val fragmentMenu = navController.graph.findNode(R.id.fragmentMenuR)
         fragmentMenu?.arguments.let {
             bundleOf("cartViewModel" to cartViewModel)

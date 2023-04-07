@@ -3,12 +3,11 @@ package com.example.progettoprogrammazione.prodotti
 import android.content.Context
 import android.widget.SeekBar
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.databinding.ProductCardBinding
 import com.example.progettoprogrammazione.models.CartProduct
 import com.example.progettoprogrammazione.models.Product
-import com.example.progettoprogrammazione.utils.ShoppingCartUtils
+import com.example.progettoprogrammazione.utils.QRCodeUtils
 import com.example.progettoprogrammazione.viewmodels.CartViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -17,7 +16,7 @@ class ProductViewHolder(
     private val prodottoBinding: ProductCardBinding,
     private val cartViewModel: CartViewModel
 
-) : RecyclerView.ViewHolder(prodottoBinding.root), ShoppingCartUtils {
+) : RecyclerView.ViewHolder(prodottoBinding.root), QRCodeUtils {
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()

@@ -2,7 +2,7 @@ package com.example.progettoprogrammazione.utils
 
 import android.content.Context
 import android.widget.Toast
-import com.example.progettoprogrammazione.firebase.FireBaseCallbackShoppingCart
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackQRCode
 import com.example.progettoprogrammazione.models.CartProduct
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -10,20 +10,20 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-interface ShoppingCartUtils {
+interface QRCodeUtils {
 
     var firebaseAuth: FirebaseAuth
     var firebaseDatabase: FirebaseDatabase
 
     fun getQRData(
         idU: String?,
-        callback: FireBaseCallbackShoppingCart,
+        callback: FireBaseCallbackQRCode,
         context: Context?
     ) {
         firebaseDatabase.getReference("Utenti/$idU/QRCode")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val responseQR = ResponseShoppingCart()
+                    val responseQR = ResponseQRCode()
                     responseQR.qrcode = snapshot.value.toString()
                     callback.onResponse(responseQR)
                 }

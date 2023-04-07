@@ -87,7 +87,7 @@
     <fragment
         android:id="@+id/fragmentQR_D"
         android:name="com.example.progettoprogrammazione.fragment.FragmentQR"
-        android:label="I tuoi QRCodes"
+        android:label="Il tuo QRCode"
         tools:layout="@layout/fragment_qr" />
     <fragment
         android:id="@+id/fragmentSearchD"

@@ -62,14 +62,22 @@ class UserActivity : AppCompatActivity() {
         user = FirebaseAuth.getInstance()
 
         val u = intent.getParcelableExtra("user") as User?
+        val qrcode = intent.getByteArrayExtra("qrcode") as BooleanArray?
         bundle = Bundle()
         bundle.putParcelable("user", u)
+        bundle.putString("userlvl", u?.Livello)
+        bundle.putBooleanArray("qrcode", qrcode)
 
         cartViewModel = ViewModelProvider(this)[CartViewModel::class.java]
 
 
         val fragmentCarrello = navController.graph.findNode(R.id.fragmentCarrello_U)
         fragmentCarrello?.arguments.let {
+            bundleOf("cartViewModel" to cartViewModel)
+        }
+
+        val fragmentQR = navController.graph.findNode(R.id.fragmentQR_U)
+        fragmentQR?.arguments.let {
             bundleOf("cartViewModel" to cartViewModel)
         }
 

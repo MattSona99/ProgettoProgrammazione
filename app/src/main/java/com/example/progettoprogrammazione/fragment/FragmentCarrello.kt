@@ -17,12 +17,12 @@ import com.example.progettoprogrammazione.databinding.FragmentCarrelloBinding
 import com.example.progettoprogrammazione.models.CartProduct
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.utils.ProductUtils
-import com.example.progettoprogrammazione.utils.ShoppingCartUtils
+import com.example.progettoprogrammazione.utils.QRCodeUtils
 import com.example.progettoprogrammazione.viewmodels.CartViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductUtils {
+class FragmentCarrello : Fragment(), QRCodeUtils, ProductUtils {
 
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -95,12 +95,13 @@ class FragmentCarrello : Fragment(), ShoppingCartUtils, ProductUtils {
 
         binding.constraintQR.setOnClickListener {
             addQRData(cartProduct, firebaseAuth.uid, context)
+            val bundleQR = Bundle()
+            bundleQR.putParcelable("user", user)
             when (user.Livello) {
-                "1" -> view.findNavController().navigate(R.id.CarrelloToQR_U)
-                "2" -> view.findNavController().navigate(R.id.CarrelloToQR_D)
-                "3" -> view.findNavController().navigate(R.id.CarrelloToQR_R)
+                "1" -> view.findNavController().navigate(R.id.CarrelloToQR_U, bundleQR)
+                "2" -> view.findNavController().navigate(R.id.CarrelloToQR_D, bundleQR)
+                "3" -> view.findNavController().navigate(R.id.CarrelloToQR_R, bundleQR)
             }
-
         }
     }
 }

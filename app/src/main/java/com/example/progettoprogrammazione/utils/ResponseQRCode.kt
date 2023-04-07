@@ -1,5 +1,5 @@
 package com.example.progettoprogrammazione.utils
 
-class ResponseShoppingCart {
+class ResponseQRCode {
     var qrcode: String = String()
 }
