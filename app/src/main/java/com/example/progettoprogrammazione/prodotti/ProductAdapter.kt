@@ -11,7 +11,8 @@ import com.example.progettoprogrammazione.viewmodels.CartViewModel
 class ProductAdapter(
     private var prodotti: ArrayList<Product>,
     private val context: Context,
-    private val cartViewModel: CartViewModel
+    private val cartViewModel: CartViewModel,
+    private val restID: String
 ) :
     RecyclerView.Adapter<ProductViewHolder>() {
 
@@ -28,7 +29,7 @@ class ProductAdapter(
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         holder.bindProdotti(prodotti[position])
-        holder.createShoppingCart(prodotti[position], context)
+        holder.createShoppingCart(prodotti[position], restID, context)
 
     }
 

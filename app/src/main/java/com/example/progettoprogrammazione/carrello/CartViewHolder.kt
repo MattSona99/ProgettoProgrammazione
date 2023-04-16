@@ -5,13 +5,13 @@ import android.widget.SeekBar
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.databinding.CartCardBinding
 import com.example.progettoprogrammazione.models.CartProduct
-import com.example.progettoprogrammazione.utils.QRCodeUtils
+import com.example.progettoprogrammazione.utils.CartUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class CartViewHolder(
     private val cartBinding: CartCardBinding
-) : RecyclerView.ViewHolder(cartBinding.root), QRCodeUtils {
+) : RecyclerView.ViewHolder(cartBinding.root), CartUtils {
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()

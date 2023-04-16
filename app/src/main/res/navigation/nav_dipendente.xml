@@ -64,13 +64,6 @@
         android:name="com.example.progettoprogrammazione.ristorante.RestaurantDetail"
         android:label="Dettagli ristorante"
         tools:layout="@layout/fragment_restaurant_detail">
-        <action
-            android:id="@+id/DetailToMenu_D"
-            app:destination="@id/fragmentMenuD"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
@@ -78,12 +71,6 @@
         android:name="com.example.progettoprogrammazione.dipendente.FragmentLavoro"
         android:label="Gestione lavoro"
         tools:layout="@layout/fragment_lavoro" />
-    <fragment
-        android:id="@+id/fragmentMenuD"
-        android:name="com.example.progettoprogrammazione.fragment.FragmentMenu"
-        android:label="Menù"
-        tools:layout="@layout/fragment_menu">
-    </fragment>
     <fragment
         android:id="@+id/fragmentQR_D"
         android:name="com.example.progettoprogrammazione.fragment.FragmentQR"

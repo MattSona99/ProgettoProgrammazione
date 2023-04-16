@@ -8,6 +8,7 @@ class CartProduct(
     var pDesc: String?,
     var quantity: Int? = 0,
     var totPrice: Float? = 0f,
+    var restID: String?,
     var pID: String?
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
@@ -16,6 +17,7 @@ class CartProduct(
         parcel.readInt(),
         parcel.readFloat(),
         parcel.readString(),
+        parcel.readString(),
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -23,6 +25,7 @@ class CartProduct(
         parcel.writeString(pDesc)
         parcel.writeInt(quantity!!)
         parcel.writeFloat(totPrice!!)
+        parcel.writeString(restID)
         parcel.writeString(pID)
 
     }

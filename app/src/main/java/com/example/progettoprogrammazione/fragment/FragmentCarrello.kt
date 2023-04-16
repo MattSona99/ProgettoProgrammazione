@@ -17,12 +17,12 @@ import com.example.progettoprogrammazione.databinding.FragmentCarrelloBinding
 import com.example.progettoprogrammazione.models.CartProduct
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.utils.ProductUtils
-import com.example.progettoprogrammazione.utils.QRCodeUtils
+import com.example.progettoprogrammazione.utils.CartUtils
 import com.example.progettoprogrammazione.viewmodels.CartViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class FragmentCarrello : Fragment(), QRCodeUtils, ProductUtils {
+class FragmentCarrello : Fragment(), CartUtils, ProductUtils {
 
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()

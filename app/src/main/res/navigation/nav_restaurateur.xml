@@ -72,15 +72,11 @@
         android:label="Dettagli ristorante"
         tools:layout="@layout/fragment_restaurant_detail">
         <action
-            android:id="@+id/DetailToMenu_R"
-            app:destination="@id/fragmentMenuR"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
             android:id="@+id/DetailToModifica"
             app:destination="@id/fragmentModificaRist" />
+        <action
+            android:id="@+id/RestaurantDetailToModificaMenu"
+            app:destination="@id/fragmentModificaMenu" />
     </fragment>
     <fragment
         android:id="@+id/fragmentGestione"
@@ -93,15 +89,6 @@
         <action
             android:id="@+id/GestioneToCrea"
             app:destination="@id/fragmentCreaRist" />
-    </fragment>
-    <fragment
-        android:id="@+id/fragmentMenuR"
-        android:name="com.example.progettoprogrammazione.fragment.FragmentMenu"
-        android:label="Menù"
-        tools:layout="@layout/fragment_menu">
-        <action
-            android:id="@+id/MenuToModifica"
-            app:destination="@id/fragmentModificaMenu" />
     </fragment>
     <fragment
         android:id="@+id/fragmentCreaRist"

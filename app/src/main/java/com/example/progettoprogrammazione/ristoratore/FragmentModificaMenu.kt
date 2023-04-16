@@ -103,11 +103,6 @@ class FragmentModificaMenu : Fragment(), UserUtils, ProductUtils {
         val args = this.arguments
         val restaurantID = args?.get("idR") as String
 
-        binding.svuotamenu.setOnClickListener {
-            binding.radioGroupMenu.clearCheck()
-            invisible()
-        }
-
         binding.btnBevande.setOnClickListener {
             invisible()
             verticalrecylerview(bevandeArrayList,  binding.recycleViewBevande, restaurantID, "Bevande")

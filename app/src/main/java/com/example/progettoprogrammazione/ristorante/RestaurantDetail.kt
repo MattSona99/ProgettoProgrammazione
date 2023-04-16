@@ -8,9 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.navGraphViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.activity.RestaurateurActivity
 import com.example.progettoprogrammazione.databinding.FragmentRestaurantDetailBinding
@@ -20,7 +24,9 @@ import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.models.Restaurant
+import com.example.progettoprogrammazione.prodotti.ProductAdapter
 import com.example.progettoprogrammazione.utils.*
+import com.example.progettoprogrammazione.viewmodels.CartViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -41,12 +47,19 @@ class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
     private lateinit var contorniArrayList: ArrayList<Product>
     private lateinit var dolciArrayList: ArrayList<Product>
 
+
+    private lateinit var cartViewModel: CartViewModel
+    private val cartViewModelR: CartViewModel by navGraphViewModels(R.id.nav_restaurateur)
+    private val cartViewModelU: CartViewModel by navGraphViewModels(R.id.nav_user)
+    private val cartViewModelD: CartViewModel by navGraphViewModels(R.id.nav_dipendente)
+
     private lateinit var uid: String
     private var restaurantList: ArrayList<Restaurant>? = null
     private var restaurant: Restaurant? = null
+    private lateinit var adapter: ProductAdapter
 
     private lateinit var user: FirebaseAuth
-    private lateinit var userlvl : String
+    private lateinit var userlvl: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,11 +77,17 @@ class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
         user = FirebaseAuth.getInstance()
         uid = user.currentUser!!.uid
 
-        if(userlvl!="3") {
-            binding.optionsRest.isVisible = false
+        when (userlvl) {
+            "1" -> cartViewModel = cartViewModelU
+            "2" -> cartViewModel = cartViewModelD
+            "3" -> cartViewModel = cartViewModelR
         }
 
         restaurant = restaurantFromId(restaurantID.toString())
+        if (userlvl == "3" && restaurant!!.proprietarioR==user.currentUser!!.email.toString()) {
+            binding.optionsRest.isVisible = false
+            binding.btnModificaMenu.isVisible = true
+        }
 
         if (restaurant != null) {
             binding.btnModificaRistorante.isVisible =
@@ -97,22 +116,15 @@ class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
             binding.indirizzodetail.text = restaurant?.indirizzoR
             binding.cucinadetail.text = restaurant?.tipoCiboR
         }
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val args = this.arguments
-        val restaurantID = args?.get("restID")
-        restaurantList = args?.getParcelableArrayList("restArrayList")
-
 
         getProdotti(
             restaurantID.toString(),
             object : FireBaseCallbackProdotto {
                 override fun onResponse(responseP: ResponseProdotto) {
                     bevandeArrayList = responseP.prodotto
+                    bindrecyclerviews(bevandeArrayList, binding.recycleViewBevande)
+                    binding.btnBevande.isChecked = true
+                    binding.bevandeMenu.isVisible = true
                 }
             }, "Bevande", context
         )
@@ -157,7 +169,17 @@ class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
             }, "Dolci", context
         )
 
-        binding.btnVisualizzaMenu.setOnClickListener {
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val args = this.arguments
+        val restaurantID = args?.get("restID")
+        restaurantList = args?.getParcelableArrayList("restArrayList")
+
+        binding.btnModificaMenu.setOnClickListener {
             val bundle = Bundle()
             bundle.putParcelableArrayList("bevande", bevandeArrayList)
             bundle.putParcelableArrayList("antipasti", antipastiArrayList)
@@ -165,16 +187,45 @@ class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
             bundle.putParcelableArrayList("secondi", secondiArrayList)
             bundle.putParcelableArrayList("contorni", contorniArrayList)
             bundle.putParcelableArrayList("dolci", dolciArrayList)
-            bundle.putString("proprietarioR",restaurant?.proprietarioR.toString())
-            bundle.putParcelableArrayList("restArrayList", restaurantList)
             bundle.putString("idR", restaurantID.toString())
 
-            when(userlvl) {
-                "1" -> view.findNavController().navigate(R.id.DetailToMenu_U, bundle)
-                "2" -> view.findNavController().navigate(R.id.DetailToMenu_D, bundle)
-                "3" -> view.findNavController().navigate(R.id.DetailToMenu_R, bundle)
-            }
+            view.findNavController().navigate(R.id.RestaurantDetailToModificaMenu, bundle)
+        }
 
+        binding.btnBevande.setOnClickListener {
+            invisible()
+            bindrecyclerviews(bevandeArrayList, binding.recycleViewBevande)
+            binding.bevandeMenu.isVisible = true
+        }
+
+        binding.btnAntipasti.setOnClickListener {
+            invisible()
+            bindrecyclerviews(antipastiArrayList, binding.recycleViewAntipasti)
+            binding.antipastiMenu.isVisible = true
+        }
+
+        binding.btnPrimi.setOnClickListener {
+            invisible()
+            bindrecyclerviews(primiArrayList, binding.recycleViewPrimi)
+            binding.primiMenu.isVisible = true
+        }
+
+        binding.btnSecondi.setOnClickListener {
+            invisible()
+            bindrecyclerviews(secondiArrayList, binding.recycleViewSecondi)
+            binding.secondiMenu.isVisible = true
+        }
+
+        binding.btnContorni.setOnClickListener {
+            invisible()
+            bindrecyclerviews(contorniArrayList, binding.recycleViewContorni)
+            binding.contorniMenu.isVisible = true
+        }
+
+        binding.btnDolci.setOnClickListener {
+            invisible()
+            bindrecyclerviews(dolciArrayList, binding.recycleViewDolci)
+            binding.dolciMenu.isVisible = true
         }
 
         binding.btnEliminaRistorante.setOnClickListener {
@@ -245,6 +296,33 @@ class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
                 return restaurant
         }
         return null
+    }
+
+    private fun invisible() {
+        binding.tutteMenu.isGone = false
+        binding.bevandeMenu.isGone = true
+        binding.antipastiMenu.isGone = true
+        binding.primiMenu.isGone = true
+        binding.secondiMenu.isGone = true
+        binding.contorniMenu.isGone = true
+        binding.dolciMenu.isGone = true
+    }
+
+    private fun bindrecyclerviews(
+        prodotti: ArrayList<Product>,
+        recyclerView: RecyclerView
+    ) {
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = layoutManager
+        adapter = ProductAdapter(prodotti, requireContext(), cartViewModel, restaurant!!.idR.toString())
+        showData(prodotti)
+        recyclerView.adapter = adapter
+        recyclerView.setHasFixedSize(true)
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun showData(arrayList: ArrayList<Product>) {
+        adapter.setData(arrayList)
     }
 
 }

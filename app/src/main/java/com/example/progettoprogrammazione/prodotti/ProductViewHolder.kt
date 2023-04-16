@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.databinding.ProductCardBinding
 import com.example.progettoprogrammazione.models.CartProduct
 import com.example.progettoprogrammazione.models.Product
-import com.example.progettoprogrammazione.utils.QRCodeUtils
+import com.example.progettoprogrammazione.utils.CartUtils
 import com.example.progettoprogrammazione.viewmodels.CartViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -16,7 +16,7 @@ class ProductViewHolder(
     private val prodottoBinding: ProductCardBinding,
     private val cartViewModel: CartViewModel
 
-) : RecyclerView.ViewHolder(prodottoBinding.root), QRCodeUtils {
+) : RecyclerView.ViewHolder(prodottoBinding.root), CartUtils {
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
@@ -26,7 +26,7 @@ class ProductViewHolder(
         prodottoBinding.cardDesc.text = prodotto.descrizioneP
     }
 
-    fun createShoppingCart(prodotto: Product, context: Context) {
+    fun createShoppingCart(prodotto: Product, restID: String, context: Context) {
 
         prodottoBinding.seekbar.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
@@ -51,14 +51,54 @@ class ProductViewHolder(
                     prodotto.descrizioneP,
                     quantity,
                     prezzoTot,
+                    restID,
                     prodotto.idP,
                 )
-            if (quantity != 0) {
-                cartViewModel.addcartItems(shoppingCartProduct)
-                Toast.makeText(context, "Prodotto aggiunto al carrello.", Toast.LENGTH_SHORT).show()
+            val cart = cartViewModel.getcartItems().value
+            if(cart!!.isEmpty()) {
+                if (quantity != 0) {
+                    cartViewModel.addcartItems(shoppingCartProduct)
+                    Toast.makeText(
+                        context,
+                        "Prodotto aggiunto al carrello.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        context,
+                        "Seleziona una quantità maggiore di 0.",
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
+                }
             } else {
-                Toast.makeText(context, "Seleziona una quantità maggiore di 0.", Toast.LENGTH_SHORT)
-                    .show()
+                for (c: CartProduct in cart) {
+                    if (c.restID == shoppingCartProduct.restID) {
+                        if (quantity != 0) {
+                            cartViewModel.addcartItems(shoppingCartProduct)
+                            Toast.makeText(
+                                context,
+                                "Prodotto aggiunto al carrello.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                context,
+                                "Seleziona una quantità maggiore di 0.",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
+                    } else {
+                        Toast.makeText(
+                            context,
+                            "Hai selezionato un prodotto da un ristorante diverso da quello iniziale.",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                        break
+                    }
+                }
             }
         }
     }

@@ -49,11 +49,11 @@ class RestaurateurActivity : AppCompatActivity() {
         user = FirebaseAuth.getInstance()
 
         val u = intent.getParcelableExtra("user") as User?
-        val qrcode = intent.getByteArrayExtra("qrcode") as BooleanArray?
+        val cart = intent.getByteArrayExtra("cart") as BooleanArray?
         bundle = Bundle()
         bundle.putParcelable("user", u)
         bundle.putString("userlvl", u?.Livello)
-        bundle.putBooleanArray("qrcode", qrcode)
+        bundle.putBooleanArray("cart", cart)
 
         val appBarConfiguration = AppBarConfiguration
             .Builder(
@@ -79,11 +79,6 @@ class RestaurateurActivity : AppCompatActivity() {
 
         val fragmentQR = navController.graph.findNode(R.id.fragmentQR_R)
         fragmentQR?.arguments.let {
-            bundleOf("cartViewModel" to cartViewModel)
-        }
-
-        val fragmentMenu = navController.graph.findNode(R.id.fragmentMenuR)
-        fragmentMenu?.arguments.let {
             bundleOf("cartViewModel" to cartViewModel)
         }
 
