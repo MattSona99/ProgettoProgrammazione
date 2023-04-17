@@ -28,12 +28,12 @@
 
                 <TextView
                     android:id="@+id/text_form_prop"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:text="@string/create_compile"
                     android:textColor="@color/red"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <LinearLayout

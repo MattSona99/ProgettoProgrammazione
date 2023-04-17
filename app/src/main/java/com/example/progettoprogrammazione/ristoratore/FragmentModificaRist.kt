@@ -181,7 +181,6 @@ class FragmentModificaRist : Fragment(), ImgUtils {
         timePicker.setOnTimeChangedListener { _, hour, minute ->
             var hour = hour
             var am_pm = ""
-            // AM_PM decider logic
             when {
                 hour == 0 -> {
                     hour += 12
@@ -197,7 +196,6 @@ class FragmentModificaRist : Fragment(), ImgUtils {
 
             val ora = if (hour < 10) "0" + hour else hour
             val min = if (minute < 10) "0" + minute else minute
-            // display format of time
             val msg = "$ora : $min $am_pm"
             textView.text = msg
 

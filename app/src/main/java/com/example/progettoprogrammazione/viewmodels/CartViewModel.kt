@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.progettoprogrammazione.models.CartProduct
 
-class CartViewModel : ViewModel() , java.io.Serializable {
+class CartViewModel : ViewModel(), java.io.Serializable {
     private val cartProductItems = MutableLiveData<ArrayList<CartProduct>>(ArrayList())
 
     fun getcartItems(): LiveData<ArrayList<CartProduct>> {
@@ -20,6 +20,12 @@ class CartViewModel : ViewModel() , java.io.Serializable {
 
     fun deleteCartItems() {
         cartProductItems.value?.clear()
+    }
+
+    fun deleteSpecificCart(cartProduct: CartProduct) {
+        val carts = cartProductItems.value ?: ArrayList()
+        carts.remove(cartProduct)
+        cartProductItems.value = carts
     }
 
 }

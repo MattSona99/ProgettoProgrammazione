@@ -72,7 +72,7 @@ class FragmentCarrello : Fragment(), CartUtils, ProductUtils {
             binding.totaleCarrello.text = totale.toString() + " €"
             val layoutManager = GridLayoutManager(context, 2)
             binding.recylerOrder.layoutManager = layoutManager
-            adapter = CartAdapter(cartItems, requireContext())
+            adapter = CartAdapter(cartItems, cartViewModel)
             adapter.setData(cartItems)
             binding.recylerOrder.adapter = adapter
             binding.recylerOrder.setHasFixedSize(true)
@@ -95,6 +95,7 @@ class FragmentCarrello : Fragment(), CartUtils, ProductUtils {
 
         binding.constraintQR.setOnClickListener {
             addQRData(cartProduct, firebaseAuth.uid, context)
+            cartViewModel.deleteCartItems()
             val bundleQR = Bundle()
             bundleQR.putParcelable("user", user)
             when (user.Livello) {

@@ -52,10 +52,9 @@ class FragmentQR : Fragment(), CartUtils {
 
         getQRData(firebaseAuth.uid, object : FireBaseCallbackCart {
             override fun onResponse(responseC: ResponseCart) {
-                if (responseC.cart == "null") {
+                if (responseC.cart.isEmpty()) {
                     binding.layoutQr.isGone = true
                 } else {
-                    cartViewModel.deleteCartItems()
                     binding.noQrcode.isGone = true
                     val multiFormatWriter = MultiFormatWriter()
                     val bitMatrix: BitMatrix =
@@ -82,5 +81,4 @@ class FragmentQR : Fragment(), CartUtils {
 
         return binding.root
     }
-
 }

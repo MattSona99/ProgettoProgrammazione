@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.databinding.CartCardBinding
 import com.example.progettoprogrammazione.models.CartProduct
+import com.example.progettoprogrammazione.viewmodels.CartViewModel
 
 class CartAdapter(
     private var cartProducts: ArrayList<CartProduct>,
-    private val context: Context
+    private var cartViewModel: CartViewModel
 ) : RecyclerView.Adapter<CartViewHolder>() {
 
     fun setData(cartProductList: ArrayList<CartProduct>) {
@@ -24,7 +25,7 @@ class CartAdapter(
     }
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
-        holder.bindCart(cartProducts[position],context)
+        holder.bindCart(cartProducts[position], cartViewModel)
 
     }
 

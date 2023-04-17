@@ -12,7 +12,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -69,17 +68,6 @@ class UserActivity : AppCompatActivity() {
         bundle.putBooleanArray("cart", cart)
 
         cartViewModel = ViewModelProvider(this)[CartViewModel::class.java]
-
-
-        val fragmentCarrello = navController.graph.findNode(R.id.fragmentCarrello_U)
-        fragmentCarrello?.arguments.let {
-            bundleOf("cartViewModel" to cartViewModel)
-        }
-
-        val fragmentQR = navController.graph.findNode(R.id.fragmentQR_U)
-        fragmentQR?.arguments.let {
-            bundleOf("cartViewModel" to cartViewModel)
-        }
 
         binding.navbarUser.setOnNavigationItemSelectedListener {
             when (it.itemId) {

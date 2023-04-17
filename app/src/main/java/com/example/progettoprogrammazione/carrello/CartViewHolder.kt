@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.databinding.CartCardBinding
 import com.example.progettoprogrammazione.models.CartProduct
 import com.example.progettoprogrammazione.utils.CartUtils
+import com.example.progettoprogrammazione.viewmodels.CartViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -16,8 +17,9 @@ class CartViewHolder(
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
-    fun bindCart(cartProduct: CartProduct, context: Context) {
+    fun bindCart(cartProduct: CartProduct, cartViewModel: CartViewModel) {
 
+        cartBinding.seekbarC.progress = cartProduct.quantity!!
         cartBinding.seekbarC.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
@@ -34,15 +36,13 @@ class CartViewHolder(
 
         cartBinding.nomeProdottoCardC.text = cartProduct.pName
         cartBinding.cardDescC.text = cartProduct.pDesc
+        cartBinding.quantityC.text = cartProduct.quantity.toString()
 
-        cartBinding.deleteProductC.setOnClickListener{
-            removeQRData(FirebaseAuth.getInstance().uid,context)
+        cartBinding.deleteProductC.setOnClickListener {
+            cartViewModel.deleteSpecificCart(cartProduct)
+            if (cartViewModel.getcartItems().value!!.isEmpty()) {
+                cartViewModel.deleteCartItems()
+            }
         }
-
-
-
-
     }
-
-
 }
