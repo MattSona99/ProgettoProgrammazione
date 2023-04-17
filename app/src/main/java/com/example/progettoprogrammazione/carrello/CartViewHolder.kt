@@ -1,9 +1,15 @@
 package com.example.progettoprogrammazione.carrello
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.widget.SeekBar
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.example.progettoprogrammazione.activity.IntroActivity
 import com.example.progettoprogrammazione.databinding.CartCardBinding
+import com.example.progettoprogrammazione.databinding.FragmentCarrelloBinding
 import com.example.progettoprogrammazione.models.CartProduct
 import com.example.progettoprogrammazione.utils.CartUtils
 import com.example.progettoprogrammazione.viewmodels.CartViewModel
@@ -17,7 +23,12 @@ class CartViewHolder(
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
-    fun bindCart(cartProduct: CartProduct, cartViewModel: CartViewModel) {
+    fun bindCart(
+        cartProduct: CartProduct,
+        cartViewModel: CartViewModel,
+        bindingCarrello: FragmentCarrelloBinding,
+        context: Context
+    ) {
 
         cartBinding.seekbarC.progress = cartProduct.quantity!!
         cartBinding.seekbarC.setOnSeekBarChangeListener(object :
@@ -39,10 +50,23 @@ class CartViewHolder(
         cartBinding.quantityC.text = cartProduct.quantity.toString()
 
         cartBinding.deleteProductC.setOnClickListener {
-            cartViewModel.deleteSpecificCart(cartProduct)
-            if (cartViewModel.getcartItems().value!!.isEmpty()) {
-                cartViewModel.deleteCartItems()
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle("Conferma l'eliminazione del prodotto")
+            builder.setMessage("Sei sicuro di voler eliminare il prodotto dal carrello?")
+            builder.setPositiveButton("Sì") { dialog, _ ->
+                cartViewModel.deleteSpecificCart(cartProduct)
+                if (cartViewModel.getcartItems().value!!.isEmpty()) {
+                    cartViewModel.deleteCartItems()
+                    bindingCarrello.totCarrelloLayout.isGone = true
+                    bindingCarrello.noProduct.isVisible = true
+                    bindingCarrello.constraintQR.isGone = true
+                    dialog.cancel()
+                }
             }
+            builder.setNegativeButton("No") { dialog, _ ->
+                dialog.cancel()
+            }
+            builder.show()
         }
     }
 }

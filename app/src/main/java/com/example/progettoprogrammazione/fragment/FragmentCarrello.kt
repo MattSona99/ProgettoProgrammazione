@@ -72,7 +72,7 @@ class FragmentCarrello : Fragment(), CartUtils, ProductUtils {
             binding.totaleCarrello.text = totale.toString() + " €"
             val layoutManager = GridLayoutManager(context, 2)
             binding.recylerOrder.layoutManager = layoutManager
-            adapter = CartAdapter(cartItems, cartViewModel)
+            adapter = CartAdapter(cartItems, cartViewModel, binding, requireContext())
             adapter.setData(cartItems)
             binding.recylerOrder.adapter = adapter
             binding.recylerOrder.setHasFixedSize(true)
