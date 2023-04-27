@@ -9,6 +9,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.gson.Gson
 
 interface CartUtils {
 
@@ -23,8 +24,10 @@ interface CartUtils {
         firebaseDatabase.getReference("Utenti/$idU/Cart")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    val gson = Gson()
+                    val snapshotJ = gson.toJson(snapshot.value)
                     val responseQR = ResponseCart()
-                    responseQR.cart = snapshot.value.toString()
+                    responseQR.cart = snapshotJ
                     callback.onResponse(responseQR)
                 }
 

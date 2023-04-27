@@ -41,15 +41,31 @@
                 android:layout_gravity="center"
                 android:text="Scannerizza QRCOde" />
 
+            <Button
+                android:id="@+id/btn_qr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Button" />
+
+
             <TextView
                 android:id="@+id/scan_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Risultato"
-                android:textColor="@color/red"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+            <TextView
+                android:id="@+id/scan_result_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Risultato"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
 
         </LinearLayout>
