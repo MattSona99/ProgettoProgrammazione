@@ -78,6 +78,9 @@
     <string name="role">Qual è il tuo ruolo?</string>
     <string name="owner">Proprietario</string>
     <string name="employee">Dipendente</string>
+    <string name="restaurant_code">Codice ristorante</string>
+    <string name="assuntion_date">Data di assunzione</string>
+    <string name="part_time">Part-Time</string>
 
     <!-- PRODUCT CARD -->
     <string name="product_name">Nome prodotto</string>

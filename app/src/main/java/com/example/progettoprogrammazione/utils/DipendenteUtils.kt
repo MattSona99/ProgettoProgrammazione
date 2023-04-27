@@ -10,12 +10,12 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-interface DipendenteUtil {
+interface DipendenteUtils {
     var firebaseAuth: FirebaseAuth
     var firebaseDatabase: FirebaseDatabase
 
     fun createDipendente(context: Context?, eData: Dipendente) {
-        firebaseDatabase.getReference("Dipendenti").push().setValue(eData)
+        firebaseDatabase.getReference("Dipendenti/${eData.codiceRistorante}").push().setValue(eData)
     }
 
     fun getDipendenteData(callBack: FireBaseCallbackDipendente, context: Context?) {
@@ -25,19 +25,16 @@ interface DipendenteUtil {
                     val response = ResponseDipendente()
                     for (dipend: DataSnapshot in snapshot.children) {
                         val dipendente = Dipendente(
-                            dipend.child("NomeD").value.toString(),
-                            dipend.child("cognomeD").value.toString(),
-                            dipend.child("BuisnessEmailD").value.toString(),
-                            dipend.child("telefonoD").value.toString(),
-                            dipend.child("TurnoD").value.toString(),
-                            dipend.child("appplianceDateD").value.toString(),
-                            dipend.child("DataAssunzioneD").value.toString(),
-                            dipend.child("UriD").value.toString(),
-                            dipend.child("LivelloD").value.toString(),
-                            dipend.child("PartTimeD").value.toString().toBoolean(),
-                            dipend.child("StipendioD").value.toString(),
-                            dipend.child ("idD").value.toString(),
-                            dipend.child("catenaRistorante").value.toString(),
+                            dipend.child("Nome").value.toString(),
+                            dipend.child("Cognome").value.toString(),
+                            dipend.child("Telefono").value.toString(),
+                            dipend.child("Turno").value.toString(),
+                            dipend.child("DataAssunzione").value.toString(),
+                            dipend.child("Livello").value.toString(),
+                            dipend.child("PartTime").value.toString().toBoolean(),
+                            dipend.child("Stipendio").value.toString(),
+                            dipend.child ("idDipendente").value.toString(),
+                            dipend.child("codiceRistorante").value.toString(),
                         )
                         response.dipendenti.add(dipendente)
                     }

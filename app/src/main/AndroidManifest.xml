@@ -40,16 +40,24 @@
         </activity>
         <activity
             android:name=".activity.UserActivity"
-            android:windowSoftInputMode="adjustPan" />
+            android:screenOrientation="fullSensor"
+            android:windowSoftInputMode="adjustPan"
+            tools:replace="screenOrientation" />
         <activity
             android:name=".activity.RestaurateurActivity"
-            android:windowSoftInputMode="adjustPan" />
+            android:screenOrientation="fullSensor"
+            android:windowSoftInputMode="adjustPan"
+            tools:replace="screenOrientation" />
         <activity
             android:name=".activity.EmployeeActivity"
-            android:windowSoftInputMode="adjustPan" />
+            android:screenOrientation="fullSensor"
+            android:windowSoftInputMode="adjustPan"
+            tools:replace="screenOrientation" />
         <activity
             android:name=".activity.CreaMenu"
-            android:windowSoftInputMode="adjustPan" />
+            android:screenOrientation="fullSensor"
+            android:windowSoftInputMode="adjustPan"
+            tools:replace="screenOrientation" />
         <activity
             android:name=".activity.IntroActivity"
             android:exported="true">

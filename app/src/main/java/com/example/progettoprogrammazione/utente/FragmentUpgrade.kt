@@ -12,7 +12,7 @@ import com.example.progettoprogrammazione.ristoratore.FragmentCreaRist
 
 class FragmentUpgrade : Fragment() {
 
-    private lateinit var user : User
+    private lateinit var user: User
 
     private lateinit var binding: FragmentUpgradeBinding
     override fun onCreateView(
@@ -39,16 +39,20 @@ class FragmentUpgrade : Fragment() {
             myfrag.arguments = bundle
             val fragmentTransaction = parentFragmentManager.beginTransaction()
             fragmentTransaction.setCustomAnimations(R.anim.slide_in, R.anim.fade_out)
-            fragmentTransaction.replace(R.id.container_upgrade,myfrag)
+            fragmentTransaction.replace(R.id.container_upgrade, myfrag)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
 
         }
 
         binding.btnDipendente.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putParcelable("user", user)
+            val myfrag = FragmentUpgradeDipendente()
+            myfrag.arguments = bundle
             val fragmentTransaction = parentFragmentManager.beginTransaction()
             fragmentTransaction.setCustomAnimations(R.anim.slide_in, R.anim.fade_out)
-            fragmentTransaction.replace(R.id.container_upgrade, FragmentUpgradeDipendente())
+            fragmentTransaction.replace(R.id.container_upgrade, myfrag)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }

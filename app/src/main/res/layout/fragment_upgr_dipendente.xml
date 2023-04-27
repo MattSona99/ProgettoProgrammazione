@@ -22,7 +22,6 @@
             android:padding="15dp">
 
 
-
             <TextView
                 android:id="@+id/text_form_dip"
                 android:layout_width="wrap_content"
@@ -49,23 +48,23 @@
                 app:layout_constraintTop_toBottomOf="@id/text_form_dip">
 
                 <TextView
-                    android:id="@+id/text_nome_dipd"
+                    android:id="@+id/text_codice_rist_D"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/name"
+                    android:text="@string/restaurant_code"
                     android:textColor="@color/red"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/nomedip_newD"
+                    android:id="@+id/codice_rist_D"
                     android:layout_width="250dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/custom_input"
                     android:ems="10"
                     android:gravity="center"
-                    android:hint="@string/name"
+                    android:hint="@string/restaurant_code"
                     android:inputType="textPersonName"
                     android:textColor="@color/white"
                     android:textColorHighlight="#E91E63"
@@ -73,88 +72,44 @@
                     android:textColorLink="#E91E63" />
 
                 <TextView
-                    android:id="@+id/text_cognome_dipd"
+                    android:id="@+id/text_data_assunzione_D"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/surname"
+                    android:text="@string/assuntion_date"
                     android:textColor="@color/red"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/cognome_newD"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
+                <CalendarView
+                    android:id="@+id/data_assunzione_D"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/custom_input"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="@string/surname"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/white"
-                    android:textColorHighlight="#E91E63"
-                    android:textColorHint="@color/pink"
-                    android:textColorLink="#E91E63" />
+                    android:layout_gravity="center"
+                    android:theme="@style/CalenderViewCustom"
+                    android:dateTextAppearance="@style/CalenderViewDateCustomText"
+                    android:weekDayTextAppearance="@style/CalenderViewWeekCustomText" />
 
                 <TextView
-                    android:id="@+id/text_bemail_dipD"
+                    android:id="@+id/data_assunzione_D_t"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/email_form"
                     android:textColor="@color/red"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/bemail_newD"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/custom_input"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="Busisness email"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/white"
-                    android:textColorHighlight="#E91E63"
-                    android:textColorHint="@color/pink"
-                    android:textColorLink="#E91E63" />
-
-                <TextView
-                    android:id="@+id/text_telefonod_dipD"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cellphone"
-                    android:textColor="@color/red"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/telefonod_newD"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/custom_input"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:hint="@string/cellphone"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/white"
-                    android:textColorHighlight="#E91E63"
-                    android:textColorHint="@color/pink"
-                    android:textColorLink="#E91E63" />
+                    android:text="@string/assuntion_date"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/text_parttimed_dip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PartTime"
+                    android:text="@string/part_time"
                     android:textColor="@color/red"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <CheckBox
-                    android:id="@+id/parttime_dip"
+                    android:id="@+id/part_time_D"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/red" />
@@ -169,24 +124,25 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/red_button">
 
-                <TextView
-                    android:id="@+id/upgrade_dip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Upgrade"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/upgrade_dip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Upgrade"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
-
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout></ScrollView>
-
-    </FrameLayout>
+</FrameLayout>

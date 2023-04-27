@@ -34,11 +34,12 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
             
-            <SurfaceView
-                android:id="@+id/camera_preview"
+            <Button
+                android:id="@+id/scannerizza"
                 android:layout_width="250sp"
                 android:layout_height="250sp"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:text="Scannerizza QRCOde" />
 
             <TextView
                 android:id="@+id/scan_result"

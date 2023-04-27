@@ -20,7 +20,7 @@ import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class FragmentLogin : Fragment(), UserUtils, DipendenteUtil, RestaurantUtils, ProductUtils,
+class FragmentLogin : Fragment(), UserUtils, DipendenteUtils, RestaurantUtils, ProductUtils,
     CartUtils {
 
     private lateinit var binding: FragmentLoginBinding
