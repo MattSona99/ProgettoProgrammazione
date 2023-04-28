@@ -75,6 +75,7 @@ class FragmentUpgradeDipendente : Fragment(), UserUtils, DipendenteUtils {
                             partime,
                             "€€€",
                             UUID.randomUUID().toString().replace("-","").take(10),
+                            user.Email,
                             codiceR
                         )
                         createDipendente(context, dipendenteData)

@@ -80,7 +80,7 @@ class EmployeeActivity : AppCompatActivity() {
                     navController.navigate(R.id.ristoranti_D, bundle)
                 }
                 R.id.ic_workD -> {
-                    navController.navigate(R.id.lavoro_D)
+                    navController.navigate(R.id.lavoro_D, bundle)
                 }
                 R.id.ic_profileD -> {
                     navController.navigate(R.id.Profilo_D, bundle)

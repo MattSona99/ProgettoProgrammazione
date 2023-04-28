@@ -4,9 +4,9 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Order (
-    var n: Int? = 0,
+    var numero: Int? = 0,
     var json: String?,
-    var rid: String?,
+    var rID: String?,
 ): Parcelable{
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -19,9 +19,9 @@ data class Order (
     }
 
     override fun writeToParcel(parcel: Parcel, p1: Int) {
-        parcel.writeInt(n!!)
+        parcel.writeInt(numero!!)
         parcel.writeString(json)
-        parcel.writeString(rid)
+        parcel.writeString(rID)
     }
 
     companion object CREATOR : Parcelable.Creator<Order> {

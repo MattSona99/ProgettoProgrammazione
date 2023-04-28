@@ -15,28 +15,35 @@ interface DipendenteUtils {
     var firebaseDatabase: FirebaseDatabase
 
     fun createDipendente(context: Context?, eData: Dipendente) {
-        firebaseDatabase.getReference("Dipendenti/${eData.codiceRistorante}").push().setValue(eData)
+        firebaseDatabase.getReference("Dipendenti").push().setValue(eData)
     }
 
-    fun getDipendenteData(callBack: FireBaseCallbackDipendente, context: Context?) {
+    fun getDipendenteData(
+        emailDip: String,
+        callBack: FireBaseCallbackDipendente,
+        context: Context?
+    ) {
         firebaseDatabase.getReference("Dipendenti")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val response = ResponseDipendente()
                     for (dipend: DataSnapshot in snapshot.children) {
-                        val dipendente = Dipendente(
-                            dipend.child("Nome").value.toString(),
-                            dipend.child("Cognome").value.toString(),
-                            dipend.child("Telefono").value.toString(),
-                            dipend.child("Turno").value.toString(),
-                            dipend.child("DataAssunzione").value.toString(),
-                            dipend.child("Livello").value.toString(),
-                            dipend.child("PartTime").value.toString().toBoolean(),
-                            dipend.child("Stipendio").value.toString(),
-                            dipend.child("idDipendente").value.toString(),
-                            dipend.child("codiceRistorante").value.toString(),
-                        )
-                        response.dipendenti.add(dipendente)
+                        if (emailDip == dipend.child("emailDipendente").value.toString()) {
+                            val dipendente = Dipendente(
+                                dipend.child("Nome").value.toString(),
+                                dipend.child("Cognome").value.toString(),
+                                dipend.child("Telefono").value.toString(),
+                                dipend.child("Turno").value.toString(),
+                                dipend.child("DataAssunzione").value.toString(),
+                                dipend.child("Livello").value.toString(),
+                                dipend.child("PartTime").value.toString().toBoolean(),
+                                dipend.child("Stipendio").value.toString(),
+                                dipend.child("idDipendente").value.toString(),
+                                dipend.child("emailDipendente").value.toString(),
+                                dipend.child("codiceRistorante").value.toString()
+                            )
+                            response.dipendenti.add(dipendente)
+                        }
                     }
                     callBack.onResponse(response)
                 }

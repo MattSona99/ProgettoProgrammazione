@@ -14,6 +14,7 @@ class Dipendente(
     var PartTime:Boolean,
     var Stipendio:String?,
     var idDipendente: String?,
+    var emailDipendente: String?,
     var codiceRistorante: String?
 
 ) : Parcelable {
@@ -25,6 +26,7 @@ class Dipendente(
         parcel.readString(),
         parcel.readString(),
         parcel.readBoolean(),
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -41,6 +43,7 @@ class Dipendente(
         parcel.writeBoolean(PartTime)
         parcel.writeString(Stipendio)
         parcel.writeString(idDipendente)
+        parcel.writeString(emailDipendente)
         parcel.writeString(codiceRistorante)
     }
 

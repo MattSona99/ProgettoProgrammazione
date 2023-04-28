@@ -3,6 +3,9 @@ package com.example.progettoprogrammazione.utils
 import android.content.Context
 import android.renderscript.Sampler.Value
 import android.widget.Toast
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackOrder
+import com.example.progettoprogrammazione.models.Dipendente
+import com.example.progettoprogrammazione.models.Order
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -32,6 +35,32 @@ interface OrderUtils {
                         context,
                         "Errore durante il caricamento dell'ordine.",
                         Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
+    }
+
+    fun getOrders(dipendente: Dipendente, callback: FireBaseCallbackOrder, context: Context?) {
+        firebaseDatabase.getReference("Ristoranti/${dipendente.codiceRistorante}/Ordini")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val response = ResponseOrder()
+                    for (order: DataSnapshot in snapshot.children) {
+                        val ordine = Order(
+                            order.child("numero").value.toString().toInt(),
+                            order.child("json").value.toString(),
+                            order.child("rID").value.toString()
+                        )
+                        response.ordini.add(ordine)
+                    }
+                    callback.onResponse(response)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(
+                        context,
+                        "Errore durante il caricamento dei dati",
+                        Toast.LENGTH_LONG
                     ).show()
                 }
             })

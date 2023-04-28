@@ -144,6 +144,11 @@
     <string name="order">Ordine</string>
     <string name="quantity">Quantità:</string>
 
+    <!-- GESTIONE LAVORO -->
+    <string name="job">GESTIONE LAVORO</string>
+    <string name="scan">Scannerizza QRCode</string>
+    <string name="your_orders">ORDINI DA EFFETTUARE</string>
+
     <!-- NAVBARS -->
     <string name="home">Home</string>
     <string name="profile">Profilo</string>

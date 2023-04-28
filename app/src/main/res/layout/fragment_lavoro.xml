@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_splash"
+    android:background="@drawable/background_splash_2"
     android:orientation="vertical"
     tools:context=".dipendente.FragmentLavoro">
 
@@ -23,42 +23,48 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <TextView
                 android:id="@+id/gestisciL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Gestione lavoro"
-                android:textColor="@color/white"
+                android:padding="5sp"
+                android:text="@string/job"
+                android:textColor="@color/red"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btn_qr"
+                android:layout_width="250sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/white_card_red_rounded"
+                android:text="@string/scan" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/red_button" />
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
-
-
-            <TextView
-                android:id="@+id/scan_result"
-                android:layout_width="wrap_content"
-                android:layout_height="38dp"
                 android:layout_gravity="center"
-                android:text="Risultato"
-                android:textColor="@color/black"
+                android:gravity="center"
+                android:padding="5sp"
+                android:text="@string/your_orders"
+                android:textColor="@color/red"
                 android:textSize="20sp"
                 android:textStyle="bold" />
-            <TextView
-                android:id="@+id/scan_result_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Risultato"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/product_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/order_card" />
 
 
         </LinearLayout>
