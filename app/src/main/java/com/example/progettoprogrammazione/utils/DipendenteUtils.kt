@@ -33,7 +33,7 @@ interface DipendenteUtils {
                             dipend.child("Livello").value.toString(),
                             dipend.child("PartTime").value.toString().toBoolean(),
                             dipend.child("Stipendio").value.toString(),
-                            dipend.child ("idDipendente").value.toString(),
+                            dipend.child("idDipendente").value.toString(),
                             dipend.child("codiceRistorante").value.toString(),
                         )
                         response.dipendenti.add(dipendente)

@@ -140,6 +140,10 @@
     <string name="scanner">FAI SCANNERIZZARE IL QRCODE AL PERSONALE!</string>
     <string name="no_qrcode">Non sono ancora presenti QRCodes. Visita un ristorante e vai sul carrello per effettuare un ordine!</string>
 
+    <!-- ORDERS -->
+    <string name="order">Ordine</string>
+    <string name="quantity">Quantità:</string>
+
     <!-- NAVBARS -->
     <string name="home">Home</string>
     <string name="profile">Profilo</string>

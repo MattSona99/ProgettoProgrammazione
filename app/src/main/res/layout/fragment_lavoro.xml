@@ -33,13 +33,6 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
-            
-            <Button
-                android:id="@+id/scannerizza"
-                android:layout_width="250sp"
-                android:layout_height="250sp"
-                android:layout_gravity="center"
-                android:text="Scannerizza QRCOde" />
 
             <Button
                 android:id="@+id/btn_qr"
