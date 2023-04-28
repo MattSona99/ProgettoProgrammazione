@@ -19,7 +19,14 @@ import androidx.core.util.isNotEmpty
 import androidx.fragment.app.Fragment
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentLavoroBinding
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackDipendente
+import com.example.progettoprogrammazione.models.Dipendente
+import com.example.progettoprogrammazione.models.Order
+import com.example.progettoprogrammazione.models.Restaurant
+import com.example.progettoprogrammazione.models.User
+import com.example.progettoprogrammazione.utils.DipendenteUtils
 import com.example.progettoprogrammazione.utils.OrderUtils
+import com.example.progettoprogrammazione.utils.ResponseDipendente
 import com.google.android.gms.vision.CameraSource
 import com.google.android.gms.vision.Detector
 import com.google.android.gms.vision.barcode.Barcode
@@ -32,7 +39,7 @@ import org.json.JSONException
 import org.json.JSONObject
 
 
-class FragmentLavoro : Fragment(), OrderUtils {
+class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils {
 
     private lateinit var binding: FragmentLavoroBinding
 
@@ -40,12 +47,27 @@ class FragmentLavoro : Fragment(), OrderUtils {
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     lateinit var textView: TextView
+    private lateinit var orderArrayList: ArrayList<Order>
+    lateinit var dip: Dipendente
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLavoroBinding.inflate(layoutInflater)
+
+        val args = this.arguments
+        val user = args?.getParcelable<User>("user") as User
+        getDipendenteData(user.Email!!, object: FireBaseCallbackDipendente{
+            override fun onResponse(responseD: ResponseDipendente) {
+                dip = responseD.dipendenti.first()
+            }
+        }, context)
+        orderArrayList = arrayListOf()
+
+      //  getOrders()
+
 
         return binding.root
     }
@@ -72,7 +94,7 @@ class FragmentLavoro : Fragment(), OrderUtils {
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         if (result != null) {
             if (result.contents == null) {
-                textView.text = "Scan fallito"
+                Toast.makeText(activity, "Scan fallito", Toast.LENGTH_LONG).show()
             } else {
 
                 try {
