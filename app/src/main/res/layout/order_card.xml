@@ -34,6 +34,7 @@
             android:padding="5dp">
 
             <RelativeLayout
+                android:id="@+id/click_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/radio_selected"
