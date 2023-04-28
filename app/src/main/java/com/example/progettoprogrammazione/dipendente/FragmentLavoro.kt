@@ -79,14 +79,13 @@ class FragmentLavoro : Fragment(), OrderUtils {
                     val o = JSONArray(result.contents)
                     val jsonString = o.getJSONObject(0)
                     val restID = jsonString.getString("restID")
-                    createOrder(jsonString.toString(), restID, context)
+                    createOrder(o.toString(), restID, context)
 
                 } catch (e: JSONException) {
                     e.printStackTrace()
 
                     Toast.makeText(activity, result.contents, Toast.LENGTH_LONG).show()
                 }
-
 
             }
         } else {

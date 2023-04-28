@@ -98,7 +98,7 @@ class CreaMenu : AppCompatActivity(), ProductUtils, RestaurantUtils {
                 nomePbind,
                 prezzoPbind,
                 descrizionePbind,
-                UUID.randomUUID().toString()
+                UUID.randomUUID().toString().replace("-","").take(10)
             )
             when (add) {
                 "bevanda" -> addProdotto(restName, pData, "Bevande", this)
