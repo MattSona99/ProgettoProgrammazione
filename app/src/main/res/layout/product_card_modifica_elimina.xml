@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/prodCardLayout"
-    android:layout_width="match_parent"
+    android:layout_width="160sp"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
@@ -81,7 +81,7 @@
                 android:gravity="center"
                 android:text="@string/modify_menu"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 tools:ignore="RtlHardcoded" />
 
@@ -99,7 +99,7 @@
                 android:gravity="center"
                 android:text="@string/remove"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>

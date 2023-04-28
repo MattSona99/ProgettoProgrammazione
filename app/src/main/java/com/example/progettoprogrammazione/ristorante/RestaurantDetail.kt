@@ -68,6 +68,8 @@ class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
     ): View {
         super.onCreate(savedInstanceState)
         binding = FragmentRestaurantDetailBinding.inflate(layoutInflater)
+        binding.optionsRest.isGone = true
+        binding.btnModificaMenu.isGone = true
 
         val args = this.arguments
         val restaurantID = args?.get("restID")
@@ -85,7 +87,7 @@ class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
 
         restaurant = restaurantFromId(restaurantID.toString())
         if (userlvl == "3" && restaurant!!.proprietarioR==user.currentUser!!.email.toString()) {
-            binding.optionsRest.isVisible = false
+            binding.optionsRest.isVisible = true
             binding.btnModificaMenu.isVisible = true
         }
 
