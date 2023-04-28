@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.navGraphViewModels
 import com.example.progettoprogrammazione.R
@@ -44,6 +45,8 @@ class FragmentQR : Fragment(), CartUtils {
 
         val args = this.arguments
         user = args?.getParcelable<User>("user") as User
+        binding.layoutQr.isGone = true
+        binding.noQrcode.isGone = true
         when (user.Livello) {
             "1" -> cartViewModel = cartViewModelU
             "2" -> cartViewModel = cartViewModelD
@@ -54,8 +57,8 @@ class FragmentQR : Fragment(), CartUtils {
             override fun onResponse(responseC: ResponseCart) {
                 if (responseC.cart.isEmpty()) {
                     binding.layoutQr.isGone = true
+                    binding.noQrcode.isVisible = true
                 } else {
-                    binding.noQrcode.isGone = true
                     val multiFormatWriter = MultiFormatWriter()
                     val bitMatrix: BitMatrix =
                         multiFormatWriter.encode(responseC.cart, BarcodeFormat.QR_CODE, 500, 500)
@@ -74,6 +77,8 @@ class FragmentQR : Fragment(), CartUtils {
                         }
                     }
                     binding.qrcodeimage.setImageBitmap(qrCodeBitmap)
+                    binding.noQrcode.isGone = true
+                    binding.layoutQr.isVisible = true
                 }
             }
 

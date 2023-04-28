@@ -9,8 +9,8 @@ import android.widget.EditText
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentModificaMenuBinding
@@ -105,37 +105,37 @@ class FragmentModificaMenu : Fragment(), UserUtils, ProductUtils {
 
         binding.btnBevande.setOnClickListener {
             invisible()
-            verticalrecylerview(bevandeArrayList,  binding.recycleViewBevande, restaurantID, "Bevande")
+            bindrecyclerviews(bevandeArrayList,  binding.recycleViewBevande, restaurantID, "Bevande")
             binding.bevandeMenu.isVisible = true
         }
 
         binding.btnAntipasti.setOnClickListener {
             invisible()
-            verticalrecylerview(antipastiArrayList, binding.recycleViewAntipasti, restaurantID,"Antipasti")
+            bindrecyclerviews(antipastiArrayList, binding.recycleViewAntipasti, restaurantID,"Antipasti")
             binding.antipastiMenu.isVisible = true
         }
 
         binding.btnPrimi.setOnClickListener {
             invisible()
-            verticalrecylerview(primiArrayList, binding.recycleViewPrimi, restaurantID,"Primi")
+            bindrecyclerviews(primiArrayList, binding.recycleViewPrimi, restaurantID,"Primi")
             binding.primiMenu.isVisible = true
         }
 
         binding.btnSecondi.setOnClickListener {
             invisible()
-            verticalrecylerview(secondiArrayList, binding.recycleViewSecondi, restaurantID,"Secondi")
+            bindrecyclerviews(secondiArrayList, binding.recycleViewSecondi, restaurantID,"Secondi")
             binding.secondiMenu.isVisible = true
         }
 
         binding.btnContorni.setOnClickListener {
             invisible()
-            verticalrecylerview(contorniArrayList, binding.recycleViewContorni, restaurantID,"Contorni")
+            bindrecyclerviews(contorniArrayList, binding.recycleViewContorni, restaurantID,"Contorni")
             binding.contorniMenu.isVisible = true
         }
 
         binding.btnDolci.setOnClickListener {
             invisible()
-            verticalrecylerview(dolciArrayList, binding.recycleViewDolci, restaurantID,"Dolci")
+            bindrecyclerviews(dolciArrayList, binding.recycleViewDolci, restaurantID,"Dolci")
             binding.dolciMenu.isVisible = true
         }
 
@@ -151,13 +151,13 @@ class FragmentModificaMenu : Fragment(), UserUtils, ProductUtils {
         binding.dolciMenu.isGone = true
     }
 
-    private fun verticalrecylerview(
+    private fun bindrecyclerviews(
         prodotti: ArrayList<Product>,
         recyclerView: RecyclerView,
         restID: String,
         tipo: String
     ) {
-        val layoutManager = GridLayoutManager(context, 2)
+        val layoutManager =  LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.layoutManager = layoutManager
         adapter = ProductEMAdapter(prodotti, restID, tipo, requireContext())
         showData(prodotti)

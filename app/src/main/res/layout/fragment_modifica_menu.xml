@@ -318,280 +318,315 @@
                         android:orientation="vertical">
 
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="5dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="center"
-                                >
-
-                                <TextView
-                                    android:id="@+id/menu"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:text="@string/menu"
-                                    android:textColor="@color/red"
-                                    android:textSize="22sp"
-                                    android:textStyle="bold" />
-
-
-
-                            </LinearLayout>
-
-                            <HorizontalScrollView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <RadioGroup
-                                    android:id="@+id/radioGroupMenu"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <RadioButton
-                                        android:id="@+id/btnBevande"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="15dp"
-                                        android:background="@drawable/radio_selector"
-                                        android:button="@android:color/transparent"
-                                        android:elevation="4dp"
-                                        android:padding="15dp"
-                                        android:text="@string/beverages"
-                                        android:textColor="@drawable/radio_text_color" />
-
-                                    <RadioButton
-                                        android:id="@+id/btnAntipasti"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="15dp"
-                                        android:background="@drawable/radio_selector"
-                                        android:button="@android:color/transparent"
-                                        android:elevation="4dp"
-                                        android:padding="15dp"
-                                        android:text="@string/appetizers"
-                                        android:textColor="@drawable/radio_text_color" />
-
-                                    <RadioButton
-                                        android:id="@+id/btnPrimi"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="15dp"
-                                        android:background="@drawable/radio_selector"
-                                        android:button="@android:color/transparent"
-                                        android:elevation="4dp"
-                                        android:padding="15dp"
-                                        android:text="@string/firsts"
-                                        android:textColor="@drawable/radio_text_color" />
-
-                                    <RadioButton
-                                        android:id="@+id/btnSecondi"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="15dp"
-                                        android:background="@drawable/radio_selector"
-                                        android:button="@android:color/transparent"
-                                        android:elevation="4dp"
-                                        android:padding="15dp"
-                                        android:text="@string/seconds"
-                                        android:textColor="@drawable/radio_text_color" />
-
-                                    <RadioButton
-                                        android:id="@+id/btnContorni"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="15dp"
-                                        android:background="@drawable/radio_selector"
-                                        android:button="@android:color/transparent"
-                                        android:elevation="4dp"
-                                        android:padding="15dp"
-                                        android:text="@string/garnishes"
-                                        android:textColor="@drawable/radio_text_color" />
-
-                                    <RadioButton
-                                        android:id="@+id/btnDolci"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="15dp"
-                                        android:background="@drawable/radio_selector"
-                                        android:button="@android:color/transparent"
-                                        android:elevation="4dp"
-                                        android:padding="15dp"
-                                        android:text="@string/sweets"
-                                        android:textColor="@drawable/radio_text_color" />
-
-                                </RadioGroup>
-
-                            </HorizontalScrollView>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/tutte_menu"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
                             <LinearLayout
-                                android:id="@+id/bevande_menu"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:gravity="center"
                                 android:orientation="vertical"
-                                android:visibility="gone">
+                                android:padding="5dp">
 
-                                <TextView
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="10dp"
-                                    android:text="@string/beverages"
-                                    android:textColor="@color/red"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
 
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/recycleViewBevande"
+                                    <TextView
+                                        android:id="@+id/menu"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:text="@string/menu"
+                                        android:textColor="@color/red"
+                                        android:textSize="22sp"
+                                        android:textStyle="bold" />
+
+
+                                </LinearLayout>
+
+                                <HorizontalScrollView
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    tools:listitem="@layout/product_card" />
+                                    android:layout_height="wrap_content">
+
+                                    <RadioGroup
+                                        android:id="@+id/radioGroupMenu"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <RadioButton
+                                            android:id="@+id/btnBevande"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="15dp"
+                                            android:background="@drawable/radio_selector"
+                                            android:button="@android:color/transparent"
+                                            android:elevation="4dp"
+                                            android:padding="15dp"
+                                            android:text="@string/beverages"
+                                            android:textColor="@drawable/radio_text_color" />
+
+                                        <RadioButton
+                                            android:id="@+id/btnAntipasti"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="15dp"
+                                            android:background="@drawable/radio_selector"
+                                            android:button="@android:color/transparent"
+                                            android:elevation="4dp"
+                                            android:padding="15dp"
+                                            android:text="@string/appetizers"
+                                            android:textColor="@drawable/radio_text_color" />
+
+                                        <RadioButton
+                                            android:id="@+id/btnPrimi"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="15dp"
+                                            android:background="@drawable/radio_selector"
+                                            android:button="@android:color/transparent"
+                                            android:elevation="4dp"
+                                            android:padding="15dp"
+                                            android:text="@string/firsts"
+                                            android:textColor="@drawable/radio_text_color" />
+
+                                        <RadioButton
+                                            android:id="@+id/btnSecondi"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="15dp"
+                                            android:background="@drawable/radio_selector"
+                                            android:button="@android:color/transparent"
+                                            android:elevation="4dp"
+                                            android:padding="15dp"
+                                            android:text="@string/seconds"
+                                            android:textColor="@drawable/radio_text_color" />
+
+                                        <RadioButton
+                                            android:id="@+id/btnContorni"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="15dp"
+                                            android:background="@drawable/radio_selector"
+                                            android:button="@android:color/transparent"
+                                            android:elevation="4dp"
+                                            android:padding="15dp"
+                                            android:text="@string/garnishes"
+                                            android:textColor="@drawable/radio_text_color" />
+
+                                        <RadioButton
+                                            android:id="@+id/btnDolci"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="15dp"
+                                            android:background="@drawable/radio_selector"
+                                            android:button="@android:color/transparent"
+                                            android:elevation="4dp"
+                                            android:padding="15dp"
+                                            android:text="@string/sweets"
+                                            android:textColor="@drawable/radio_text_color" />
+
+                                    </RadioGroup>
+
+                                </HorizontalScrollView>
 
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/antipasti_menu"
+                                android:id="@+id/tutte_menu"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:visibility="gone">
+                                android:orientation="vertical">
 
-                                <TextView
+                                <LinearLayout
+                                    android:id="@+id/bevande_menu"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="10dp"
-                                    android:text="@string/appetizers"
-                                    android:textColor="@color/red"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
+                                    android:orientation="vertical"
+                                    android:visibility="gone">
 
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/recycleViewAntipasti"
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="10dp"
+                                        android:text="@string/beverages"
+                                        android:textColor="@color/red"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+
+                                    <HorizontalScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <androidx.recyclerview.widget.RecyclerView
+                                            android:id="@+id/recycleViewBevande"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            tools:listitem="@layout/product_card" />
+
+                                    </HorizontalScrollView>
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/antipasti_menu"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    tools:listitem="@layout/product_card" />
+                                    android:orientation="vertical"
+                                    android:visibility="gone">
 
-                            </LinearLayout>
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="10dp"
+                                        android:text="@string/appetizers"
+                                        android:textColor="@color/red"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
 
-                            <LinearLayout
-                                android:id="@+id/primi_menu"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:visibility="gone">
+                                    <HorizontalScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
 
-                                <TextView
+                                        <androidx.recyclerview.widget.RecyclerView
+                                            android:id="@+id/recycleViewAntipasti"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            tools:listitem="@layout/product_card" />
+
+                                    </HorizontalScrollView>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/primi_menu"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="10dp"
-                                    android:text="@string/firsts"
-                                    android:textColor="@color/red"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
+                                    android:orientation="vertical"
+                                    android:visibility="gone">
 
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/recycleViewPrimi"
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="10dp"
+                                        android:text="@string/firsts"
+                                        android:textColor="@color/red"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+
+                                    <HorizontalScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <androidx.recyclerview.widget.RecyclerView
+                                            android:id="@+id/recycleViewPrimi"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            tools:listitem="@layout/product_card" />
+
+                                    </HorizontalScrollView>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/secondi_menu"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    tools:listitem="@layout/product_card" />
+                                    android:orientation="vertical"
+                                    android:visibility="gone">
 
-                            </LinearLayout>
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="10dp"
+                                        android:text="@string/seconds"
+                                        android:textColor="@color/red"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
 
-                            <LinearLayout
-                                android:id="@+id/secondi_menu"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:visibility="gone">
+                                    <HorizontalScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
 
-                                <TextView
+                                        <androidx.recyclerview.widget.RecyclerView
+                                            android:id="@+id/recycleViewSecondi"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            tools:listitem="@layout/product_card" />
+
+                                    </HorizontalScrollView>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/contorni_menu"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="10dp"
-                                    android:text="@string/seconds"
-                                    android:textColor="@color/red"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
+                                    android:orientation="vertical"
+                                    android:visibility="gone">
 
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/recycleViewSecondi"
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="10dp"
+                                        android:text="@string/garnishes"
+                                        android:textColor="@color/red"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+
+                                    <HorizontalScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <androidx.recyclerview.widget.RecyclerView
+                                            android:id="@+id/recycleViewContorni"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            tools:listitem="@layout/product_card" />
+
+                                    </HorizontalScrollView>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/dolci_menu"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    tools:listitem="@layout/product_card" />
+                                    android:orientation="vertical"
+                                    android:visibility="gone">
 
-                            </LinearLayout>
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="10dp"
+                                        android:text="@string/sweets"
+                                        android:textColor="@color/red"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
 
-                            <LinearLayout
-                                android:id="@+id/contorni_menu"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:visibility="gone">
+                                    <HorizontalScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
 
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="10dp"
-                                    android:text="@string/garnishes"
-                                    android:textColor="@color/red"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
+                                        <androidx.recyclerview.widget.RecyclerView
+                                            android:id="@+id/recycleViewDolci"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            tools:listitem="@layout/product_card" />
 
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/recycleViewContorni"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    tools:listitem="@layout/product_card" />
+                                    </HorizontalScrollView>
 
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/dolci_menu"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:visibility="gone">
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="10dp"
-                                    android:text="@string/sweets"
-                                    android:textColor="@color/red"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/recycleViewDolci"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    tools:listitem="@layout/product_card" />
+                                </LinearLayout>
 
                             </LinearLayout>
 
                         </LinearLayout>
-
-                    </LinearLayout>
                     </LinearLayout>
 
                 </ScrollView>
@@ -603,4 +638,4 @@
 
     </ScrollView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
