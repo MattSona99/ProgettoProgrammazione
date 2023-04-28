@@ -30,14 +30,14 @@ interface DipendenteUtils {
                     for (dipend: DataSnapshot in snapshot.children) {
                         if (emailDip == dipend.child("emailDipendente").value.toString()) {
                             val dipendente = Dipendente(
-                                dipend.child("Nome").value.toString(),
-                                dipend.child("Cognome").value.toString(),
-                                dipend.child("Telefono").value.toString(),
-                                dipend.child("Turno").value.toString(),
-                                dipend.child("DataAssunzione").value.toString(),
-                                dipend.child("Livello").value.toString(),
-                                dipend.child("PartTime").value.toString().toBoolean(),
-                                dipend.child("Stipendio").value.toString(),
+                                dipend.child("nome").value.toString(),
+                                dipend.child("cognome").value.toString(),
+                                dipend.child("telefono").value.toString(),
+                                dipend.child("turno").value.toString(),
+                                dipend.child("dataAssunzione").value.toString(),
+                                dipend.child("livello").value.toString(),
+                                dipend.child("partTime").value.toString().toBoolean(),
+                                dipend.child("stipendio").value.toString(),
                                 dipend.child("idDipendente").value.toString(),
                                 dipend.child("emailDipendente").value.toString(),
                                 dipend.child("codiceRistorante").value.toString()
