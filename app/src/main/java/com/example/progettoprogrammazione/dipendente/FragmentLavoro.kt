@@ -1,42 +1,28 @@
 package com.example.progettoprogrammazione.dipendente
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
-import android.util.SparseArray
 import android.view.LayoutInflater
-import android.view.SurfaceHolder
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.util.isNotEmpty
 import androidx.fragment.app.Fragment
-import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentLavoroBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackDipendente
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackOrder
 import com.example.progettoprogrammazione.models.Dipendente
 import com.example.progettoprogrammazione.models.Order
-import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.utils.DipendenteUtils
 import com.example.progettoprogrammazione.utils.OrderUtils
 import com.example.progettoprogrammazione.utils.ResponseDipendente
-import com.google.android.gms.vision.CameraSource
-import com.google.android.gms.vision.Detector
-import com.google.android.gms.vision.barcode.Barcode
-import com.google.android.gms.vision.barcode.BarcodeDetector
+import com.example.progettoprogrammazione.utils.ResponseOrder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.zxing.integration.android.IntentIntegrator
 import org.json.JSONArray
 import org.json.JSONException
-import org.json.JSONObject
 
 
 class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils {
@@ -56,15 +42,21 @@ class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLavoroBinding.inflate(layoutInflater)
-
+        orderArrayList = arrayListOf()
         val args = this.arguments
         val user = args?.getParcelable<User>("user") as User
         getDipendenteData(user.Email!!, object: FireBaseCallbackDipendente{
             override fun onResponse(responseD: ResponseDipendente) {
                 dip = responseD.dipendenti.first()
+                getOrders(dip, object : FireBaseCallbackOrder{
+                    override fun onResponse(responseO: ResponseOrder) {
+                        orderArrayList = responseO.ordini
+                    }
+
+                }, context)
             }
         }, context)
-        orderArrayList = arrayListOf()
+
 
       //  getOrders()
 
@@ -100,8 +92,7 @@ class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils {
                 try {
                     val o = JSONArray(result.contents)
                     val jsonString = o.getJSONObject(0)
-                    val restID = jsonString.getString("restID")
-                    createOrder(o.toString(), restID, context)
+                    createOrder(jsonString, context)
 
                 } catch (e: JSONException) {
                     e.printStackTrace()

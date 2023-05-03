@@ -18,14 +18,19 @@ interface OrderUtils {
     var firebaseDatabase: FirebaseDatabase
 
 
-    fun createOrder(jsonString: String?, restID: String, context: Context?) {
-
+    fun createOrder(jsonString: JSONObject, context: Context?) {
+        val restID = jsonString.getString("restID")
         firebaseDatabase.getReference("Ristoranti/$restID/Ordini")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val maxid = snapshot.childrenCount.toInt()
+                    val data = hashMapOf<String, String>()
+                    data["numero"] = "${maxid +1}"
+                    data["json"] = jsonString.toString()
+                    data["rID"] = restID
+
                     firebaseDatabase.getReference("Ristoranti/$restID/Ordini/${maxid + 1}")
-                        .setValue(jsonString)
+                        .setValue(data)
                     Toast.makeText(context, "Ordine aggiunto con successo.", Toast.LENGTH_SHORT)
                         .show()
                 }
