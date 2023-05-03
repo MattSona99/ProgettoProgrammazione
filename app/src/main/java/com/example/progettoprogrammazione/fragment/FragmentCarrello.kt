@@ -13,7 +13,7 @@ import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.carrello.CartAdapter
-import com.example.progettoprogrammazione.databinding.FragmentCarrelloBinding
+import com.example.progettoprogrammazione.databinding.Fragment1CarrelloBinding
 import com.example.progettoprogrammazione.models.CartProduct
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.utils.ProductUtils
@@ -27,7 +27,7 @@ class FragmentCarrello : Fragment(), CartUtils, ProductUtils {
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    private lateinit var binding: FragmentCarrelloBinding
+    private lateinit var binding: Fragment1CarrelloBinding
     private lateinit var user: User
 
     private lateinit var cartViewModel: CartViewModel
@@ -43,7 +43,7 @@ class FragmentCarrello : Fragment(), CartUtils, ProductUtils {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCarrelloBinding.inflate(layoutInflater)
+        binding = Fragment1CarrelloBinding.inflate(layoutInflater)
         setHasOptionsMenu(true)
 
         val args = this.arguments

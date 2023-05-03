@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.activity.RestaurateurActivity
-import com.example.progettoprogrammazione.databinding.FragmentRestaurantDetailBinding
+import com.example.progettoprogrammazione.databinding.Fragment1RestaurantDetailBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackProdotto
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRating
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
@@ -35,7 +35,7 @@ import java.io.File
 class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
     UserUtils {
 
-    private lateinit var binding: FragmentRestaurantDetailBinding
+    private lateinit var binding: Fragment1RestaurantDetailBinding
 
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -67,7 +67,7 @@ class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
         savedInstanceState: Bundle?
     ): View {
         super.onCreate(savedInstanceState)
-        binding = FragmentRestaurantDetailBinding.inflate(layoutInflater)
+        binding = Fragment1RestaurantDetailBinding.inflate(layoutInflater)
         binding.optionsRest.isGone = true
         binding.btnModificaMenu.isGone = true
 

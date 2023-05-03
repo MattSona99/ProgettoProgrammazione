@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.databinding.FragmentLavoroBinding
+import com.example.progettoprogrammazione.databinding.FragmentDLavoroBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackDipendente
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackOrder
 import com.example.progettoprogrammazione.models.Dipendente
@@ -32,7 +32,7 @@ import org.json.JSONException
 
 class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils, OrderClickListener {
 
-    private lateinit var binding: FragmentLavoroBinding
+    private lateinit var binding: FragmentDLavoroBinding
     private lateinit var adapter: OrderAdapter
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -47,7 +47,7 @@ class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils, OrderClickListen
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLavoroBinding.inflate(layoutInflater)
+        binding = FragmentDLavoroBinding.inflate(layoutInflater)
         orderArrayList = arrayListOf()
         val args = this.arguments
         val user = args?.getParcelable<User>("user") as User

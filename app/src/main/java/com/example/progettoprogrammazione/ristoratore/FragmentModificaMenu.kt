@@ -12,8 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.databinding.FragmentModificaMenuBinding
-import com.example.progettoprogrammazione.databinding.ProductCardModificaEliminaBinding
+import com.example.progettoprogrammazione.databinding.FragmentRModificaMenuBinding
+import com.example.progettoprogrammazione.databinding.CardProductModificaBinding
 import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.prodotti.ProductEMAdapter
 import com.example.progettoprogrammazione.utils.ProductUtils
@@ -26,7 +26,7 @@ import kotlin.collections.ArrayList
 
 class FragmentModificaMenu : Fragment(), UserUtils, ProductUtils {
 
-    private lateinit var binding: FragmentModificaMenuBinding
+    private lateinit var binding: FragmentRModificaMenuBinding
     private lateinit var adapter: ProductEMAdapter
 
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
@@ -41,13 +41,13 @@ class FragmentModificaMenu : Fragment(), UserUtils, ProductUtils {
 
     private var prodotti = arrayListOf<Product>()
 
-    private lateinit var prodottoBinding: ProductCardModificaEliminaBinding
+    private lateinit var prodottoBinding: CardProductModificaBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentModificaMenuBinding.inflate(layoutInflater)
-        prodottoBinding = ProductCardModificaEliminaBinding.inflate(layoutInflater)
+        binding = FragmentRModificaMenuBinding.inflate(layoutInflater)
+        prodottoBinding = CardProductModificaBinding.inflate(layoutInflater)
 
         val args = this.arguments
         val restID = args?.get("idR") as String

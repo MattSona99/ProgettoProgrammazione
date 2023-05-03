@@ -6,12 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.databinding.FragmentGestioneRistBinding
+import com.example.progettoprogrammazione.databinding.FragmentRGestioneRistBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.models.User
@@ -25,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils, FiltriUtils {
 
-    private lateinit var binding: FragmentGestioneRistBinding
+    private lateinit var binding: FragmentRGestioneRistBinding
     private lateinit var adapter: RestaurantAdapter
 
     private lateinit var user: User
@@ -43,7 +42,7 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils, F
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentGestioneRistBinding.inflate(layoutInflater)
+        binding = FragmentRGestioneRistBinding.inflate(layoutInflater)
 
         val args = this.arguments
         user = args?.getParcelable<User>("user") as User

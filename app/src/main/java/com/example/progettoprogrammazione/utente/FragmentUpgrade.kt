@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.databinding.FragmentUpgradeBinding
+import com.example.progettoprogrammazione.databinding.FragmentUUpgradeBinding
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.ristoratore.FragmentCreaRist
 
@@ -14,14 +14,14 @@ class FragmentUpgrade : Fragment() {
 
     private lateinit var user: User
 
-    private lateinit var binding: FragmentUpgradeBinding
+    private lateinit var binding: FragmentUUpgradeBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        binding = FragmentUpgradeBinding.inflate(layoutInflater)
+        binding = FragmentUUpgradeBinding.inflate(layoutInflater)
 
         val args = this.arguments
         user = args?.getParcelable<User>("user") as User

@@ -1,26 +1,19 @@
 package com.example.progettoprogrammazione.ristorante
 
 import android.content.Context
-import android.graphics.*
-import android.widget.Toast
+import android.graphics.BitmapFactory
 import androidx.recyclerview.widget.RecyclerView
-import com.example.progettoprogrammazione.databinding.RestaurantCardBinding
-import com.example.progettoprogrammazione.firebase.FireBaseCallbackRating
-import com.example.progettoprogrammazione.fragment.FragmentRistoranti
+import com.example.progettoprogrammazione.databinding.CardRestaurantBinding
 import com.example.progettoprogrammazione.models.Restaurant
-import com.example.progettoprogrammazione.utils.ResponseRating
 import com.example.progettoprogrammazione.utils.RestaurantUtils
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 
 
 class RestaurantViewHolder(
-    private val restaurantBinding: RestaurantCardBinding,
+    private val restaurantBinding: CardRestaurantBinding,
     private val clickListener: RestaurantClickListener,
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance(),
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()

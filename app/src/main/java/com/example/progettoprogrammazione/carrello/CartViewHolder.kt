@@ -2,14 +2,12 @@ package com.example.progettoprogrammazione.carrello
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.Intent
 import android.widget.SeekBar
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.example.progettoprogrammazione.activity.IntroActivity
-import com.example.progettoprogrammazione.databinding.CartCardBinding
-import com.example.progettoprogrammazione.databinding.FragmentCarrelloBinding
+import com.example.progettoprogrammazione.databinding.CardCartBinding
+import com.example.progettoprogrammazione.databinding.Fragment1CarrelloBinding
 import com.example.progettoprogrammazione.models.CartProduct
 import com.example.progettoprogrammazione.utils.CartUtils
 import com.example.progettoprogrammazione.viewmodels.CartViewModel
@@ -17,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class CartViewHolder(
-    private val cartBinding: CartCardBinding
+    private val cartBinding: CardCartBinding
 ) : RecyclerView.ViewHolder(cartBinding.root), CartUtils {
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -26,7 +24,7 @@ class CartViewHolder(
     fun bindCart(
         cartProduct: CartProduct,
         cartViewModel: CartViewModel,
-        bindingCarrello: FragmentCarrelloBinding,
+        bindingCarrello: Fragment1CarrelloBinding,
         context: Context
     ) {
 

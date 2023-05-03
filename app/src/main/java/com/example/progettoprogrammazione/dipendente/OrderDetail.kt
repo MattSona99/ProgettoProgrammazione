@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.progettoprogrammazione.databinding.FragmentOrderDetailBinding
+import com.example.progettoprogrammazione.databinding.FragmentDOrderDetailBinding
 import com.example.progettoprogrammazione.models.Order
 import com.example.progettoprogrammazione.ordini.OrderProductAdapter
 import org.json.JSONArray
 
 class OrderDetail : Fragment() {
 
-    private lateinit var binding: FragmentOrderDetailBinding
+    private lateinit var binding: FragmentDOrderDetailBinding
 
     private lateinit var adapter: OrderProductAdapter
 
@@ -27,7 +27,7 @@ class OrderDetail : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         super.onCreate(savedInstanceState)
-        binding = FragmentOrderDetailBinding.inflate(layoutInflater)
+        binding = FragmentDOrderDetailBinding.inflate(layoutInflater)
 
         val args = this.arguments
         val numero = args?.getString("numero")

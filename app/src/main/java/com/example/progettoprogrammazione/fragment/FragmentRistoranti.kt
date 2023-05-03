@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.databinding.FragmentRistorantiBinding
+import com.example.progettoprogrammazione.databinding.Fragment1RistorantiBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.models.Restaurant
@@ -25,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils, UserUtils, FiltriUtils {
 
-    private lateinit var binding: FragmentRistorantiBinding
+    private lateinit var binding: Fragment1RistorantiBinding
     private lateinit var adapter: RestaurantAdapter
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -41,7 +41,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
         savedInstanceState: Bundle?
     ): View {
 
-        binding = FragmentRistorantiBinding.inflate(layoutInflater)
+        binding = Fragment1RistorantiBinding.inflate(layoutInflater)
 
         restArrayList = arrayListOf()
         getUserData(object : FireBaseCallbackUser {

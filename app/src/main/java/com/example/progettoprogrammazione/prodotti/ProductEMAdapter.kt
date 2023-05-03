@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.progettoprogrammazione.databinding.ProductCardModificaEliminaBinding
+import com.example.progettoprogrammazione.databinding.CardProductModificaBinding
 import com.example.progettoprogrammazione.models.Product
 
 
@@ -23,7 +23,7 @@ class ProductEMAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductEMViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-        val binding = ProductCardModificaEliminaBinding.inflate(itemView, parent, false)
+        val binding = CardProductModificaBinding.inflate(itemView, parent, false)
 
         return ProductEMViewHolder(binding)
     }

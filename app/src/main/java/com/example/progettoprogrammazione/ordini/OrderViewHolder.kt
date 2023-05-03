@@ -1,11 +1,11 @@
 package com.example.progettoprogrammazione.ordini
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.progettoprogrammazione.databinding.OrderCardBinding
+import com.example.progettoprogrammazione.databinding.CardOrderBinding
 import com.example.progettoprogrammazione.models.Order
 
 class OrderViewHolder(
-    private val orderBinding: OrderCardBinding,
+    private val orderBinding: CardOrderBinding,
     private val clickListener: OrderClickListener
 ) : RecyclerView.ViewHolder(orderBinding.root) {
 

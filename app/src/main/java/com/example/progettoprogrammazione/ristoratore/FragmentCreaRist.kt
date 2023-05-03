@@ -16,7 +16,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.activity.CreaMenu
-import com.example.progettoprogrammazione.databinding.FragmentCreaRistBinding
+import com.example.progettoprogrammazione.databinding.FragmentRCreaRistBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.models.Restaurant
@@ -24,12 +24,11 @@ import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
 import java.util.*
 
 class FragmentCreaRist : Fragment(), UserUtils, RestaurantUtils, ImgUtils {
 
-    private lateinit var binding: FragmentCreaRistBinding
+    private lateinit var binding: FragmentRCreaRistBinding
 
     private lateinit var user: User
 
@@ -55,7 +54,7 @@ class FragmentCreaRist : Fragment(), UserUtils, RestaurantUtils, ImgUtils {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCreaRistBinding.inflate(layoutInflater)
+        binding = FragmentRCreaRistBinding.inflate(layoutInflater)
         tipocibo = binding.tipociboNewR
         val typearray =
             arrayOf("Italiano", "Cinese", "Giapponese", "Indiano", "Greco", "Pizza", "Burger")

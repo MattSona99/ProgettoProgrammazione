@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import com.example.progettoprogrammazione.databinding.FragmentQrBinding
+import com.example.progettoprogrammazione.databinding.Fragment1QrBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackCart
 import com.example.progettoprogrammazione.utils.CartUtils
 import com.example.progettoprogrammazione.utils.ResponseCart
@@ -24,14 +24,14 @@ class FragmentQR : Fragment(), CartUtils {
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
-    private lateinit var binding: FragmentQrBinding
+    private lateinit var binding: Fragment1QrBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentQrBinding.inflate(layoutInflater)
+        binding = Fragment1QrBinding.inflate(layoutInflater)
 
         binding.layoutQr.isGone = true
         binding.noQrcode.isGone = true

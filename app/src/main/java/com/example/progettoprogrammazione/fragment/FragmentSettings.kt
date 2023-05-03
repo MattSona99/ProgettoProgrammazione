@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.activity.IntroActivity
-import com.example.progettoprogrammazione.databinding.ProfileSettingsBinding
+import com.example.progettoprogrammazione.databinding.Fragment1ProfileSettingsBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.utils.ResponseUser
@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class FragmentSettings : Fragment(), UserUtils {
 
-    private lateinit var binding: ProfileSettingsBinding
+    private lateinit var binding: Fragment1ProfileSettingsBinding
 
     private lateinit var user: User
 
@@ -35,7 +35,7 @@ class FragmentSettings : Fragment(), UserUtils {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = ProfileSettingsBinding.inflate(layoutInflater)
+        binding = Fragment1ProfileSettingsBinding.inflate(layoutInflater)
 
         val args = this.arguments
         user = args?.getParcelable<User>("user") as User

@@ -4,15 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.progettoprogrammazione.databinding.CartCardBinding
-import com.example.progettoprogrammazione.databinding.FragmentCarrelloBinding
+import com.example.progettoprogrammazione.databinding.CardCartBinding
+import com.example.progettoprogrammazione.databinding.Fragment1CarrelloBinding
 import com.example.progettoprogrammazione.models.CartProduct
 import com.example.progettoprogrammazione.viewmodels.CartViewModel
 
 class CartAdapter(
     private var cartProducts: ArrayList<CartProduct>,
     private var cartViewModel: CartViewModel,
-    private var bindingCarrello: FragmentCarrelloBinding,
+    private var bindingCarrello: Fragment1CarrelloBinding,
     private var context: Context
 ) : RecyclerView.Adapter<CartViewHolder>() {
 
@@ -23,7 +23,7 @@ class CartAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-        val binding = CartCardBinding.inflate(itemView, parent, false)
+        val binding = CardCartBinding.inflate(itemView, parent, false)
         return CartViewHolder(binding)
     }
 

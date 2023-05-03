@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.activity.IntroActivity
-import com.example.progettoprogrammazione.databinding.FragmentRegistratiBinding
+import com.example.progettoprogrammazione.databinding.Fragment0RegistratiBinding
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.utils.UserUtils
@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class FragmentRegister : Fragment(), UserUtils {
 
-    private lateinit var binding: FragmentRegistratiBinding
+    private lateinit var binding: Fragment0RegistratiBinding
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
@@ -31,7 +31,7 @@ class FragmentRegister : Fragment(), UserUtils {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentRegistratiBinding.inflate(layoutInflater)
+        binding = Fragment0RegistratiBinding.inflate(layoutInflater)
         return binding.root
     }
 

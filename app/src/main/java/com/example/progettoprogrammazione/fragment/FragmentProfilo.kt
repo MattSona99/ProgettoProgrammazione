@@ -12,7 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.databinding.FragmentProfiloBinding
+import com.example.progettoprogrammazione.databinding.Fragment1ProfiloBinding
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.utils.ImgUtils
@@ -27,7 +27,7 @@ import kotlin.collections.HashMap
 
 class FragmentProfilo : Fragment(), UserUtils, ImgUtils {
 
-    private lateinit var binding: FragmentProfiloBinding
+    private lateinit var binding: Fragment1ProfiloBinding
 
     private lateinit var user: User
 
@@ -81,30 +81,35 @@ class FragmentProfilo : Fragment(), UserUtils, ImgUtils {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentProfiloBinding.inflate(layoutInflater)
+        binding = Fragment1ProfiloBinding.inflate(layoutInflater)
 
-        val args = this.arguments
-        user = args?.getParcelable<User>("user") as User
+        getUserData(object : FireBaseCallbackUser{
+            override fun onResponse(responseU: ResponseUser) {
+                user = responseU.user!!
+                val imageName = user.Uri
+                val storageRef = FirebaseStorage.getInstance().reference.child("$imageName")
+                val localfile = File.createTempFile("tempImage", "jpg")
+                storageRef.getFile(localfile).addOnSuccessListener {
+                    val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
+                    binding.imgProfiloUtente.setImageBitmap(bitmap)
+                }
+                binding.imgProfiloUtente.setImageResource(
+                    getImageId(
+                        binding.root.context,
+                        user.Uri!!
+                    )
+                )
 
-        val imageName = user.Uri
-        val storageRef = FirebaseStorage.getInstance().reference.child("$imageName")
-        val localfile = File.createTempFile("tempImage", "jpg")
-        storageRef.getFile(localfile).addOnSuccessListener {
-            val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
-            binding.imgProfiloUtente.setImageBitmap(bitmap)
-        }
-        binding.imgProfiloUtente.setImageResource(
-            getImageId(
-                binding.root.context,
-                user.Uri!!
-            )
-        )
+                binding.nicknameprofilo.text = user.Nome + " " + user.Cognome
+                binding.nomeprofilo.hint = user.Nome
+                binding.cognomeprofilo.hint = user.Cognome
+                binding.telefonoprofilo.hint = user.Telefono
+                binding.emailprofilo.hint = user.Email
+            }
 
-        binding.nicknameprofilo.text = user.Nome + " " + user.Cognome
-        binding.nomeprofilo.hint = user.Nome
-        binding.cognomeprofilo.hint = user.Cognome
-        binding.telefonoprofilo.hint = user.Telefono
-        binding.emailprofilo.hint = user.Email
+        }, context)
+
+
         return binding.root
     }
 

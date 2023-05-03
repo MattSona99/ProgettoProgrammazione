@@ -13,18 +13,14 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import com.example.progettoprogrammazione.databinding.FragmentModificaRistBinding
-import com.example.progettoprogrammazione.databinding.FragmentProfiloBinding
+import com.example.progettoprogrammazione.databinding.FragmentRModificaRistBinding
 import com.example.progettoprogrammazione.utils.ImgUtils
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
 import java.util.*
-import kotlin.collections.HashMap
 
 class FragmentModificaRist : Fragment(), ImgUtils {
 
-    private lateinit var binding: FragmentModificaRistBinding
+    private lateinit var binding: FragmentRModificaRistBinding
 
     private var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
@@ -45,7 +41,7 @@ class FragmentModificaRist : Fragment(), ImgUtils {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentModificaRistBinding.inflate(layoutInflater)
+        binding = FragmentRModificaRistBinding.inflate(layoutInflater)
         tipocibo = binding.newTipocibo
         val typearray =
             arrayOf("Italiano", "Cinese", "Giapponese", "Indiano", "Greco", "Pizza", "Burger")

@@ -2,16 +2,14 @@ package com.example.progettoprogrammazione.prodotti
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
-import com.example.progettoprogrammazione.databinding.FragmentAddToMenuBinding
-import com.example.progettoprogrammazione.databinding.ProductCardModificaEliminaBinding
+import com.example.progettoprogrammazione.databinding.CardProductModificaBinding
 import com.example.progettoprogrammazione.models.Product
 import com.example.progettoprogrammazione.utils.ProductUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.coroutines.NonDisposableHandle.parent
 
 class ProductEMViewHolder(
-    private val prodottoBinding: ProductCardModificaEliminaBinding,
+    private val prodottoBinding: CardProductModificaBinding,
 
 ) : RecyclerView.ViewHolder(prodottoBinding.root), ProductUtils {
 

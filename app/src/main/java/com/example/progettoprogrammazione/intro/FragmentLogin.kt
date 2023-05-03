@@ -12,7 +12,7 @@ import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.activity.EmployeeActivity
 import com.example.progettoprogrammazione.activity.RestaurateurActivity
 import com.example.progettoprogrammazione.activity.UserActivity
-import com.example.progettoprogrammazione.databinding.FragmentLoginBinding
+import com.example.progettoprogrammazione.databinding.Fragment0LoginBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackCart
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase
 class FragmentLogin : Fragment(), UserUtils, DipendenteUtils, RestaurantUtils, ProductUtils,
     CartUtils {
 
-    private lateinit var binding: FragmentLoginBinding
+    private lateinit var binding: Fragment0LoginBinding
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
@@ -35,7 +35,7 @@ class FragmentLogin : Fragment(), UserUtils, DipendenteUtils, RestaurantUtils, P
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLoginBinding.inflate(layoutInflater)
+        binding = Fragment0LoginBinding.inflate(layoutInflater)
         return binding.root
     }
 

@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.databinding.FragmentSearchBinding
+import com.example.progettoprogrammazione.databinding.Fragment1SearchBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.models.Restaurant
 import com.example.progettoprogrammazione.ristorante.RestaurantAdapter
@@ -23,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class FragmentSearch : Fragment(), RestaurantClickListener, RestaurantUtils, FiltriUtils {
 
-    private lateinit var binding: FragmentSearchBinding
+    private lateinit var binding: Fragment1SearchBinding
     private lateinit var adapter: RestaurantAdapter
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -37,7 +36,7 @@ class FragmentSearch : Fragment(), RestaurantClickListener, RestaurantUtils, Fil
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSearchBinding.inflate(layoutInflater)
+        binding = Fragment1SearchBinding.inflate(layoutInflater)
 
         val args = this.arguments
         lvl = args?.getString("lvl") as String

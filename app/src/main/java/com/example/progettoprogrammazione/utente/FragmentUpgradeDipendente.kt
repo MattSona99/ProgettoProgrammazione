@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.progettoprogrammazione.activity.EmployeeActivity
-import com.example.progettoprogrammazione.databinding.FragmentUpgrDipendenteBinding
+import com.example.progettoprogrammazione.databinding.FragmentUUpgrDipendenteBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.models.Dipendente
 import com.example.progettoprogrammazione.models.User
@@ -21,7 +21,7 @@ import java.util.*
 
 class FragmentUpgradeDipendente : Fragment(), UserUtils, DipendenteUtils {
 
-    private lateinit var binding: FragmentUpgrDipendenteBinding
+    private lateinit var binding: FragmentUUpgrDipendenteBinding
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
@@ -33,7 +33,7 @@ class FragmentUpgradeDipendente : Fragment(), UserUtils, DipendenteUtils {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentUpgrDipendenteBinding.inflate(layoutInflater)
+        binding = FragmentUUpgrDipendenteBinding.inflate(layoutInflater)
         return binding.root
     }
 
