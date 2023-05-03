@@ -9,14 +9,10 @@ import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.navigation.navGraphViewModels
-import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentQrBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackCart
-import com.example.progettoprogrammazione.models.User
-import com.example.progettoprogrammazione.utils.ResponseCart
 import com.example.progettoprogrammazione.utils.CartUtils
-import com.example.progettoprogrammazione.viewmodels.CartViewModel
+import com.example.progettoprogrammazione.utils.ResponseCart
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.zxing.BarcodeFormat
@@ -29,12 +25,6 @@ class FragmentQR : Fragment(), CartUtils {
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     private lateinit var binding: FragmentQrBinding
-    private lateinit var user: User
-
-    private lateinit var cartViewModel: CartViewModel
-    private val cartViewModelR: CartViewModel by navGraphViewModels(R.id.nav_restaurateur)
-    private val cartViewModelU: CartViewModel by navGraphViewModels(R.id.nav_user)
-    private val cartViewModelD: CartViewModel by navGraphViewModels(R.id.nav_dipendente)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,15 +33,8 @@ class FragmentQR : Fragment(), CartUtils {
     ): View {
         binding = FragmentQrBinding.inflate(layoutInflater)
 
-        val args = this.arguments
-        user = args?.getParcelable<User>("user") as User
         binding.layoutQr.isGone = true
         binding.noQrcode.isGone = true
-        when (user.Livello) {
-            "1" -> cartViewModel = cartViewModelU
-            "2" -> cartViewModel = cartViewModelD
-            "3" -> cartViewModel = cartViewModelR
-        }
 
         getQRData(firebaseAuth.uid, object : FireBaseCallbackCart {
             override fun onResponse(responseC: ResponseCart) {
@@ -81,9 +64,7 @@ class FragmentQR : Fragment(), CartUtils {
                     binding.layoutQr.isVisible = true
                 }
             }
-
         }, context)
-
         return binding.root
     }
 }

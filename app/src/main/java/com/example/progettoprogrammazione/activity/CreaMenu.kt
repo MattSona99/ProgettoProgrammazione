@@ -83,7 +83,7 @@ class CreaMenu : AppCompatActivity(), ProductUtils, RestaurantUtils {
 
     private fun showDialog(add: String, restName: String?) {
         val inflater = LayoutInflater.from(this)
-        val v = inflater.inflate(R.layout.fragment_add_to_menu, null)
+        val v = inflater.inflate(R.layout.fragment_r_add_to_menu, null)
         val addDialog = AlertDialog.Builder(this)
         val nomeP = v.findViewById<EditText>(R.id.nome_prodotto)
         val prezzoP = v.findViewById<EditText>(R.id.prezzo_prodotto)

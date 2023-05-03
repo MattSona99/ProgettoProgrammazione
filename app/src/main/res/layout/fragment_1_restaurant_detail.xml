@@ -412,7 +412,7 @@
                                     android:id="@+id/recycleViewBevande"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    tools:listitem="@layout/product_card" />
+                                    tools:listitem="@layout/card_product" />
 
                             </LinearLayout>
 
@@ -436,7 +436,7 @@
                                     android:id="@+id/recycleViewAntipasti"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    tools:listitem="@layout/product_card" />
+                                    tools:listitem="@layout/card_product" />
 
                             </LinearLayout>
 
@@ -460,7 +460,7 @@
                                     android:id="@+id/recycleViewPrimi"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    tools:listitem="@layout/product_card" />
+                                    tools:listitem="@layout/card_product" />
 
                             </LinearLayout>
 
@@ -484,7 +484,7 @@
                                     android:id="@+id/recycleViewSecondi"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    tools:listitem="@layout/product_card" />
+                                    tools:listitem="@layout/card_product" />
 
                             </LinearLayout>
 
@@ -508,7 +508,7 @@
                                     android:id="@+id/recycleViewContorni"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    tools:listitem="@layout/product_card" />
+                                    tools:listitem="@layout/card_product" />
 
                             </LinearLayout>
 
@@ -532,7 +532,7 @@
                                     android:id="@+id/recycleViewDolci"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    tools:listitem="@layout/product_card" />
+                                    tools:listitem="@layout/card_product" />
 
                             </LinearLayout>
 

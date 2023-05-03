@@ -33,7 +33,7 @@
         android:id="@+id/fragmentProfiloD"
         android:name="com.example.progettoprogrammazione.fragment.FragmentProfilo"
         android:label="Profilo"
-        tools:layout="@layout/fragment_profilo">
+        tools:layout="@layout/fragment_1_profilo">
         <action
             android:id="@+id/Profilo_D_to_Settings"
             app:destination="@id/fragmentSettingsR"
@@ -50,7 +50,7 @@
         android:id="@+id/RistorantiD"
         android:name="com.example.progettoprogrammazione.fragment.FragmentRistoranti"
         android:label="Ristoranti"
-        tools:layout="@layout/fragment_ristoranti">
+        tools:layout="@layout/fragment_1_ristoranti">
         <action
             android:id="@+id/RistorantiToDetail"
             app:destination="@id/restaurantDetailD" />
@@ -63,14 +63,14 @@
         android:id="@+id/restaurantDetailD"
         android:name="com.example.progettoprogrammazione.ristorante.RestaurantDetail"
         android:label="Dettagli ristorante"
-        tools:layout="@layout/fragment_restaurant_detail">
+        tools:layout="@layout/fragment_1_restaurant_detail">
     </fragment>
 
     <fragment
         android:id="@+id/fragmentLavoroD"
         android:name="com.example.progettoprogrammazione.dipendente.FragmentLavoro"
         android:label="Gestione lavoro"
-        tools:layout="@layout/fragment_lavoro" >
+        tools:layout="@layout/fragment_d_lavoro" >
         <action
             android:id="@+id/LavoroToOrderDetail"
             app:destination="@id/orderDetail" />
@@ -79,12 +79,12 @@
         android:id="@+id/fragmentQR_D"
         android:name="com.example.progettoprogrammazione.fragment.FragmentQR"
         android:label="Il tuo QRCode"
-        tools:layout="@layout/fragment_qr" />
+        tools:layout="@layout/fragment_1_qr" />
     <fragment
         android:id="@+id/fragmentSearchD"
         android:name="com.example.progettoprogrammazione.fragment.FragmentSearch"
         android:label="Cerca Ristoranti"
-        tools:layout="@layout/fragment_search">
+        tools:layout="@layout/fragment_1_search">
         <action
             android:id="@+id/SearchToDetailD"
             app:destination="@id/restaurantDetailD" />
@@ -93,7 +93,7 @@
         android:id="@+id/fragmentCarrello_D"
         android:name="com.example.progettoprogrammazione.fragment.FragmentCarrello"
         android:label="Carrello"
-        tools:layout="@layout/fragment_carrello" >
+        tools:layout="@layout/fragment_1_carrello" >
         <action
             android:id="@+id/CarrelloToQR_D"
             app:destination="@id/fragmentQR_D" />
@@ -103,7 +103,7 @@
         android:id="@+id/fragmentSettingsR"
         android:name="com.example.progettoprogrammazione.fragment.FragmentSettings"
         android:label="Impostazioni account"
-        tools:layout="@layout/profile_settings">
+        tools:layout="@layout/fragment_1_profile_settings">
         <action
             android:id="@+id/SettingsToProfileD"
             app:destination="@id/fragmentProfiloD" />
@@ -112,6 +112,6 @@
         android:id="@+id/orderDetail"
         android:name="com.example.progettoprogrammazione.dipendente.OrderDetail"
         android:label="Dettagli dell'ordine"
-        tools:layout="@layout/fragment_order_detail"/>
+        tools:layout="@layout/fragment_d_order_detail"/>
 
 </navigation>

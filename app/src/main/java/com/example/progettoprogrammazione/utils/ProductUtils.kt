@@ -6,18 +6,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.Toast
-import androidx.navigation.Navigation
 import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.databinding.FragmentAddToMenuBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackProdotto
 import com.example.progettoprogrammazione.models.Product
-import com.example.progettoprogrammazione.ristoratore.FragmentModificaMenu
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import java.util.*
 
 interface ProductUtils {
 
@@ -87,7 +83,7 @@ interface ProductUtils {
     fun modifyProd(prodotto: Product, idR: String?, tipo: String?, context: Context?) {
 
         val inflater = LayoutInflater.from(context)
-        val v = inflater.inflate(R.layout.fragment_add_to_menu, null)
+        val v = inflater.inflate(R.layout.fragment_r_add_to_menu, null)
         val addDialog = AlertDialog.Builder(context)
         val nomeP = v.findViewById<EditText>(R.id.nome_prodotto)
         nomeP.setText(prodotto.nomeP)

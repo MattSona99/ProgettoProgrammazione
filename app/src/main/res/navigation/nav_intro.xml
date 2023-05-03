@@ -9,7 +9,7 @@
         android:id="@+id/fragmentIntro"
         android:name="com.example.progettoprogrammazione.intro.FragmentIntro"
         android:label="COOKADE"
-        tools:layout="@layout/fragment_intro">
+        tools:layout="@layout/fragment_0_intro">
         <action
             android:id="@+id/IntroToLogin"
             app:destination="@id/fragmentLogin"
@@ -29,7 +29,7 @@
         android:id="@+id/fragmentLogin"
         android:name="com.example.progettoprogrammazione.intro.FragmentLogin"
         android:label="Login"
-        tools:layout="@layout/fragment_login">
+        tools:layout="@layout/fragment_0_login">
         <action
             android:id="@+id/LoginToRegister"
             app:destination="@id/fragmentRegister"
@@ -42,7 +42,7 @@
         android:id="@+id/fragmentRegister"
         android:name="com.example.progettoprogrammazione.intro.FragmentRegister"
         android:label="Registrati"
-        tools:layout="@layout/fragment_registrati">
+        tools:layout="@layout/fragment_0_registrati">
         <action
             android:id="@+id/RegisterToLogin"
             app:destination="@id/fragmentLogin"

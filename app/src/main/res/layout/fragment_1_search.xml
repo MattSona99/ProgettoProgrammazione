@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:scrollbars="horizontal"
-            tools:listitem="@layout/restaurant_card" />
+            tools:listitem="@layout/card_restaurant" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

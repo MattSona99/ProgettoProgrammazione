@@ -9,7 +9,6 @@ import android.widget.EditText
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.R
@@ -172,7 +171,7 @@ class FragmentModificaMenu : Fragment(), UserUtils, ProductUtils {
 
     private fun showDialog(add: String, restName: String?) {
         val inflater = LayoutInflater.from(context)
-        val v = inflater.inflate(R.layout.fragment_add_to_menu, null)
+        val v = inflater.inflate(R.layout.fragment_r_add_to_menu, null)
         val addDialog = AlertDialog.Builder(context)
         val nomeP = v.findViewById<EditText>(R.id.nome_prodotto)
         val prezzoP = v.findViewById<EditText>(R.id.prezzo_prodotto)

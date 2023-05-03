@@ -78,7 +78,6 @@ class FragmentCarrello : Fragment(), CartUtils, ProductUtils {
             binding.recylerOrder.setHasFixedSize(true)
             adapter.notifyDataSetChanged()
         }
-
         return binding.root
     }
 
@@ -96,12 +95,11 @@ class FragmentCarrello : Fragment(), CartUtils, ProductUtils {
         binding.constraintQR.setOnClickListener {
             addQRData(cartProduct, firebaseAuth.uid, context)
             cartViewModel.deleteCartItems()
-            val bundleQR = Bundle()
-            bundleQR.putParcelable("user", user)
+
             when (user.Livello) {
-                "1" -> view.findNavController().navigate(R.id.CarrelloToQR_U, bundleQR)
-                "2" -> view.findNavController().navigate(R.id.CarrelloToQR_D, bundleQR)
-                "3" -> view.findNavController().navigate(R.id.CarrelloToQR_R, bundleQR)
+                "1" -> view.findNavController().navigate(R.id.CarrelloToQR_U)
+                "2" -> view.findNavController().navigate(R.id.CarrelloToQR_D)
+                "3" -> view.findNavController().navigate(R.id.CarrelloToQR_R)
             }
         }
     }

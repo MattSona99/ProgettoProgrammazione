@@ -79,7 +79,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:scrollbars="horizontal"
-                        tools:listitem="@layout/restaurant_card" />
+                        tools:listitem="@layout/card_restaurant" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -244,7 +244,7 @@
                                 android:id="@+id/recycleViewPizza"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                tools:listitem="@layout/restaurant_card" />
+                                tools:listitem="@layout/card_restaurant" />
 
                         </LinearLayout>
 
@@ -278,7 +278,7 @@
                                 android:id="@+id/recycleViewBurger"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                tools:listitem="@layout/restaurant_card" />
+                                tools:listitem="@layout/card_restaurant" />
 
                         </LinearLayout>
 
@@ -312,7 +312,7 @@
                                 android:id="@+id/recycleViewIta"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                tools:listitem="@layout/restaurant_card" />
+                                tools:listitem="@layout/card_restaurant" />
 
                         </LinearLayout>
 
@@ -346,7 +346,7 @@
                                 android:id="@+id/recycleViewCin"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                tools:listitem="@layout/restaurant_card" />
+                                tools:listitem="@layout/card_restaurant" />
 
                         </LinearLayout>
 
@@ -380,7 +380,7 @@
                                 android:id="@+id/recycleViewJap"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                tools:listitem="@layout/restaurant_card" />
+                                tools:listitem="@layout/card_restaurant" />
 
                         </LinearLayout>
 
@@ -414,7 +414,7 @@
                                 android:id="@+id/recycleViewInd"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                tools:listitem="@layout/restaurant_card" />
+                                tools:listitem="@layout/card_restaurant" />
 
                         </LinearLayout>
 
@@ -448,7 +448,7 @@
                                 android:id="@+id/recycleViewGre"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                tools:listitem="@layout/restaurant_card" />
+                                tools:listitem="@layout/card_restaurant" />
 
                         </LinearLayout>
 
@@ -482,7 +482,7 @@
                                 android:id="@+id/recycleViewVeg"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                tools:listitem="@layout/restaurant_card" />
+                                tools:listitem="@layout/card_restaurant" />
 
                         </LinearLayout>
 

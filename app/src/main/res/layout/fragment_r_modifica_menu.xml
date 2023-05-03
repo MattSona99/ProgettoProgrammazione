@@ -467,7 +467,7 @@
                                             android:id="@+id/recycleViewBevande"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            tools:listitem="@layout/product_card" />
+                                            tools:listitem="@layout/card_product" />
 
                                     </HorizontalScrollView>
 
@@ -498,7 +498,7 @@
                                             android:id="@+id/recycleViewAntipasti"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            tools:listitem="@layout/product_card" />
+                                            tools:listitem="@layout/card_product" />
 
                                     </HorizontalScrollView>
 
@@ -528,7 +528,7 @@
                                             android:id="@+id/recycleViewPrimi"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            tools:listitem="@layout/product_card" />
+                                            tools:listitem="@layout/card_product" />
 
                                     </HorizontalScrollView>
 
@@ -558,7 +558,7 @@
                                             android:id="@+id/recycleViewSecondi"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            tools:listitem="@layout/product_card" />
+                                            tools:listitem="@layout/card_product" />
 
                                     </HorizontalScrollView>
 
@@ -588,7 +588,7 @@
                                             android:id="@+id/recycleViewContorni"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            tools:listitem="@layout/product_card" />
+                                            tools:listitem="@layout/card_product" />
 
                                     </HorizontalScrollView>
 
@@ -618,7 +618,7 @@
                                             android:id="@+id/recycleViewDolci"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            tools:listitem="@layout/product_card" />
+                                            tools:listitem="@layout/card_product" />
 
                                     </HorizontalScrollView>
 

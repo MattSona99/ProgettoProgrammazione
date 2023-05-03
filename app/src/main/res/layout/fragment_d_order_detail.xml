@@ -27,7 +27,7 @@
             android:id="@+id/product_list_D"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/order_product_card" />
+            tools:listitem="@layout/card_order_product" />
     </LinearLayout>
 
 

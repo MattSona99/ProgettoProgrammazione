@@ -33,7 +33,7 @@
         android:id="@+id/fragmentProfilo"
         android:name="com.example.progettoprogrammazione.fragment.FragmentProfilo"
         android:label="Profilo"
-        tools:layout="@layout/fragment_profilo">
+        tools:layout="@layout/fragment_1_profilo">
         <action
             android:id="@+id/ProfiloRSelf"
             app:destination="@id/fragmentProfilo"
@@ -53,7 +53,7 @@
         android:id="@+id/fragmentRistoranti"
         android:name="com.example.progettoprogrammazione.fragment.FragmentRistoranti"
         android:label="Ristoranti"
-        tools:layout="@layout/fragment_ristoranti">
+        tools:layout="@layout/fragment_1_ristoranti">
         <action
             android:id="@+id/RistorantiToDetail"
             app:destination="@id/restaurantDetail"
@@ -70,7 +70,7 @@
         android:id="@+id/restaurantDetail"
         android:name="com.example.progettoprogrammazione.ristorante.RestaurantDetail"
         android:label="Dettagli ristorante"
-        tools:layout="@layout/fragment_restaurant_detail">
+        tools:layout="@layout/fragment_1_restaurant_detail">
         <action
             android:id="@+id/DetailToModifica"
             app:destination="@id/fragmentModificaRist" />
@@ -82,7 +82,7 @@
         android:id="@+id/fragmentGestione"
         android:name="com.example.progettoprogrammazione.ristoratore.FragmentGestione"
         android:label="Gestione ristoranti"
-        tools:layout="@layout/fragment_gestione_rist">
+        tools:layout="@layout/fragment_r_gestione_rist">
         <action
             android:id="@+id/GestioneToDetail"
             app:destination="@id/restaurantDetail" />
@@ -94,19 +94,19 @@
         android:id="@+id/fragmentCreaRist"
         android:name="com.example.progettoprogrammazione.ristoratore.FragmentCreaRist"
         android:label="Crea ristorante"
-        tools:layout="@layout/fragment_crea_rist">
+        tools:layout="@layout/fragment_r_crea_rist">
 
     </fragment>
     <fragment
         android:id="@+id/fragmentModificaRist"
         android:name="com.example.progettoprogrammazione.ristoratore.FragmentModificaRist"
         android:label="Modifica Ristorante"
-        tools:layout="@layout/fragment_modifica_rist"/>
+        tools:layout="@layout/fragment_r_modifica_rist"/>
     <fragment
         android:id="@+id/fragmentSearchR"
         android:name="com.example.progettoprogrammazione.fragment.FragmentSearch"
         android:label="Cerca Ristoranti"
-        tools:layout="@layout/fragment_search">
+        tools:layout="@layout/fragment_1_search">
         <action
             android:id="@+id/SearchToDetailR"
             app:destination="@id/restaurantDetail" />
@@ -115,7 +115,7 @@
         android:id="@+id/fragmentCarrello_R"
         android:name="com.example.progettoprogrammazione.fragment.FragmentCarrello"
         android:label="Carrello"
-        tools:layout="@layout/fragment_carrello">
+        tools:layout="@layout/fragment_1_carrello">
         <action
             android:id="@+id/CarrelloToQR_R"
             app:destination="@id/fragmentQR_R" />
@@ -124,18 +124,18 @@
         android:id="@+id/fragmentQR_R"
         android:name="com.example.progettoprogrammazione.fragment.FragmentQR"
         android:label="Il tuo QRCode"
-        tools:layout="@layout/fragment_qr" />
+        tools:layout="@layout/fragment_1_qr" />
 
     <fragment
         android:id="@+id/fragmentModificaMenu"
         android:name="com.example.progettoprogrammazione.ristoratore.FragmentModificaMenu"
         android:label="Modifica Menù"
-        tools:layout="@layout/fragment_modifica_menu" />
+        tools:layout="@layout/fragment_r_modifica_menu" />
     <fragment
         android:id="@+id/fragmentSettingsR"
         android:name="com.example.progettoprogrammazione.fragment.FragmentSettings"
         android:label="Impostazioni account"
-        tools:layout="@layout/profile_settings">
+        tools:layout="@layout/fragment_1_profile_settings">
         <action
             android:id="@+id/SettingsToProfileR"
             app:destination="@id/fragmentProfilo" />
