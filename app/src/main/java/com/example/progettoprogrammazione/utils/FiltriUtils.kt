@@ -1,6 +1,5 @@
 package com.example.progettoprogrammazione.utils
 
-import android.widget.Filter
 import com.example.progettoprogrammazione.models.Restaurant
 
 interface FiltriUtils {
@@ -8,7 +7,7 @@ interface FiltriUtils {
     fun searchFilter(restaurant: ArrayList<Restaurant>, p0: CharSequence?): ArrayList<Restaurant> {
 
         if (p0 == null || p0.isEmpty()) {
-            return restaurant
+            return arrayListOf()
         } else {
             val searchChar = p0.toString().lowercase()
             val restaurantFiltered = ArrayList<Restaurant>()

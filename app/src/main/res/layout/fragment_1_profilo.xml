@@ -70,7 +70,6 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="30dp"
                 android:layout_toEndOf="@id/card_profilo_utente"
-                android:text="@string/username"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -105,7 +104,6 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/custom_input"
                 android:gravity="center"
-                android:hint="@string/name"
                 android:textColorHint="@color/white"
                 android:textSize="16sp" />
 
@@ -125,7 +123,6 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/custom_input"
                 android:gravity="center"
-                android:hint="@string/surname"
                 android:textColorHint="@color/white"
                 android:textSize="16sp" />
 
@@ -145,7 +142,6 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/custom_input"
                 android:gravity="center"
-                android:hint="@string/cellphone"
                 android:textColorHint="@color/white"
                 android:textSize="16sp" />
 
@@ -165,7 +161,6 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/custom_input"
                 android:gravity="center"
-                android:hint="@string/email_form"
                 android:textColorHint="@color/white"
                 android:textSize="16sp" />
 
