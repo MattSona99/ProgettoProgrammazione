@@ -70,7 +70,11 @@
         android:id="@+id/fragmentLavoroD"
         android:name="com.example.progettoprogrammazione.dipendente.FragmentLavoro"
         android:label="Gestione lavoro"
-        tools:layout="@layout/fragment_lavoro" />
+        tools:layout="@layout/fragment_lavoro" >
+        <action
+            android:id="@+id/LavoroToOrderDetail"
+            app:destination="@id/orderDetail" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentQR_D"
         android:name="com.example.progettoprogrammazione.fragment.FragmentQR"
@@ -104,5 +108,10 @@
             android:id="@+id/SettingsToProfileD"
             app:destination="@id/fragmentProfiloD" />
     </fragment>
+    <fragment
+        android:id="@+id/orderDetail"
+        android:name="com.example.progettoprogrammazione.dipendente.OrderDetail"
+        android:label="Dettagli dell'ordine"
+        tools:layout="@layout/fragment_order_detail"/>
 
 </navigation>

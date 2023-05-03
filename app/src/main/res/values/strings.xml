@@ -148,6 +148,7 @@
     <string name="job">GESTIONE LAVORO</string>
     <string name="scan">Scannerizza QRCode</string>
     <string name="your_orders">ORDINI DA EFFETTUARE</string>
+    <string name="order_number">NUMERO ORDINE</string>
 
     <!-- NAVBARS -->
     <string name="home">Home</string>

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_splash_2"
     android:orientation="vertical">
 
     <LinearLayout
@@ -11,23 +12,23 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/n_order"
+            android:id="@+id/n_order_D"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
             android:layout_weight="1"
-            android:background="@drawable/white_card_red_rounded"
-            android:text="Numero Ordine"
+            android:padding="10sp"
+            android:text="@string/order_number"
             android:textAlignment="center"
-            android:textColor="@color/black" />
+            android:textColor="@color/red"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/product_list"
+            android:id="@+id/product_list_D"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/order_product_card" />
     </LinearLayout>
-
-
 
 
 </LinearLayout>

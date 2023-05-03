@@ -8,12 +8,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.FragmentLavoroBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackDipendente
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackOrder
 import com.example.progettoprogrammazione.models.Dipendente
 import com.example.progettoprogrammazione.models.Order
 import com.example.progettoprogrammazione.models.User
+import com.example.progettoprogrammazione.ordini.OrderAdapter
+import com.example.progettoprogrammazione.ordini.OrderClickListener
 import com.example.progettoprogrammazione.utils.DipendenteUtils
 import com.example.progettoprogrammazione.utils.OrderUtils
 import com.example.progettoprogrammazione.utils.ResponseDipendente
@@ -25,9 +30,10 @@ import org.json.JSONArray
 import org.json.JSONException
 
 
-class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils {
+class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils, OrderClickListener {
 
     private lateinit var binding: FragmentLavoroBinding
+    private lateinit var adapter: OrderAdapter
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
@@ -51,15 +57,17 @@ class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils {
                 getOrders(dip, object : FireBaseCallbackOrder{
                     override fun onResponse(responseO: ResponseOrder) {
                         orderArrayList = responseO.ordini
+                        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                        binding.productList.layoutManager = layoutManager
+                        adapter = OrderAdapter(orderArrayList, this@FragmentLavoro)
+                        binding.productList.adapter = adapter
+                        binding.productList.setHasFixedSize(true)
+                        adapter.notifyDataSetChanged()
                     }
 
                 }, context)
             }
         }, context)
-
-
-      //  getOrders()
-
 
         return binding.root
     }
@@ -90,9 +98,8 @@ class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils {
             } else {
 
                 try {
-                    val o = JSONArray(result.contents)
-                    val jsonString = o.getJSONObject(0)
-                    createOrder(jsonString, context)
+                    val jsonOrdine = JSONArray(result.contents)
+                    createOrder(jsonOrdine, context)
 
                 } catch (e: JSONException) {
                     e.printStackTrace()
@@ -106,6 +113,12 @@ class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils {
         }
     }
 
+    override fun onClickOrder(order: Order) {
+        val bundle = Bundle()
+        bundle.putParcelableArrayList("ordini", orderArrayList)
+        bundle.putString("numero", order.numero.toString())
+        view?.findNavController()?.navigate(R.id.LavoroToOrderDetail, bundle)
+    }
 
 
 }
