@@ -38,7 +38,7 @@ class FragmentQR : Fragment(), CartUtils {
 
         getQRData(firebaseAuth.uid, object : FireBaseCallbackCart {
             override fun onResponse(responseC: ResponseCart) {
-                if (responseC.cart.isEmpty()) {
+                if (responseC.cart == "null") {
                     binding.layoutQr.isGone = true
                     binding.noQrcode.isVisible = true
                 } else {

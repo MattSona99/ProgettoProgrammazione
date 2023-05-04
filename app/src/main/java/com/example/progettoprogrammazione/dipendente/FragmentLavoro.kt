@@ -51,13 +51,14 @@ class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils, OrderClickListen
         orderArrayList = arrayListOf()
         val args = this.arguments
         val user = args?.getParcelable<User>("user") as User
-        getDipendenteData(user.Email!!, object: FireBaseCallbackDipendente{
+        getDipendenteData(user.Email!!, object : FireBaseCallbackDipendente {
             override fun onResponse(responseD: ResponseDipendente) {
                 dip = responseD.dipendenti.first()
-                getOrders(dip, object : FireBaseCallbackOrder{
+                getOrders(dip, object : FireBaseCallbackOrder {
                     override fun onResponse(responseO: ResponseOrder) {
                         orderArrayList = responseO.ordini
-                        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                        val layoutManager =
+                            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                         binding.productList.layoutManager = layoutManager
                         adapter = OrderAdapter(orderArrayList, this@FragmentLavoro)
                         binding.productList.adapter = adapter
@@ -96,17 +97,24 @@ class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils, OrderClickListen
             if (result.contents == null) {
                 Toast.makeText(activity, "Scan fallito", Toast.LENGTH_LONG).show()
             } else {
-
                 try {
                     val jsonOrdine = JSONArray(result.contents)
-                    createOrder(jsonOrdine, context)
+                    val jsonObject = jsonOrdine.getJSONObject(0)
+                    val restID = jsonObject.getString("restID").toString()
+                    if (dip.codiceRistorante == restID) {
+                        createOrder(restID, jsonOrdine, context)
+                    } else {
+                        Toast.makeText(
+                            context,
+                            "Non hai i permessi per effettuare ordini in questo ristorante.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
 
                 } catch (e: JSONException) {
                     e.printStackTrace()
-
                     Toast.makeText(activity, result.contents, Toast.LENGTH_LONG).show()
                 }
-
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)

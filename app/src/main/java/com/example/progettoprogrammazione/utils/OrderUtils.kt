@@ -17,18 +17,17 @@ interface OrderUtils {
     var firebaseDatabase: FirebaseDatabase
 
 
-    fun createOrder(jsonString: JSONArray, context: Context?) {
+    fun createOrder(restID: String, jsonString: JSONArray, context: Context?) {
 
-        val jsonObject = jsonString.getJSONObject(0)
-        val restID = jsonObject.getString("restID")
         firebaseDatabase.getReference("Ristoranti/$restID/Ordini")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val maxid = snapshot.childrenCount.toInt()
                     val data = hashMapOf<String, String>()
-                    data["numero"] = "${maxid +1}"
+                    data["numero"] = "${maxid + 1}"
                     data["json"] = jsonString.toString()
                     data["rID"] = restID
+                    data["checked"] = "false"
 
                     firebaseDatabase.getReference("Ristoranti/$restID/Ordini/${maxid + 1}")
                         .setValue(data)
@@ -55,7 +54,8 @@ interface OrderUtils {
                         val ordine = Order(
                             order.child("numero").value.toString().toInt(),
                             order.child("json").value.toString(),
-                            order.child("rID").value.toString()
+                            order.child("rID").value.toString(),
+                            order.child("checked").value.toString().toBoolean()
                         )
                         response.ordini.add(ordine)
                     }

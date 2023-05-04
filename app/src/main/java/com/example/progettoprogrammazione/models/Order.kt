@@ -7,11 +7,13 @@ data class Order (
     var numero: Int? = 0,
     var json: String?,
     var rID: String?,
+    var checked: Boolean
 ): Parcelable{
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString(),
-        parcel.readString()
+        parcel.readString(),
+        parcel.readBoolean()
     )
 
     override fun describeContents(): Int {
@@ -22,6 +24,7 @@ data class Order (
         parcel.writeInt(numero!!)
         parcel.writeString(json)
         parcel.writeString(rID)
+        parcel.writeBoolean(checked)
     }
 
     companion object CREATOR : Parcelable.Creator<Order> {

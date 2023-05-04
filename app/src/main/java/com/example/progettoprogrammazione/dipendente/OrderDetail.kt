@@ -44,6 +44,7 @@ class OrderDetail : Fragment() {
             val hashMap = hashMapOf<String, String>()
             hashMap["pname"] = jsonObject.getString("pname")
             hashMap["quantity"] = jsonObject.getString("quantity")
+            hashMap["numero"] = numero.toString()
             products.add(hashMap)
         }
 

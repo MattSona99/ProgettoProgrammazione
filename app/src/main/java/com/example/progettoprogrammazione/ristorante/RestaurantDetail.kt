@@ -238,6 +238,7 @@ class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
             builder.setMessage("Sei sicuro di voler eliminare il ristorante?")
             builder.setPositiveButton("Sì") { _, _ ->
                 reference.child("$idR").removeValue()
+                Toast.makeText(context, "Ristorante eliminato con successo.", Toast.LENGTH_SHORT).show()
                 getUserData(object : FireBaseCallbackUser {
                     override fun onResponse(responseU: ResponseUser) {
                         getRestaurantData(object : FireBaseCallbackRestaurant {
