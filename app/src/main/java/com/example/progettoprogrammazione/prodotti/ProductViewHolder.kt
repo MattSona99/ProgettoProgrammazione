@@ -2,7 +2,7 @@ package com.example.progettoprogrammazione.prodotti
 
 import android.app.AlertDialog
 import android.content.Context
-import android.widget.SeekBar
+import android.text.InputType
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.databinding.CardProductBinding
@@ -17,32 +17,21 @@ class ProductViewHolder(
     private val prodottoBinding: CardProductBinding,
     private val cartViewModel: CartViewModel,
 
-) : RecyclerView.ViewHolder(prodottoBinding.root), CartUtils {
+    ) : RecyclerView.ViewHolder(prodottoBinding.root), CartUtils {
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
 
 
     fun bindProdotti(prodotto: Product) {
+
+        prodottoBinding.quantity.inputType = InputType.TYPE_CLASS_NUMBER
+
         prodottoBinding.nomeProdottoCard.text = prodotto.nomeP
         prodottoBinding.cardDesc.text = prodotto.descrizioneP
     }
 
     fun createShoppingCart(prodotto: Product, restID: String, context: Context) {
-
-        prodottoBinding.seekbar.setOnSeekBarChangeListener(object :
-            SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                prodottoBinding.quantity.text = p1.toString()
-            }
-
-            override fun onStartTrackingTouch(p0: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(p0: SeekBar?) {
-            }
-
-        })
 
         prodottoBinding.addProduct.setOnClickListener {
             val quantity = prodottoBinding.quantity.text.toString().toInt()

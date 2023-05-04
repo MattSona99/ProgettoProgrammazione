@@ -3,7 +3,6 @@ package com.example.progettoprogrammazione.ordini
 import androidx.recyclerview.widget.RecyclerView
 import com.example.progettoprogrammazione.databinding.CardOrderBinding
 import com.example.progettoprogrammazione.models.Order
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class OrderViewHolder(

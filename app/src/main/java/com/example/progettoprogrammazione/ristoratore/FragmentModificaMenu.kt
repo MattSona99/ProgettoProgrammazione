@@ -2,6 +2,7 @@ package com.example.progettoprogrammazione.ristoratore
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -175,6 +176,7 @@ class FragmentModificaMenu : Fragment(), UserUtils, ProductUtils {
         val addDialog = AlertDialog.Builder(context)
         val nomeP = v.findViewById<EditText>(R.id.nome_prodotto)
         val prezzoP = v.findViewById<EditText>(R.id.prezzo_prodotto)
+        prezzoP.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
         val descrizioneP = v.findViewById<EditText>(R.id.descrizione_prodotto)
 
         addDialog.setView(v)

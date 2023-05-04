@@ -49,15 +49,25 @@
                     android:text="@string/product_name"
                     android:textColor="@color/white"
                     android:textSize="16sp"
+                    android:paddingEnd="5sp"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/white_line"
+                    android:layout_width="1dp"
+                    android:layout_height="30sp"
+                    android:padding="5sp"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/nome_prodotto_ordine"
+                    android:background="@drawable/white_button"/>
 
                 <TextView
                     android:id="@+id/quantita_prodotto_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@id/nome_prodotto_ordine"
-                    android:paddingStart="5sp"
+                    android:layout_toEndOf="@id/white_line"
+                    android:padding="5sp"
                     android:text="@string/quantity"
                     android:textColor="@color/white"
                     android:textSize="16sp"

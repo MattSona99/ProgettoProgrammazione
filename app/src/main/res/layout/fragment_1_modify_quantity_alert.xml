@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:layout_margin="15dp"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_background"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="15dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/red_button"
+            android:gravity="center"
+            android:text="Modifica quantità"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/quantity_alert_modify"
+            android:layout_width="30sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="@drawable/custom_input"
+            android:gravity="center"
+            android:hint="@string/number"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

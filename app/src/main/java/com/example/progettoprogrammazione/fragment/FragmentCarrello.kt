@@ -92,15 +92,23 @@ class FragmentCarrello : Fragment(), CartUtils, ProductUtils {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.constraintQR.setOnClickListener {
-            addQRData(cartProduct, firebaseAuth.uid, context)
-            cartViewModel.deleteCartItems()
-
-            when (user.Livello) {
-                "1" -> view.findNavController().navigate(R.id.CarrelloToQR_U)
-                "2" -> view.findNavController().navigate(R.id.CarrelloToQR_D)
-                "3" -> view.findNavController().navigate(R.id.CarrelloToQR_R)
+        cartViewModel.getcartItems().observe(viewLifecycleOwner) { cartItems ->
+            cartProduct.clear()
+            var totale: Float? = 0f
+            for (c in cartItems) {
+                totale = totale?.plus(c.totPrice!!)
+                cartProduct.add(c)
+            }
+            binding.constraintQR.setOnClickListener {
+                addQRData(cartProduct, firebaseAuth.uid, context)
+                cartViewModel.deleteCartItems()
+                when (user.Livello) {
+                    "1" -> view.findNavController().navigate(R.id.CarrelloToQR_U)
+                    "2" -> view.findNavController().navigate(R.id.CarrelloToQR_D)
+                    "3" -> view.findNavController().navigate(R.id.CarrelloToQR_R)
+                }
             }
         }
+
     }
 }

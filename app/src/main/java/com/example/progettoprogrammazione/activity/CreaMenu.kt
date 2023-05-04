@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -87,6 +88,7 @@ class CreaMenu : AppCompatActivity(), ProductUtils, RestaurantUtils {
         val addDialog = AlertDialog.Builder(this)
         val nomeP = v.findViewById<EditText>(R.id.nome_prodotto)
         val prezzoP = v.findViewById<EditText>(R.id.prezzo_prodotto)
+        prezzoP.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
         val descrizioneP = v.findViewById<EditText>(R.id.descrizione_prodotto)
 
         addDialog.setView(v)
@@ -109,7 +111,7 @@ class CreaMenu : AppCompatActivity(), ProductUtils, RestaurantUtils {
                 "dolce" -> addProdotto(restName, pData, "Dolci",  this)
             }
         }
-        addDialog.setNegativeButton("Cancel") { dialog, _ ->
+        addDialog.setNegativeButton("Indietro") { dialog, _ ->
             dialog.cancel()
         }
         addDialog.create()

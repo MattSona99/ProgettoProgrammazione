@@ -28,4 +28,14 @@ class CartViewModel : ViewModel(), java.io.Serializable {
         cartProductItems.value = carts
     }
 
+    fun modifySpecifiCart(cartProduct: CartProduct, quantity: String){
+        val carts = cartProductItems.value ?: ArrayList()
+        for(cart in carts){
+            if(cart.pID == cartProduct.pID) {
+                cartProduct.quantity = quantity.toInt()
+            }
+        }
+        cartProductItems.value = carts
+    }
+
 }

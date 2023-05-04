@@ -71,25 +71,19 @@
                 android:textColor="@color/red"
                 android:textSize="16sp" />
 
-            <SeekBar
-                android:id="@+id/seekbarC"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/red"
-                android:max="20"
-                android:thumbTint="@color/red"
-                android:progress="0"
-                android:progressTint="@color/red" />
 
             <TextView
                 android:id="@+id/quantityC"
-                android:layout_width="wrap_content"
+                android:layout_width="30sp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center"
                 android:layout_margin="5dp"
-                android:text="@string/number"
-                android:textColor="@color/red"
-                android:textSize="16sp"
+                android:background="@drawable/custom_input"
+                android:gravity="center"
+                android:hint="@string/number"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
