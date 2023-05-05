@@ -149,6 +149,8 @@
     <string name="scan">Scannerizza QRCode</string>
     <string name="your_orders">ORDINI DA EFFETTUARE</string>
     <string name="order_number">NUMERO ORDINE</string>
+    <string name="zero_orders">Attualmente non ci sono ordini in attesa.</string>
+    <string name="delete_orders">ELIMINA ORDINI</string>
 
     <!-- NAVBARS -->
     <string name="home">Home</string>

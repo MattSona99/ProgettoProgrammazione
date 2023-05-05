@@ -38,7 +38,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/radio_selected"
-                android:gravity="center"
                 android:padding="5sp">
 
                 <TextView
@@ -53,20 +52,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/white_line"
-                    android:layout_width="1dp"
-                    android:layout_height="30sp"
-                    android:padding="5sp"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@id/nome_prodotto_ordine"
-                    android:background="@drawable/white_button"/>
-
-                <TextView
                     android:id="@+id/quantita_prodotto_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@id/white_line"
+                    android:layout_toStartOf="@id/quantita_prodotto_ordine"
                     android:padding="5sp"
                     android:text="@string/quantity"
                     android:textColor="@color/white"
@@ -78,22 +68,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@id/quantita_prodotto_text"
-                    android:paddingStart="5sp"
+                    android:layout_alignParentEnd="true"
+                    android:paddingEnd="16sp"
                     android:text="@string/product_quantity"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold" />
-
-                <CheckBox
-                    android:id="@+id/checkbox_prodotto_ordine"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:textColorHighlight="@color/white"
-                    android:textColorHint="@color/white"
-                    android:textColorLink="@color/white"
-                    style="@style/CheckBoxCustom"/>
 
             </RelativeLayout>
 

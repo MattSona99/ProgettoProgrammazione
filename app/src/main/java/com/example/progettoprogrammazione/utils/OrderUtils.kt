@@ -71,4 +71,16 @@ interface OrderUtils {
                 }
             })
     }
+
+    fun deleteOrders(restID: String, context: Context?) {
+        firebaseDatabase.getReference("Ristoranti/$restID/Ordini").removeValue()
+            .addOnSuccessListener {
+                Toast.makeText(
+                    context,
+                    "Gli ordini sono stati eliminati con successo.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+    }
+
 }

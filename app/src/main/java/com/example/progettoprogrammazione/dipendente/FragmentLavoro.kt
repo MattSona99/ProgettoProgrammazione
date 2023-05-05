@@ -1,5 +1,6 @@
 package com.example.progettoprogrammazione.dipendente
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,22 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.progettoprogrammazione.R
+import com.example.progettoprogrammazione.activity.EmployeeActivity
 import com.example.progettoprogrammazione.databinding.FragmentDLavoroBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackDipendente
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackOrder
+import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
 import com.example.progettoprogrammazione.models.Dipendente
 import com.example.progettoprogrammazione.models.Order
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.ordini.OrderAdapter
 import com.example.progettoprogrammazione.ordini.OrderClickListener
-import com.example.progettoprogrammazione.utils.DipendenteUtils
-import com.example.progettoprogrammazione.utils.OrderUtils
-import com.example.progettoprogrammazione.utils.ResponseDipendente
-import com.example.progettoprogrammazione.utils.ResponseOrder
+import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.zxing.integration.android.IntentIntegrator
@@ -30,7 +32,7 @@ import org.json.JSONArray
 import org.json.JSONException
 
 
-class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils, OrderClickListener {
+class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils, OrderClickListener, UserUtils {
 
     private lateinit var binding: FragmentDLavoroBinding
     private lateinit var adapter: OrderAdapter
@@ -48,6 +50,8 @@ class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils, OrderClickListen
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDLavoroBinding.inflate(layoutInflater)
+        binding.ConstraintLavoro.isGone = true
+        binding.zeroOrders.isGone = true
         orderArrayList = arrayListOf()
         val args = this.arguments
         val user = args?.getParcelable<User>("user") as User
@@ -57,15 +61,21 @@ class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils, OrderClickListen
                 getOrders(dip, object : FireBaseCallbackOrder {
                     override fun onResponse(responseO: ResponseOrder) {
                         orderArrayList = responseO.ordini
-                        val layoutManager =
-                            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                        binding.productList.layoutManager = layoutManager
-                        adapter = OrderAdapter(orderArrayList, this@FragmentLavoro)
-                        binding.productList.adapter = adapter
-                        binding.productList.setHasFixedSize(true)
-                        adapter.notifyDataSetChanged()
+                        if (orderArrayList.isNotEmpty()) {
+                            binding.ConstraintLavoro.isVisible = true
+                            binding.zeroOrders.isGone = true
+                            val layoutManager =
+                                LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                            binding.productList.layoutManager = layoutManager
+                            adapter = OrderAdapter(orderArrayList, this@FragmentLavoro)
+                            binding.productList.adapter = adapter
+                            binding.productList.setHasFixedSize(true)
+                            adapter.notifyDataSetChanged()
+                        } else {
+                            binding.ConstraintLavoro.isGone = true
+                            binding.zeroOrders.isVisible = true
+                        }
                     }
-
                 }, context)
             }
         }, context)
@@ -84,6 +94,27 @@ class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils, OrderClickListen
             intentIntegrator.setOrientationLocked(true)
             intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
             intentIntegrator.initiateScan()
+        }
+
+        binding.ConstraintLavoro.setOnClickListener {
+            val builder = AlertDialog.Builder(activity)
+            builder.setTitle("ATTENZIONE!!!")
+            builder.setMessage("Questa è un'operazione che va eseguita solo da dipendenti autorizzati. Vuoi procedere con l'eliminazione degli ordini?")
+            builder.setPositiveButton("Sì") { _, _ ->
+                deleteOrders(dip.codiceRistorante.toString(), context)
+                getUserData(object : FireBaseCallbackUser {
+                    override fun onResponse(responseU: ResponseUser) {
+                        val intent = Intent(context, EmployeeActivity::class.java)
+                        intent.putExtra("user", responseU.user)
+                        startActivity(intent)
+                        activity?.finish()
+                    }
+                }, context)
+            }
+            builder.setNegativeButton("No") { dialog, _ ->
+                dialog.cancel()
+            }
+            builder.show()
         }
     }
 
