@@ -31,12 +31,12 @@ class CartViewHolder(
         context: Context
     ) {
 
-        cartBinding.quantityC.inputType = InputType.TYPE_CLASS_NUMBER
+       // cartBinding.quantityC.inputType = InputType.TYPE_CLASS_NUMBER
 
         cartBinding.nomeProdottoCardC.text = cartProduct.pName
         cartBinding.cardDescC.text = cartProduct.pDesc
         cartBinding.quantityC.text = cartProduct.quantity.toString()
-
+/*
         cartBinding.quantityC.setOnClickListener {
             val inflater = LayoutInflater.from(context)
             val v = inflater.inflate(R.layout.fragment_1_modify_quantity_alert, null)
@@ -55,10 +55,8 @@ class CartViewHolder(
             }
             addDialog.create()
             addDialog.show()
-
-
         }
-
+*/
         cartBinding.deleteProductC.setOnClickListener {
             val builder = AlertDialog.Builder(context)
             builder.setTitle("Conferma l'eliminazione del prodotto")

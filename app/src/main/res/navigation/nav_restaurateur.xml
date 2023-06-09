@@ -96,12 +96,15 @@
         android:label="Crea ristorante"
         tools:layout="@layout/fragment_r_crea_rist">
 
+        <action
+            android:id="@+id/CreaRistToCreaMenu"
+            app:destination="@id/fragmentCreaMenu" />
     </fragment>
     <fragment
         android:id="@+id/fragmentModificaRist"
         android:name="com.example.progettoprogrammazione.ristoratore.FragmentModificaRist"
         android:label="Modifica Ristorante"
-        tools:layout="@layout/fragment_r_modifica_rist"/>
+        tools:layout="@layout/fragment_r_modifica_rist" />
     <fragment
         android:id="@+id/fragmentSearchR"
         android:name="com.example.progettoprogrammazione.fragment.FragmentSearch"
@@ -139,6 +142,16 @@
         <action
             android:id="@+id/SettingsToProfileR"
             app:destination="@id/fragmentProfilo" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentCreaMenu"
+        android:name="com.example.progettoprogrammazione.ristoratore.FragmentCreaMenu"
+        android:label="Crea menù"
+        tools:layout="@layout/activity_crea_menu" >
+        <action
+            android:id="@+id/CreaMenuToRistoranti"
+            app:destination="@id/fragmentRistoranti" />
     </fragment>
 
 </navigation>
