@@ -2,21 +2,23 @@ package com.example.progettoprogrammazione
 
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso
+import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
-import com.example.progettoprogrammazione.activity.UserActivity
+import com.example.progettoprogrammazione.activity.IntroActivity
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4ClassRunner::class)
-class UserNavigationTest {
+class UserNavigationTesting {
 
     @Test
-    fun test_isUserActivityInView(){
+    fun test_Navigate_to_UserActivity(){
         //Setup activity scenario
-        val activityScenario= ActivityScenario.launch(UserActivity::class.java)
-        //Controllo activity in mostra
+        val activityScenario= ActivityScenario.launch(IntroActivity::class.java)
+        //Perform click action per andare a LogIn
+        Espresso.onView(ViewMatchers.withId(R.id.intro_activity)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.user_nav))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
@@ -32,4 +34,5 @@ class UserNavigationTest {
     }
 
      */
+
 }
