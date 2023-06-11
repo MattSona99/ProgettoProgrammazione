@@ -93,7 +93,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
         return binding.root
     }
 
-    override fun onClickResturant(restaurant: Restaurant) {
+    override fun onClickRestaurant(restaurant: Restaurant) {
         val bundle = Bundle()
         bundle.putString("restID", restaurant.idR.toString())
         bundle.putParcelableArrayList("restArrayList", restArrayList)
