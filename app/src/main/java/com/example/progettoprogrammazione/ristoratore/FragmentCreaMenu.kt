@@ -1,18 +1,14 @@
-package com.example.progettoprogrammazione.activity
+package com.example.progettoprogrammazione.ristoratore
 
 import android.app.AlertDialog
-import android.content.Context
-import android.content.Intent
-import android.graphics.Rect
 import android.os.Bundle
 import android.text.InputType
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
-import android.view.inputmethod.InputMethodManager
+import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityCreaMenuBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
@@ -26,24 +22,29 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
-class CreaMenu : AppCompatActivity(), ProductUtils, RestaurantUtils {
+class FragmentCreaMenu : Fragment(), ProductUtils, RestaurantUtils {
 
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     private lateinit var binding: ActivityCreaMenuBinding
 
-    private var pressedTime = 0L
+    private lateinit var user: User
+    private lateinit var ristorante: Restaurant
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         binding = ActivityCreaMenuBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-        val user = intent.getParcelableExtra("user") as User?
-        val ristorante = intent.getParcelableExtra<Restaurant>("ristorante")
-        val restName = ristorante?.idR
+
+        val args = this.arguments
+        user = args?.getParcelable<User>("user") as User
+        ristorante = args.getParcelable<Restaurant>("ristorante") as Restaurant
+        val restName = ristorante.idR
 
         binding.btnBevanda.setOnClickListener {
             showDialog("bevanda", restName)
@@ -72,20 +73,21 @@ class CreaMenu : AppCompatActivity(), ProductUtils, RestaurantUtils {
         binding.constraintfine.setOnClickListener {
             getRestaurantData(object : FireBaseCallbackRestaurant {
                 override fun onResponse(responseR: ResponseRistorante) {
-                    val intent = Intent(this@CreaMenu, RestaurateurActivity::class.java)
-                    intent.putExtra("user", user)
-                    intent.putExtra("ristoranti", responseR.ristoranti)
-                    startActivity(intent)
-                    finish()
+                    val bundle = Bundle()
+                    bundle.putParcelable("user", user)
+                    bundle.putParcelableArrayList("ristoranti", responseR.ristoranti)
+                    view?.findNavController()?.navigate(R.id.CreaMenuToRistoranti, bundle)
                 }
-            }, this)
+            }, context)
         }
+
+        return binding.root
     }
 
     private fun showDialog(add: String, restName: String?) {
-        val inflater = LayoutInflater.from(this)
+        val inflater = LayoutInflater.from(context)
         val v = inflater.inflate(R.layout.fragment_r_add_to_menu, null)
-        val addDialog = AlertDialog.Builder(this)
+        val addDialog = AlertDialog.Builder(context)
         val nomeP = v.findViewById<EditText>(R.id.nome_prodotto)
         val prezzoP = v.findViewById<EditText>(R.id.prezzo_prodotto)
         prezzoP.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
@@ -100,15 +102,15 @@ class CreaMenu : AppCompatActivity(), ProductUtils, RestaurantUtils {
                 nomePbind,
                 prezzoPbind,
                 descrizionePbind,
-                UUID.randomUUID().toString().replace("-","").take(10)
+                UUID.randomUUID().toString().replace("-", "").take(10)
             )
             when (add) {
-                "bevanda" -> addProdotto(restName, pData, "Bevande", this)
-                "antipasto" -> addProdotto(restName, pData, "Antipasti", this)
-                "primo" -> addProdotto(restName, pData, "Primi", this)
-                "secondo" -> addProdotto(restName, pData, "Secondi", this)
-                "contorno" -> addProdotto(restName, pData, "Contorni", this)
-                "dolce" -> addProdotto(restName, pData, "Dolci",  this)
+                "bevanda" -> addProdotto(restName, pData, "Bevande", context)
+                "antipasto" -> addProdotto(restName, pData, "Antipasti", context)
+                "primo" -> addProdotto(restName, pData, "Primi", context)
+                "secondo" -> addProdotto(restName, pData, "Secondi", context)
+                "contorno" -> addProdotto(restName, pData, "Contorni", context)
+                "dolce" -> addProdotto(restName, pData, "Dolci", context)
             }
         }
         addDialog.setNegativeButton("Indietro") { dialog, _ ->
@@ -116,34 +118,5 @@ class CreaMenu : AppCompatActivity(), ProductUtils, RestaurantUtils {
         }
         addDialog.create()
         addDialog.show()
-    }
-
-    override fun onBackPressed() {
-        if (pressedTime + 2000 > System.currentTimeMillis()) {
-            super.onBackPressed()
-            finishAffinity()
-        } else {
-            Toast.makeText(baseContext, "Premi indietro di nuovo per uscire.", Toast.LENGTH_SHORT)
-                .show()
-        }
-        pressedTime = System.currentTimeMillis()
-    }
-
-    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-
-        if (ev?.action == MotionEvent.ACTION_UP) {
-            val v: View? = currentFocus
-            if (v is EditText) {
-                val outRect = Rect()
-                v.getGlobalVisibleRect(outRect)
-                if (!outRect.contains(ev.rawX.toInt(), ev.rawY.toInt())) {
-                    v.clearFocus()
-                    val imm: InputMethodManager =
-                        getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                    imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
-                }
-            }
-        }
-        return super.dispatchTouchEvent(ev)
     }
 }

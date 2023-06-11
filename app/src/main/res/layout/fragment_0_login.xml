@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_splash"
-    tools:context=".intro.FragmentLogin">
+    tools:context=".intro.FragmentLogin"
+    android:id="@+id/fragment_login_test">
 
     <LinearLayout
+        android:id="@+id/fragment_login_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">

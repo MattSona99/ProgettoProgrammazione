@@ -2,7 +2,6 @@ package com.example.progettoprogrammazione.ristoratore
 
 import android.app.AlertDialog
 import android.content.DialogInterface
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,8 +13,8 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.progettoprogrammazione.R
-import com.example.progettoprogrammazione.activity.CreaMenu
 import com.example.progettoprogrammazione.databinding.FragmentRCreaRistBinding
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackRestaurant
 import com.example.progettoprogrammazione.firebase.FireBaseCallbackUser
@@ -188,16 +187,10 @@ class FragmentCreaRist : Fragment(), UserUtils, RestaurantUtils, ImgUtils {
 
                             getRestaurantData(object : FireBaseCallbackRestaurant {
                                 override fun onResponse(responseR: ResponseRistorante) {
-                                    val intent =
-                                        Intent(
-                                            context,
-                                            CreaMenu::class.java
-                                        ).apply {
-                                            putExtra("ristorante", restaurantData)
-                                            putExtra("user", user)
-                                        }
-                                    startActivity(intent)
-                                    activity?.finish()
+                                    val bundle = Bundle()
+                                    bundle.putParcelable("ristorante", restaurantData)
+                                    bundle.putParcelable("user", user)
+                                    view.findNavController().navigate(R.id.CreaRistToCreaMenu, bundle)
                                 }
                             }, context)
                         }
