@@ -28,14 +28,6 @@ class RestaurantViewHolder(
             val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
             restaurantBinding.copertina.setImageBitmap(bitmap)
         }
-/*  SECONDO ME è INUTILE
-        restaurantBinding.copertina.setImageResource(
-            getImageId(
-                restaurantBinding.root.context,
-                restaurant.imageR!!
-            )
-        )
-*/
         restaurantBinding.nomeRistorante.text =
             restaurant.nomeR!!.substring(0, 1).uppercase() + restaurant.nomeR!!.substring(1)
         if (restaurant.descrizioneR?.length!! > 40) {
@@ -48,7 +40,7 @@ class RestaurantViewHolder(
             restaurantBinding.tipocibo.text = restaurant.tipoCiboR?.substring(0, 24) + " ..."
         else
             restaurantBinding.tipocibo.text = restaurant.tipoCiboR
-        restaurantBinding.btncard.setOnClickListener { clickListener.onClickResturant(restaurant) }
+        restaurantBinding.btncard.setOnClickListener { clickListener.onClickRestaurant(restaurant) }
         restaurantBinding.rating.text = restaurant.ratingR.toString()
 
     }
