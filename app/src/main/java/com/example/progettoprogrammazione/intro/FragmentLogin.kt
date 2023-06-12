@@ -162,8 +162,6 @@ class FragmentLogin : Fragment(), UserUtils, DipendenteUtils, RestaurantUtils, P
 
         binding.ConstraintLogin.setOnClickListener {
             login( binding.email.text.toString(), binding.password.text.toString())
-
-
         }
 
         binding.recuperapassword.setOnClickListener {

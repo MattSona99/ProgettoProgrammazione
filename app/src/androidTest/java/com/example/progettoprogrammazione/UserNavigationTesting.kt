@@ -18,9 +18,20 @@ class UserNavigationTesting {
         //Setup activity scenario
         val activityScenario= ActivityScenario.launch(IntroActivity::class.java)
         //Perform click action per andare a LogIn
-        Espresso.onView(ViewMatchers.withId(R.id.intro_activity)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.ConstraintLogin))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        Espresso.onView(ViewMatchers.withId(R.id.ConstraintLogin)).perform(ViewActions.click())
+
+        Espresso.onView(ViewMatchers.withId(R.id.fragment_login_layout))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        Espresso.onView(ViewMatchers.withId(R.id.fragment_login_test))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+
+/*
         Espresso.onView(ViewMatchers.withId(R.id.user_nav))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+
+ */
     }
 
     /*

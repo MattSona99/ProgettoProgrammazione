@@ -57,10 +57,9 @@ class IntroNavigationTest {
     }
 
     @Test
-    fun testIntroFragmentNavigation(){
+    fun test_Intro_Fragment_Navigation(){
         //Setup activity scenario
         val activityScenario=ActivityScenario.launch(IntroActivity::class.java)
-
         //NAV TO FRAGMENT-INTRO fragment
         onView(withId(R.id.ConstraintLogin)).perform(click())
 
