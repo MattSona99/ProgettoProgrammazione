@@ -25,6 +25,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questo fragment permette all'utente di creare un nuovo ristorante compilando i vari campi
+
 class FragmentCreaRist : Fragment(), UserUtils, RestaurantUtils, ImgUtils {
 
     private lateinit var binding: FragmentRCreaRistBinding
@@ -60,6 +63,7 @@ class FragmentCreaRist : Fragment(), UserUtils, RestaurantUtils, ImgUtils {
         arrayListOf<String>()
         val selected = BooleanArray(typearray.size)
 
+        // Permette di selezionare con scelta multipla varie tipologie di cibo
         binding.tipociboNewR.setOnClickListener {
             val builder = AlertDialog.Builder(activity)
             builder.setTitle("Seleziona il tipo di cibo")
@@ -114,10 +118,12 @@ class FragmentCreaRist : Fragment(), UserUtils, RestaurantUtils, ImgUtils {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Permette di selezionare l'immagine dalla galleria
         binding.selectImgNewR.setOnClickListener {
             selectImageFromGallery()
         }
 
+        // Permette all'utente di creare un nuovo ristorante sul database in base ai campi compilati
         binding.ConstraintCreaRist.setOnClickListener {
             if (this::imageUri.isInitialized) {
                 //prima riga???
@@ -157,6 +163,8 @@ class FragmentCreaRist : Fragment(), UserUtils, RestaurantUtils, ImgUtils {
                     && indirizzoR.isNotEmpty() && indirizzoR.length > 10
                     && telefonoR.isNotEmpty() && telefonoR.length > 8
                 ) {
+                    // Se i campi non contengono errori, il ristorante viene aggiunto al database;
+                    // Inoltre, se l'utente era di livello 1, il suo livello diventa di livello 3
                     getUserData(object : FireBaseCallbackUser {
                         override fun onResponse(responseU: ResponseUser) {
 
@@ -211,6 +219,7 @@ class FragmentCreaRist : Fragment(), UserUtils, RestaurantUtils, ImgUtils {
         }
     }
 
+    // Permette di modificare un orario grazie ad un widget chiamato Time Picker
     private fun OnClickTime(textView: TextView, timePicker: TimePicker) {
 
         timePicker.setOnTimeChangedListener { _, hour, minute ->

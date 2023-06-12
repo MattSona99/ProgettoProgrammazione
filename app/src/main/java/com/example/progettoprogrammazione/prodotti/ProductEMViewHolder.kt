@@ -8,6 +8,9 @@ import com.example.progettoprogrammazione.utils.ProductUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questa classe consente di adattare un "Product" in un file xml
+
 class ProductEMViewHolder(
     private val prodottoBinding: CardProductModificaBinding,
 
@@ -20,9 +23,12 @@ class ProductEMViewHolder(
         prodottoBinding.nomeProdottoCardM.text = prodotto.nomeP
         prodottoBinding.cardDescM.text = prodotto.descrizioneP
 
+        //Consente di eliminare il prodotto
         prodottoBinding.btnEliminaM.setOnClickListener{
             deleteProd(prodotto, idR, tipo, context)
         }
+
+        //Consente di modificare il prodotto
         prodottoBinding.btnModificaM.setOnClickListener{
             modifyProd(prodotto, idR, tipo,context)
         }

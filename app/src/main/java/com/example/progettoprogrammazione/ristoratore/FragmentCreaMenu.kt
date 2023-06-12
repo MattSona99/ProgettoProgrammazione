@@ -22,6 +22,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questo fragment permette all'utente di creare un nuovo menu, aggiungendo prodotti e relative informazioni
+
 class FragmentCreaMenu : Fragment(), ProductUtils, RestaurantUtils {
 
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
@@ -46,6 +49,7 @@ class FragmentCreaMenu : Fragment(), ProductUtils, RestaurantUtils {
         ristorante = args.getParcelable<Restaurant>("ristorante") as Restaurant
         val restName = ristorante.idR
 
+        // Queste funzioni aggiungono al menu il prodotto inerente alla tipologia passata come parametro
         binding.btnBevanda.setOnClickListener {
             showDialog("bevanda", restName)
         }
@@ -70,6 +74,7 @@ class FragmentCreaMenu : Fragment(), ProductUtils, RestaurantUtils {
             showDialog("dolce", restName)
         }
 
+        // Cliccando sul bottone, si finisce di creare il menu e si torna alla pagina Ristoranti
         binding.constraintfine.setOnClickListener {
             getRestaurantData(object : FireBaseCallbackRestaurant {
                 override fun onResponse(responseR: ResponseRistorante) {
@@ -84,6 +89,7 @@ class FragmentCreaMenu : Fragment(), ProductUtils, RestaurantUtils {
         return binding.root
     }
 
+    // Questa funzione apre un popup in cui compilare dei campi per aggiungere un prodotto
     private fun showDialog(add: String, restName: String?) {
         val inflater = LayoutInflater.from(context)
         val v = inflater.inflate(R.layout.fragment_r_add_to_menu, null)

@@ -11,6 +11,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questa classe consente di adattare un "Restaurant" in un file xml
 
 class RestaurantViewHolder(
     private val restaurantBinding: CardRestaurantBinding,
@@ -28,14 +30,7 @@ class RestaurantViewHolder(
             val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
             restaurantBinding.copertina.setImageBitmap(bitmap)
         }
-/*  SECONDO ME è INUTILE
-        restaurantBinding.copertina.setImageResource(
-            getImageId(
-                restaurantBinding.root.context,
-                restaurant.imageR!!
-            )
-        )
-*/
+
         restaurantBinding.nomeRistorante.text =
             restaurant.nomeR!!.substring(0, 1).uppercase() + restaurant.nomeR!!.substring(1)
         if (restaurant.descrizioneR?.length!! > 40) {

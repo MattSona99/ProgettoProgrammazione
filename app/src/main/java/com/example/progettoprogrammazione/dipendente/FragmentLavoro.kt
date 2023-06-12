@@ -31,6 +31,8 @@ import com.google.zxing.integration.android.IntentIntegrator
 import org.json.JSONArray
 import org.json.JSONException
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questo fragment permette al dipendente di controllare gli ordini e scannerizzare un QR-Code
 
 class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils, OrderClickListener, UserUtils {
 
@@ -55,6 +57,9 @@ class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils, OrderClickListen
         orderArrayList = arrayListOf()
         val args = this.arguments
         val user = args?.getParcelable<User>("user") as User
+
+        /* Richiama la funzione per cercare gli ordini relativi dello stesso ristorante in cui
+        lavora il dipendente e li inserisce in una recycler view*/
         getDipendenteData(user.Email!!, object : FireBaseCallbackDipendente {
             override fun onResponse(responseD: ResponseDipendente) {
                 dip = responseD.dipendenti.first()
@@ -87,6 +92,7 @@ class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils, OrderClickListen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Scannerizza il QR-Code da uno scanner quando si clicca sul bottone
         binding.btnQr.setOnClickListener {
             val intentIntegrator = IntentIntegrator.forSupportFragment(this)
             intentIntegrator.setBeepEnabled(false)
@@ -96,6 +102,7 @@ class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils, OrderClickListen
             intentIntegrator.initiateScan()
         }
 
+        // Elimina gli ordini (una volta ultimati) al fine di liberare spazio
         binding.ConstraintLavoro.setOnClickListener {
             val builder = AlertDialog.Builder(activity)
             builder.setTitle("ATTENZIONE!!!")
@@ -118,6 +125,7 @@ class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils, OrderClickListen
         }
     }
 
+    // Quando l'activity restituisce un risultato dallo scanner, crea l'ordine sul database
     override fun onActivityResult(
         requestCode: Int,
         resultCode: Int,
@@ -152,6 +160,7 @@ class FragmentLavoro : Fragment(), OrderUtils, DipendenteUtils, OrderClickListen
         }
     }
 
+    // Quando viene effettuato un click su un ordine, si effettuerà la navigazione verso i suoi dettagli
     override fun onClickOrder(order: Order) {
         val bundle = Bundle()
         bundle.putParcelableArrayList("ordini", orderArrayList)

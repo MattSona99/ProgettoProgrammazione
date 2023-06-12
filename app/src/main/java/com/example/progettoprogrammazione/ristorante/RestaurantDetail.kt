@@ -32,6 +32,11 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+/* Questa classe consente di adattare i campi di un ristorante specifico e mostrarli a schermo,
+inoltre permette di visualizzare il menu ed aggiungere i prodotti al carrello utente;
+infine, permette anche di effettuare il rating del ristorante attraverso un voto */
+
 class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
     UserUtils {
 
@@ -85,6 +90,7 @@ class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
             "3" -> cartViewModel = cartViewModelR
         }
 
+        // Mostra i bottoni di modifica del ristorante solo se l'utente loggato è il proprietario
         restaurant = restaurantFromId(restaurantID.toString())
         if (userlvl == "3" && restaurant!!.proprietarioR==user.currentUser!!.email.toString()) {
             binding.optionsRest.isVisible = true
@@ -119,6 +125,7 @@ class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
             binding.cucinadetail.text = restaurant?.tipoCiboR
         }
 
+        // Queste funzioni permettono di adattare i prodotti nel menu del ristorante a seconda delle tipologie
         getProdotti(
             restaurantID.toString(),
             object : FireBaseCallbackProdotto {
@@ -181,6 +188,7 @@ class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
         val restaurantID = args?.get("restID")
         restaurantList = args?.getParcelableArrayList("restArrayList")
 
+        // Cliccando sul bottone, permette al proprietario di modificare il menu
         binding.btnModificaMenu.setOnClickListener {
             val bundle = Bundle()
             bundle.putParcelableArrayList("bevande", bevandeArrayList)
@@ -194,6 +202,7 @@ class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
             view.findNavController().navigate(R.id.RestaurantDetailToModificaMenu, bundle)
         }
 
+        // Queste funzioni permettono di visualizzare le recycler views inerenti al bottone cliccato
         binding.btnBevande.setOnClickListener {
             invisible()
             bindrecyclerviews(bevandeArrayList, binding.recycleViewBevande)
@@ -230,6 +239,7 @@ class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
             binding.dolciMenu.isVisible = true
         }
 
+        // Cliccando questo bottone, permette al proprietario di eliminare il ristorante
         binding.btnEliminaRistorante.setOnClickListener {
             val builder = AlertDialog.Builder(activity)
             val reference = firebaseDatabase.getReference("Ristoranti")
@@ -260,12 +270,14 @@ class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
             builder.show()
         }
 
+        // Cliccando questo bottone, permette al proprietario di modificare il ristorante
         binding.btnModificaRistorante.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("restID", restaurant?.idR.toString())
             view.findNavController().navigate(R.id.DetailToModifica, bundle)
         }
 
+        // Cliccando questa barra, permette all'utente di recensire il ristorante
         binding.ratingRistorante.setOnClickListener {
             Toast.makeText(
                 requireContext(),
@@ -293,6 +305,7 @@ class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
         }
     }
 
+    // Restituisce un ristorante se l'id corrisponde al parametro passato
     private fun restaurantFromId(restaurantID: String?): Restaurant? {
         for (restaurant in restaurantList!!) {
             if (restaurant.idR == restaurantID)
@@ -301,6 +314,7 @@ class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
         return null
     }
 
+    // Ripulisce parte dei componenti grafici al fine di nascondere informazioni
     private fun invisible() {
         binding.tutteMenu.isGone = false
         binding.bevandeMenu.isGone = true
@@ -311,6 +325,7 @@ class RestaurantDetail : Fragment(), ProductUtils, RestaurantUtils,
         binding.dolciMenu.isGone = true
     }
 
+    // Effettua il bind delle recycler view a seconda della lista passata come parametro
     private fun bindrecyclerviews(
         prodotti: ArrayList<Product>,
         recyclerView: RecyclerView

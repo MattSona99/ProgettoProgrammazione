@@ -22,6 +22,11 @@ import com.example.progettoprogrammazione.utils.RestaurantUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+/* Questo fragment permette all'utente di gestire i propri ristoranti:
+ è possibile creare un nuovo ristorante e visualizzare tutti i propri ristoranti (anche filtrandoli
+ per nome) */
+
 class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils, FiltriUtils {
 
     private lateinit var binding: FragmentRGestioneRistBinding
@@ -51,6 +56,7 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils, F
         restArrayListR = arrayListOf()
         restArrayList = arrayListOf()
 
+        // Restituisce dal database i ristoranti relativi all'utente loggato
         getRestaurantData(object : FireBaseCallbackRestaurant {
             override fun onResponse(responseR: ResponseRistorante) {
                 restArrayList = responseR.ristoranti
@@ -67,7 +73,7 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils, F
             }
         }, context)
 
-
+        // Effettua il refresh della pagina, aggiornando le liste dei ristoranti
         swipeRefreshLayout = binding.swipeRefreshGestione
         swipeRefreshLayout.setOnRefreshListener {
             swipeRefreshLayout.isRefreshing = true
@@ -90,6 +96,7 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils, F
             }, context)
         }
 
+        // Filtra i ristoranti a seconda del testo inserito all'interno della Search Bar
         binding.searchBarGestione.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -115,6 +122,7 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils, F
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Naviga alla pagina per creare un nuovo ristorante
         binding.buttonCrea.setOnClickListener {
             val bundleu = Bundle()
             bundleu.putParcelable("user", user)
@@ -122,6 +130,7 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils, F
         }
     }
 
+    // Naviga ai dettagli relativi al ristorante passato come parametro
     override fun onClickResturant(restaurant: Restaurant) {
 
         val bundle = Bundle()

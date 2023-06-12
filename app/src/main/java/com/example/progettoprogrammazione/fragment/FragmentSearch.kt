@@ -20,6 +20,9 @@ import com.example.progettoprogrammazione.utils.RestaurantUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questo fragment permette all'utente di cercare un ristorante specifico all'interno del database
+
 class FragmentSearch : Fragment(), RestaurantClickListener, RestaurantUtils, FiltriUtils {
 
     private lateinit var binding: Fragment1SearchBinding
@@ -43,6 +46,7 @@ class FragmentSearch : Fragment(), RestaurantClickListener, RestaurantUtils, Fil
 
         restArrayList = arrayListOf()
 
+        // Filtra i ristoranti a seconda del testo inserito all'interno della Search Bar
         binding.searchBarRistoranti.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -67,6 +71,7 @@ class FragmentSearch : Fragment(), RestaurantClickListener, RestaurantUtils, Fil
         return binding.root
     }
 
+    //     // Quando viene effettuato un click su un ristorante, si effettuerà la navigazione verso i suoi dettagli
     override fun onClickResturant(restaurant: Restaurant) {
         binding.searchBarRistoranti.setQuery("", false)
         val bundle = Bundle()

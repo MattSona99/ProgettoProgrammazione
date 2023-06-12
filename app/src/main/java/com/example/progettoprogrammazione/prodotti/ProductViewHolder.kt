@@ -13,6 +13,9 @@ import com.example.progettoprogrammazione.viewmodels.CartViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questa classe consente di adattare un "Product" in un file xml
+
 class ProductViewHolder(
     private val prodottoBinding: CardProductBinding,
     private val cartViewModel: CartViewModel,
@@ -31,6 +34,7 @@ class ProductViewHolder(
         prodottoBinding.cardDesc.text = prodotto.descrizioneP
     }
 
+    // Funzione che crea un carrello all'interno del viewmodel, aggiornato in tutta l'app
     fun createShoppingCart(prodotto: Product, restID: String, context: Context) {
 
         prodottoBinding.addProduct.setOnClickListener {

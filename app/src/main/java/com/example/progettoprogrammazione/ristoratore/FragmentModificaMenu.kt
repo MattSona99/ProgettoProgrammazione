@@ -24,6 +24,8 @@ import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 import kotlin.collections.ArrayList
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+/* Questo fragment permette all'utente di modificare il menu del proprio ristorante */
 
 class FragmentModificaMenu : Fragment(), UserUtils, ProductUtils {
 
@@ -53,6 +55,7 @@ class FragmentModificaMenu : Fragment(), UserUtils, ProductUtils {
         val args = this.arguments
         val restID = args?.get("idR") as String
 
+        // Queste funzioni aggiungono al menu il prodotto inerente alla tipologia passata come parametro
         binding.btnBevanda.setOnClickListener {
             showDialog("bevanda", restID)
         }
@@ -103,6 +106,8 @@ class FragmentModificaMenu : Fragment(), UserUtils, ProductUtils {
         val args = this.arguments
         val restaurantID = args?.get("idR") as String
 
+        // Ogni bottone premuto corrisponderà ad un opportuno filtraggio dei prodotti e successivo
+        // adattamento ad una recyclerview, che verrà mostrata a schermo
         binding.btnBevande.setOnClickListener {
             invisible()
             bindrecyclerviews(bevandeArrayList,  binding.recycleViewBevande, restaurantID, "Bevande")
@@ -140,7 +145,7 @@ class FragmentModificaMenu : Fragment(), UserUtils, ProductUtils {
         }
 
     }
-
+    // Ripulisce parte dei componenti grafici al fine di nascondere informazioni
     private fun invisible() {
         binding.tutteMenu.isGone = false
         binding.bevandeMenu.isGone = true
@@ -151,6 +156,7 @@ class FragmentModificaMenu : Fragment(), UserUtils, ProductUtils {
         binding.dolciMenu.isGone = true
     }
 
+    // Funzione che adatta una lista di ristoranti in una recyclerview
     private fun bindrecyclerviews(
         prodotti: ArrayList<Product>,
         recyclerView: RecyclerView,

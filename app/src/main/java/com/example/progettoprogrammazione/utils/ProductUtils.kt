@@ -15,11 +15,16 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questa interfaccia implementa determinati metodi per effettuare delle query con il database
+// per il recupero, modifica o eliminazione di informazioni relative ai prodotti
+
 interface ProductUtils {
 
     var firebaseAuth: FirebaseAuth
     var firebaseDatabase: FirebaseDatabase
 
+    // Funzione che recupera tutti i prodotti all'interno del menu di un ristorante specifico dal database
     fun getProdotti(
         idR: String?,
         callBack: FireBaseCallbackProdotto,
@@ -53,7 +58,7 @@ interface ProductUtils {
             })
     }
 
-
+    // Funzione che aggiunge un prodotto al menu di un ristorante specifico nel database
     fun addProdotto(idR: String?, pData: Product, tipo: String, context: Context?) {
         firebaseDatabase.getReference("Ristoranti/$idR/Menu/$tipo").child(pData.idP!!)
             .setValue(pData).addOnSuccessListener {
@@ -61,7 +66,7 @@ interface ProductUtils {
             }
     }
 
-
+    // Funzione che elimina un prodtto all'interno del menu di un ristorante nel database
     fun deleteProd(prodotto: Product, idR: String?, tipo: String?, context: Context?) {
         firebaseDatabase.getReference("Ristoranti/$idR/Menu/$tipo").child(prodotto.idP!!)
             .removeValue().addOnCompleteListener {
@@ -80,6 +85,7 @@ interface ProductUtils {
             }
     }
 
+    // Funzione che modifica un prodotto specifico all'interno del menu di un ristorante nel database
     fun modifyProd(prodotto: Product, idR: String?, tipo: String?, context: Context?) {
 
         val inflater = LayoutInflater.from(context)

@@ -20,6 +20,10 @@ import com.example.progettoprogrammazione.utils.UserUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+/* Questo fragment permette all'utente di modificare i propri dati, effettuare l'upgrade dell'account
+qualora fosse disponibile, o eliminare il proprio account */
+
 class FragmentSettings : Fragment(), UserUtils {
 
     private lateinit var binding: Fragment1ProfileSettingsBinding
@@ -51,12 +55,14 @@ class FragmentSettings : Fragment(), UserUtils {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Permette di navigare alla pagina upgrade utente
         binding.membrostaff.setOnClickListener {
             val bundle = Bundle()
             bundle.putParcelable("user", user)
             view.findNavController().navigate(R.id.SettingsToUpdate, bundle)
         }
 
+        // Qualora fossero stati modificati dei campi, cliccando sul bottone verrà effettuato l'update
         binding.constraintsalva.setOnClickListener {
 
             val newnome = binding.nomesettings.text.toString()
@@ -110,6 +116,7 @@ class FragmentSettings : Fragment(), UserUtils {
             }
         }
 
+        // Funzione che permette di eliminare l'account di un utente
         binding.eliminaAccount.setOnClickListener {
             val builder = AlertDialog.Builder(activity)
             builder.setTitle("Conferma l'eliminazione dell'account")

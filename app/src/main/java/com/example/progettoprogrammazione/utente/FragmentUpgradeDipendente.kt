@@ -19,6 +19,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+/* Questo fragment permette all'utente di effettuare, qualora disponibile, l'upgrade dell'account
+da utente di livello 1 ad utente di livello 2, ovvero a dipendente */
+
 class FragmentUpgradeDipendente : Fragment(), UserUtils, DipendenteUtils {
 
     private lateinit var binding: FragmentUUpgrDipendenteBinding
@@ -47,6 +51,8 @@ class FragmentUpgradeDipendente : Fragment(), UserUtils, DipendenteUtils {
             binding.dataAssunzioneDT.text = "$dayOfMonth/${month+1}/$year"
         }
 
+        // Dopo la compilazione dei campi, al click del bottone verrà creato un nuovo dipendente sul database;
+        // Così facendo, si passerà dalla User Activity alla Employee Activity
         binding.ConstraintUpgradeDip.setOnClickListener {
 
             val codiceR = binding.codiceRistD.text.toString()

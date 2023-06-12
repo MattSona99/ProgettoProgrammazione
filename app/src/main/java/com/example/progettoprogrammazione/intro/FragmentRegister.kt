@@ -19,6 +19,11 @@ import com.example.progettoprogrammazione.utils.ResponseUser
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+/* Chi utilizza questo fragment può effettuare la registrazione compilando appositamente
+  tutti i campi richiesti, oppure può navigare alla pagina Login;
+  Alla fine della registrazione, si navigherà alla pagina Login e verrà chiesto l'accesso */
+
 
 class FragmentRegister : Fragment(), UserUtils {
 
@@ -38,6 +43,8 @@ class FragmentRegister : Fragment(), UserUtils {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Quando tutti i campi sono compilati correttamente, verrà creata un'istanza
+        // authentication e verranno salvati i dati dell'utente sul database
         binding.ConstraintRegistrati.setOnClickListener {
 
             val nome = binding.nome.text.toString()
@@ -131,6 +138,8 @@ class FragmentRegister : Fragment(), UserUtils {
                 Toast.makeText(context, "Nessun campo può essere vuoto!", Toast.LENGTH_LONG).show()
             }
         }
+
+        // Cliccando sul bottone, la navigazione porterà alla pagina "login"
         binding.already.setOnClickListener {
             view.findNavController().navigate(R.id.RegisterToLogin)
         }

@@ -3,6 +3,9 @@ package com.example.progettoprogrammazione.models
 import android.os.Parcel
 import android.os.Parcelable
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questa classe descrive gli attributi e le relative tipologie di un ordine
+
 data class Order (
     var numero: Int? = 0,
     var json: String?,

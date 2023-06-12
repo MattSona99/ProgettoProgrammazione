@@ -12,11 +12,15 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import org.json.JSONArray
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questa interfaccia implementa determinati metodi per effettuare delle query con il database
+// per il recupero, modifica o eliminazione di informazioni relative agli ordini
+
 interface OrderUtils {
     var firebaseAuth: FirebaseAuth
     var firebaseDatabase: FirebaseDatabase
 
-
+    // Funzione che crea un nuovo ordine per un ristorantre specifico all'interno del database
     fun createOrder(restID: String, jsonString: JSONArray, context: Context?) {
 
         firebaseDatabase.getReference("Ristoranti/$restID/Ordini")
@@ -45,6 +49,7 @@ interface OrderUtils {
             })
     }
 
+    // Funzionc che recupera tutti gli ordini relativi ad un ristorante specifico nel database
     fun getOrders(dipendente: Dipendente, callback: FireBaseCallbackOrder, context: Context?) {
         firebaseDatabase.getReference("Ristoranti/${dipendente.codiceRistorante}/Ordini")
             .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -72,6 +77,7 @@ interface OrderUtils {
             })
     }
 
+    // Funzione che elimina gli ordini di un ristorante specifico nel database
     fun deleteOrders(restID: String, context: Context?) {
         firebaseDatabase.getReference("Ristoranti/$restID/Ordini").removeValue()
             .addOnSuccessListener {

@@ -18,6 +18,9 @@ import com.example.progettoprogrammazione.R
 import com.example.progettoprogrammazione.databinding.ActivityIntroBinding
 import com.example.progettoprogrammazione.databinding.ActivityRestaurateurBinding
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questa activity consente di navigare tra le pagine per effettuare il login o la registrazione
+
 class IntroActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityIntroBinding
@@ -25,11 +28,13 @@ class IntroActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var navHostFragment: NavHostFragment
 
+    // Inizializzazione dell'activity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityIntroBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Costruendo l'appbar in questo modo, eviteremo di mostrare la back arrow per tornare indietro durante la navigazione
         val appBarConfiguration = AppBarConfiguration
             .Builder(
                 R.id.fragmentIntro,
@@ -38,6 +43,7 @@ class IntroActivity : AppCompatActivity() {
             )
             .build()
 
+        // Inizializziamo il controllo per la navigazione all'interno di quest'activity
         navHostFragment =
             supportFragmentManager.findFragmentById(binding.navHost.id) as NavHostFragment
 
@@ -50,6 +56,7 @@ class IntroActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
+    // Crea un override sul controllo dei tocchi al di fuori delle componenti in focus
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
 
         if (ev?.action == MotionEvent.ACTION_UP) {

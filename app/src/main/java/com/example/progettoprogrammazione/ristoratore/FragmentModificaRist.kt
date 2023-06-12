@@ -18,6 +18,9 @@ import com.example.progettoprogrammazione.utils.ImgUtils
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questo fragment permette all'utente di modificare il proprio ristorante compilando i vari campi
+
 class FragmentModificaRist : Fragment(), ImgUtils {
 
     private lateinit var binding: FragmentRModificaRistBinding
@@ -48,6 +51,7 @@ class FragmentModificaRist : Fragment(), ImgUtils {
         arrayListOf<String>()
         val selected = BooleanArray(typearray.size)
 
+        // Permette di selezionare con scelta multipla varie tipologie di cibo
         binding.newTipocibo.setOnClickListener {
             val builder = AlertDialog.Builder(activity)
             builder.setTitle("Seleziona il tipo di cibo")
@@ -97,9 +101,12 @@ class FragmentModificaRist : Fragment(), ImgUtils {
         val args = this.arguments
         val restaurantID = args?.get("restID")
 
+        // Permette di selezionare l'immagine dalla galleria
         binding.newImg.setOnClickListener {
             selectImageFromGallery()
         }
+
+        // Permette all'utente di modificare il proprio ristorante in base ai campi compilati
         binding.modificaRist.setOnClickListener {
 
             val newnome = binding.newNomeristorante.text.toString()
@@ -172,6 +179,7 @@ class FragmentModificaRist : Fragment(), ImgUtils {
         }
     }
 
+    // Permette di modificare un orario grazie ad un widget chiamato Time Picker
     private fun OnClickTime(textView: TextView, timePicker: TimePicker) {
 
         timePicker.setOnTimeChangedListener { _, hour, minute ->

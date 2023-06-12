@@ -20,6 +20,12 @@ import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+/* Per chi accede all'applicazione, questo sarà il fragment iniziale;
+ Chi utilizza questo fragment ha accesso alla pagina di Login o Registrati, oppure accede
+ direttamente all'interno dell'applicazione se è già stato effettuato almeno una volta l'accesso */
+
+
 class FragmentIntro : Fragment(), UserUtils, RestaurantUtils, ProductUtils, CartUtils {
 
     private lateinit var binding: Fragment0IntroBinding
@@ -40,6 +46,9 @@ class FragmentIntro : Fragment(), UserUtils, RestaurantUtils, ProductUtils, Cart
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Questa funzione effettua il login automatico e, controllando il livello utente,
+        // accede ad una determinata Activity;
+        // Se il login non è stato effettuato almeno una volta in passato, la navigazione andrà sulla pagina "Login"
         binding.ConstraintLogin.setOnClickListener {
             if (firebaseAuth.currentUser != null) {
                 getUserData(object : FireBaseCallbackUser {
@@ -130,6 +139,8 @@ class FragmentIntro : Fragment(), UserUtils, RestaurantUtils, ProductUtils, Cart
                 view.findNavController().navigate(R.id.IntroToLogin)
             }
         }
+
+        // Cliccando sul bottone, la navigazione porterà alla pagina "Registrati"
         binding.registrati.setOnClickListener {
             view.findNavController().navigate(R.id.IntroToRegister)
         }

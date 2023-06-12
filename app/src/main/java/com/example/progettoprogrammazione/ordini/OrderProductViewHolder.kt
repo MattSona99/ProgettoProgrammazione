@@ -8,6 +8,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import org.json.JSONObject
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questa classe consente di adattare una "HashMap<String, String>" in un file xml
+
 class OrderProductViewHolder(
     private var orderProductCardBinding: CardOrderProductBinding,
 ) : RecyclerView.ViewHolder(orderProductCardBinding.root) {

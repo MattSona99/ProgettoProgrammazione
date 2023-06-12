@@ -17,6 +17,9 @@ import com.example.progettoprogrammazione.viewmodels.CartViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questa classe consente di adattare un "Product" in un file xml
+
 class CartViewHolder(
     private val cartBinding: CardCartBinding
 ) : RecyclerView.ViewHolder(cartBinding.root), CartUtils {
@@ -31,32 +34,11 @@ class CartViewHolder(
         context: Context
     ) {
 
-       // cartBinding.quantityC.inputType = InputType.TYPE_CLASS_NUMBER
-
         cartBinding.nomeProdottoCardC.text = cartProduct.pName
         cartBinding.cardDescC.text = cartProduct.pDesc
         cartBinding.quantityC.text = cartProduct.quantity.toString()
-/*
-        cartBinding.quantityC.setOnClickListener {
-            val inflater = LayoutInflater.from(context)
-            val v = inflater.inflate(R.layout.fragment_1_modify_quantity_alert, null)
-            val addDialog = AlertDialog.Builder(context)
-            val quantity = v.findViewById<EditText>(R.id.quantity_alert_modify)
-            quantity.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
-            quantity.hint = cartBinding.quantityC.text
-            addDialog.setView(v)
-            addDialog.setPositiveButton("Conferma") { _, _ ->
-                cartBinding.quantityC.text = quantity.text.toString()
-                cartViewModel.modifySpecifiCart(cartProduct, quantity.text.toString())
-            }
 
-            addDialog.setNegativeButton("Indietro") { dialog, _ ->
-                dialog.cancel()
-            }
-            addDialog.create()
-            addDialog.show()
-        }
-*/
+        // Funzione che permette di eliminare il prodotto dalla lista
         cartBinding.deleteProductC.setOnClickListener {
             val builder = AlertDialog.Builder(context)
             builder.setTitle("Conferma l'eliminazione del prodotto")

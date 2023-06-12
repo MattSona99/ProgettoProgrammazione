@@ -22,6 +22,10 @@ import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+/* Questo fragment permette all'utente di accedere alle liste dei ristoranti, che vengono
+ filtrati a seconda del proprio rating o delle tipologie di cibo;
+ inoltre, da qui è possibile accedere alla pagina "Cerca ristoranti"*/
 
 class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils, UserUtils, FiltriUtils {
 
@@ -50,6 +54,8 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
             }
         }, context)
 
+        // Otteniamo la lista dei ristoranti ed effettuiamo il binding in una recyclerview con filtro "Rating"
+        // Verranno mostrati i ristoranti con rating più alto
         getRestaurantData(object : FireBaseCallbackRestaurant {
             override fun onResponse(responseR: ResponseRistorante) {
                 restArrayList = responseR.ristoranti
@@ -62,6 +68,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
             swipeRefreshLayout.isEnabled = binding.scrollviewrist.scrollY == 0
         }
 
+        // Effettua il refresh della pagina, aggiornando le liste dei ristoranti
         swipeRefreshLayout = binding.swipeRefreshRistoranti
         swipeRefreshLayout.setOnRefreshListener {
             swipeRefreshLayout.isRefreshing = true
@@ -78,6 +85,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
         }
 
 
+        // Effettua la navigazione per andare alla pagina "Cerca ristoranti"
         binding.searchBarLayout.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
                 val bundle = Bundle()
@@ -93,6 +101,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
         return binding.root
     }
 
+    // Effettua la navigazione per andare ai dettagli di un ristorante specifico
     override fun onClickResturant(restaurant: Restaurant) {
         val bundle = Bundle()
         bundle.putString("restID", restaurant.idR.toString())
@@ -102,6 +111,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
         view?.findNavController()?.navigate(R.id.RistorantiToDetail, bundle)
     }
 
+    // Funzione che adatta una lista di ristoranti in una recyclerview
     private fun horizontalrecylerview(
         ristoranti: ArrayList<Restaurant>,
         recyclerView: RecyclerView
@@ -115,6 +125,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
         adapter.notifyDataSetChanged()
     }
 
+    // Ripulisce parte dei componenti grafici al fine di nascondere informazioni
     private fun invisible() {
         binding.tutte.isGone = false
         binding.pizzerie.isGone = true
@@ -129,6 +140,9 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Ogni bottone premuto corrisponderà ad un opportuno filtraggio dei ristoranti e successivo
+        // adattamento ad una recyclerview, che verrà mostrata a schermo
 
         binding.btnPizza.setOnClickListener {
             invisible()

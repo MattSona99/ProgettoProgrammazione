@@ -3,6 +3,10 @@ package com.example.progettoprogrammazione.models
 import android.os.Parcel
 import android.os.Parcelable
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questa classe descrive gli attributi e le relative tipologie di un prodotto aggiunto al carrello
+
+
 class CartProduct(
     var pName: String?,
     var pDesc: String?,

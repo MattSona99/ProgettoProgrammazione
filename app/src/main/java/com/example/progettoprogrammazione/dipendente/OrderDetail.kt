@@ -11,6 +11,9 @@ import com.example.progettoprogrammazione.models.Order
 import com.example.progettoprogrammazione.ordini.OrderProductAdapter
 import org.json.JSONArray
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questo fragment mostra in una recyclerview i dettagli di un ordine
+
 class OrderDetail : Fragment() {
 
     private lateinit var binding: FragmentDOrderDetailBinding
@@ -36,6 +39,8 @@ class OrderDetail : Fragment() {
         order = orderFromNumber(numero)
         binding.nOrderD.text = "Ordine numero: " + order?.numero.toString()
 
+        // Adatta i dettagli dell'ordine in un ArrayList<HashMap<String, String>> per inserirla in una recyclerview
+
         val jsonProducts = JSONArray(order?.json)
 
         val products = arrayListOf<HashMap<String, String>>()
@@ -57,6 +62,8 @@ class OrderDetail : Fragment() {
 
         return binding.root
     }
+
+    // Restituisce l'ordine relativo al numero passato come parametro
 
     private fun orderFromNumber(numero: String?): Order? {
         for (order in orderList!!) {

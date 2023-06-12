@@ -21,6 +21,9 @@ import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.viewmodels.CartViewModel
 import com.google.firebase.auth.FirebaseAuth
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questa activity consente di navigare tra le pagine create per le funzionalità di un utente di livello "3"
+
 class RestaurateurActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRestaurateurBinding
@@ -35,7 +38,7 @@ class RestaurateurActivity : AppCompatActivity() {
 
     private var pressedTime = 0L
 
-
+    // Inizializzazione dell'activity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -44,6 +47,7 @@ class RestaurateurActivity : AppCompatActivity() {
 
         user = FirebaseAuth.getInstance()
 
+        //Prendiamo gli argomenti passati dalla Intro
         val u = intent.getParcelableExtra("user") as User?
         val cart = intent.getByteArrayExtra("cart") as BooleanArray?
         bundle = Bundle()
@@ -51,6 +55,7 @@ class RestaurateurActivity : AppCompatActivity() {
         bundle.putString("userlvl", u?.Livello)
         bundle.putBooleanArray("cart", cart)
 
+        // Costruendo l'appbar in questo modo, eviteremo di mostrare la back arrow per tornare indietro durante la navigazione
         val appBarConfiguration = AppBarConfiguration
             .Builder(
                 R.id.fragmentRistoranti,
@@ -59,6 +64,7 @@ class RestaurateurActivity : AppCompatActivity() {
             )
             .build()
 
+        // Inizializziamo il controllo per la navigazione all'interno di quest'activity
         navHostFragment =
             supportFragmentManager.findFragmentById(binding.restaurateurNav.id) as NavHostFragment
 
@@ -68,6 +74,7 @@ class RestaurateurActivity : AppCompatActivity() {
 
         cartViewModel = ViewModelProvider(this)[CartViewModel::class.java]
 
+        //Effettuiamo il binding della navbar personalizzata
         binding.navbarRestaurateur.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.ic_ristorantiR -> {
@@ -91,6 +98,7 @@ class RestaurateurActivity : AppCompatActivity() {
         }
     }
 
+    // Crea un override sul controllo del click sul tasto indietro
     override fun onBackPressed() {
         if (pressedTime + 2000 > System.currentTimeMillis()) {
             super.onBackPressed()
@@ -106,6 +114,7 @@ class RestaurateurActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
+    // Crea un override sul controllo dei tocchi al di fuori delle componenti in focus
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
 
         if (ev?.action == MotionEvent.ACTION_UP) {
@@ -124,6 +133,7 @@ class RestaurateurActivity : AppCompatActivity() {
         return super.dispatchTouchEvent(ev)
     }
 
+    // Effettua il binding della navbar superiore
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)

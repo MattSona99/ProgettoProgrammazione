@@ -10,6 +10,10 @@ import com.example.progettoprogrammazione.databinding.FragmentUUpgradeBinding
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.ristoratore.FragmentCreaRist
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+/* Questo fragment permette all'utente di effettuare, qualora disponibile, l'upgrade dell'account;
+ L'upgrade dell'account può essere effettuato da utente a ristoratore o dipendente */
+
 class FragmentUpgrade : Fragment() {
 
     private lateinit var user: User
@@ -32,6 +36,8 @@ class FragmentUpgrade : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        /* Cliccando sul bottone, il fragment temporaneo verrà cambiato con quello per
+        effettuare l'upgrade a proprietario, iniziandolo creando il primo ristorante */
         binding.btnProprietario.setOnClickListener {
             val bundle = Bundle()
             bundle.putParcelable("user", user)
@@ -45,6 +51,8 @@ class FragmentUpgrade : Fragment() {
 
         }
 
+        /* Cliccando sul bottone, il fragment temporaneo verrà cambiato con quello per
+        effettuare l'upgrade a dipendente, compilando determinati campi */
         binding.btnDipendente.setOnClickListener {
             val bundle = Bundle()
             bundle.putParcelable("user", user)

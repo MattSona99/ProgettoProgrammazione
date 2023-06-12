@@ -10,10 +10,15 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questa interfaccia implementa determinati metodi per effettuare delle query con il database
+// per il recupero, modifica o eliminazione di informazioni relative agli utenti
+
 interface UserUtils {
     var firebaseAuth: FirebaseAuth
     var firebaseDatabase: FirebaseDatabase
 
+    // Funzione che elimina l'utente loggato all'interno dell'applicazione
     fun deleteUserData(context: Context?) {
         firebaseAuth.currentUser!!.delete()
         firebaseDatabase.getReference("Utenti").child(firebaseAuth.currentUser!!.uid)
@@ -33,7 +38,7 @@ interface UserUtils {
             }
     }
 
-
+    // Funzione che modifica una serie di attributi dell'utente nel database
     fun updateUserData(
         context: Context?,
         UpdateMap: HashMap<String, Any>
@@ -53,10 +58,12 @@ interface UserUtils {
             }
     }
 
+    // Funzione che aggiorna la password dell'utente nel database
     fun updateUserPassword(context: Context?, newpassword: String, email: String) {
         firebaseAuth.currentUser!!.updatePassword(newpassword)
     }
 
+    // Funzione che spedisce una mail di recupero alla mail passata come parametro
     fun recoverUserPassword(context: Context?, email: String) {
         firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener {
             if (it.isSuccessful) {
@@ -65,6 +72,7 @@ interface UserUtils {
         }
     }
 
+    // Funzione che recupera i dati dell'utente loggato dal database
     fun getUserData(callBack: FireBaseCallbackUser, context: Context?) {
 
         firebaseDatabase.getReference("Utenti").child(firebaseAuth.currentUser!!.uid)

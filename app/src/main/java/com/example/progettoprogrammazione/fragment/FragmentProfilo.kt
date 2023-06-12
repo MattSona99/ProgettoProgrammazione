@@ -25,6 +25,9 @@ import java.io.File
 import kotlin.collections.HashMap
 
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questo fragment permette all'utente di mostrare le proprie informazioni principali e navigare nelle impostazioni
+
 class FragmentProfilo : Fragment(), UserUtils, ImgUtils {
 
     private lateinit var binding: Fragment1ProfiloBinding
@@ -34,6 +37,7 @@ class FragmentProfilo : Fragment(), UserUtils, ImgUtils {
     private lateinit var imageUri: Uri
     private var newimg: String? = null
 
+    // Funzione che permette di selezionare un'immagine dalla galleria ed effettuare l'update sul database
     private val selectImageFromGalleryResult =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let {
@@ -83,7 +87,8 @@ class FragmentProfilo : Fragment(), UserUtils, ImgUtils {
     ): View {
         binding = Fragment1ProfiloBinding.inflate(layoutInflater)
 
-        getUserData(object : FireBaseCallbackUser{
+        // Richiama i dati dell'utente loggato e li posiziona all'interno del fragment
+        getUserData(object : FireBaseCallbackUser {
             override fun onResponse(responseU: ResponseUser) {
                 user = responseU.user!!
                 val imageName = user.Uri
@@ -116,10 +121,12 @@ class FragmentProfilo : Fragment(), UserUtils, ImgUtils {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Permette, cliccando sull'immagine di profilo, di richiamare la funzione per modificarla
         binding.imgProfiloUtente.setOnClickListener {
             selectImageFromGallery()
         }
 
+        // Permette di navigare alle impostazioni dell'utente
         binding.settings.setOnClickListener {
             getUserData(object : FireBaseCallbackUser {
                 override fun onResponse(responseU: ResponseUser) {

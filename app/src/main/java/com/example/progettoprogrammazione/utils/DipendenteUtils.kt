@@ -10,14 +10,20 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questa interfaccia implementa determinati metodi per effettuare delle query con il database
+// per la creazione o recupero di informazioni relative ai dipendenti
+
 interface DipendenteUtils {
     var firebaseAuth: FirebaseAuth
     var firebaseDatabase: FirebaseDatabase
 
+    // Funzione che crea un nuovo dipendente all'interno del database
     fun createDipendente(context: Context?, eData: Dipendente) {
         firebaseDatabase.getReference("Dipendenti").push().setValue(eData)
     }
 
+    // Funzione che recupera i dati di un dipendente nel database la cui email coincide con il parametro passato
     fun getDipendenteData(
         emailDip: String,
         callBack: FireBaseCallbackDipendente,

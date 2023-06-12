@@ -22,6 +22,12 @@ import com.example.progettoprogrammazione.viewmodels.CartViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
+
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+/* Questo fragment mostra il carrello temporaneo (se sono stati aggiunti dei prodotti), mostrando
+il prezzo totale dell'ordine e permettendo di salvarlo nel database */
+
+
 class FragmentCarrello : Fragment(), CartUtils, ProductUtils {
 
     override var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
@@ -53,6 +59,8 @@ class FragmentCarrello : Fragment(), CartUtils, ProductUtils {
             "2" -> cartViewModel = cartViewModelD
             "3" -> cartViewModel = cartViewModelR
         }
+
+        // Eventuali controlli per permettere alla grafica di mostrare determinati elementi
         if (cartViewModel.getcartItems().value!!.isEmpty()) {
             binding.totCarrelloLayout.isGone = true
             binding.noProduct.isVisible = true
@@ -63,6 +71,7 @@ class FragmentCarrello : Fragment(), CartUtils, ProductUtils {
             binding.constraintQR.isVisible = true
         }
 
+        // Aggiunge alla recyclerview i prodotto salvati dentro alla lista del viewmodel del carrello
         cartViewModel.getcartItems().observe(viewLifecycleOwner) { cartItems ->
             var totale: Float? = 0f
             for (c in cartItems) {
@@ -81,6 +90,7 @@ class FragmentCarrello : Fragment(), CartUtils, ProductUtils {
         return binding.root
     }
 
+    // Elimina l'icona del carrello dal menu quando ci troviamo sul questo fragment
     override fun onPrepareOptionsMenu(menu: Menu) {
         val menuItem = menu.findItem(R.id.ic_cart)
         if (menuItem != null) {
@@ -92,6 +102,8 @@ class FragmentCarrello : Fragment(), CartUtils, ProductUtils {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        /* Effettua il salvataggio del carrello nel database richiamando la funzione apposita,
+        svuotando il viewmodel temporaneo */
         cartViewModel.getcartItems().observe(viewLifecycleOwner) { cartItems ->
             cartProduct.clear()
             var totale: Float? = 0f

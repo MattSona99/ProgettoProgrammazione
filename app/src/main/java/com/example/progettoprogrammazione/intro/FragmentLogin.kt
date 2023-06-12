@@ -20,6 +20,11 @@ import com.example.progettoprogrammazione.utils.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+/* Chi utilizza questo fragment può accedere all'interno dell'applicazione, a seconda del livello
+ utente, oppure navigare alla pagina Registrati */
+
+
 class FragmentLogin : Fragment(), UserUtils, DipendenteUtils, RestaurantUtils, ProductUtils,
     CartUtils {
 
@@ -44,6 +49,8 @@ class FragmentLogin : Fragment(), UserUtils, DipendenteUtils, RestaurantUtils, P
 
         firebaseAuth = FirebaseAuth.getInstance()
 
+        // Questa funzione permette di effettuare il login quando i campi di email e password corrispondono
+        // ad un account già creato e, a seconda del livello, si effettuerà la navigazione in una delle Activity
         binding.ConstraintLogin.setOnClickListener {
             val email = binding.email.text.toString()
             val password = binding.password.text.toString()
@@ -163,6 +170,7 @@ class FragmentLogin : Fragment(), UserUtils, DipendenteUtils, RestaurantUtils, P
             }
         }
 
+        // Cliccando in questo bottone, verrà mandata una mail di recupero password
         binding.recuperapassword.setOnClickListener {
             useremail = binding.email.text.toString()
             if (useremail.isNotEmpty()) {
@@ -171,6 +179,7 @@ class FragmentLogin : Fragment(), UserUtils, DipendenteUtils, RestaurantUtils, P
 
         }
 
+        // Cliccando sul bottone, la navigazione porterà alla pagina "Registrati"
         binding.noaccount.setOnClickListener {
             view.findNavController().navigate(R.id.LoginToRegister)
         }

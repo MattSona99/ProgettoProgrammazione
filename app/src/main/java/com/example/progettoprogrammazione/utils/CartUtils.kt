@@ -11,11 +11,16 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.gson.Gson
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questa interfaccia implementa determinati metodi per effettuare delle query con il database
+// per la creazione, modifica o eliminazione di informazioni relative ad un carrello
+
 interface CartUtils {
 
     var firebaseAuth: FirebaseAuth
     var firebaseDatabase: FirebaseDatabase
 
+    // Funzione che permette di recuperare il carrello dell'utente loggato dal database
     fun getQRData(
         idU: String?,
         callback: FireBaseCallbackCart,
@@ -42,6 +47,7 @@ interface CartUtils {
             })
     }
 
+    // Funzione che aggiunge un nuovo carrello per l'utente loggato nel database
     fun addQRData(
         cartItems: ArrayList<CartProduct>,
         idU: String?,
@@ -61,6 +67,7 @@ interface CartUtils {
             }
     }
 
+    // Funzione che rimuove il carrello di un utente all'interno del database (non usato)
     fun removeQRData(idU: String?, context: Context?) {
         firebaseDatabase.getReference("Utenti/$idU/Cart").removeValue()
         Toast.makeText(context, "QRCode eliminato con successo.", Toast.LENGTH_LONG)

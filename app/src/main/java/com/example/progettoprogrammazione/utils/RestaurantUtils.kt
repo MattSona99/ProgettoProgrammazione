@@ -11,16 +11,22 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questa interfaccia implementa determinati metodi per effettuare delle query con il database
+// per il recupero, modifica o eliminazione di informazioni relative ai ristoranti
+
 interface RestaurantUtils {
 
     var firebaseAuth: FirebaseAuth
     var firebaseDatabase: FirebaseDatabase
 
+    // Funzione che crea un nuovo ristorante nel database
     fun createRestaurant(context: Context?, rData: Restaurant) {
         firebaseDatabase.getReference("Ristoranti").child("${rData.idR}").setValue(rData)
         Toast.makeText(context, "Ristorante creato con successo.", Toast.LENGTH_LONG).show()
     }
 
+    // Funzione che recupera i dati relativi alle recensioni di un ristorante specifico dal database
     fun getRating(callback: FireBaseCallbackRating, context: Context?, restaurantID : String) {
         firebaseDatabase.getReference("Ristoranti/$restaurantID/usersRatings")
             .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -42,6 +48,7 @@ interface RestaurantUtils {
             })
     }
 
+    // Funzione che recupera tutti i ristoranti salvati all'interno del database
     fun getRestaurantData(callBack: FireBaseCallbackRestaurant, context: Context?) {
         firebaseDatabase.getReference("Ristoranti")
             .addListenerForSingleValueEvent(object : ValueEventListener {

@@ -19,6 +19,11 @@ import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.common.BitMatrix
 
+
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+/* Questo fragment permette all'utente di mostrare a schermo, qualora ce ne fosse uno, il carrello
+salvato nel database, restituendolo sotto forma di immagine QR-Code */
+
 class FragmentQR : Fragment(), CartUtils {
 
     override var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -36,6 +41,7 @@ class FragmentQR : Fragment(), CartUtils {
         binding.layoutQr.isGone = true
         binding.noQrcode.isGone = true
 
+        // Richiama i dati del carrello utente e a seconda del risultato mostra a schermo il contenuto
         getQRData(firebaseAuth.uid, object : FireBaseCallbackCart {
             override fun onResponse(responseC: ResponseCart) {
                 if (responseC.cart == "null") {

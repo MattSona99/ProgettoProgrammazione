@@ -3,6 +3,8 @@ package com.example.progettoprogrammazione.models
 import android.os.Parcel
 import android.os.Parcelable
 
+// Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
+// Questa classe descrive gli attributi e le relative tipologie di un prodotto all'interno di un menu
 data class Product(
     var nomeP: String?,
     var prezzoP: String?,
