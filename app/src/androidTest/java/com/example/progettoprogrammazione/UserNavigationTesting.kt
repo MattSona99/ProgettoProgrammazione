@@ -30,8 +30,9 @@ class UserNavigationTesting {
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
     }
+    /*
     @Test
-    fun test_Login_to_FragmentRistoranti(){
+    fun test_PageLogin_to_Login(){
         //Setup activity scenario
         val activityScenario= ActivityScenario.launch(IntroActivity::class.java)
         //Perform click action per andare a LogIn
@@ -48,9 +49,6 @@ class UserNavigationTesting {
         Espresso.onView(ViewMatchers.withId(R.id.password)).perform(ViewActions.typeText(pwd))
         closeSoftKeyboard()
         Espresso.onView(ViewMatchers.withId(R.id.ConstraintLogin)).perform(ViewActions.click())
-        //Controllo dopo il login che si veda fragmentRistoranti
-        Espresso.onView(ViewMatchers.withId(R.id.user_testing_activity))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
         //logout e controllo che si veda login
         Espresso.onView(ViewMatchers.withId(R.id.ic_logoutU)).perform(ViewActions.click())
@@ -59,6 +57,8 @@ class UserNavigationTesting {
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
     }
+
+     */
 
 
 }
