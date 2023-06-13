@@ -18,9 +18,12 @@ import com.example.progettoprogrammazione.models.CartProduct
 import com.example.progettoprogrammazione.models.User
 import com.example.progettoprogrammazione.utils.ProductUtils
 import com.example.progettoprogrammazione.utils.CartUtils
+import com.example.progettoprogrammazione.utils.calcolatotale_class
 import com.example.progettoprogrammazione.viewmodels.CartViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import dalvik.annotation.TestTargetClass
+import org.jetbrains.annotations.TestOnly
 
 
 // Made by Alessandro Pieragostini, Matteo Sonaglioni & Stefano Marcucci
@@ -43,6 +46,9 @@ class FragmentCarrello : Fragment(), CartUtils, ProductUtils {
 
     private var cartProduct = arrayListOf<CartProduct>()
     private lateinit var adapter: CartAdapter
+
+    // Crea un instanza della classe calcolatotale
+    private val calcolatotale_classInstance = calcolatotale_class()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -73,11 +79,9 @@ class FragmentCarrello : Fragment(), CartUtils, ProductUtils {
 
         // Aggiunge alla recyclerview i prodotto salvati dentro alla lista del viewmodel del carrello
         cartViewModel.getcartItems().observe(viewLifecycleOwner) { cartItems ->
-            var totale: Float? = 0f
-            for (c in cartItems) {
-                totale = totale?.plus(c.totPrice!!)
-                cartProduct.add(c)
-            }
+
+            var totale: Float? = calcolatotale_classInstance.calcolaTotale(cartItems)
+
             binding.totaleCarrello.text = totale.toString() + " €"
             val layoutManager = GridLayoutManager(context, 2)
             binding.recylerOrder.layoutManager = layoutManager
@@ -106,11 +110,9 @@ class FragmentCarrello : Fragment(), CartUtils, ProductUtils {
         svuotando il viewmodel temporaneo */
         cartViewModel.getcartItems().observe(viewLifecycleOwner) { cartItems ->
             cartProduct.clear()
-            var totale: Float? = 0f
-            for (c in cartItems) {
-                totale = totale?.plus(c.totPrice!!)
-                cartProduct.add(c)
-            }
+
+            var totale: Float? = calcolatotale_classInstance.calcolaTotale(cartItems)
+
             binding.constraintQR.setOnClickListener {
                 addQRData(cartProduct, firebaseAuth.uid, context)
                 cartViewModel.deleteCartItems()

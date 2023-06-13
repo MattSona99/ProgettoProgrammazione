@@ -2,6 +2,7 @@ package com.example.progettoprogrammazione
 
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.core.app.ActivityScenario
+import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -21,11 +22,11 @@ class LoginNavigationTest {
         //Setup activity scenario
         val activityScenario= ActivityScenario.launch(IntroActivity::class.java)
         //Perform click action per andare a LogIn
-        onView(withId(R.id.ConstraintLogin)).check(matches(isDisplayed()))
-        onView(withId(R.id.ConstraintLogin)).perform(click())
+        Espresso.onView(withId(R.id.ConstraintLogin)).check(matches(isDisplayed()))
+        Espresso.onView(withId(R.id.ConstraintLogin)).perform(click())
 
-        onView(withId(R.id.fragment_login_layout)).check(matches(isDisplayed()))
-        onView(withId(R.id.fragment_login_test)).check(matches(isDisplayed()))
+        Espresso.onView(withId(R.id.fragment_login_layout)).check(matches(isDisplayed()))
+        Espresso.onView(withId(R.id.fragment_login_test)).check(matches(isDisplayed()))
     }
 
     @Test
