@@ -131,7 +131,7 @@ class FragmentGestione : Fragment(), RestaurantClickListener, RestaurantUtils, F
     }
 
     // Naviga ai dettagli relativi al ristorante passato come parametro
-    override fun onClickResturant(restaurant: Restaurant) {
+    override fun onClickRestaurant(restaurant: Restaurant) {
 
         val bundle = Bundle()
         bundle.putString("restID", restaurant.idR.toString())

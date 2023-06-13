@@ -43,7 +43,7 @@ class RestaurantViewHolder(
             restaurantBinding.tipocibo.text = restaurant.tipoCiboR?.substring(0, 24) + " ..."
         else
             restaurantBinding.tipocibo.text = restaurant.tipoCiboR
-        restaurantBinding.btncard.setOnClickListener { clickListener.onClickResturant(restaurant) }
+        restaurantBinding.btncard.setOnClickListener { clickListener.onClickRestaurant(restaurant) }
         restaurantBinding.rating.text = restaurant.ratingR.toString()
 
     }
