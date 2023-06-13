@@ -6,5 +6,5 @@ import com.example.progettoprogrammazione.models.Restaurant
 // Questa interfaccia consente di cliccare un ristorante specifico
 
 interface RestaurantClickListener {
-    fun onClickResturant(restaurant: Restaurant)
+    fun onClickRestaurant(restaurant: Restaurant)
 }

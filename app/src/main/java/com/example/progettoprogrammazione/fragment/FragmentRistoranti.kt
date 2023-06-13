@@ -102,7 +102,7 @@ class FragmentRistoranti : Fragment(), RestaurantClickListener, RestaurantUtils,
     }
 
     // Effettua la navigazione per andare ai dettagli di un ristorante specifico
-    override fun onClickResturant(restaurant: Restaurant) {
+    override fun onClickRestaurant(restaurant: Restaurant) {
         val bundle = Bundle()
         bundle.putString("restID", restaurant.idR.toString())
         bundle.putParcelableArrayList("restArrayList", restArrayList)

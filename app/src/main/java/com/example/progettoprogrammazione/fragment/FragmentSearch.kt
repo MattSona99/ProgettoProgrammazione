@@ -71,8 +71,8 @@ class FragmentSearch : Fragment(), RestaurantClickListener, RestaurantUtils, Fil
         return binding.root
     }
 
-    //     // Quando viene effettuato un click su un ristorante, si effettuerà la navigazione verso i suoi dettagli
-    override fun onClickResturant(restaurant: Restaurant) {
+    // Quando viene effettuato un click su un ristorante, si effettuerà la navigazione verso i suoi dettagli
+    override fun onClickRestaurant(restaurant: Restaurant) {
         binding.searchBarRistoranti.setQuery("", false)
         val bundle = Bundle()
         bundle.putString("restID", restaurant.idR.toString())
