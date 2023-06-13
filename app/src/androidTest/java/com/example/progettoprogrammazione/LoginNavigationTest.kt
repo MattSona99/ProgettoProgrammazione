@@ -1,6 +1,5 @@
 package com.example.progettoprogrammazione
 
-import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -9,7 +8,6 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.example.progettoprogrammazione.activity.IntroActivity
-import com.example.progettoprogrammazione.intro.FragmentLogin
 import org.junit.Test
 import org.junit.runner.RunWith
 

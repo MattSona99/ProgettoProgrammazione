@@ -39,8 +39,6 @@ class UserNavigationTesting {
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         Espresso.onView(ViewMatchers.withId(R.id.ConstraintLogin)).perform(ViewActions.click())
 
-        /*
-
         //login action user livello 1
         val email:String="useruser@gmail.com"
         val pwd:String="useruser"
@@ -50,10 +48,9 @@ class UserNavigationTesting {
         Espresso.onView(ViewMatchers.withId(R.id.password)).perform(ViewActions.typeText(pwd))
         closeSoftKeyboard()
         Espresso.onView(ViewMatchers.withId(R.id.ConstraintLogin)).perform(ViewActions.click())
-        Controllo dopo il login che si veda fragmentRistoranti
-        Espresso.onView(ViewMatchers.withId(R.id.swipe_refresh_ristoranti))
+        //Controllo dopo il login che si veda fragmentRistoranti
+        Espresso.onView(ViewMatchers.withId(R.id.user_testing_activity))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-
 
         //logout e controllo che si veda login
         Espresso.onView(ViewMatchers.withId(R.id.ic_logoutU)).perform(ViewActions.click())
@@ -61,7 +58,6 @@ class UserNavigationTesting {
         Espresso.onView(ViewMatchers.withId(R.id.ConstraintLogin))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
-        */
     }
 
 
