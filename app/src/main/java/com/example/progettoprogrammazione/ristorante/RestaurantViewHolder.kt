@@ -48,10 +48,6 @@ class RestaurantViewHolder(
 
     }
 
-    private fun getImageId(context: Context, imageName: String): Int {
-        return context.resources
-            .getIdentifier("Restaurants-Utils/$imageName", null, context.packageName)
-    }
 
 
 }
