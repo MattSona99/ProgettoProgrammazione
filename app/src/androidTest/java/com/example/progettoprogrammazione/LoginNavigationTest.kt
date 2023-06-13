@@ -26,7 +26,6 @@ class LoginNavigationTest {
 
         onView(withId(R.id.fragment_login_layout)).check(matches(isDisplayed()))
         onView(withId(R.id.fragment_login_test)).check(matches(isDisplayed()))
-
     }
 
     @Test
